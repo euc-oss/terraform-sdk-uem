@@ -1,0 +1,21 @@
+{
+  "Name": "mocktest-smartgroup-capture",
+  "CriteriaType": "All",
+  "ManagedByOrganizationGroupId": "33182",
+  "OrganizationGroups": [],
+  "UserGroups": [],
+  "Tags": [],
+  "Ownerships": [],
+  "Platforms": [],
+  "Models": [],
+  "OperatingSystems": [],
+  "UserAdditions": [],
+  "DeviceAdditions": [],
+  "UserExclusions": [],
+  "DeviceExclusions": [],
+  "UserGroupExclusions": [],
+  "ManagementTypes": [],
+  "EnrollmentCategories": [],
+  "OEMAndModels": [],
+  "CPUArchitectures": []
+}

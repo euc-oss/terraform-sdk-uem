@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/{id}",
+    "method": "DELETE",
+    "description": "Successful profile deletion",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": null
+  }
+}
+

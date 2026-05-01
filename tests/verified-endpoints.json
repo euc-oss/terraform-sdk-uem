@@ -1,0 +1,177 @@
+{
+  "description": "Tracks which generated endpoints have been verified against captured API fixtures",
+  "verified": [
+    {
+      "service": "ProfilesV2Service",
+      "method": "GetDeviceProfileDetailsAsync",
+      "httpMethod": "GET",
+      "path": "/api/mdm/profiles/{id}",
+      "fixture": "profiles/get_profile_12345.json",
+      "testFunction": "TestGeneratedGetProfile"
+    },
+    {
+      "service": "ProfilesV2Service",
+      "method": "SearchProfiles",
+      "httpMethod": "GET",
+      "path": "/api/mdm/profiles/search",
+      "fixture": "profiles/search_android_success.json",
+      "testFunction": "TestGeneratedSearchProfiles"
+    },
+    {
+      "service": "ProfilesV2Service",
+      "method": "CreateAndroidDeviceProfileAsync",
+      "httpMethod": "POST",
+      "path": "/api/mdm/profiles/platforms/android/create",
+      "fixture": "profiles/create_profile_success.json",
+      "testFunction": "TestGeneratedCreateProfile"
+    },
+    {
+      "service": "DeviceSensorsV1Service",
+      "method": "CreateDeviceSensor",
+      "httpMethod": "POST",
+      "path": "/api/mdm/devicesensors",
+      "fixture": "sensors/create_sensor.json",
+      "testFunction": "TestGeneratedSensorLifecycleV1"
+    },
+    {
+      "service": "DeviceSensorsV1Service",
+      "method": "GetDeviceSensor",
+      "httpMethod": "GET",
+      "path": "/api/mdm/devicesensors/{sensorUuid}",
+      "fixture": "sensors/get_sensor.json",
+      "testFunction": "TestGeneratedSensorLifecycleV1"
+    },
+    {
+      "service": "DeviceSensorsV1Service",
+      "method": "UpdateDeviceSensor",
+      "httpMethod": "PUT",
+      "path": "/api/mdm/devicesensors/{sensorUuid}",
+      "fixture": "sensors/update_sensor.json",
+      "testFunction": "TestGeneratedSensorLifecycleV1"
+    },
+    {
+      "service": "DeviceSensorsV1Service",
+      "method": "GetDeviceSensors",
+      "httpMethod": "GET",
+      "path": "/api/mdm/devicesensors/list/{organizationGroupUuid}",
+      "fixture": "sensors/list_sensors.json",
+      "testFunction": "TestGeneratedSensorLifecycleV1"
+    },
+    {
+      "service": "DeviceSensorsV1Service",
+      "method": "BulkDeleteDeviceSensors",
+      "httpMethod": "POST",
+      "path": "/api/mdm/devicesensors/bulkdelete",
+      "fixture": "sensors/bulkdelete_sensors.json",
+      "testFunction": "TestGeneratedSensorLifecycleV1"
+    },
+    {
+      "service": "AppsV2Service",
+      "method": "Search",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/search",
+      "fixture": "mam-apps/apps_get_search.json",
+      "testFunction": "TestMamV2AppsSearchFixture"
+    },
+    {
+      "service": "AppsV2Service",
+      "method": "GetCategoriesForApplication",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/categories",
+      "fixture": "mam-apps/apps_get_categories.json",
+      "testFunction": "TestMamV2AppsCategoriesFixture"
+    },
+    {
+      "service": "InternalAppsV2Service",
+      "method": "GetInternalAppByUuid",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/internal/{uuid}",
+      "fixture": "mam-apps/apps_get_internal.json",
+      "testFunction": "TestMamV2InternalAppGetByUuid"
+    },
+    {
+      "service": "InternalAppsV2Service",
+      "method": "GetApplicationBranchCacheStatisticsAsync",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/internal/peerdistribution/branchcache/{bundleid}",
+      "fixture": "mam-apps/apps_get_internal_peerdistribution_branchcache.json",
+      "testFunction": "TestMamV2BranchCacheFixture"
+    },
+    {
+      "service": "AppsV2Service",
+      "method": "GetAppConfigTemplateAsync",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/{applicationUuid}/app-config-template",
+      "fixture": "mam-apps/apps_get_app-config-template.json",
+      "testFunction": "TestMamV2AppConfigTemplateFixture"
+    },
+    {
+      "service": "AppsV2Service",
+      "method": "GetAssignmentRuleAsync",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/{applicationUuid}/assignment-rules",
+      "fixture": "mam-apps/apps_get_assignment-rules.json",
+      "testFunction": "TestMamV2AssignmentRulesGetFixture"
+    },
+    {
+      "service": "EnterpriseAppRepositoryV2Service",
+      "method": "SearchApplicationsAsync",
+      "httpMethod": "GET",
+      "path": "/api/mam/enterpriseapprepository/applications/search",
+      "fixture": "mam-apps/enterpriseapprepository_get_applications_search.json",
+      "testFunction": "TestMamV2EarSearchFixture"
+    },
+    {
+      "service": "AppBookmarksV2Service",
+      "method": "GetBookmarkList",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/kiosk-bookmarks/{platform}",
+      "fixture": "mam-apps/apps_get_kiosk-bookmarks_android.json",
+      "testFunction": "TestMamV2KioskBookmarksFixture"
+    }
+  ],
+  "unverified": [
+    {
+      "service": "ProfilesV2Service",
+      "method": "UpdateAndroidDeviceProfileAsync",
+      "httpMethod": "POST",
+      "path": "/api/mdm/profiles/platforms/android/update",
+      "reason": "Existing fixture captures PUT /api/mdm/profiles/{id} from hand-written service — needs recapture for generated endpoint"
+    },
+    {
+      "service": "InternalAppsV2Service",
+      "method": "GetApplicationList",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/internal/provisionings/{uuid}",
+      "reason": "mock-capture discovers application UUID from apps/search; this route requires provisioning profile UUID. First discovered internal app had no provisioning profile (API 7031 / 400)."
+    },
+    {
+      "service": "PurchasedAppsV2Service",
+      "method": "GetPurchasedApplicationAndAssignments",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/purchased/{uuid}",
+      "reason": "No PURCHASED applications returned from apps/search on this tenant (204); discovered INTERNAL UUID yields 404."
+    },
+    {
+      "service": "AppRemovalProtectionLogsV2Service",
+      "method": "AppRemovalDevices",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/removal-protection-logs/devices",
+      "reason": "Tenant returns 7026: ARP Angular Migration Events feature disabled"
+    },
+    {
+      "service": "EnterpriseAppRepositoryV2Service",
+      "method": "GetApplicationsDetailsAsync",
+      "httpMethod": "GET",
+      "path": "/api/mam/enterpriseapprepository/packages",
+      "reason": "Live API 8063 requires package identifier + resource type query params; shipped swagger/codegen omit parameters so capture cannot bind PackageIdentifier"
+    },
+    {
+      "service": "AppBookmarksV2Service",
+      "method": "GetBookmarkList",
+      "httpMethod": "GET",
+      "path": "/api/mam/apps/kiosk-bookmarks/WIN_RT",
+      "reason": "Live API returns 400 Invalid device type for path segment WIN_RT (ANDROID and APPLE succeed); likely server-side path parsing bug vs documented enum"
+    }
+  ]
+}

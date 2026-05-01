@@ -1,0 +1,36 @@
+version: "2"
+
+run:
+  timeout: 10m
+  go: '1.25'
+
+linters:
+  default: none
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - misspell
+    - unconvert
+    - unparam
+    - durationcheck
+    - makezero
+    - nilerr
+    - predeclared
+    - godot
+  settings:
+    godot:
+      scope: declarations
+      capital: true
+    misspell:
+      locale: US
+  exclusions:
+    paths:
+      - third_party
+      - builtin
+      - examples
+      - output
+      - generated
+    rules: []

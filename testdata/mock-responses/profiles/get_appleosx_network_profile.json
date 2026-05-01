@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/12345",
+    "method": "GET",
+    "platform": "AppleOsX",
+    "description": "Successful macOS network (Wi-Fi) profile retrieval by ID",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "General": {
+        "ProfileId": 12345,
+        "Name": "Test Android Profile 1",
+        "Description": "Wi-Fi profile for corporate network",
+        "Platform": "AppleOsX",
+        "ProfileType": "Device",
+        "ProfileScope": "Production",
+        "AssignmentType": "Auto",
+        "ManagedLocationGroupID": 14165,
+        "IsActive": true,
+        "ProfileUuid": "38c8f49e-6f0a-bbb4-6147-63e01723040b",
+        "ProfileContext": "Device"
+      },
+      "NetworkList": [
+        {
+          "NetworkInterface": "BuiltInWireless",
+          "ServiceSetIdentifier": "CorpWiFi",
+          "HiddenNetwork": false,
+          "AutoJoin": true,
+          "SecurityType": "WEP",
+          "Password": "12345",
+          "UseAsLoginWindowConfiguration": true,
+          "UseDirectoryAuthentication": false,
+          "DisableAssociationMACRandomization": true,
+          "ProxyType": "None"
+        }
+      ]
+    }
+  }
+}

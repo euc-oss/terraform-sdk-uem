@@ -1,0 +1,360 @@
+// Code generated. DO NOT EDIT.
+
+package mamv2
+
+import (
+	"context"
+	"fmt"
+	"github.com/euc-oss/terraform-sdk-uem/client"
+	"net/http"
+	"net/url"
+)
+
+// AppsV2Service provides AppsV2 API operations.
+type AppsV2Service struct {
+	client *client.Client
+}
+
+// NewAppsV2Service creates a new AppsV2Service.
+func NewAppsV2Service(c *client.Client) *AppsV2Service {
+	return &AppsV2Service{client: c}
+}
+
+// GetAndroidAppCustomTracks — Get a list of configured application tracks.
+// Operation ID: AppsV2_GetAndroidAppCustomTracks
+// HTTP: GET /api/mam/apps/{organizationGroupUuid}/customtracks/{applicationUuid}
+func (s *AppsV2Service) GetAndroidAppCustomTracks(
+	ctx context.Context,
+	OrganizationGroupUUID string,
+	ApplicationUUID string,
+) (http.Header, *[]AppTrackV2, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/%s/customtracks/%s", OrganizationGroupUUID, ApplicationUUID)
+	var response []AppTrackV2
+	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("AppsV2_GetAndroidAppCustomTracks: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// AppsV2GetAppConfigTemplateAsyncOptions holds optional query parameters for GetAppConfigTemplateAsync.
+type AppsV2GetAppConfigTemplateAsyncOptions struct {
+	OrganizationGroupUUID *string // Current Organization Group identifier for which admin is trying to get the template and from where assigment of the given app will happen. Accepted formats **uuid** example: 3d958f38-246e-4854-a306-189d941ab073
+}
+
+// GetAppConfigTemplateAsync — New - Get app config template for an application.
+// Operation ID: AppsV2_GetAppConfigTemplateAsync
+// HTTP: GET /api/mam/apps/{applicationUuid}/app-config-template
+func (s *AppsV2Service) GetAppConfigTemplateAsync(
+	ctx context.Context,
+	ApplicationUUID string,
+	opts *AppsV2GetAppConfigTemplateAsyncOptions,
+) (http.Header, *[]AppConfigTemplateV2Model, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/%s/app-config-template", ApplicationUUID)
+	// Build query parameters
+	if opts != nil {
+		query := url.Values{}
+		if opts.OrganizationGroupUUID != nil {
+			query.Set("organization_group_uuid", fmt.Sprintf("%s", *opts.OrganizationGroupUUID))
+		}
+		if len(query) > 0 {
+			endpoint = endpoint + "?" + query.Encode()
+		}
+	}
+	var response []AppConfigTemplateV2Model
+	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("AppsV2_GetAppConfigTemplateAsync: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// GetAppFilterValues — Gets all the values of the filter identified by the specified filter name.
+// Operation ID: AppsV2_GetAppFilterValues
+// HTTP: GET /api/mam/apps/filters/{filterName}
+func (s *AppsV2Service) GetAppFilterValues(
+	ctx context.Context,
+	FilterName string,
+) (http.Header, *[]ApplicationFiltersModelV2, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/filters/%s", FilterName)
+	var response []ApplicationFiltersModelV2
+	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("AppsV2_GetAppFilterValues: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// GetAssignmentRuleAsync — New - Get assignment rule for an application.
+// Operation ID: AppsV2_GetAssignmentRuleAsync
+// HTTP: GET /api/mam/apps/{applicationUuid}/assignment-rules
+func (s *AppsV2Service) GetAssignmentRuleAsync(
+	ctx context.Context,
+	ApplicationUUID string,
+) (http.Header, *AppAssignmentRuleV2Model, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/%s/assignment-rules", ApplicationUUID)
+	var response AppAssignmentRuleV2Model
+	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("AppsV2_GetAssignmentRuleAsync: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// AppsV2GetCategoriesForApplicationOptions holds optional query parameters for GetCategoriesForApplication.
+type AppsV2GetCategoriesForApplicationOptions struct {
+	Categorytype string //
+	Oguuid       string //
+}
+
+// GetCategoriesForApplication — Get the list of categories that can be assigned to an application.
+// Operation ID: AppsV2_GetCategoriesForApplication
+// HTTP: GET /api/mam/apps/categories
+func (s *AppsV2Service) GetCategoriesForApplication(
+	ctx context.Context,
+	opts *AppsV2GetCategoriesForApplicationOptions,
+) (http.Header, *ApplicationCategoriesResultV2, error) {
+	// Build endpoint path
+	endpoint := "/api/mam/apps/categories"
+	// Validate required query parameters
+	if opts == nil {
+		return nil, nil, fmt.Errorf("AppsV2_GetCategoriesForApplication: opts must not be nil (contains required parameters)")
+	}
+	// Build query parameters
+	if opts != nil {
+		query := url.Values{}
+		query.Set("categorytype", fmt.Sprintf("%s", opts.Categorytype))
+		query.Set("oguuid", fmt.Sprintf("%s", opts.Oguuid))
+		if len(query) > 0 {
+			endpoint = endpoint + "?" + query.Encode()
+		}
+	}
+	var response ApplicationCategoriesResultV2
+	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("AppsV2_GetCategoriesForApplication: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// AppsV2GetListOfDevicesOptions holds optional query parameters for GetListOfDevices.
+type AppsV2GetListOfDevicesOptions struct {
+	Action           string  //
+	AssignmentStatus *string //
+	PageNumber       *int    //
+	PageSize         *int    //
+	SearchText       *string //
+	SortColumn       *string //
+	SortOrder        *string //
+}
+
+// GetListOfDevices — Get the list of devices for which the given application assignment got added, removed or unchanged.
+// Operation ID: AppsV2_GetListOfDevices
+// HTTP: POST /api/mam/apps/{applicationUuid}/assignment-rules
+func (s *AppsV2Service) GetListOfDevices(
+	ctx context.Context,
+	ApplicationUUID string,
+	request *AppAssignmentRuleV2Model,
+	opts *AppsV2GetListOfDevicesOptions,
+) (http.Header, *AppAssignmentRuleDevicesV1ModelListV2, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/%s/assignment-rules", ApplicationUUID)
+	// Validate required query parameters
+	if opts == nil {
+		return nil, nil, fmt.Errorf("AppsV2_GetListOfDevices: opts must not be nil (contains required parameters)")
+	}
+	// Build query parameters
+	if opts != nil {
+		query := url.Values{}
+		query.Set("action", fmt.Sprintf("%s", opts.Action))
+		if opts.AssignmentStatus != nil {
+			query.Set("assignment-status", fmt.Sprintf("%s", *opts.AssignmentStatus))
+		}
+		if opts.PageNumber != nil {
+			query.Set("page-number", fmt.Sprintf("%d", *opts.PageNumber))
+		}
+		if opts.PageSize != nil {
+			query.Set("page-size", fmt.Sprintf("%d", *opts.PageSize))
+		}
+		if opts.SearchText != nil {
+			query.Set("search-text", fmt.Sprintf("%s", *opts.SearchText))
+		}
+		if opts.SortColumn != nil {
+			query.Set("sort-column", fmt.Sprintf("%s", *opts.SortColumn))
+		}
+		if opts.SortOrder != nil {
+			query.Set("sort-order", fmt.Sprintf("%s", *opts.SortOrder))
+		}
+		if len(query) > 0 {
+			endpoint = endpoint + "?" + query.Encode()
+		}
+	}
+	var response AppAssignmentRuleDevicesV1ModelListV2
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("AppsV2_GetListOfDevices: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// GetOffice365MamApplicationPolicy — Gets an Office365 MAM Application Policy for administrator's organization group.
+// Operation ID: AppsV2_GetOffice365MamApplicationPolicy
+// HTTP: GET /api/mam/apps/office365MamApplicationPolicies
+func (s *AppsV2Service) GetOffice365MamApplicationPolicy(
+	ctx context.Context,
+) (http.Header, *Office365MamIntegrationPolicyResponseModelV2, error) {
+	// Build endpoint path
+	endpoint := "/api/mam/apps/office365MamApplicationPolicies"
+	var response Office365MamIntegrationPolicyResponseModelV2
+	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("AppsV2_GetOffice365MamApplicationPolicy: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// AppsV2SearchOptions holds optional query parameters for Search.
+type AppsV2SearchOptions struct {
+	ProductType                             *string //
+	ApplicationType                         *string //
+	Name                                    *string //
+	Category                                *string //
+	Status                                  *string //
+	OrganizationGroupUUID                   *string //
+	BundleID                                *string //
+	Platform                                *string //
+	Model                                   *string //
+	WindowsApplicationType                  *string //
+	ApplicationCommandTarget                *string //
+	IsProductComponentAppsOnly              *bool   //
+	IsIncludeAppsFromChildOgs               *bool   //
+	IsIncludeAppsFromParentOgs              *bool   //
+	IsDistinctApplicationsByOg              *bool   //
+	IsExcludeAssignedOrInstalledDeviceCount *bool   //
+	ApplicationSource                       *string //
+	OrderBy                                 *string //
+	Page                                    *int    //
+	PageSize                                *int    //
+}
+
+// Search — Search for applications.
+// Operation ID: AppsV2_Search
+// HTTP: GET /api/mam/apps/search
+func (s *AppsV2Service) Search(
+	ctx context.Context,
+	opts *AppsV2SearchOptions,
+) (http.Header, *ApplicationSearchV2Model, error) {
+	// Build endpoint path
+	endpoint := "/api/mam/apps/search"
+	// Build query parameters
+	if opts != nil {
+		query := url.Values{}
+		if opts.ProductType != nil {
+			query.Set("product_type", fmt.Sprintf("%s", *opts.ProductType))
+		}
+		if opts.ApplicationType != nil {
+			query.Set("application_type", fmt.Sprintf("%s", *opts.ApplicationType))
+		}
+		if opts.Name != nil {
+			query.Set("name", fmt.Sprintf("%s", *opts.Name))
+		}
+		if opts.Category != nil {
+			query.Set("category", fmt.Sprintf("%s", *opts.Category))
+		}
+		if opts.Status != nil {
+			query.Set("status", fmt.Sprintf("%s", *opts.Status))
+		}
+		if opts.OrganizationGroupUUID != nil {
+			query.Set("organization_group_uuid", fmt.Sprintf("%s", *opts.OrganizationGroupUUID))
+		}
+		if opts.BundleID != nil {
+			query.Set("bundle_id", fmt.Sprintf("%s", *opts.BundleID))
+		}
+		if opts.Platform != nil {
+			query.Set("platform", fmt.Sprintf("%s", *opts.Platform))
+		}
+		if opts.Model != nil {
+			query.Set("model", fmt.Sprintf("%s", *opts.Model))
+		}
+		if opts.WindowsApplicationType != nil {
+			query.Set("windows_application_type", fmt.Sprintf("%s", *opts.WindowsApplicationType))
+		}
+		if opts.ApplicationCommandTarget != nil {
+			query.Set("application_command_target", fmt.Sprintf("%s", *opts.ApplicationCommandTarget))
+		}
+		if opts.IsProductComponentAppsOnly != nil {
+			query.Set("is_product_component_apps_only", fmt.Sprintf("%t", *opts.IsProductComponentAppsOnly))
+		}
+		if opts.IsIncludeAppsFromChildOgs != nil {
+			query.Set("is_include_apps_from_child_ogs", fmt.Sprintf("%t", *opts.IsIncludeAppsFromChildOgs))
+		}
+		if opts.IsIncludeAppsFromParentOgs != nil {
+			query.Set("is_include_apps_from_parent_ogs", fmt.Sprintf("%t", *opts.IsIncludeAppsFromParentOgs))
+		}
+		if opts.IsDistinctApplicationsByOg != nil {
+			query.Set("is_distinct_applications_by_og", fmt.Sprintf("%t", *opts.IsDistinctApplicationsByOg))
+		}
+		if opts.IsExcludeAssignedOrInstalledDeviceCount != nil {
+			query.Set("is_exclude_assigned_or_installed_device_count", fmt.Sprintf("%t", *opts.IsExcludeAssignedOrInstalledDeviceCount))
+		}
+		if opts.ApplicationSource != nil {
+			query.Set("application_source", fmt.Sprintf("%s", *opts.ApplicationSource))
+		}
+		if opts.OrderBy != nil {
+			query.Set("order_by", fmt.Sprintf("%s", *opts.OrderBy))
+		}
+		if opts.Page != nil {
+			query.Set("page", fmt.Sprintf("%d", *opts.Page))
+		}
+		if opts.PageSize != nil {
+			query.Set("page_size", fmt.Sprintf("%d", *opts.PageSize))
+		}
+		if len(query) > 0 {
+			endpoint = endpoint + "?" + query.Encode()
+		}
+	}
+	var response ApplicationSearchV2Model
+	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("AppsV2_Search: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// UpdateAssignmentRuleAsync — New - Updates assignment rule for an application and publishes the application to the devices associated with assignment rule.
+// Operation ID: AppsV2_UpdateAssignmentRuleAsync
+// HTTP: PUT /api/mam/apps/{applicationUuid}/assignment-rules
+func (s *AppsV2Service) UpdateAssignmentRuleAsync(
+	ctx context.Context,
+	ApplicationUUID string,
+	request *AppAssignmentRuleV2Model,
+) (http.Header, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/%s/assignment-rules", ApplicationUUID)
+	headers, err := s.client.DoRequest(ctx, "PUT", endpoint, AcceptHeader, "application/json", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("AppsV2_UpdateAssignmentRuleAsync: %w", err)
+	}
+	return headers, nil
+}
+
+// UpdateRequest — Updates the status of the request for an application once Workspace ONE Intelligence reports the status.
+// Operation ID: AppsV2_UpdateRequest
+// HTTP: PUT /api/mam/apps/request/{requestUuid}
+func (s *AppsV2Service) UpdateRequest(
+	ctx context.Context,
+	RequestUUID string,
+	request *ApplicationRequestV2Model,
+) (http.Header, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/request/%s", RequestUUID)
+	headers, err := s.client.DoRequest(ctx, "PUT", endpoint, AcceptHeader, "application/json", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("AppsV2_UpdateRequest: %w", err)
+	}
+	return headers, nil
+}

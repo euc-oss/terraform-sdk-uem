@@ -1,0 +1,8 @@
+// Code generated. DO NOT EDIT.
+
+package sdk
+
+// Version is the SDK release version. It is set at release time by the
+// publishing pipeline (see RELEASING.md). Consumers may include this value
+// in User-Agent headers or diagnostic output.
+const Version = "0.0.0-dev"

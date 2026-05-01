@@ -1,0 +1,1169 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/search",
+    "method": "GET",
+    "description": "Captured GET /api/mam/apps/search",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "applications": [
+        {
+          "actual_file_version": "24.09.00.0",
+          "application_file_name": "Test Rabbitthrow",
+          "application_name": "Test BlanchedAlmondstand",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "24.9.0.0",
+          "assigned_device_count": 6,
+          "assignment_status": "Assigned",
+          "bundle_id": "{485c3a2c-5ddc-ffb2-d8cc-4071a32e6836}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12346,
+          "icon_file_name": "Test Koaladid",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/f7894ba6-9463-aa46-fbab-056a392522f9/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/41132c18-2917-19dd-1d6c-c7203126a824/BlobHandler.pblob",
+          "metadata_file_name": "Test Trouthave",
+          "msi_deployment_parameters": {
+            "install_context": 1,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 6,
+          "organization_group_uuid": "987afa5b-9012-ddc6-764a-e5c4168e1db1",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Troopcry",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/cbffa5fc-9c6d-e5ef-480c-96c3f5e0a63b/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test MintCreamoffice",
+              "smart_group_uuid": "28d813d2-cb89-a7bb-d573-beef5b60b2cd"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12347,
+                "model_name": "Test Speedwould"
+              }
+            ]
+          },
+          "uuid": "c7b9a8d8-9ef9-0589-2712-8f9c3798f707",
+          "version_identifier": "{fb29a062-f13a-2bfb-bf17-c5e1804a1c15}"
+        },
+        {
+          "actual_file_version": "1.0.0.0",
+          "application_file_name": "Test Caravanbe",
+          "application_name": "Test SaddleBrownwoman",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "0.0.0.0",
+          "assigned_device_count": 6,
+          "assignment_status": "Assigned",
+          "bundle_id": "{c7bacf90-1345-fa90-7838-f31f4e7df60f}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12348,
+          "icon_file_name": "Test Wheatmob",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/7562080e-cf87-bf82-4e62-ef964d515a14/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/1066ab39-b8fe-d952-37b7-3ae7b9691d3e/BlobHandler.pblob",
+          "metadata_file_name": "Test Castthink",
+          "msi_deployment_parameters": {
+            "install_context": 1,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 6,
+          "organization_group_uuid": "eb1f13b3-03de-268e-b627-d0e1d4e0e8ef",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Orangeliter",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/e191e42d-2eaa-047c-b768-bfbb65ab8d2d/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Giraffebe",
+              "smart_group_uuid": "c01939e4-9604-4119-ea51-3e2e3b29f0d6"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12349,
+                "model_name": "Test Grasshopperdo"
+              }
+            ]
+          },
+          "uuid": "862b7b42-480f-aed8-b89b-646e32745505",
+          "version_identifier": "{c7bacf90-1345-fa90-7838-f31f4e7df60f}"
+        },
+        {
+          "application_name": "Test Servalmay",
+          "application_rank": 0,
+          "application_size": "923.70 MB",
+          "application_source": 1,
+          "application_type": "Public",
+          "application_url": "https://example.com/qfZnKpRN",
+          "assigned_device_count": 2,
+          "assignment_status": "Assigned",
+          "bundle_id": "com.rovio.baba",
+          "category_list": {
+            "category": []
+          },
+          "comments": "",
+          "content_gateway_id": 12350,
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/0f199a55-cd7e-dec4-3f65-b68a7f135652/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/88a7dfff-33fa-b407-9e8c-6b144b314062/BlobHandler.pblob",
+          "not_installed_device_count": 2,
+          "organization_group_uuid": "f40a799c-e271-078f-0580-f7f2bf44bb75",
+          "platform": "APPLE",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Tortoiseplay",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/b6a41529-2997-4bc6-1e06-feacd267be6b/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Tradebeing",
+              "smart_group_uuid": "5fb37613-34db-373c-422f-d59dfaee6a93"
+            }
+          ],
+          "status": "Active",
+          "uuid": "107ffbba-06cc-17ce-5b81-73c83dbc7211"
+        },
+        {
+          "actual_file_version": "23.07.00.04",
+          "application_file_name": "Test Dogdo",
+          "application_name": "Test Electricitygive",
+          "application_rank": 0,
+          "application_size": "6.77 MB",
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "23.7.0.4",
+          "assigned_device_count": 1,
+          "assignment_status": "Assigned",
+          "bundle_id": "com.example.rm.agent",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12351,
+          "icon_file_name": "Test Soupwait",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/289ff518-20d8-0536-3267-340013039b20/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/1a2839a2-2d98-f3f4-eac2-a1157368a653/BlobHandler.pblob",
+          "metadata_file_name": "Test Otterhave",
+          "not_installed_device_count": 1,
+          "organization_group_uuid": "fb1f3a6f-4a13-5a1a-aa43-57f0f1870beb",
+          "platform": "ANDROID",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Choirwash",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/9a18e4b1-5a33-4940-1964-5aa3dadccd31/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test DimGrayyear",
+              "smart_group_uuid": "394e0761-28a0-0ee7-45fa-81c495ff99ac"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12352,
+                "model_name": "Test DarkMagentachoir"
+              }
+            ]
+          },
+          "uuid": "b91d476b-04a5-2607-0dcc-6485cc90b6e1"
+        },
+        {
+          "actual_file_version": "14.5.1",
+          "application_file_name": "Test Sedgedream",
+          "application_name": "Test Caseeat",
+          "application_rank": 0,
+          "application_size": "15.31 MB",
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "14.5.1.0",
+          "assigned_device_count": 1,
+          "assignment_status": "Assigned",
+          "bundle_id": "com.vmw.macos.BBEdit",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12353,
+          "icon_file_name": "Test Archipelagodive",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "",
+          "medium_icon_uri": "",
+          "metadata_file_name": "Test DarkOliveGreentask",
+          "not_installed_device_count": 1,
+          "organization_group_uuid": "e8408ed5-6fa5-3ed5-abf6-fea654b70abd",
+          "platform": "APPLE_OS_X",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Wadwill",
+          "small_icon_uri": "",
+          "smart_groups": [
+            {
+              "name": "Test Partyshall",
+              "smart_group_uuid": "e8cb2c0f-8f58-3b8b-a51b-7311b5d0024f"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12354,
+                "model_name": "Test Magentathought"
+              },
+              {
+                "model_id": 12355,
+                "model_name": "Test RoyalBluetissue"
+              },
+              {
+                "model_id": 12356,
+                "model_name": "Test MediumBlueboy"
+              },
+              {
+                "model_id": 12357,
+                "model_name": "Test Elephantcould"
+              },
+              {
+                "model_id": 12358,
+                "model_name": "Test Bodythink"
+              },
+              {
+                "model_id": 12359,
+                "model_name": "Test Batterybathe"
+              },
+              {
+                "model_id": 12360,
+                "model_name": "Test Caravanbe"
+              }
+            ]
+          },
+          "uuid": "f5af8fde-0937-2e6a-53fe-41a1bf53f606"
+        },
+        {
+          "application_name": "Test MediumSeaGreencomb",
+          "application_rank": 0,
+          "application_size": "237.77 MB",
+          "application_source": 1,
+          "application_type": "Public",
+          "application_url": "https://example.com/OrrJFtsP",
+          "assigned_device_count": 2,
+          "assignment_status": "Assigned",
+          "bundle_id": "com.air-watch.boxer",
+          "category_list": {
+            "category": []
+          },
+          "comments": "",
+          "content_gateway_id": 12361,
+          "installed_device_count": 1,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/8b216f4c-7b89-7898-c298-842d01b382ba/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/8b216f4c-7b89-7898-c298-842d01b382ba/BlobHandler.pblob",
+          "not_installed_device_count": 1,
+          "organization_group_uuid": "027df127-78b2-6b27-7b46-0cb5e896e7b4",
+          "platform": "APPLE",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Crowhas",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/8b216f4c-7b89-7898-c298-842d01b382ba/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Minnowthrow",
+              "smart_group_uuid": "dd7bf35f-cad8-d68c-9605-16b4d7043ae5"
+            }
+          ],
+          "status": "Active",
+          "uuid": "0a22cef0-b197-7746-bfed-f1213b37b65e"
+        },
+        {
+          "actual_file_version": "1.0",
+          "application_file_name": "Test Sealhave",
+          "application_name": "Test Apedoes",
+          "application_rank": 0,
+          "application_size": "193.35 MB",
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.0.0.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Assigned",
+          "bundle_id": "com.sample.app.clientsdkapp.t",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12362,
+          "icon_file_name": "Test Gnuthrow",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "",
+          "medium_icon_uri": "",
+          "metadata_file_name": "Test Muskrathave",
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "3840b795-e293-fb54-b84e-714bc8716e7e",
+          "platform": "ANDROID",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Flocksleep",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/de53b471-b318-959e-252c-96967b60692a/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Goatmust",
+              "smart_group_uuid": "a70c8919-aabc-d539-065d-04d175d25f6f"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12363,
+                "model_name": "Test Tripfly"
+              }
+            ]
+          },
+          "uuid": "17acd10f-723e-1302-e736-8d6dbbfefaee"
+        },
+        {
+          "application_name": "Test Swanwere",
+          "application_rank": 0,
+          "application_size": "405.37 MB",
+          "application_source": 1,
+          "application_type": "Public",
+          "application_url": "https://example.com/TbKYrCaD",
+          "assigned_device_count": 2,
+          "assignment_status": "Assigned",
+          "bundle_id": "com.air-watch.content.locker",
+          "category_list": {
+            "category": []
+          },
+          "comments": "",
+          "content_gateway_id": 12364,
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/8f887c6d-697e-fccb-dd55-897e0644bb4b/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/fb563bff-49e7-fcc8-a589-f8f5be888ac3/BlobHandler.pblob",
+          "not_installed_device_count": 2,
+          "organization_group_uuid": "d5adbdff-ba05-5136-68e6-91cd5c5808d0",
+          "platform": "APPLE",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Bookclap",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/4a4dbca6-9646-03e4-c6ce-e6979830448e/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Wombatare",
+              "smart_group_uuid": "7101db25-dd61-6c6e-135a-a808127e0917"
+            }
+          ],
+          "status": "Active",
+          "uuid": "17b3595a-85d8-ceba-d7c6-f0a2aceba4fa"
+        },
+        {
+          "application_name": "Test LawnGreenbody",
+          "application_rank": 0,
+          "application_size": "720.79 MB",
+          "application_source": 2,
+          "application_type": "Public",
+          "application_url": "https://example.com/gpbyhwOS",
+          "assigned_device_count": 0,
+          "assignment_status": "Assigned",
+          "bundle_id": "org.mozilla.firefox",
+          "category_list": {
+            "category": []
+          },
+          "comments": "",
+          "content_gateway_id": 12365,
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/1a252fdb-a2d4-46d5-afd9-3f0666e419e4/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/1a252fdb-a2d4-46d5-afd9-3f0666e419e4/BlobHandler.pblob",
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "f0878d3e-5a25-e221-03ff-c56e85721777",
+          "platform": "ANDROID",
+          "push_mode": 0,
+          "root_organization_group_name": "Test DarkGreenbread",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/1a252fdb-a2d4-46d5-afd9-3f0666e419e4/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test DarkTurquoiseyear",
+              "smart_group_uuid": "92a30654-2f25-8af9-443e-3dae47ecd2d8"
+            }
+          ],
+          "status": "Active",
+          "uuid": "82f38a1d-bb34-b9dd-b3c0-2c80219ea2f0"
+        },
+        {
+          "application_name": "Test Quivermight",
+          "application_rank": 0,
+          "application_size": "2.42 MB",
+          "application_source": 2,
+          "application_type": "Public",
+          "application_url": "https://example.com/kuDVakYP",
+          "assigned_device_count": 3,
+          "assignment_status": "Assigned",
+          "bundle_id": "com.samsung.android.knox.kpu",
+          "category_list": {
+            "category": []
+          },
+          "comments": "",
+          "content_gateway_id": 12366,
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/98b11d94-2b3d-fd85-b272-14a75e32658d/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/98b11d94-2b3d-fd85-b272-14a75e32658d/BlobHandler.pblob",
+          "not_installed_device_count": 3,
+          "organization_group_uuid": "587acee6-0352-4440-51a2-3e479e519d2c",
+          "platform": "ANDROID",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Workwait",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/98b11d94-2b3d-fd85-b272-14a75e32658d/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Economicshas",
+              "smart_group_uuid": "2e198a5a-3b0a-04de-25d6-215161f6a370"
+            }
+          ],
+          "status": "Active",
+          "uuid": "a7045ad8-92be-e971-d0bc-46cd49c9131d"
+        },
+        {
+          "actual_file_version": "1.3.0",
+          "application_file_name": "Test OrangeRedtribe",
+          "application_name": "Test Dayhave",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.3.0.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Assigned",
+          "bundle_id": "{207945f7-6cf4-3d63-a78c-7f0cec005260}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12367,
+          "icon_file_name": "Test Nestcan",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/6b4fc5a4-da16-3a51-d1f2-dbcfe785dfb6/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/5f224e65-da7e-d8cb-1fb6-4cae0814005c/BlobHandler.pblob",
+          "metadata_file_name": "Test MediumSlateBlueday",
+          "msi_deployment_parameters": {
+            "install_context": 2,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "1ac75f42-7355-c16c-99b3-c47caefc78f6",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Careshould",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/5e6bd708-00fd-2368-c847-fc690e1d1600/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Whalecrawl",
+              "smart_group_uuid": "98385f6b-5bb2-da83-73e9-435fed61de14"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12368,
+                "model_name": "Test Cameldo"
+              }
+            ]
+          },
+          "uuid": "0fd81aab-f09a-4def-6651-31a5d6f2281a",
+          "version_identifier": "{3e9c12d6-566d-a544-e7ee-9c13ab69f15d}"
+        },
+        {
+          "actual_file_version": "1.0.6",
+          "application_file_name": "Test Pleasurebeing",
+          "application_name": "Test Dolphinski",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.0.6.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Assigned",
+          "bundle_id": "{207945f7-6cf4-3d63-a78c-7f0cec005260}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12369,
+          "icon_file_name": "Test Cheetahcould",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/6c2f52bd-53fa-f756-de34-b1ac9fb30033/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/e26fa960-cf51-5ab3-8740-a9246c3f168f/BlobHandler.pblob",
+          "metadata_file_name": "Test Workwould",
+          "msi_deployment_parameters": {
+            "install_context": 1,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "efef9959-14e2-19f1-eac7-65f536627b34",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Prairie Dogare",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/b4fb8780-1794-62f6-eb94-2fd2635a16d7/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test MidnightBluetribe",
+              "smart_group_uuid": "bab1732e-0e2f-d8d5-c4e8-29af9aef09bc"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12370,
+                "model_name": "Test Violetthought"
+              }
+            ]
+          },
+          "uuid": "c5744c02-4a23-be84-9360-45fe45787193",
+          "version_identifier": "{4d825240-860d-47be-9c91-443fd184b5cb}"
+        },
+        {
+          "actual_file_version": "1.0.7",
+          "application_file_name": "Test DarkSeaGreenaccommodation",
+          "application_name": "Test Elephantcan",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.0.7.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Assigned",
+          "bundle_id": "{207945f7-6cf4-3d63-a78c-7f0cec005260}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12371,
+          "icon_file_name": "Test Hyenabeen",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/bddcf898-eb39-089d-98b2-c47c5aad4bea/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/967fd0f6-a38e-2719-5de4-7d1c595baf49/BlobHandler.pblob",
+          "metadata_file_name": "Test Grasshopperwere",
+          "msi_deployment_parameters": {
+            "install_context": 1,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "a6912697-847d-836f-978d-84b079895f58",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Martenshould",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/3392c2aa-cb87-7107-98fa-bec1cc6f5d10/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Bundleplay",
+              "smart_group_uuid": "8adec12f-84b4-2904-dfc7-016ce5e3cb9a"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12372,
+                "model_name": "Test Minkcan"
+              }
+            ]
+          },
+          "uuid": "ab05ee01-08ac-8524-6123-5d70c19e3a21",
+          "version_identifier": "{afd83733-0f50-1d07-7d9e-cf77c5ccb39a}"
+        },
+        {
+          "actual_file_version": "1.0.8",
+          "application_file_name": "Test Stupiditydid",
+          "application_name": "Test Noodlesdrink",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.0.8.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Assigned",
+          "bundle_id": "{207945f7-6cf4-3d63-a78c-7f0cec005260}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12373,
+          "icon_file_name": "Test Kingmay",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/b807f737-43f3-e0d8-2dc7-8d7fdf434718/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/41f2829a-35c6-755a-6c0e-97012f4b845d/BlobHandler.pblob",
+          "metadata_file_name": "Test Harebe",
+          "msi_deployment_parameters": {
+            "install_context": 1,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "5016c076-2863-fd1f-c77a-26129cd5a407",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Servalbe",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/5ce9f254-94e9-10a0-2c29-3f60b296b7ec/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Cookercan",
+              "smart_group_uuid": "aeb5bfae-413b-cc73-297c-a652f86cfdcf"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12374,
+                "model_name": "Test Daydrink"
+              }
+            ]
+          },
+          "uuid": "44d9f558-15b1-a218-61dc-26beb54bc776",
+          "version_identifier": "{afd83733-0f50-1d07-7d9e-cf77c5ccb39a}"
+        },
+        {
+          "actual_file_version": "1.3.1",
+          "application_file_name": "Test Kindnessam",
+          "application_name": "Test Naturewas",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.3.1.0",
+          "assigned_device_count": 6,
+          "assignment_status": "Assigned",
+          "bundle_id": "{207945f7-6cf4-3d63-a78c-7f0cec005260}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12375,
+          "icon_file_name": "Test Growthdive",
+          "installed_device_count": 2,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/d2af31be-1e48-03c1-f95a-7628a2d28845/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/281a1aa8-7fce-8c0b-06ad-33738b7c770c/BlobHandler.pblob",
+          "metadata_file_name": "Test Educationpaint",
+          "msi_deployment_parameters": {
+            "install_context": 2,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 4,
+          "organization_group_uuid": "5cc28253-f56c-a894-7335-35e03cef95be",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Siennasandwich",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/8e38a4e3-3d83-dfd3-010f-c0185a4a5f2f/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Salmoncrowd",
+              "smart_group_uuid": "c00ed0c6-758d-8d0e-c8bc-a1efaa86ed91"
+            },
+            {
+              "name": "Test Porpoisedoes",
+              "smart_group_uuid": "ce095300-177f-fac8-32af-c0289480778d"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12376,
+                "model_name": "Test Welfaredrink"
+              }
+            ]
+          },
+          "uuid": "b14eee44-9480-54ab-8900-1319bcf02960",
+          "version_identifier": "{ff936d87-dfac-fa76-b62b-53f674876ee7}"
+        },
+        {
+          "actual_file_version": "1.1.0",
+          "application_file_name": "Test Tanpart",
+          "application_name": "Test PapayaWhippack",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.1.0.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Assigned",
+          "bundle_id": "{207945f7-6cf4-3d63-a78c-7f0cec005260}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12377,
+          "icon_file_name": "Test Navygenetics",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/1fe39989-dab0-a0ed-d783-87c0097575ce/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/5658cae4-77a4-5fa3-63da-82a703da9157/BlobHandler.pblob",
+          "metadata_file_name": "Test RosyBrowntime",
+          "msi_deployment_parameters": {
+            "install_context": 2,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "0d337ba2-c799-02a5-b90e-f751834fcae9",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Wormdid",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/e00c4404-d9f3-4da7-e1b2-b2f5d0ddc82e/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Beigeregiment",
+              "smart_group_uuid": "efa6e0b3-5da9-c62d-5b8b-2ec91ffc59a0"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12378,
+                "model_name": "Test Apedid"
+              }
+            ]
+          },
+          "uuid": "022e370f-9470-d673-77c2-623e1a69816c",
+          "version_identifier": "{14df2950-dbfa-1864-5b4d-f8dbddf1533c}"
+        },
+        {
+          "actual_file_version": "1.2.0",
+          "application_file_name": "Test RoyalBluecrowd",
+          "application_name": "Test YellowGreentie",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.2.0.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Assigned",
+          "bundle_id": "{207945f7-6cf4-3d63-a78c-7f0cec005260}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12379,
+          "icon_file_name": "Test LightYellowcare",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/5e6d2b70-f27e-b274-198a-1e1f92a8a319/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/76bcde03-9370-3515-dd24-f8bd53c90710/BlobHandler.pblob",
+          "metadata_file_name": "Test Garageshall",
+          "msi_deployment_parameters": {
+            "install_context": 2,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "82bdf0f9-8ead-4cca-43fb-d8fae42a6b14",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Fingerread",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/bb65b212-6524-b29e-def1-d44b2f8184e8/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Failurebow",
+              "smart_group_uuid": "b298135b-1bf8-5c41-1167-b2a81bcb1f20"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12380,
+                "model_name": "Test Disregardcould"
+              }
+            ]
+          },
+          "uuid": "4aa74931-1803-fd1c-e7d7-12b25bb34c5c",
+          "version_identifier": "{6d1a2706-4418-bb23-f999-ecce839f10df}"
+        },
+        {
+          "actual_file_version": "1.0.0",
+          "application_file_name": "Test Lavenderheap",
+          "application_name": "Test Frogcan",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.0.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Assigned",
+          "bundle_id": "{04b21fcf-71a7-a1dd-ac15-b052271f5b56}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12381,
+          "icon_file_name": "Test Buffalois",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "",
+          "medium_icon_uri": "",
+          "metadata_file_name": "Test Yellowjacketsit",
+          "msi_deployment_parameters": {
+            "install_context": 1,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "c097dee0-0c02-4e1f-8fa7-eb7de6ffb187",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Cardmight",
+          "small_icon_uri": "",
+          "smart_groups": [
+            {
+              "name": "Test Turkeybeen",
+              "smart_group_uuid": "d1520a61-aa63-50c4-dbe9-02242134bfb9"
+            }
+          ],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12382,
+                "model_name": "Test Alligatorhave"
+              }
+            ]
+          },
+          "uuid": "49630c7c-45a8-a079-beca-0a57d1ae7783",
+          "version_identifier": "{04b21fcf-71a7-a1dd-ac15-b052271f5b56}"
+        },
+        {
+          "actual_file_version": "1.0.0.0",
+          "application_file_name": "Test Blackharm",
+          "application_name": "Test Happinesswrite",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.0.0.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Not Assigned",
+          "bundle_id": "{80139d1d-610c-d0c8-b632-dee93606c0bf}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12383,
+          "icon_file_name": "Test Cathug",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "",
+          "medium_icon_uri": "",
+          "metadata_file_name": "Test Sea Lionhad",
+          "msi_deployment_parameters": {
+            "install_context": 1,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "fefbc746-fbf5-05d9-a589-bdc34c3687e3",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test DarkGoldenRodtennis",
+          "small_icon_uri": "",
+          "smart_groups": [],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12384,
+                "model_name": "Test Troutam"
+              }
+            ]
+          },
+          "uuid": "e4c16713-141f-0662-a161-8221fa258579",
+          "version_identifier": "{80139d1d-610c-d0c8-b632-dee93606c0bf}"
+        },
+        {
+          "actual_file_version": "1.0.0.0",
+          "application_file_name": "Test Armysit",
+          "application_name": "Test LightGreendoor",
+          "application_rank": 0,
+          "application_source": 0,
+          "application_type": "Internal",
+          "application_version": "1.0.0.0",
+          "assigned_device_count": 0,
+          "assignment_status": "Not Assigned",
+          "bundle_id": "{23fb90c7-db0f-3a20-e4a2-55fcafbe3eeb}",
+          "category_list": {
+            "category": []
+          },
+          "content_gateway_id": 12385,
+          "icon_file_name": "Test MediumSpringGreenwoman",
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "",
+          "medium_icon_uri": "",
+          "metadata_file_name": "Test Servalcould",
+          "msi_deployment_parameters": {
+            "install_context": 1,
+            "install_timeout_in_minutes": 0,
+            "retry_count": 0,
+            "retry_interval_in_minutes": 0
+          },
+          "not_installed_device_count": 0,
+          "organization_group_uuid": "5c0d7380-29d8-2a2a-fafa-9646d58107ad",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Crabdoes",
+          "small_icon_uri": "",
+          "smart_groups": [],
+          "status": "Active",
+          "supported_models": {
+            "model": [
+              {
+                "model_id": 12386,
+                "model_name": "Test Chinchillamay"
+              }
+            ]
+          },
+          "uuid": "80de05a1-9156-8db5-bd73-45ce3c48d1e3",
+          "version_identifier": "{23fb90c7-db0f-3a20-e4a2-55fcafbe3eeb}"
+        },
+        {
+          "application_name": "Test Baledid",
+          "application_rank": 0,
+          "application_size": "72.93 MB",
+          "application_source": 1,
+          "application_type": "Public",
+          "application_url": "https://example.com/mjCOMsfN",
+          "assigned_device_count": 2,
+          "assignment_status": "Assigned",
+          "bundle_id": "com.vmware.ios-tunnel",
+          "category_list": {
+            "category": []
+          },
+          "comments": "",
+          "content_gateway_id": 12387,
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/aa4b025e-16b3-9868-25a7-0ef56310cc79/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/b29e2e51-7b56-c5e2-24f0-b8a220219f1a/BlobHandler.pblob",
+          "not_installed_device_count": 2,
+          "organization_group_uuid": "71c5ce2c-1e9b-a6a7-2aa3-018336bc9050",
+          "platform": "APPLE",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Breadsing",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/23145685-37b5-f916-9dcb-066e1a2eb2f3/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Buswas",
+              "smart_group_uuid": "7b82766b-4754-6dc9-5696-2a9c601e9c59"
+            }
+          ],
+          "status": "Active",
+          "uuid": "44b9858a-c5f6-3f4f-ec21-3e0e2d99db54"
+        },
+        {
+          "application_name": "Test Peruwork",
+          "application_rank": 0,
+          "application_source": 1,
+          "application_type": "Public",
+          "application_url": "https://example.com/vGueRuhr",
+          "assigned_device_count": 6,
+          "assignment_status": "Assigned",
+          "bundle_id": "",
+          "category_list": {
+            "category": []
+          },
+          "comments": "",
+          "content_gateway_id": 12388,
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "",
+          "medium_icon_uri": "",
+          "not_installed_device_count": 6,
+          "organization_group_uuid": "fd0d4f50-f028-f6e9-5376-d85f6bbfd0a9",
+          "platform": "WIN_RT",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Poolshould",
+          "small_icon_uri": "",
+          "smart_groups": [
+            {
+              "name": "Test Frogturn",
+              "smart_group_uuid": "e312edc8-ea6e-afc3-a605-59f3e1e3b998"
+            }
+          ],
+          "status": "Active",
+          "uuid": "007a99a9-c11f-f650-45bd-fb2bbb36c716"
+        },
+        {
+          "application_name": "Test MediumPurplebattery",
+          "application_rank": 0,
+          "application_size": "109.08 MB",
+          "application_source": 1,
+          "application_type": "Public",
+          "application_url": "https://example.com/PnAaltwc",
+          "assigned_device_count": 2,
+          "assignment_status": "Assigned",
+          "bundle_id": "com.air-watch.secure.browser",
+          "category_list": {
+            "category": []
+          },
+          "comments": "",
+          "content_gateway_id": 12389,
+          "installed_device_count": 1,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/1e652bff-aef2-98c4-06a0-909e544e5dbf/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/1e652bff-aef2-98c4-06a0-909e544e5dbf/BlobHandler.pblob",
+          "not_installed_device_count": 1,
+          "organization_group_uuid": "caf35644-1aed-f0c7-8cf1-3aafb7ee4bb8",
+          "platform": "APPLE",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Handwere",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/1e652bff-aef2-98c4-06a0-909e544e5dbf/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Walrushas",
+              "smart_group_uuid": "ff3ea178-0f58-592f-04d7-57c3b5ad3cf4"
+            }
+          ],
+          "status": "Active",
+          "uuid": "c5e598c7-6fc2-4151-9b62-ef6b0c8078d4"
+        },
+        {
+          "application_name": "Test DarkSlateBlueexaltation",
+          "application_rank": 0,
+          "application_size": "891.47 MB",
+          "application_source": 1,
+          "application_type": "Public",
+          "application_url": "https://example.com/cgxHzNby",
+          "assigned_device_count": 2,
+          "assignment_status": "Assigned",
+          "bundle_id": "us.zoom.videomeetings",
+          "category_list": {
+            "category": []
+          },
+          "comments": "",
+          "content_gateway_id": 12390,
+          "installed_device_count": 0,
+          "is_auto_update_version": false,
+          "is_dependency_file": false,
+          "is_enable_provisioning": false,
+          "is_reimbursable": false,
+          "large_icon_uri": "https://example.com/DeviceServices/publicblob/e7ba90cd-ac9f-47a1-c115-f91ca513ce19/BlobHandler.pblob",
+          "medium_icon_uri": "https://example.com/DeviceServices/publicblob/d0af50f3-3fad-83be-2386-8b31654a83ec/BlobHandler.pblob",
+          "not_installed_device_count": 2,
+          "organization_group_uuid": "e337fa12-912e-4fdc-caad-3e2953b52e4c",
+          "platform": "APPLE",
+          "push_mode": 0,
+          "root_organization_group_name": "Test Bracecan",
+          "small_icon_uri": "https://example.com/DeviceServices/publicblob/f4c31c55-3d2d-747e-a272-29a4194793ca/BlobHandler.pblob",
+          "smart_groups": [
+            {
+              "name": "Test Salmonadvertising",
+              "smart_group_uuid": "ec3831a4-40a5-f2f5-bd12-0f6a4dbda571"
+            }
+          ],
+          "status": "Active",
+          "uuid": "71d7c475-4fc6-c746-025e-9cd6eccf2e48"
+        }
+      ],
+      "page": 0,
+      "page_size": 500,
+      "total": 24
+    }
+  }
+}

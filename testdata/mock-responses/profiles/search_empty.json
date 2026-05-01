@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/search",
+    "method": "GET",
+    "description": "Profile search with no results",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "Page": 0,
+      "PageSize": 10,
+      "Total": 0,
+      "Profiles": []
+    }
+  }
+}
+

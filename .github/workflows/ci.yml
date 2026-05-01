@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: golangci/golangci-lint-action@v6
+        with:
+          version: v2.9.0
+
+  test:
+    name: Test (Go ${{ matrix.go }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ['1.25', '1.26']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Run tests with coverage
+        run: TEST_MODE=mock go test ./... -race -coverprofile=coverage.out
+      - name: Enforce coverage threshold
+        if: matrix.go == '1.25'
+        run: |
+          coverage=$(go tool cover -func=coverage.out | grep total: | awk '{print $3}' | sed 's/%//')
+          echo "Total coverage: ${coverage}%"
+          awk -v c="$coverage" 'BEGIN { if (c+0 < 50) { print "Coverage below minimum (50%)"; exit 1 } }'
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go build ./...

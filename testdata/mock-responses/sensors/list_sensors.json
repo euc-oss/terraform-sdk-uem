@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/list/{organizationGroupUuid}",
+    "method": "GET",
+    "description": "List device sensors for organization group. The V1 API uses string enums for most fields but integer arrays for event_trigger, matching the swagger schema.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "total_results": 2,
+      "result_set": [
+        {
+          "name": "Test Sensor Alpha",
+          "organization_group_name": "Test Org Group",
+          "is_read_only": false,
+          "organization_group_uuid": "804334cf-f067-4e0c-f8fa-1f95ac47b237",
+          "platform": "WIN_RT",
+          "query_type": "POWERSHELL",
+          "query_response_type": "STRING",
+          "trigger_type": "SCHEDULE",
+          "execution_context": "SYSTEM",
+          "execution_architecture": "EITHER64OR32BIT",
+          "script_data": "V3JpdGUtT3V0cHV0ICdIZWxsbyBXb3JsZCc=",
+          "timeout": 30,
+          "event_trigger": [1, 2],
+          "schedule_trigger": "FOUR_HOURS",
+          "assigned_smart_groups": [],
+          "uuid": "a447ee15-78a8-4992-cb7a-7ce115d8c83d"
+        },
+        {
+          "name": "Test Sensor Beta",
+          "organization_group_name": "Test Org Group",
+          "is_read_only": false,
+          "organization_group_uuid": "804334cf-f067-4e0c-f8fa-1f95ac47b237",
+          "platform": "WIN_RT",
+          "query_type": "POWERSHELL",
+          "query_response_type": "INTEGER",
+          "trigger_type": "EVENT",
+          "execution_context": "USER",
+          "execution_architecture": "EITHER64OR32BIT",
+          "script_data": "R2V0LURhdGU=",
+          "timeout": 60,
+          "event_trigger": [],
+          "schedule_trigger": "",
+          "assigned_smart_groups": [],
+          "uuid": "e998053f-ed8a-dcb1-0978-e4771130e8f1"
+        }
+      ]
+    }
+  }
+}

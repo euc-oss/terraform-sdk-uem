@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/smartgroups/{id}",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/smartgroups/{id}",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Assignments": 4,
+      "CpuArchitectures": [],
+      "CriteriaType": "All",
+      "DeviceAdditions": [],
+      "DeviceExclusions": [],
+      "Devices": 11,
+      "EnrollmentCategories": [],
+      "Exclusions": 0,
+      "ManagedByOrganizationGroupId": "12346",
+      "ManagedByOrganizationGroupName": "Test Rabbitthrow",
+      "ManagedByOrganizationGroupUuid": "eaa54c29-851f-fe01-320e-bce278850dab",
+      "ManagementTypes": [],
+      "Models": [],
+      "Name": "Test Manateewill",
+      "OEMAndModels": [],
+      "OperatingSystems": [],
+      "OrganizationGroups": [
+        {
+          "Id": "12347",
+          "Name": "Test MediumAquaMarinehail",
+          "Uuid": "b96eee9b-edb2-02b3-f245-7a823b349da9"
+        }
+      ],
+      "Ownerships": [
+        "BagStander"
+      ],
+      "Platforms": [],
+      "SmartGroupID": 12348,
+      "SmartGroupUuid": "003d68d0-f7ed-4d3f-fe04-2ebe7a4c652a",
+      "Tags": [],
+      "UserAdditions": [],
+      "UserExclusions": [],
+      "UserGroupExclusions": [],
+      "UserGroups": []
+    }
+  }
+}

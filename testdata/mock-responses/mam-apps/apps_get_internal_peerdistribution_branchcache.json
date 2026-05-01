@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/peerdistribution/branchcache/{bundleid}",
+    "method": "GET",
+    "description": "Captured GET BranchCache summary (bundle id URL-encoded in request path)",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "branchcache_statistics": {
+        "total_cache_bytes": 0,
+        "total_device_count": 0,
+        "total_devices_branchcache_mode_enabled": 0,
+        "total_devices_not_utilized_branchcache": 0,
+        "total_devices_utilized_branchcache": 0,
+        "total_savings_percent": 0,
+        "total_server_bytes": 0
+      }
+    }
+  }
+}

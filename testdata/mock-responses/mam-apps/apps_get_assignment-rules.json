@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/{applicationUuid}/assignment-rules",
+    "method": "GET",
+    "description": "Captured GET /api/mam/apps/{applicationUuid}/assignment-rules",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "application_msi_deployment_params": {
+        "device_restart": 1,
+        "installer_reboot_exit_code": "",
+        "installer_success_exit_code": "",
+        "restart_deadline_in_days": 0
+      },
+      "assignments": [
+        {
+          "app_profiles_mapping": [],
+          "application_attributes": [],
+          "application_configuration": [],
+          "distribution": {
+            "app_delivery_method": "ON_DEMAND",
+            "application_transforms": [],
+            "auto_update_devices_with_previous_versions": false,
+            "bsp_assignments": {
+              "smart_groups_offline_licenses": [],
+              "smart_groups_online_licenses": []
+            },
+            "description": "Weekends reserve time for Rock Climbing and person.",
+            "display_in_app_catalog": true,
+            "effective_date": "2024-01-15T00:00:00Z",
+            "hide_notifications": false,
+            "installer_deferral_allowed": false,
+            "installer_deferral_exit_code": "",
+            "installer_deferral_interval": 0,
+            "is_default_assignment": true,
+            "keep_app_updated_automatically": false,
+            "msi_deployment_override_params": {},
+            "name": "Test LemonChiffonstairs",
+            "pre_release_version": 0,
+            "reboot_override": false,
+            "requires_approval": false,
+            "smart_groups": [
+              "3d57a859-709e-b7ca-5344-896b6465e75f"
+            ]
+          },
+          "is_android_enterprise_config_template": false,
+          "is_apple_education_assignment": false,
+          "is_dynamic_template_saved": false,
+          "priority": 0,
+          "restriction": {
+            "desired_state_management": false,
+            "make_app_mdm_managed": false,
+            "managed_access": true,
+            "prevent_application_backup": false,
+            "prevent_removal": false,
+            "remove_on_unenroll": false
+          },
+          "tunnel": {}
+        }
+      ],
+      "excluded_smart_groups": []
+    }
+  }
+}

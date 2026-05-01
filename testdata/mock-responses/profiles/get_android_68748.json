@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/{id}",
+    "method": "GET",
+    "platform": "Android",
+    "description": "Android profile GET response with Passcode payload",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "General": {
+        "ProfileId": 68748,
+        "ProfileUuid": "01f6314e-7fda-94b3-bed6-09469a03ba9c",
+        "Name": "Test Android Profile",
+        "Description": "Test profile for mock",
+        "Platform": "Android",
+        "ProfileType": "Device",
+        "OrganizationGroupId": 14165
+      },
+      "Passcode": {
+        "MinimumPasscodeLength": 6,
+        "RequireAlphanumeric": false
+      }
+    }
+  }
+}

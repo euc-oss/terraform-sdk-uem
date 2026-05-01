@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/categories",
+    "method": "GET",
+    "description": "Captured GET /api/mam/apps/categories (mocktest OG, Application category type)",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    },
+    "query_params": {
+      "categorytype": "Application",
+      "oguuid": "90cd82d2-e5f5-ce88-e288-e50bdbf629b8"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Categories": []
+    }
+  }
+}
