@@ -3310,6 +3310,8 @@ type AppleOsXDeviceProfileEntityV2 struct {
 	AssociatedDomains *MacOsAssociatedDomainsPayloadV2Model `json:"AssociatedDomains,omitempty"`
 	// Gets or sets List of Credential payload.
 	CredentialsList []AppleOsXCredentialPayloadEntityV2 `json:"CredentialsList,omitempty"`
+	// Gets or sets the Custom Attributes payload.
+	CustomAttributes []MacOsCustomAttributePayloadV2Model `json:"CustomAttributes,omitempty"`
 	// Gets or sets List of Custom Settings payload.
 	CustomSettingsList []AppleOsXCustomSettingsPayloadEntityV2 `json:"CustomSettingsList,omitempty"`
 	// The Apple macOS Disk Encryption Payload Entity.
