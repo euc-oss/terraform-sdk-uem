@@ -114,7 +114,7 @@ func ListProfiles(ctx context.Context, c *client.Client, opts *ListOptions) ([]*
 
 // GetProfile fetches a profile by ID and platform.
 //
-// platform must be one of the wsone.Platform* constants (PlatformAppleiOS,
+// Platform must be one of the wsone.Platform* constants (PlatformAppleiOS,
 // PlatformAppleOsX, PlatformAndroid, PlatformWindows10, PlatformWindowsRugged,
 // PlatformLinux). The platform is required because the API endpoint is
 // platform-specific.
@@ -124,7 +124,7 @@ func GetProfile(ctx context.Context, c *client.Client, profileID int, platform s
 
 // CreateProfile creates a new profile for the given platform.
 //
-// platform must be one of the wsone.Platform* constants. The request body
+// Platform must be one of the wsone.Platform* constants. The request body
 // shape is platform-specific; see models.ProfileCreateRequest for the field set.
 func CreateProfile(ctx context.Context, c *client.Client, platform string, request *models.ProfileCreateRequest) (*models.Profile, error) {
 	return resources.NewProfileService(c).Create(ctx, platform, request)
@@ -132,10 +132,10 @@ func CreateProfile(ctx context.Context, c *client.Client, platform string, reque
 
 // UpdateProfile updates an existing profile.
 //
-// platform must be one of the wsone.Platform* constants. profileID identifies
-// the existing profile; request carries the new payload. Note: Windows
-// updates use HTTP PUT; all other platforms use POST. This is handled
-// internally — callers do not need to choose.
+// Platform must be one of the wsone.Platform* constants. The profileID
+// parameter identifies the existing profile; request carries the new
+// payload. Note: Windows updates use HTTP PUT; all other platforms use
+// POST. This is handled internally — callers do not need to choose.
 func UpdateProfile(ctx context.Context, c *client.Client, platform string, profileID int, request *models.ProfileUpdateRequest) (*models.Profile, error) {
 	return resources.NewProfileService(c).Update(ctx, platform, profileID, request)
 }
