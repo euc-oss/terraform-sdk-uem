@@ -39,7 +39,12 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
       - name: Run tests with coverage
-        run: TEST_MODE=mock go test ./... -race -coverprofile=coverage.out
+        # Instrument only handwritten + service-layer packages for coverage.
+        # Skipping the swagger-transcribed model/service stubs under
+        # internal/mam and internal/mdm; those are codegen output and aren't
+        # directly unit-tested. The 50% threshold below would be unreachable
+        # otherwise.
+        run: TEST_MODE=mock go test ./... -race -coverprofile=coverage.out -coverpkg=./client/...,./models/...,./resources/...,./internal/mockserver/...,./internal/services/...,./
       - name: Enforce coverage threshold
         if: matrix.go == '1.25'
         run: |
