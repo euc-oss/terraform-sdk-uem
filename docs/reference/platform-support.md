@@ -61,7 +61,7 @@ profile, err := wsone.GetProfile(ctx, client, profileID, wsone.PlatformAndroid)
 | Profiles     | CRUD       | iOS, macOS, Android, Windows 10, Windows Rugged, Linux |
 | Smart Groups | Search     | All platforms                                          |
 | Sensors      | Read       | Read-only at v0                                        |
-| Apps (MAM)   | Read       | Internal apps; categories                              |
+| Apps (MAM)   | CRUD       | Internal apps + assignments (macOS); categories        |
 
 ### Roadmap
 
