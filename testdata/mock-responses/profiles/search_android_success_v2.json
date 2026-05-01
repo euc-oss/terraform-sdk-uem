@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/search",
+    "method": "GET",
+    "platform": "Android",
+    "description": "Successful v2 profile search returning Android profiles",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    },
+    "query_params": {}
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "Page": 0,
+      "PageSize": 10,
+      "Total": 2,
+      "ProfileList": [
+        {
+          "ProfileId": 12345,
+          "ProfileUuid": "a447ee15-78a8-4992-cb7a-7ce115d8c83d",
+          "ProfileName": "Test Android Profile 1",
+          "Platform": "Android",
+          "ProfileType": "Device",
+          "ProfileStatus": "Active",
+          "ProfileScope": "Production",
+          "OrganizationGroupId": 14165,
+          "OrganizationGroupUuid": "90cd82d2-e5f5-ce88-e288-e50bdbf629b8",
+          "ManagedLocationGroupId": 14165,
+          "Status": "Active",
+          "CreatedOn": "2024-01-01T00:00:00Z",
+          "ModifiedOn": "2024-01-02T00:00:00Z",
+          "Description": "Test Android profile for SDK testing",
+          "AssignedDeviceCount": 10,
+          "InstalledDeviceCount": 8,
+          "FailedDeviceCount": 1,
+          "NotInstalledDeviceCount": 1,
+          "ManagedBy": "Admin",
+          "AssignmentType": "Auto"
+        },
+        {
+          "ProfileId": 12346,
+          "ProfileUuid": "e998053f-ed8a-dcb1-0978-e4771130e8f1",
+          "ProfileName": "Test Android Profile 2",
+          "Platform": "Android",
+          "ProfileType": "Device",
+          "ProfileStatus": "Active",
+          "ProfileScope": "Production",
+          "OrganizationGroupId": 14165,
+          "OrganizationGroupUuid": "90cd82d2-e5f5-ce88-e288-e50bdbf629b8",
+          "ManagedLocationGroupId": 14165,
+          "Status": "Active",
+          "CreatedOn": "2024-01-03T00:00:00Z",
+          "ModifiedOn": "2024-01-04T00:00:00Z",
+          "Description": "Another test Android profile",
+          "AssignedDeviceCount": 5,
+          "InstalledDeviceCount": 5,
+          "FailedDeviceCount": 0,
+          "NotInstalledDeviceCount": 0,
+          "ManagedBy": "Admin",
+          "AssignmentType": "Auto"
+        }
+      ]
+    }
+  }
+}

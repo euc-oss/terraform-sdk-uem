@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/smartgroups/search",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/smartgroups/search",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Page": 0,
+      "PageSize": 500,
+      "SmartGroups": [
+        {
+          "Assignments": 4,
+          "Devices": 11,
+          "Exclusions": 0,
+          "ManagedByOrganizationGroupId": "12346",
+          "ManagedByOrganizationGroupName": "Test Rabbitthrow",
+          "ManagedByOrganizationGroupUuid": "eaa54c29-851f-fe01-320e-bce278850dab",
+          "Name": "Test Manateewill",
+          "SmartGroupID": 12347,
+          "SmartGroupUuid": "8fe98ed4-4ad2-ac03-26a2-60eb985e3f18"
+        },
+        {
+          "Assignments": 0,
+          "Devices": 0,
+          "Exclusions": 0,
+          "ManagedByOrganizationGroupId": "12348",
+          "ManagedByOrganizationGroupName": "Test Trouthave",
+          "ManagedByOrganizationGroupUuid": "987afa5b-9012-ddc6-764a-e5c4168e1db1",
+          "Name": "Test Troopcry",
+          "SmartGroupID": 12349,
+          "SmartGroupUuid": "dddd934f-17c4-f23d-d024-d33251834d3e"
+        },
+        {
+          "Assignments": 30,
+          "Devices": 12,
+          "Exclusions": 0,
+          "ManagedByOrganizationGroupId": "12350",
+          "ManagedByOrganizationGroupName": "Test Tanline",
+          "ManagedByOrganizationGroupUuid": "9c1c3ffc-0f3c-6d86-b09d-b26ad0c7d28c",
+          "Name": "Test Houndcould",
+          "SmartGroupID": 12351,
+          "SmartGroupUuid": "65a9758a-c774-df11-572d-9c9595e2f0b5"
+        },
+        {
+          "Assignments": 0,
+          "Devices": 1,
+          "Exclusions": 0,
+          "ManagedByOrganizationGroupId": "12352",
+          "ManagedByOrganizationGroupName": "Test OliveDrabhair",
+          "ManagedByOrganizationGroupUuid": "3d5a19b4-fa12-c3c1-3017-5ebd4fda2f11",
+          "Name": "Test LightSkyBluering",
+          "SmartGroupID": 12353,
+          "SmartGroupUuid": "bf7ab1cb-5f14-1f3a-45d9-86f3d02fc526"
+        },
+        {
+          "Assignments": 2,
+          "Devices": 2,
+          "Exclusions": 0,
+          "ManagedByOrganizationGroupId": "12354",
+          "ManagedByOrganizationGroupName": "Test Castthink",
+          "ManagedByOrganizationGroupUuid": "eb1f13b3-03de-268e-b627-d0e1d4e0e8ef",
+          "Name": "Test Orangeliter",
+          "SmartGroupID": 12355,
+          "SmartGroupUuid": "039f5aee-b33b-934a-c392-a10b119cd572"
+        },
+        {
+          "Assignments": 1,
+          "Devices": 0,
+          "Exclusions": 0,
+          "ManagedByOrganizationGroupId": "12356",
+          "ManagedByOrganizationGroupName": "Test Buffalodoes",
+          "ManagedByOrganizationGroupUuid": "e64e6151-aa01-28fa-11e3-d2c66d57688a",
+          "Name": "Test Chimpanzeedig",
+          "SmartGroupID": 12357,
+          "SmartGroupUuid": "c322af42-6dab-4622-1b8d-00fabeebbbc3"
+        }
+      ],
+      "Total": 6
+    }
+  }
+}

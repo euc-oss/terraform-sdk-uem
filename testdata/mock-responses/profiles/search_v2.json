@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/search",
+    "method": "GET",
+    "description": "Profile search returning Android and Apple iOS profiles",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    },
+    "query_params": {
+      "pagesize": "500"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "ProfileList": [
+        {
+          "ProfileId": 68748,
+          "ProfileUuid": "01f6314e-7fda-94b3-bed6-09469a03ba9c",
+          "Platform": "Android",
+          "ProfileType": "Device",
+          "ProfileStatus": "Active"
+        },
+        {
+          "ProfileId": 68749,
+          "ProfileUuid": "9f69b081-3247-d152-65ca-579f8da39b5f",
+          "Platform": "Apple iOS",
+          "ProfileType": "Device",
+          "ProfileStatus": "Active"
+        }
+      ],
+      "TotalResults": 2
+    }
+  }
+}

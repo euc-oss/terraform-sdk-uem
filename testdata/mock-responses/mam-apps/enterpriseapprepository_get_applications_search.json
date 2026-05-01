@@ -1,0 +1,1008 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/enterpriseapprepository/applications/search",
+    "method": "GET",
+    "description": "Captured GET /api/mam/enterpriseapprepository/applications/search",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "applications": [
+        {
+          "all_versions": [
+            "1.5.12",
+            "1.5.8"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/ulESXDnd",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "NULLSOFT"
+              },
+              {
+                "architecture": "ARM64",
+                "installer_locale": "en-US",
+                "installer_type": "NULLSOFT"
+              }
+            ],
+            "version": "1.5.12"
+          },
+          "package_identifier": "0-don.clippy",
+          "package_name": "Test Koaladid",
+          "platform": "WIN_RT",
+          "publisher": "0-don",
+          "short_description": "Practice group drills regularly.",
+          "tags": [
+            "clipboard",
+            "clipboard-manager",
+            "productivity",
+            "utility"
+          ]
+        },
+        {
+          "all_versions": [
+            "1.13.0",
+            "1.13.3",
+            "1.14.2"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/XTfkFCpQ",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "MSI"
+              }
+            ],
+            "version": "1.14.2"
+          },
+          "package_identifier": "0x4D44.mdmdview",
+          "package_name": "Test Bunchcan",
+          "platform": "WIN_RT",
+          "publisher": "0x4D44",
+          "short_description": "Rate-limit point by default.",
+          "tags": [
+            "documentation",
+            "markdown",
+            "rust",
+            "viewer"
+          ]
+        },
+        {
+          "all_versions": [
+            "114.0.5735.134",
+            "114.0.5735.199",
+            "114.0.5735.91",
+            "115.0.5790.102",
+            "115.0.5790.110"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/DAuXmUxI",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              }
+            ],
+            "version": "115.0.5790.110"
+          },
+          "package_identifier": "0xGingi.Browser",
+          "package_name": "Test OliveDrabhair",
+          "platform": "WIN_RT",
+          "publisher": "The 0xGingi-Browser Authors",
+          "short_description": "Establish a baseline for company.",
+          "tags": [
+            "browser",
+            "ungoogled-chromium"
+          ]
+        },
+        {
+          "all_versions": [
+            "25.0.1.0",
+            "25.0.2.1",
+            "25.0.4.1",
+            "25.0.5.4",
+            "25.0.6.5",
+            "26.0.1.15",
+            "26.0.2.5",
+            "26.0.3.3",
+            "26.0.5.3",
+            "26.0.6.6",
+            "26.0.7.2",
+            "27.0.1.6",
+            "27.0.2.7",
+            "27.0.3.7",
+            "27.0.5.7",
+            "27.0.6.3",
+            "27.0.7.5",
+            "27.0.8.1",
+            "27.0.8.2",
+            "27.0.9.3",
+            "35.0.0.2",
+            "35.1.0.5",
+            "35.10.0.2",
+            "35.11.0.3",
+            "35.12.0.2",
+            "35.13.0.2",
+            "35.15.0.2",
+            "35.16.0",
+            "35.17.0",
+            "35.18.0",
+            "35.19.0",
+            "35.2.0.3",
+            "35.20.0",
+            "35.21.0",
+            "35.22.0",
+            "35.23.0",
+            "35.26.0",
+            "35.27.0",
+            "35.3.0.2",
+            "35.30.0",
+            "35.6.0.3",
+            "35.8.0.1",
+            "35.9.0.2",
+            "36.0.0"
+          ],
+          "default_locale": "zh-CN",
+          "icon_url": "https://example.com/dbVyFFIC",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "zh-CN",
+                "installer_type": "NULLSOFT"
+              },
+              {
+                "architecture": "X64",
+                "installer_locale": "zh-CN",
+                "installer_type": "NULLSOFT"
+              }
+            ],
+            "version": "36.0.0"
+          },
+          "package_identifier": "115.115Chrome",
+          "package_name": "Test CadetBlueairport",
+          "platform": "WIN_RT",
+          "publisher": "Test NonAscii",
+          "short_description": "Huh! Ship the case now!",
+          "tags": [
+            "backup",
+            "browser",
+            "chromium",
+            "cloud",
+            "cloud-drive",
+            "download",
+            "drive",
+            "file",
+            "netdisk",
+            "share",
+            "sync",
+            "upload",
+            "web",
+            "webpage",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii",
+            "Test NonAscii"
+          ]
+        },
+        {
+          "all_versions": [
+            "1.0.110.0",
+            "1.0.111.0",
+            "1.1.0.0",
+            "1.1.1.0",
+            "1.2.0.0",
+            "1.2.1.0",
+            "1.3.0.0",
+            "1.3.1.0",
+            "1.3.2.0",
+            "1.3.3.0",
+            "1.3.4.0",
+            "1.4.0.0",
+            "2.0.2.0",
+            "2.0.4.0",
+            "2.0.5.0",
+            "2.1.0.0",
+            "2.1.5.0",
+            "2.1.7.0",
+            "2.2.0.0",
+            "2.2.1.0",
+            "2.2.2.0",
+            "2.2.3.0",
+            "2.2.4.0",
+            "2.2.5.0",
+            "2.2.6.0",
+            "2.2.7.0",
+            "2.3.0.0",
+            "2.3.1.0",
+            "2.3.2.0",
+            "2.3.4.0",
+            "2.3.5.0",
+            "2.3.6.0",
+            "2.3.7.0",
+            "2.3.8.0",
+            "2.3.9.0",
+            "2.4.0.0",
+            "2.4.1.0",
+            "2.4.2.0",
+            "2.4.3.0",
+            "2.5.0.0",
+            "2.5.1.0",
+            "2.5.2.0",
+            "2.5.3.0",
+            "2.5.4.0",
+            "2.5.5.0",
+            "2.5.6.0",
+            "2.5.7.0",
+            "2.6.0.0",
+            "2.6.2.0",
+            "3.0.1.0",
+            "3.0.2.0",
+            "3.0.3.0",
+            "3.1.0.0",
+            "3.1.1.0",
+            "3.1.2.0",
+            "3.1.3.0",
+            "3.1.4.0"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/wFpRzFTb",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "NULLSOFT"
+              }
+            ],
+            "version": "3.1.4.0"
+          },
+          "package_identifier": "123.123pan",
+          "package_name": "Test Grasshopperdo",
+          "platform": "WIN_RT",
+          "publisher": "Test NonAscii",
+          "short_description": "Then, prefer week over government.",
+          "tags": [
+            "backup",
+            "china",
+            "cloud",
+            "cloud-drive",
+            "download",
+            "drive",
+            "file",
+            "netdisk",
+            "prc",
+            "share",
+            "sync",
+            "upload"
+          ]
+        },
+        {
+          "all_versions": [
+            "1.0.1",
+            "2.0.1",
+            "2.0.2",
+            "2.0.3",
+            "2.0.4"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/wJqfZnKp",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "INNO"
+              },
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "INNO"
+              }
+            ],
+            "version": "2.0.4"
+          },
+          "package_identifier": "1357310795.JboxTransfer",
+          "package_name": "Test DarkSlateGraymuster",
+          "platform": "WIN_RT",
+          "publisher": "SJTU",
+          "short_description": "Publish a changelog entry for the group.",
+          "tags": [
+            "jbox",
+            "pan",
+            "sjtu"
+          ]
+        },
+        {
+          "all_versions": [
+            "21.8.10",
+            "21.8.11",
+            "21.8.6",
+            "21.8.7",
+            "28.0.0"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/AHCbsxxv",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "MSI"
+              }
+            ],
+            "version": "28.0.0"
+          },
+          "package_identifier": "1IC.BPMN-RPAStudio",
+          "package_name": "Test Spideram",
+          "platform": "WIN_RT",
+          "publisher": "1IC",
+          "short_description": "While, they play eventually.",
+          "tags": [
+            "develop",
+            "development",
+            "diagram",
+            "flow",
+            "graph",
+            "graphics",
+            "programming",
+            "python",
+            "visual",
+            "workflow"
+          ]
+        },
+        {
+          "all_versions": [
+            "3.1.4"
+          ],
+          "default_locale": "zh-CN",
+          "icon_url": "https://example.com/WJKXQppA",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "zh-CN",
+                "installer_type": "EXE"
+              },
+              {
+                "architecture": "X64",
+                "installer_locale": "zh-CN",
+                "installer_type": "EXE"
+              }
+            ],
+            "version": "3.1.4"
+          },
+          "package_identifier": "1sj.rrysj",
+          "package_name": "Test Tomatopatrol",
+          "platform": "WIN_RT",
+          "publisher": "Test NonAscii",
+          "short_description": "Everything belong when the time spikes.",
+          "tags": [
+            "encode",
+            "subtitle",
+            "translate"
+          ]
+        },
+        {
+          "all_versions": [
+            "4.7.6",
+            "5.0.0",
+            "5.0.1",
+            "5.1.0",
+            "5.2.0",
+            "5.3.0",
+            "5.4.0",
+            "5.4.1",
+            "5.5.0",
+            "5.6.0",
+            "5.7.2",
+            "6.0.0",
+            "6.0.1",
+            "6.0.2",
+            "6.1.1",
+            "6.2.0",
+            "6.2.2",
+            "7.3.0",
+            "8.1.1",
+            "8.3.0",
+            "8.4.0",
+            "8.4.1",
+            "8.4.2",
+            "8.5.0",
+            "8.5.1",
+            "8.6.0",
+            "8.6.1",
+            "8.6.2",
+            "8.7.0",
+            "8.7.1",
+            "8.8.0"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/opBcXOOE",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "NULLSOFT"
+              },
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "NULLSOFT"
+              }
+            ],
+            "version": "8.8.0"
+          },
+          "package_identifier": "1zilc.FishingFunds",
+          "package_name": "Test Codwere",
+          "platform": "WIN_RT",
+          "publisher": "1zilc",
+          "short_description": "Reduce cognitive load in the company.",
+          "tags": [
+            "alipay",
+            "antdesign",
+            "bitcoin",
+            "cryptocurrency",
+            "currency",
+            "echarts",
+            "electron",
+            "exchange-rate",
+            "finance",
+            "fund",
+            "index",
+            "market",
+            "react",
+            "redux",
+            "stock",
+            "typescript",
+            "wechat"
+          ]
+        },
+        {
+          "all_versions": [
+            "10.2.112.0",
+            "10.2.116.0",
+            "10.2.122.0",
+            "10.2.68.0",
+            "10.2.88.0",
+            "10.2.99.0",
+            "11.0.0.25",
+            "11.1.1.0",
+            "11.2.15.0",
+            "11.2.33.0",
+            "11.2.5.0",
+            "11.3.106.0",
+            "11.3.113.0",
+            "11.3.124.0",
+            "11.3.134.0",
+            "11.3.142.0",
+            "11.3.16.0",
+            "11.3.29.0",
+            "11.3.35.0",
+            "11.3.45.0",
+            "11.3.56.0",
+            "11.3.62.0",
+            "11.3.7.0",
+            "11.3.72.0",
+            "11.3.79.0",
+            "11.3.87.0",
+            "11.3.99.0",
+            "12.0.0.0"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/DxHqdNiB",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              }
+            ],
+            "version": "12.0.0.0"
+          },
+          "package_identifier": "2BrightSparks.SyncBackFree",
+          "package_name": "Test OldLacecast",
+          "platform": "WIN_RT",
+          "publisher": "2BrightSparks",
+          "short_description": "Clear case being better than clever way.",
+          "tags": [
+            "backup",
+            "sync"
+          ]
+        },
+        {
+          "all_versions": [
+            "10.2.112.0",
+            "10.2.116.0",
+            "10.2.122.0",
+            "10.2.129.0",
+            "10.2.68.0",
+            "10.2.88.0",
+            "10.2.99.0",
+            "11.0.0.25",
+            "11.1.1.0",
+            "11.2.15.0",
+            "11.2.33.0",
+            "11.2.5.0",
+            "11.3.106.0",
+            "11.3.113.0",
+            "11.3.124.0",
+            "11.3.134.0",
+            "11.3.142.0",
+            "11.3.16.0",
+            "11.3.29.0",
+            "11.3.35.0",
+            "11.3.45.0",
+            "11.3.56.0",
+            "11.3.62.0",
+            "11.3.7.0",
+            "11.3.72.0",
+            "11.3.79.0",
+            "11.3.87.0",
+            "11.3.99.0",
+            "12.0.0.0"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/vgKjsXnN",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "INNO"
+              }
+            ],
+            "version": "12.0.0.0"
+          },
+          "package_identifier": "2BrightSparks.SyncBackPro",
+          "package_name": "Test Antwill",
+          "platform": "WIN_RT",
+          "publisher": "2BrightSparks",
+          "short_description": "They open repeatedly to stabilize the problem.",
+          "tags": [
+            "backup",
+            "sync"
+          ]
+        },
+        {
+          "all_versions": [
+            "10.2.112.0",
+            "10.2.116.0",
+            "10.2.122.0",
+            "10.2.129.0",
+            "10.2.68.0",
+            "10.2.88.0",
+            "10.2.99.0",
+            "11.0.0.25",
+            "11.1.1.0",
+            "11.2.15.0",
+            "11.2.33.0",
+            "11.2.5.0",
+            "11.3.106.0",
+            "11.3.113.0",
+            "11.3.124.0",
+            "11.3.134.0",
+            "11.3.142.0",
+            "11.3.16.0",
+            "11.3.29.0",
+            "11.3.35.0",
+            "11.3.45.0",
+            "11.3.56.0",
+            "11.3.62.0",
+            "11.3.7.0",
+            "11.3.72.0",
+            "11.3.79.0",
+            "11.3.87.0",
+            "11.3.99.0",
+            "12.0.0.0"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/rhcdOger",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "INNO"
+              }
+            ],
+            "version": "12.0.0.0"
+          },
+          "package_identifier": "2BrightSparks.SyncBackSE",
+          "package_name": "Test Casebeen",
+          "platform": "WIN_RT",
+          "publisher": "2BrightSparks",
+          "short_description": "The uptight world do unexpectedly wearily.",
+          "tags": [
+            "backup",
+            "sync"
+          ]
+        },
+        {
+          "all_versions": [
+            "1.12.11.0"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/GvXOJFxV",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "INNO"
+              }
+            ],
+            "version": "1.12.11.0"
+          },
+          "package_identifier": "2BrightSparks.UndeleteOnClick",
+          "package_name": "Test Dayclap",
+          "platform": "WIN_RT",
+          "publisher": "2BrightSparks",
+          "short_description": "Celebrate wins tied to the year.",
+          "tags": [
+            "data-recovery",
+            "file-recovery",
+            "forensics",
+            "hdd-recovery",
+            "live-recovery",
+            "ssd-recovery",
+            "undelete",
+            "usb-recovery"
+          ]
+        },
+        {
+          "all_versions": [
+            "1.0.1.1271"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/CAefRKOr",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              },
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              }
+            ],
+            "version": "1.0.1.1271"
+          },
+          "package_identifier": "360.360AlbumViewer",
+          "package_name": "Test Codpaint",
+          "platform": "WIN_RT",
+          "publisher": "www.360.cn",
+          "short_description": "Celebrate wins tied to the world.",
+          "tags": [
+            "image",
+            "photo",
+            "picture",
+            "reader",
+            "viewer"
+          ]
+        },
+        {
+          "all_versions": [
+            "13.0.2220.0",
+            "13.0.2250.0",
+            "13.0.2256.0",
+            "13.5.1060.0",
+            "13.5.2001.0",
+            "13.5.2013.0",
+            "13.5.2015.0",
+            "13.5.2022.0",
+            "13.5.2036.0",
+            "13.5.2042.0",
+            "13.5.2044.0",
+            "23.0.1089.0",
+            "23.0.1093.0",
+            "23.0.1110.0",
+            "23.0.1121.0",
+            "23.0.1137.0",
+            "23.0.1153.0",
+            "23.0.1187.0",
+            "23.0.1200.0"
+          ],
+          "default_locale": "zh-CN",
+          "icon_url": "https://example.com/KZnLnUqe",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "zh-CN",
+                "installer_type": "EXE"
+              }
+            ],
+            "version": "23.0.1200.0"
+          },
+          "package_identifier": "360.360Chrome",
+          "package_name": "Test Schoolbow",
+          "platform": "WIN_RT",
+          "publisher": "Test NonAscii",
+          "short_description": "Continuously measure the number and surprise the outliers.",
+          "tags": [
+            "360",
+            "Test NonAscii",
+            "Chromium",
+            "IE",
+            "Internet-Explorer",
+            "browser",
+            "chromium",
+            "ie",
+            "internet-explorer",
+            "web",
+            "webpage",
+            "Test NonAscii",
+            "Test NonAscii"
+          ]
+        },
+        {
+          "all_versions": [
+            "21.0.1000.0",
+            "21.0.1010.0",
+            "21.0.1020.0",
+            "21.0.1032.0",
+            "21.0.1040.0",
+            "21.0.1050.0",
+            "21.0.1060.0",
+            "21.0.1070.0",
+            "21.0.1082.0",
+            "21.0.1094.0",
+            "21.0.1100.0",
+            "21.0.1110.0",
+            "21.0.1120.0",
+            "21.0.1130.0",
+            "21.0.1140.0",
+            "21.0.1150.0",
+            "21.0.1167.0",
+            "21.0.1171.0",
+            "21.0.1180.0",
+            "21.0.1196.0",
+            "21.0.1200.0",
+            "21.0.1206.0",
+            "21.0.1216.0",
+            "22.1.1019.64",
+            "22.1.1024.64",
+            "22.1.1029.64",
+            "22.1.1039.64",
+            "22.1.1056.64",
+            "22.1.1073.64",
+            "22.1.1084.64",
+            "22.1.1090.64",
+            "22.3.3000.64",
+            "22.3.3015.64",
+            "22.3.3025.64",
+            "22.3.3042.64",
+            "22.3.3050.64",
+            "22.3.3065.64",
+            "22.3.3077.64",
+            "22.3.3087.64",
+            "22.3.3135.64",
+            "22.3.3137.64",
+            "22.3.3146.64",
+            "22.3.3154.64",
+            "22.3.3162.64",
+            "22.3.3170.64",
+            "22.3.3182.64",
+            "22.3.3195.64",
+            "22.3.3208.64",
+            "22.3.3223.64",
+            "23.1.1089.64",
+            "23.1.1091.64",
+            "23.1.1093.64",
+            "23.1.1110.64",
+            "23.1.1121.64",
+            "23.1.1137.64",
+            "23.1.1153.64",
+            "23.1.1187.64",
+            "23.1.1200.64"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/npjBXbwS",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              }
+            ],
+            "version": "23.1.1200.64"
+          },
+          "package_identifier": "360.360Chrome.X",
+          "package_name": "Test Catalogmight",
+          "platform": "WIN_RT",
+          "publisher": "Test NonAscii",
+          "short_description": "Surface risks around the week almost.",
+          "tags": [
+            "360",
+            "Test NonAscii",
+            "Chromium",
+            "IE",
+            "Internet-Explorer",
+            "browser",
+            "chromium",
+            "ie",
+            "internet-explorer",
+            "web",
+            "webpage"
+          ]
+        },
+        {
+          "all_versions": [
+            "1.0.0.1020"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/OMWFUjSy",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              }
+            ],
+            "version": "1.0.0.1020"
+          },
+          "package_identifier": "360.360CleanMaster",
+          "package_name": "Test Badgermay",
+          "platform": "WIN_RT",
+          "publisher": "Test NonAscii",
+          "short_description": "Retire outdated point each quarter.",
+          "tags": [
+            "accelerate",
+            "application",
+            "apps",
+            "clean",
+            "cleaner",
+            "cleanup",
+            "optimize",
+            "program",
+            "software",
+            "startup",
+            "uninstall"
+          ]
+        },
+        {
+          "all_versions": [
+            "11.0.0.2251"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/OQozlsWJ",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              },
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              }
+            ],
+            "version": "11.0.0.2251"
+          },
+          "package_identifier": "360.360DesktopLite",
+          "package_name": "Test LightSteelBluepatrol",
+          "platform": "WIN_RT",
+          "publisher": "360.cn",
+          "short_description": "Close the loop on the time.",
+          "tags": [
+            "desktop"
+          ]
+        },
+        {
+          "all_versions": [
+            "1.0.0.1202"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/aDqgEYaD",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "NULLSOFT"
+              }
+            ],
+            "version": "1.0.0.1202"
+          },
+          "package_identifier": "360.360DocProtect",
+          "package_name": "Test Tigerwere",
+          "platform": "WIN_RT",
+          "publisher": "360 Security Center",
+          "short_description": "Align day with user intent.",
+          "tags": [
+            "protect",
+            "ransomware",
+            "security"
+          ]
+        },
+        {
+          "all_versions": [
+            "13.1.2002.153",
+            "13.1.2002.350",
+            "13.1.2002.351",
+            "13.1.2002.362",
+            "13.1.2002.367",
+            "13.1.2002.381",
+            "13.1.2002.403",
+            "13.1.2002.410",
+            "13.1.2002.427",
+            "13.1.2002.432",
+            "13.3.4000.55",
+            "13.3.4000.68",
+            "13.3.4010.12",
+            "13.3.4010.59",
+            "13.3.4010.746"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/JWQVXrWg",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              },
+              {
+                "architecture": "X86",
+                "installer_locale": "en-US",
+                "installer_type": "EXE"
+              }
+            ],
+            "version": "13.3.4010.746"
+          },
+          "package_identifier": "360.360Ent",
+          "package_name": "Test Llamamight",
+          "platform": "WIN_RT",
+          "publisher": "Test NonAscii",
+          "short_description": "Retire outdated man each quarter.",
+          "tags": [
+            "browser",
+            "chromium",
+            "ie",
+            "internet-explorer",
+            "web",
+            "webpage"
+          ]
+        }
+      ],
+      "has_more": false,
+      "page_key": "page-key-placeholder",
+      "total_apps_count": 99
+    }
+  }
+}

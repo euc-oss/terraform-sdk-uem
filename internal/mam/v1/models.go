@@ -1,0 +1,512 @@
+// Code generated. DO NOT EDIT.
+
+package mamv1
+
+import "github.com/euc-oss/terraform-sdk-uem/client"
+
+// AppCriteriaApiModelV1 represents Model for application criteria modal dialog.
+
+type AppCriteriaApiModelV1 struct {
+	// Gets or sets the identifier of the application.
+	ApplicationIdentifier string `json:"ApplicationIdentifier,omitempty"`
+	// Gets or sets the build version of the application.
+	BuildNumber *int `json:"BuildNumber,omitempty"`
+	// Gets or sets the major version of the application.
+	MajorVersion *int `json:"MajorVersion,omitempty"`
+	// Gets or sets the minor version of the application.
+	MinorVersion *int `json:"MinorVersion,omitempty"`
+	// Gets or sets the fix version of the application.
+	RevisionNumber *int `json:"RevisionNumber,omitempty"`
+	// Gets or sets the version condition. Supported values- Any, EqualTo, NotEqualTo, GreaterThan, GreaterThanEqualTo, LessThan, LessThanEqualTo.
+	VersionCondition string `json:"VersionCondition,omitempty"`
+}
+
+// AppDependencyModelV1 represents Application dependency model.
+
+type AppDependencyModelV1 struct {
+	// Gets or sets the application dependency id.
+	ApplicationDependencyID *int `json:"ApplicationDependencyId,omitempty"`
+	// Gets or sets the name of the dependency.
+	Name string `json:"Name,omitempty"`
+}
+
+// AppDeploymentOptionsModelV1 represents A model class for deployment options.
+
+type AppDeploymentOptionsModelV1 struct {
+	// A model class for how to install options.
+	HowToInstall *HowToInstallApiModelV1 `json:"HowToInstall,omitempty"`
+	// A model class for how to install options.
+	WhenToCallInstallComplete *WhenToCallInstallCompleteApiModelV1 `json:"WhenToCallInstallComplete,omitempty"`
+	// A model class for when to install options.
+	WhenToInstall *WhenToInstallApiModelV1 `json:"WhenToInstall,omitempty"`
+}
+
+// AppFilesOptionsModelV1 represents A model class for files options.
+
+type AppFilesOptionsModelV1 struct {
+	// Gets or sets list of application dependency Ids.
+	AppDependenciesList []AppDependencyModelV1 `json:"AppDependenciesList,omitempty"`
+	// Gets or sets list of uploaded patch files.
+	AppPatchesList []AppPatchModelV1 `json:"AppPatchesList,omitempty"`
+	// Gets or sets list of uploaded transform files.
+	AppTransformsList []AppTransformModelV1 `json:"AppTransformsList,omitempty"`
+	// Model class for the application uninstall process section applicable for .exe/.msi application(s).
+	ApplicationUnInstallProcess *AppUnInstallProcessModelV1 `json:"ApplicationUnInstallProcess,omitempty"`
+}
+
+// AppPatchModelV1 represents Patch for a MSI file uploaded.
+
+type AppPatchModelV1 struct {
+	// Gets or sets the uploaded patch file blob id.
+	PatchBlobID *int `json:"PatchBlobId,omitempty"`
+	// Gets or sets the uploaded patch file name.
+	PatchFileName string `json:"PatchFileName,omitempty"`
+	// Gets or sets the id of the uploaded patch.
+	PatchID *int `json:"PatchId,omitempty"`
+	// Gets or sets the type of the uploaded patch. Supported values : Additive, Cumulative.
+	PatchType string `json:"PatchType,omitempty"`
+}
+
+// AppTransformModelV1 represents Transform for a MSI file uploaded.
+
+type AppTransformModelV1 struct {
+	// Gets or sets the blob id for the uploaded transform file.
+	TransformBlobID *int `json:"TransformBlobId,omitempty"`
+	// Gets or sets the uploaded transform file name.
+	TransformFileName string `json:"TransformFileName,omitempty"`
+	// Gets or sets the application transform id.
+	TransformID *int `json:"TransformId,omitempty"`
+	// Gets or sets Application Transform Uuid.
+	TransformUUID string `json:"TransformUuid,omitempty"`
+}
+
+// AppUnInstallProcessModelV1 represents Model class for the application uninstall process section applicable for .exe/.msi application(s).
+
+type AppUnInstallProcessModelV1 struct {
+	// Model class for the application uninstall process section applicable for .exe/.msi application(s).
+	CustomScript *CustomScriptApiModelV1 `json:"CustomScript,omitempty"`
+	// Gets or sets a value indicating whether value indicating whether custom script is used or not.
+	UseCustomScript *bool `json:"UseCustomScript,omitempty"`
+}
+
+// ApplicationAssignmentModelV1 represents The application assignment model.
+
+type ApplicationAssignmentModelV1 struct {
+	// Gets or sets the Android For Work VPN profile id associated with the application.
+	AfwVpnProfileID *int `json:"AfwVpnProfileId,omitempty"`
+	// Gets or sets flag to enable assume management for user installed iOS Apps.
+	AllowManagement string `json:"AllowManagement,omitempty"`
+	// Gets or sets the Android Management API VPN profile id associated with the application.
+	AmapiVpnProfileID *int `json:"AmapiVpnProfileId,omitempty"`
+	// Gets or sets a value indicating whether custom application attribute keys and values should be sent to the device.
+	AppAttribute string `json:"AppAttribute,omitempty"`
+	// Gets or sets the app attributes.
+	AppAttributes []ApplicationConfigurationModelV1 `json:"AppAttributes,omitempty"`
+	// Gets or sets a value indicating whether custom application configuration keys and values should be sent to the device.
+	AppConfig string `json:"AppConfig,omitempty"`
+	// Gets or sets the app configs.
+	AppConfigs []ApplicationConfigurationModelV1 `json:"AppConfigs,omitempty"`
+	// Gets or sets a value indicating whether application backup is enabled.
+	ApplicationBackup string `json:"ApplicationBackup,omitempty"`
+	// Gets or sets The application transforms ids attached to the application.
+	ApplicationTransformIds []*int `json:"ApplicationTransformIds,omitempty"`
+	// Gets or sets a value indicating whether the newest version of the app should be pushed to devices that have already downloaded the app.
+	AutoUpdateDevicesWithPreviousVersion string `json:"AutoUpdateDevicesWithPreviousVersion,omitempty"`
+	// Gets or sets the effective date time for the Application.
+	EffectiveDate client.UEMTime `json:"EffectiveDate,omitempty"`
+	// Gets or sets a value indicating whether the per app VPN flag for iOS devices is enabled.
+	PerAppVpn string `json:"PerAppVpn,omitempty"`
+	// Gets or sets a value indicating whether prevent application removal attribute keys and values should be sent to the device.
+	PreventRemoval string `json:"PreventRemoval,omitempty"`
+	// Gets or sets the push mode for the application.
+	PushMode string `json:"PushMode,omitempty"`
+	// Gets or sets the application rank.
+	Rank *int `json:"Rank,omitempty"`
+	// Gets or sets a value indicating whether the appslication should be removed on unenrollment.
+	RemoveOnUnEnroll string `json:"RemoveOnUnEnroll,omitempty"`
+	// Gets or sets the smart group id.
+	SmartGroupID *int `json:"SmartGroupId,omitempty"`
+	// Gets or sets the smart group name.
+	SmartGroupName string `json:"SmartGroupName,omitempty"`
+	// Gets or sets the Smart Group uuid.
+	SmartGroupUUID string `json:"SmartGroupUuid,omitempty"`
+	// Gets or sets a value indicating whether gets or sets the value whether to display in app catalog.
+	VisibleInAppCatalog *bool `json:"VisibleInAppCatalog,omitempty"`
+	// Gets or sets the VPN profile id associated with the application.
+	VpnProfileID *int `json:"VpnProfileId,omitempty"`
+	// Gets or sets the VPN Profile ID associated with the application.
+	VpnProfileUUID string `json:"VpnProfileUuid,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// ApplicationAssignmentsModelV1 represents The application assignments model.
+
+type ApplicationAssignmentsModelV1 struct {
+	// The application deployment parameters model.
+	DeploymentParameters *ApplicationDeploymentParametersModelV1 `json:"DeploymentParameters,omitempty"`
+	// Gets or sets array of the already excluded smart group Ids to be removed.
+	ExcludedSmartGroupIdsForDeletion []*int `json:"ExcludedSmartGroupIdsForDeletion,omitempty"`
+	// Gets or sets array of smart group ids to be associated with the app.
+	SmartGroupIds []*int `json:"SmartGroupIds,omitempty"`
+	// Gets or sets array of smart group ids to be deleted.
+	SmartGroupIdsForDeletion []*int `json:"SmartGroupIdsForDeletion,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// ApplicationCategoriesModelV1 represents The application categories model.
+
+type ApplicationCategoriesModelV1 struct {
+	// Gets or sets the category name.
+	Name string `json:"Name,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// ApplicationConfigurationModelV1 represents The application configuration model.
+
+type ApplicationConfigurationModelV1 struct {
+	// Gets or sets configuration key.
+	Key string `json:"Key,omitempty"`
+	// Gets or sets nested Configurations.
+	NestedConfigurations []ApplicationConfigurationModelV1 `json:"NestedConfigurations,omitempty"`
+	// Gets or sets configuration value type, String = 1, Integer = 2, Boolean = 3, Choice = 9, Multiselect = 10, Hidden = 11, Bundle = 15, BundleArray = 16.
+	Type string `json:"Type,omitempty"`
+	// Gets or sets configuration value.
+	Value string `json:"Value,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// ApplicationDeploymentParametersModelV1 represents The application deployment parameters model.
+
+type ApplicationDeploymentParametersModelV1 struct {
+	// Gets or sets whether device should enrolled to get the app - Only applicable for WorkspaceOne.
+	AdaptiveManagement *bool `json:"AdaptiveManagement,omitempty"`
+	// Gets or sets the ID of the AFW VPN Profile applicable to the devices in this assignment.
+	AfwVpnProfileID *int `json:"AfwVpnProfileId,omitempty"`
+	// Gets or sets flag to enable assume management for user installed iOS Apps.
+	AllowManagement *bool `json:"AllowManagement,omitempty"`
+	// Gets or sets the ID of the AMAPI VPN Profile applicable to the devices in this assignment.
+	AmapiVpnProfileID *int `json:"AmapiVpnProfileId,omitempty"`
+	// Gets or sets blob ID for the application attributes.
+	AppAttributesBlobID *int `json:"AppAttributesBlobId,omitempty"`
+	// Gets or sets blob ID for the office app configuration values.
+	AppConfigBlobID *int `json:"AppConfigBlobId,omitempty"`
+	// Gets or sets app attribute entries.
+	ApplicationAttributes []ApplicationConfigurationModelV1 `json:"ApplicationAttributes,omitempty"`
+	// Gets or sets whether application backup is enabled.
+	ApplicationBackup *bool `json:"ApplicationBackup,omitempty"`
+	// Gets or sets app config entries.
+	ApplicationConfigurations []ApplicationConfigurationModelV1 `json:"ApplicationConfigurations,omitempty"`
+	// Gets or sets application Transforms Ids attached to the application.
+	ApplicationTransformIds []*int `json:"ApplicationTransformIds,omitempty"`
+	// Gets or sets the assignment entity map IdSmart group id.
+	AssignmentID *int `json:"AssignmentId,omitempty"`
+	// Gets or sets whether the newest version of the app should be pushed to devices that have already downloaded the app.
+	AutoUpdateDevicesWithPreviousVersion *bool `json:"AutoUpdateDevicesWithPreviousVersion,omitempty"`
+	// Gets or sets effective date for the application.
+	EffectiveDate client.UEMTime `json:"EffectiveDate,omitempty"`
+	// Gets or sets whether per app vpn flag is enabled.
+	IsPerAppVpnEnabled *bool `json:"IsPerAppVpnEnabled,omitempty"`
+	// Gets or sets flag to enable or disable desired state management for macOS apps.
+	MacOsDesiredStateManagement *bool `json:"MacOsDesiredStateManagement,omitempty"`
+	// Gets or sets security group id for nsx.
+	NsxSecurityGroups *int `json:"NsxSecurityGroups,omitempty"`
+	// Gets or sets whether prevent removal application attributes key and value should be sent to the app.
+	PreventRemoval *bool `json:"PreventRemoval,omitempty"`
+	// Gets or sets push mode for the application.
+	PushMode string `json:"PushMode,omitempty"`
+	// Gets or sets whether the application should be removed on unenrollment.
+	RemoveOnUnEnroll *bool `json:"RemoveOnUnEnroll,omitempty"`
+	// Gets or sets a value indicating whether [requires approval].
+	RequiresApproval *bool `json:"RequiresApproval,omitempty"`
+	// Gets or sets whether custom application attributes keys and values should be sent to the app.
+	SendApplicationAttributes *bool `json:"SendApplicationAttributes,omitempty"`
+	// Gets or sets whether custom application configuration keys and values should be sent to the device.
+	SendApplicationConfig *bool `json:"SendApplicationConfig,omitempty"`
+	// Gets or sets smart group id.
+	SmartGroupID *int `json:"SmartGroupId,omitempty"`
+	// Gets or sets a value indicating whether gets or sets the value whether to display in app catalog.
+	VisibleInAppCatalog *bool `json:"VisibleInAppCatalog,omitempty"`
+	// Gets or sets vpn profile id associated with the application.
+	VpnProfileID *int `json:"VpnProfileId,omitempty"`
+	// Gets or sets whiteListed domains for the tunnel server.
+	WhitelistedDomains string `json:"WhitelistedDomains,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// ApplicationSupportedModelsModelV1 represents The application supported models model.
+
+type ApplicationSupportedModelsModelV1 struct {
+	// Gets or sets the model name.
+	Name string `json:"Name,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// CustomScriptApiModelV1 represents Model class for the application uninstall process section applicable for .exe/.msi application(s).
+
+type CustomScriptApiModelV1 struct {
+	// Gets or sets the custom script type (Supported values: Input, Upload).
+	CustomScriptType string `json:"CustomScriptType,omitempty"`
+	// Gets or sets the application uninstall command provided.
+	UninstallCommand string `json:"UninstallCommand,omitempty"`
+	// Gets or sets the id value of the uninstall script file uploaded on the console. Supported file types : js,jse,ps1,ps1xml,psc1,psd1,psm1,pssc,cdxml,vbs,vbe,wsf,wsc.
+	UninstallScriptBlobID *int `json:"UninstallScriptBlobId,omitempty"`
+}
+
+// DeploymentByCriteriaApiModelV1 represents A model class for application deployment.
+
+type DeploymentByCriteriaApiModelV1 struct {
+	// Model for application criteria modal dialog.
+	AppCriteria *AppCriteriaApiModelV1 `json:"AppCriteria,omitempty"`
+	// Gets or sets criteria type. Supported values- AppExists, AppDoesNotExist, FileExists, FileDoesNotExist, RegistryExists, RegistryDoesNotExist.
+	CriteriaType string `json:"CriteriaType,omitempty"`
+	// A model class for the file criteria.
+	FileCriteria *FileCriteriaApiModelV1 `json:"FileCriteria,omitempty"`
+	// Gets or sets logical condition. Supported values : End, And, Or.
+	LogicalCondition string `json:"LogicalCondition,omitempty"`
+	// A model class for the registry criteria.
+	RegistryCriteria *RegistryCriteriaApiModelV1 `json:"RegistryCriteria,omitempty"`
+}
+
+// DeploymentByCustomScriptApiModelV1 represents Model class for using custom script section applicable for .exe/.msi application(s).
+
+type DeploymentByCustomScriptApiModelV1 struct {
+	// Gets or sets command to run the script.
+	CommandToRunTheScript string `json:"CommandToRunTheScript,omitempty"`
+	// Gets or sets the blob id of the script file associated. Supported file types : js, jse, ps1, ps1xml, psc1, psd1, psm1, pssc, cdxml, vbs, vbe, wsf, wsc.
+	CustomScriptFileBlodID *int `json:"CustomScriptFileBlodId,omitempty"`
+	// Gets or sets script Type (JScript, PowerShell, VBScript).
+	ScriptType string `json:"ScriptType,omitempty"`
+	// Gets or sets the success exit code.
+	SuccessExitCode *int `json:"SuccessExitCode,omitempty"`
+}
+
+// EntityV1Model represents The Entity Model for the blob. Includes the numeric ID and Guid
+
+type EntityV1Model struct {
+	// The ID of the entity
+	Value *int `json:"Value,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// FileCriteriaApiModelV1 represents A model class for the file criteria.
+
+type FileCriteriaApiModelV1 struct {
+	// Gets or sets the build version of the application.
+	BuildNumber *int `json:"BuildNumber,omitempty"`
+	// Gets or sets the major version of the application.
+	MajorVersion *int `json:"MajorVersion,omitempty"`
+	// Gets or sets the minor version of the application.
+	MinorVersion *int `json:"MinorVersion,omitempty"`
+	// Gets or sets the date on which the application was last modified.
+	ModifiedOn string `json:"ModifiedOn,omitempty"`
+	// Gets or sets the path of the application.
+	Path string `json:"Path,omitempty"`
+	// Gets or sets the fix version of the application.
+	RevisionNumber *int `json:"RevisionNumber,omitempty"`
+	// Gets or sets Criteria Operator. Supported values: Any, EqualTo, GreaterThan, LessThan NotEqualTo, GreaterThanOrEqualTo, LessThanOrEqualTo.
+	VersionCondition string `json:"VersionCondition,omitempty"`
+}
+
+// HowToInstallApiModelV1 represents A model class for how to install options.
+
+type HowToInstallApiModelV1 struct {
+	// Gets or sets a value indicating whether admin privileges are needed for the installation of a package.
+	AdminPrivileges *bool `json:"AdminPrivileges,omitempty"`
+	// Gets or sets the device restart option. Supported values: DoNotRestart, ForceRestart, RestartIfNeeded.
+	DeviceRestart string `json:"DeviceRestart,omitempty"`
+	// Gets or sets the install command to install a package using the command line ex: "/quiet".
+	InstallCommand string `json:"InstallCommand,omitempty"`
+	// Gets or sets install context (Supported values: Device, User) where the package has to be installed.
+	InstallContext string `json:"InstallContext,omitempty"`
+	// Gets or sets the amount of time in minutes that the installation process can run before the installer considers the installation may have failed. Valid range 0 - 60.
+	InstallTimeoutInMinutes *int `json:"InstallTimeoutInMinutes,omitempty"`
+	// Gets or sets the success exit code.
+	InstallerRebootExitCode string `json:"InstallerRebootExitCode,omitempty"`
+	// Gets or sets the success exit code.
+	InstallerSuccessExitCode string `json:"InstallerSuccessExitCode,omitempty"`
+	// Gets or sets the numbers days after which device is force restarted.
+	RestartDeadlineInDays *int `json:"RestartDeadlineInDays,omitempty"`
+	// Gets or sets the number of times package installation operation will be retried. Valid range 0 - 10.
+	RetryCount *int `json:"RetryCount,omitempty"`
+	// Gets or sets the amount of time in minutes between retry operations. Valid range 0 - 10.
+	RetryIntervalInMinutes *int `json:"RetryIntervalInMinutes,omitempty"`
+	// Gets or sets the uninstall device restart option. Supported values: DoNotRestart, ForceRestart, RestartIfNeeded.
+	UninstallDeviceRestart string `json:"UninstallDeviceRestart,omitempty"`
+}
+
+// InternalAppModelV1 represents This model represents an internal application.
+
+type InternalAppModelV1 struct {
+	// Gets or sets the actual file version of the app.
+	ActualFileVersion string `json:"ActualFileVersion,omitempty"`
+	// Gets or sets airWatch internal application version.
+	AirwatchAppVersion string `json:"AirwatchAppVersion,omitempty"`
+	// Gets or sets the bundle id of the app.
+	AppID string `json:"AppId,omitempty"`
+	// Gets or sets app Provisioning UUID.
+	AppProvisioningProfileUUID string `json:"AppProvisioningProfileUuid,omitempty"`
+	// Gets or sets the size of the application in kilo bytes.
+	AppSizeInKB *int `json:"AppSizeInKB,omitempty"`
+	// Gets or sets the name of the application.
+	ApplicationName string `json:"ApplicationName,omitempty"`
+	// Gets or sets the URL of the application.
+	ApplicationURL string `json:"ApplicationUrl,omitempty"`
+	// Gets or sets app configs.
+	Assignments []ApplicationAssignmentModelV1 `json:"Assignments,omitempty"`
+	// Gets or sets a value indicating whether the management of user installed apps should be assumed.
+	AssumeManagementOfUserInstalledApp string `json:"AssumeManagementOfUserInstalledApp,omitempty"`
+	// Gets or sets the build version of the app.
+	BuildVersion string `json:"BuildVersion,omitempty"`
+	// Gets or sets the application category list.
+	CategoryList []ApplicationCategoriesModelV1 `json:"CategoryList,omitempty"`
+	// Gets or sets the change log for the application.
+	ChangeLog string `json:"ChangeLog,omitempty"`
+	// Gets or sets the comments for the application.
+	Comments string `json:"Comments,omitempty"`
+	// A model class for deployment options.
+	DeploymentOptions *AppDeploymentOptionsModelV1 `json:"DeploymentOptions,omitempty"`
+	// Gets or sets the number of devices to which current application is Assigned.
+	DevicesAssignedCount *int `json:"DevicesAssignedCount,omitempty"`
+	// Gets or sets devices on which current application is installed.
+	DevicesInstalledCount *int `json:"DevicesInstalledCount,omitempty"`
+	// Gets or sets number of devices to which current application is assigned, but not installed.
+	DevicesNotInstalledCount *int   `json:"DevicesNotInstalledCount,omitempty"`
+	DisplayName              string `json:"DisplayName,omitempty"`
+	// Gets or sets the Unique Guid values of the excluded smart groups.
+	ExcludedSmartGroupGuids []string `json:"ExcludedSmartGroupGuids,omitempty"`
+	// Gets or sets the Smart group Ids to be excluded from receiving the application.
+	ExcludedSmartGroupIds []*int `json:"ExcludedSmartGroupIds,omitempty"`
+	// A model class for files options.
+	FilesOptions *AppFilesOptionsModelV1 `json:"FilesOptions,omitempty"`
+	// Gets or sets the LaunchCommand./&gt;.
+	LaunchCommand string `json:"LaunchCommand,omitempty"`
+	// Gets or sets the LaunchType./&gt;.
+	LaunchType string `json:"LaunchType,omitempty"`
+	// Summary model for the macOs Software pacakge.
+	MacOsSoftwareDeploymentSummary *MacOsSoftwareDeploymentSummaryModelV1 `json:"MacOsSoftwareDeploymentSummary,omitempty"`
+	// Gets or sets the managed by Organization Group of the app.
+	ManagedBy string `json:"ManagedBy,omitempty"`
+	// Gets or sets managed By Organization Group Uuid.
+	ManagedByUUID string `json:"ManagedByUuid,omitempty"`
+	// Gets or sets minimum Operating System Version of the application.
+	MinimumOperatingSystem string `json:"MinimumOperatingSystem,omitempty"`
+	// MSI deployment param model.
+	MsiDeploymentParameters *MsiDeploymentParameterModelV1 `json:"MsiDeploymentParameters,omitempty"`
+	// Gets or sets the platform.
+	Platform string `json:"Platform,omitempty"`
+	// Gets or sets user rating of the app.
+	Rating *int `json:"Rating,omitempty"`
+	// Gets or sets expiration date of the Device Provisioning Profile.
+	RenewalDate client.UEMTime `json:"RenewalDate,omitempty"`
+	// Gets or sets A value indicating whether the application uses AirWatch Software Development Kit.
+	Sdk string `json:"Sdk,omitempty"`
+	// Gets or sets the SDK profile id of the app if it uses SDK Profile.
+	SdkProfileID *int `json:"SdkProfileId,omitempty"`
+	// Gets or sets sdk Profile Uuid of the App if it uses SDK Profile.
+	SdkProfileUUID string `json:"SdkProfileUuid,omitempty"`
+	// Gets or sets status of the App.
+	Status string `json:"Status,omitempty"`
+	// Gets or sets The supported models of the app.
+	SupportedModels []ApplicationSupportedModelsModelV1 `json:"SupportedModels,omitempty"`
+	// Gets or sets The names of supported models of the app.
+	SupportedModelsName []string `json:"SupportedModelsName,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// MacOsCreateApplicationRequestV1Model represents Model to represent macOS application metadata from request body
+
+type MacOsCreateApplicationRequestV1Model struct {
+	// blobId of uploaded application binary
+	ApplicationBlobID *int `json:"applicationBlobId,omitempty"`
+	// blobId of uploaded application icon
+	ApplicationIconID *int `json:"applicationIconId,omitempty"`
+	// blobId of uploaded macOS application metadata file
+	PkgInfoBlobID *int `json:"pkgInfoBlobId,omitempty"`
+	// Application Version for internal tracking purpose
+	Version string `json:"version,omitempty"`
+}
+
+// MacOsSoftwareDeploymentSummaryModelV1 represents Summary model for the macOs Software pacakge.
+
+type MacOsSoftwareDeploymentSummaryModelV1 struct {
+	// Gets or sets whether the installation type is managed or optional.
+	IsManaged string `json:"IsManaged,omitempty"`
+	// Gets or sets the pkginfo file as string.
+	Pkginfo string `json:"Pkginfo,omitempty"`
+}
+
+// MsiDeploymentParameterModelV1 represents MSI deployment param model.
+
+type MsiDeploymentParameterModelV1 struct {
+	// Gets or sets command line options to be used when calling MSIEXEC.exe.
+	CommandLineArguments string `json:"CommandLineArguments,omitempty"`
+	// Gets or sets amount of time, in minutes that the installation process can run before the installer considers the installation may have failed and no longer monitors the installation operation.Range 0-60.
+	InstallTimeoutInMinutes *int `json:"InstallTimeoutInMinutes,omitempty"`
+	// Gets or sets the number of times the download and installation operation will be retried before the installation will be marked as failed. With a limit of ‘10' attempts.
+	RetryCount *int `json:"RetryCount,omitempty"`
+	// Gets or sets amount of time, in minutes between retry operations. Range 0-10.
+	RetryIntervalInMinutes *int `json:"RetryIntervalInMinutes,omitempty"`
+}
+
+// RegistryCriteriaApiModelV1 represents A model class for the registry criteria.
+
+type RegistryCriteriaApiModelV1 struct {
+	// Gets or sets the name of new key to be created in the registry.
+	KeyName string `json:"KeyName,omitempty"`
+	// Gets or sets the type of key to be created in the registry. Supported values : String, Binary, DWord, QWord, MultiString, ExpandableString.
+	KeyType string `json:"KeyType,omitempty"`
+	// Gets or sets the value of the key to be created in the registry.
+	KeyValue string `json:"KeyValue,omitempty"`
+	// Gets or sets the path of the key in the registry.
+	Path string `json:"Path,omitempty"`
+	// Gets or sets Criteria Operator. Supported values: Any, EqualTo, GreaterThan, LessThan NotEqualTo, GreaterThanOrEqualTo, LessThanOrEqualTo.
+	VersionCondition string `json:"VersionCondition,omitempty"`
+}
+
+// WhenToCallInstallCompleteApiModelV1 represents A model class for how to install options.
+
+type WhenToCallInstallCompleteApiModelV1 struct {
+	// Gets or sets the criteria configured to identify application.
+	CriteriaList []DeploymentByCriteriaApiModelV1 `json:"CriteriaList,omitempty"`
+	// Model class for using custom script section applicable for .exe/.msi application(s).
+	CustomScript *DeploymentByCustomScriptApiModelV1 `json:"CustomScript,omitempty"`
+	// Gets or sets the way by which an application can be identified (Supported Values: DefiningCriteria, UsingCustomScript).
+	IdentifyApplicationBy string `json:"IdentifyApplicationBy,omitempty"`
+	// Gets or sets a value indicating whether value indicating whether additional criteria has to be used or not.
+	UseAdditionalCriteria *bool `json:"UseAdditionalCriteria,omitempty"`
+}
+
+// WhenToInstallApiModelV1 represents A model class for when to install options.
+
+type WhenToInstallApiModelV1 struct {
+	// Gets or sets data Contingencies.
+	DataContingencies []DeploymentByCriteriaApiModelV1 `json:"DataContingencies,omitempty"`
+	// Gets or sets the device power required for installation of the package. Valid range 0 - 100.
+	DevicePowerRequired *int `json:"DevicePowerRequired,omitempty"`
+	// Gets or sets the disk space required for installation of the package in KB.
+	DiskSpaceRequiredInKb *int `json:"DiskSpaceRequiredInKb,omitempty"`
+	// Gets or sets the RAM required for the installation of the page in MB.
+	RamRequiredInMb *int `json:"RamRequiredInMb,omitempty"`
+}

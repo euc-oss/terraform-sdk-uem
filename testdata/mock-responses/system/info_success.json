@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/system/info",
+    "method": "GET",
+    "description": "Successful system information request",
+    "version": "1"
+  },
+  "request": {},
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "ProductName": "Workspace ONE UEM",
+      "Version": "2024.01.0",
+      "Build": "24010001",
+      "ApiVersion": "v2"
+    }
+  }
+}
+

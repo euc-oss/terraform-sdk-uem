@@ -1,0 +1,71 @@
+// Code generated. DO NOT EDIT.
+
+package mamv2
+
+import (
+	"context"
+	"fmt"
+	"github.com/euc-oss/terraform-sdk-uem/client"
+	"net/http"
+)
+
+// PurchasedAppsV2Service provides PurchasedAppsV2 API operations.
+type PurchasedAppsV2Service struct {
+	client *client.Client
+}
+
+// NewPurchasedAppsV2Service creates a new PurchasedAppsV2Service.
+func NewPurchasedAppsV2Service(c *client.Client) *PurchasedAppsV2Service {
+	return &PurchasedAppsV2Service{client: c}
+}
+
+// GetPurchasedApplicationAndAssignments — New - Get purchased application and assignment details
+// Operation ID: PurchasedAppsV2_GetPurchasedApplicationAndAssignments
+// HTTP: GET /api/mam/apps/purchased/{uuid}
+func (s *PurchasedAppsV2Service) GetPurchasedApplicationAndAssignments(
+	ctx context.Context,
+	UUID string,
+) (http.Header, *PurchasedApplicationV2Model, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/purchased/%s", UUID)
+	var response PurchasedApplicationV2Model
+	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("PurchasedAppsV2_GetPurchasedApplicationAndAssignments: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// InstallVppAppForDeviceAsync — New - Install the specified purchased application on the device.
+// Operation ID: PurchasedAppsV2_InstallVppAppForDeviceAsync
+// HTTP: POST /api/mam/apps/purchased/{applicationUuid}/install
+func (s *PurchasedAppsV2Service) InstallVppAppForDeviceAsync(
+	ctx context.Context,
+	ApplicationUUID string,
+	request *DeviceInformationV2Model,
+) (http.Header, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/purchased/%s/install", ApplicationUUID)
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("PurchasedAppsV2_InstallVppAppForDeviceAsync: %w", err)
+	}
+	return headers, nil
+}
+
+// RemovePurchasedAppFromDeviceAsync — New - Remove the specified purchased application from the device.
+// Operation ID: PurchasedAppsV2_RemovePurchasedAppFromDeviceAsync
+// HTTP: POST /api/mam/apps/purchased/{applicationUuid}/uninstall
+func (s *PurchasedAppsV2Service) RemovePurchasedAppFromDeviceAsync(
+	ctx context.Context,
+	ApplicationUUID string,
+	request *DeviceInformationV2Model,
+) (http.Header, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/apps/purchased/%s/uninstall", ApplicationUUID)
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("PurchasedAppsV2_RemovePurchasedAppFromDeviceAsync: %w", err)
+	}
+	return headers, nil
+}

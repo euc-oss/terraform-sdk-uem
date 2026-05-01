@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/{id}",
+    "method": "GET",
+    "platform": "Apple iOS",
+    "description": "Apple iOS profile GET response with Restrictions payload",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "General": {
+        "ProfileId": 68749,
+        "ProfileUuid": "9f69b081-3247-d152-65ca-579f8da39b5f",
+        "Name": "Test Apple iOS Profile",
+        "Description": "Test profile for mock",
+        "Platform": "Apple iOS",
+        "ProfileType": "Device",
+        "OrganizationGroupId": 14165
+      },
+      "Restrictions": {
+        "AllowCamera": true,
+        "AllowScreenShot": true
+      }
+    }
+  }
+}

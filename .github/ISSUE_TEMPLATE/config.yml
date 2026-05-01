@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/euc-oss/terraform-sdk-uem/security/advisories/new
+    about: Please use GitHub Security Advisories for vulnerability reports. See SECURITY.md for details.
+  - name: Production support (Omnissa Customer Connect)
+    url: https://customerconnect.omnissa.com/home
+    about: For production-impacting issues, file a Support Request via Omnissa Customer Connect.

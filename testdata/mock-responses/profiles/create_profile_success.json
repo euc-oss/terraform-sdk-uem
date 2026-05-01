@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/android/create",
+    "method": "POST",
+    "platform": "Android",
+    "description": "Successful profile creation",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": 99999
+  }
+}
+

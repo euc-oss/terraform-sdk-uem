@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/{id}",
+    "method": "GET",
+    "platform": "Android",
+    "description": "Successful profile retrieval by ID",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "General": {
+        "ProfileId": 12345,
+        "Name": "Test Android Profile 1",
+        "Description": "Test Android profile for SDK testing",
+        "Platform": "Android",
+        "ProfileType": "Device",
+        "ProfileScope": "Production",
+        "AssignmentType": "Auto",
+        "ManagedLocationGroupID": 14165,
+        "IsActive": true,
+        "ProfileUuid": "a3a8ee43-7933-3906-f4dd-b7724687e37d"
+      },
+      "AndroidForWorkCustomMessages": {
+        "LockScreenMessage": "SDK Test Profile"
+      }
+    }
+  }
+}
+

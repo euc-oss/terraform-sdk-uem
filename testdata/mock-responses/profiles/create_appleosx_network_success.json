@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/appleosx/create",
+    "method": "POST",
+    "platform": "AppleOsX",
+    "description": "Successful macOS network (Wi-Fi) profile creation",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": 12345
+  }
+}

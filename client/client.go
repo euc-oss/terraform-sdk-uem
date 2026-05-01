@@ -42,6 +42,12 @@ type Config struct {
 	// TenantCode is the aw-tenant-code header value (REQUIRED on all requests)
 	TenantCode string
 
+	// Auth is a pre-built authentication provider. When set, AuthMethod and the
+	// per-method credential fields (ClientID, ClientSecret, Username, Password) are
+	// ignored and this provider is used directly. Prefer this field for new code;
+	// the credential fields remain available for backward compatibility.
+	Auth AuthProvider
+
 	// AuthMethod specifies the authentication method: "oauth2" or "basic"
 	AuthMethod string
 
@@ -64,6 +70,10 @@ type Config struct {
 
 	// Timeout is the HTTP request timeout (default: 30 seconds)
 	Timeout time.Duration
+
+	// HTTPClient is an optional custom *http.Client to use as the inner transport.
+	// When nil, a default client with sensible timeouts is used.
+	HTTPClient *http.Client
 }
 
 // Client is the main client for interacting with the Workspace ONE UEM API.
@@ -108,6 +118,12 @@ func NewClient(config *Config) (*Client, error) {
 	retryClient.Backoff = retryablehttp.DefaultBackoff
 	retryClient.HTTPClient.Timeout = config.Timeout
 
+	// Swap in a caller-supplied inner HTTP client when provided.
+	if config.HTTPClient != nil {
+		retryClient.HTTPClient = config.HTTPClient
+		retryClient.HTTPClient.Timeout = config.Timeout
+	}
+
 	// Wrap the transport with debug logging when UEM_DEBUG=true or TF_LOG=TRACE/DEBUG
 	if isDebugEnabled() {
 		wrappedTransport := retryClient.HTTPClient.Transport
@@ -119,9 +135,20 @@ func NewClient(config *Config) (*Client, error) {
 		}
 	}
 
-	// Create auth provider
+	// Create auth provider — use injected provider when available.
 	var auth AuthProvider
-	if config.AuthMethod == "oauth2" {
+	if config.Auth != nil {
+		auth = config.Auth
+		// Infer AuthMethod from the concrete type so addHeaders picks the right prefix.
+		if config.AuthMethod == "" {
+			switch config.Auth.(type) {
+			case *OAuth2Auth:
+				config.AuthMethod = "oauth2"
+			default:
+				config.AuthMethod = "basic"
+			}
+		}
+	} else if config.AuthMethod == "oauth2" {
 		tokenURL := config.OAuth2TokenURL
 		if tokenURL == "" {
 			// Default to instance URL + /oauth/token
@@ -307,6 +334,12 @@ func validateConfig(config *Config) error {
 
 	if config.TenantCode == "" {
 		return fmt.Errorf("TenantCode is required")
+	}
+
+	// When an external AuthProvider is supplied the per-method credential fields
+	// are not required — skip credential validation entirely.
+	if config.Auth != nil {
+		return nil
 	}
 
 	if config.AuthMethod == "" {

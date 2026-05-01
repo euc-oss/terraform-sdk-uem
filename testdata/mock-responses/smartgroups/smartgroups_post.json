@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/smartgroups",
+    "method": "POST",
+    "description": "Captured POST /api/mdm/smartgroups",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Value": 12346,
+      "uuid": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/{applicationId}",
+    "method": "GET",
+    "description": "Synthetic fixture: iOS app with RenewalDate in no-timezone format (bug repro for internal-ticket). The UEM API returns timestamps like \"2024-01-15T00:00:00.000\" (no Z, no offset) for RenewalDate, which fails RFC3339 parsing in Go.",
+    "version": "1",
+    "synthetic": true,
+    "bug": "RenewalDate format is \"2006-01-02T15:04:05.000\" (no timezone) — not RFC3339"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "X-Api-Version": "v1"
+    },
+    "body": {
+      "ActualFileVersion": "1.0.0",
+      "AirwatchAppVersion": "1.0.0",
+      "AppId": "com.example.testapp",
+      "AppProvisioningProfileUuid": "0e5aedb8-a034-2ed8-495d-c930462186df",
+      "AppSizeInKB": 2048,
+      "ApplicationName": "Test iOS App",
+      "ApplicationUrl": "https://example.com/app",
+      "Assignments": [
+        {
+          "EffectiveDate": "2024-01-15T00:00:00.000",
+          "PushMode": "OnDemand",
+          "Rank": 0,
+          "RemoveOnUnEnroll": "Disabled",
+          "SmartGroupId": 12345,
+          "SmartGroupName": "Test All Devices",
+          "SmartGroupUuid": "b22abd89-097f-ecf3-1edf-433bf7daf8f8",
+          "VisibleInAppCatalog": true
+        }
+      ],
+      "AssumeManagementOfUserInstalledApp": "No",
+      "BuildVersion": "1",
+      "CategoryList": [],
+      "ChangeLog": "",
+      "Comments": "",
+      "DevicesAssignedCount": 2,
+      "DevicesInstalledCount": 1,
+      "DevicesNotInstalledCount": 1,
+      "ExcludedSmartGroupGuids": [],
+      "ExcludedSmartGroupIds": [],
+      "LaunchCommand": "",
+      "LaunchType": "LaunchPath",
+      "ManagedBy": "12345",
+      "ManagedByUuid": "b02bee30-1511-157e-d720-a382be963059",
+      "MinimumOperatingSystem": "iOS 15.0",
+      "Platform": "Apple",
+      "Rating": 0,
+      "RenewalDate": "2024-01-15T00:00:00.000",
+      "Sdk": "Disabled",
+      "Status": "Active",
+      "SupportedModels": [
+        {
+          "Name": "iPhone",
+          "id": 1
+        },
+        {
+          "Name": "iPad",
+          "id": 2
+        }
+      ],
+      "SupportedModelsName": [
+        "iPhone",
+        "iPad"
+      ],
+      "id": 12345,
+      "uuid": "568d66fa-cfb6-b05e-a7d1-9ecc4291cac8"
+    }
+  }
+}

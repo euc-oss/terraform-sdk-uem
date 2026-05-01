@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "endpoint": "/api/v1/oauth/token",
+    "method": "POST",
+    "description": "Successful OAuth2 token request",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "access_token": "mock-access-token-12345",
+      "token_type": "Bearer",
+      "expires_in": 3600
+    }
+  }
+}
+

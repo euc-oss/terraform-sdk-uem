@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/uploadcertificate",
+    "method": "POST",
+    "description": "Upload certificate (PFX/CER) to AirWatch",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json;version=1"
+    },
+    "body": {
+      "Value": 12345
+    }
+  }
+}

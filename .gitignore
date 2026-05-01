@@ -1,0 +1,42 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Coverage
+*.out
+coverage.out
+coverage.html
+*.coverprofile
+
+# Vendor
+vendor/
+
+# Go workspace
+go.work
+go.work.sum
+
+# Environment files (consumer-managed)
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build artifacts
+bin/
+dist/
+build/

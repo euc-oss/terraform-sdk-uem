@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors",
+    "method": "POST",
+    "description": "Create a device sensor",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Location": "/api/mdm/devicesensors/a447ee15-78a8-4992-cb7a-7ce115d8c83d"
+    },
+    "body": null
+  }
+}

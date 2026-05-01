@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/{uuid}",
+    "method": "GET",
+    "description": "Captured GET /api/mam/apps/internal/{uuid}",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "ActualFileVersion": "1.0.0.0",
+      "AirwatchAppVersion": "0.0.0.0",
+      "AppId": "{c7bacf90-1345-fa90-7838-f31f4e7df60f}",
+      "AppProvisioningProfileUuid": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c",
+      "AppSizeInKB": 1892,
+      "ApplicationName": "Test Lovesmell",
+      "ApplicationUrl": "https://example.com/dwZhenuX",
+      "Assignments": [
+        {
+          "AfwVpnProfileId": 12346,
+          "AllowManagement": "Disabled",
+          "AmapiVpnProfileId": 12347,
+          "AppAttribute": "Disabled",
+          "AppAttributes": [],
+          "AppConfig": "Disabled",
+          "AppConfigs": [],
+          "ApplicationBackup": "Enabled",
+          "ApplicationTransformIds": [],
+          "AutoUpdateDevicesWithPreviousVersion": "Disabled",
+          "EffectiveDate": "2024-01-15T00:00:00Z",
+          "PerAppVpn": "Disabled",
+          "PreventRemoval": "Disabled",
+          "PushMode": "OnDemand",
+          "Rank": 0,
+          "RemoveOnUnEnroll": "Disabled",
+          "SmartGroupId": 12348,
+          "SmartGroupName": "Test MediumSeaGreenyear",
+          "SmartGroupUuid": "e8a0a223-9cf1-eaa1-af17-a7b985793f5c",
+          "VisibleInAppCatalog": true,
+          "VpnProfileId": 12349
+        }
+      ],
+      "AssumeManagementOfUserInstalledApp": "mrDaniels",
+      "BuildVersion": "{c7bacf90-1345-fa90-7838-f31f4e7df60f}",
+      "CategoryList": [],
+      "ChangeLog": "",
+      "Comments": "",
+      "DeploymentOptions": {
+        "HowToInstall": {
+          "AdminPrivileges": true,
+          "DeviceRestart": "DoNotRestart",
+          "InstallCommand": "msiexec.exe /i '7z2409-x64.msi' /qn /norestart",
+          "InstallContext": "Device",
+          "InstallTimeoutInMinutes": 60,
+          "InstallerRebootExitCode": "",
+          "InstallerSuccessExitCode": "",
+          "RestartDeadlineInDays": 0,
+          "RetryCount": 3,
+          "RetryIntervalInMinutes": 5,
+          "UninstallDeviceRestart": "Unknown"
+        },
+        "WhenToCallInstallComplete": {
+          "CriteriaList": [],
+          "IdentifyApplicationBy": "LycheeUptight74",
+          "UseAdditionalCriteria": true
+        },
+        "WhenToInstall": {
+          "DataContingencies": [],
+          "DevicePowerRequired": 0,
+          "DiskSpaceRequiredInKb": 0,
+          "RamRequiredInMb": 0
+        }
+      },
+      "DevicesAssignedCount": 6,
+      "DevicesInstalledCount": 0,
+      "DevicesNotInstalledCount": 6,
+      "ExcludedSmartGroupGuids": [],
+      "ExcludedSmartGroupIds": [],
+      "FilesOptions": {
+        "AppDependenciesList": [],
+        "AppPatchesList": [],
+        "AppTransformsList": [],
+        "ApplicationUnInstallProcess": {
+          "CustomScript": {
+            "CustomScriptType": "Input",
+            "UninstallCommand": "msiexec.exe /x '7z2409-x64.msi' /qn /norestart",
+            "UninstallScriptBlobId": 12350
+          },
+          "UseCustomScript": true
+        }
+      },
+      "LaunchCommand": "",
+      "LaunchType": "LaunchPath",
+      "ManagedBy": "Adams8942",
+      "ManagedByUuid": "e7647d10-6683-b05c-9359-b80002ded769",
+      "MinimumOperatingSystem": "",
+      "Platform": "WinRT",
+      "Rating": 0,
+      "Sdk": "Disabled",
+      "Status": "Active",
+      "SupportedModels": [
+        {
+          "Name": "Test Tomatoregiment",
+          "id": 12351
+        }
+      ],
+      "SupportedModelsName": [
+        "Test Llamacook"
+      ],
+      "id": 12352,
+      "uuid": "f3be5b88-fb76-176d-845b-0be80ea3f3ad"
+    }
+  }
+}

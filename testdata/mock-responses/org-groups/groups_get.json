@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "endpoint": "/api/system/groups/{id}",
+    "method": "GET",
+    "description": "Captured GET /api/system/groups/{id}",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Admins": "Enrique703",
+      "Country": "United States",
+      "CreatedOn": "2/9/2026 7:59:49 PM",
+      "Devices": "0",
+      "GroupId": "example-admin-2",
+      "Id": {
+        "Value": 12346
+      },
+      "IsCustomerTypeExistInParentHierarchy": true,
+      "LgLevel": 0,
+      "Locale": "English (United States)",
+      "LocationGroupType": "Container",
+      "Name": "Test Standwill",
+      "Users": "PitayaThoughtful6610",
+      "Uuid": "e8a0a223-9cf1-eaa1-af17-a7b985793f5c"
+    }
+  }
+}
