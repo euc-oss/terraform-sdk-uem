@@ -125,11 +125,11 @@ type AppAssignmentRuleV2Model struct {
 // AppAssignmentTunnelV1ModelV2 represents Tunnel Model for assignments of an application.
 
 type AppAssignmentTunnelV1ModelV2 struct {
-	// AFW Tunnel profile UUID Accepted formats **uuid** E.g. 3d958f38-246e-4854-a306-189d941ab073
+	// AFW Tunnel profile UUID Accepted formats **uuid** E.g. f6caf44b-5fc7-1880-f09a-4a5bb560d5d8
 	AfwPerAppVpnProfileUUID string `json:"afw_per_app_vpn_profile_uuid,omitempty"`
-	// AMAPI Tunnel profile UUID Accepted formats **uuid** E.g. 3d958f38-246e-4854-a306-189d941ab073
+	// AMAPI Tunnel profile UUID Accepted formats **uuid** E.g. f6caf44b-5fc7-1880-f09a-4a5bb560d5d8
 	AmapiPerAppVpnProfileUUID string `json:"amapi_per_app_vpn_profile_uuid,omitempty"`
-	// Tunnel profile UUID Accepted formats **uuid** E.g. 3d958f38-246e-4854-a306-189d941ab073
+	// Tunnel profile UUID Accepted formats **uuid** E.g. f6caf44b-5fc7-1880-f09a-4a5bb560d5d8
 	PerAppVpnProfileUUID string `json:"per_app_vpn_profile_uuid,omitempty"`
 }
 

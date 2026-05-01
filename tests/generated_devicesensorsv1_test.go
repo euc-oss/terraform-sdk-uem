@@ -31,7 +31,7 @@ func TestGeneratedSensorLifecycleV1(t *testing.T) {
 		Platform:              "",
 		QueryType:             "",
 		TriggerType:           "",
-		OrganizationGroupUUID: "a1b2c3d4-0000-0000-0000-000000012345",
+		OrganizationGroupUUID: "804334cf-f067-4e0c-f8fa-1f95ac47b237",
 		ScriptData:            "V3JpdGUtT3V0cHV0ICdIZWxsbyBXb3JsZCc=",
 	}
 	_, err := svc.CreateDeviceSensor(ctx, createReq)
@@ -40,7 +40,7 @@ func TestGeneratedSensorLifecycleV1(t *testing.T) {
 	}
 
 	// 2. Get sensor — GET /api/mdm/devicesensors/{sensorUuid} → 200
-	sensorUUID := "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+	sensorUUID := "a447ee15-78a8-4992-cb7a-7ce115d8c83d"
 	_, sensor, err := svc.GetDeviceSensor(ctx, sensorUUID)
 	if err != nil {
 		t.Fatalf("GetDeviceSensor failed: %v", err)
@@ -69,7 +69,7 @@ func TestGeneratedSensorLifecycleV1(t *testing.T) {
 	}
 
 	// 4. List sensors — GET /api/mdm/devicesensors/list/{orgGroupUuid} → 200
-	orgGroupUUID := "a1b2c3d4-0000-0000-0000-000000012345"
+	orgGroupUUID := "804334cf-f067-4e0c-f8fa-1f95ac47b237"
 	_, listResp, err := svc.GetDeviceSensors(ctx, orgGroupUUID, nil)
 	if err != nil {
 		t.Fatalf("GetDeviceSensors failed: %v", err)

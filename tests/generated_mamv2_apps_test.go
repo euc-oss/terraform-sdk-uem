@@ -29,7 +29,7 @@ func TestMamV2InternalAppGetByUuid(t *testing.T) {
 	c := mockserver.NewMockClient(t, ms)
 	svc := sdk.NewInternalAppsV2Service(c)
 
-	appUUID := "29e13b17-6bbd-4cd6-9098-73b3dd5a2692"
+	appUUID := "f3be5b88-fb76-176d-845b-0be80ea3f3ad"
 	_, resp, err := svc.GetInternalAppByUuid(context.Background(), appUUID)
 	if err != nil {
 		t.Fatalf("GetInternalAppByUuid failed: %v", err)
@@ -67,7 +67,7 @@ func TestMamV2BlobsUploadBlobRequestShape(t *testing.T) {
 		captured.body = body
 		w.Header().Set("Content-Type", "application/json;version=2")
 		w.WriteHeader(http.StatusOK)
-		_, _ = w.Write([]byte(`{"Uuid":"00000000-0000-0000-0000-000000000001","Value":42}`))
+		_, _ = w.Write([]byte(`{"Uuid":"7ac1b8d7-010b-b6cd-3a3e-84e7f90136b8","Value":42}`))
 	}))
 	t.Cleanup(srv.Close)
 
@@ -158,7 +158,7 @@ func TestMamV2AssignmentRulesPostRequestShape(t *testing.T) {
 		t.Fatalf("NewClient failed: %v", err)
 	}
 
-	appUUID := "29e13b17-6bbd-4cd6-9098-73b3dd5a2692"
+	appUUID := "f3be5b88-fb76-176d-845b-0be80ea3f3ad"
 	svc := sdk.NewAppsV2Service(c)
 	req := &sdk.AppAssignmentRuleV2Model{
 		UUID: appUUID,
@@ -235,10 +235,10 @@ func TestMamV2PurchasedInstallRequestShape(t *testing.T) {
 		t.Fatalf("NewClient failed: %v", err)
 	}
 
-	appUUID := "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+	appUUID := "9af645a8-fef3-3e6d-3408-5cc69e0937d4"
 	svc := sdk.NewPurchasedAppsV2Service(c)
 	req := &sdk.DeviceInformationV2Model{
-		DeviceUUID: "11111111-2222-3333-4444-555555555555",
+		DeviceUUID: "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c",
 	}
 	_, err = svc.InstallVppAppForDeviceAsync(context.Background(), appUUID, req)
 	if err != nil {
@@ -262,8 +262,8 @@ func TestMamV2PurchasedInstallRequestShape(t *testing.T) {
 	if err := json.Unmarshal(captured.body, &decoded); err != nil {
 		t.Fatalf("request body is not JSON: %v (body=%s)", err, captured.body)
 	}
-	if decoded["device_uuid"] != "11111111-2222-3333-4444-555555555555" {
-		t.Errorf("body device_uuid: got %v, want 11111111-2222-3333-4444-555555555555", decoded["device_uuid"])
+	if decoded["device_uuid"] != "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c" {
+		t.Errorf("body device_uuid: got %v, want 666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c", decoded["device_uuid"])
 	}
 }
 

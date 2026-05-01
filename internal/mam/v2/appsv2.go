@@ -40,7 +40,7 @@ func (s *AppsV2Service) GetAndroidAppCustomTracks(
 
 // AppsV2GetAppConfigTemplateAsyncOptions holds optional query parameters for GetAppConfigTemplateAsync.
 type AppsV2GetAppConfigTemplateAsyncOptions struct {
-	OrganizationGroupUUID *string // Current Organization Group identifier for which admin is trying to get the template and from where assigment of the given app will happen. Accepted formats **uuid** example: 3d958f38-246e-4854-a306-189d941ab073
+	OrganizationGroupUUID *string // Current Organization Group identifier for which admin is trying to get the template and from where assigment of the given app will happen. Accepted formats **uuid** example: f6caf44b-5fc7-1880-f09a-4a5bb560d5d8
 }
 
 // GetAppConfigTemplateAsync — New - Get app config template for an application.

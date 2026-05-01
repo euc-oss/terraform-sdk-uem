@@ -32,7 +32,7 @@ func TestMatchPath(t *testing.T) {
 		},
 		{
 			name:        "path parameter - UUID",
-			requestPath: "/api/v2/mdm/profile-payload-details/12345678-1234-1234-1234-123456789012",
+			requestPath: "/api/v2/mdm/profile-payload-details/a3a8ee43-7933-3906-f4dd-b7724687e37d",
 			pattern:     "/api/v2/mdm/profile-payload-details/{uuid}",
 			expected:    true,
 		},
