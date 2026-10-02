@@ -8,9 +8,9 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
-	"github.com/euc-oss/terraform-sdk-uem/internal/orgtest"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/orgtest"
 )
 
 // testSmartGroupID is the ID used across the SmartGroups lifecycle test.

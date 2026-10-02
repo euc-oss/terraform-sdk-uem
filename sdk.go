@@ -5,15 +5,15 @@ package sdk
 import (
 	"context"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	mamv1 "github.com/euc-oss/terraform-sdk-uem/internal/mam/v1"
-	mamv2 "github.com/euc-oss/terraform-sdk-uem/internal/mam/v2"
-	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
-	mdmv2 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v2"
-	mdmv4 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v4"
-	"github.com/euc-oss/terraform-sdk-uem/internal/services"
-	systemv1 "github.com/euc-oss/terraform-sdk-uem/internal/system/v1"
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	mamv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mam/v1"
+	mamv2 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mam/v2"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v1"
+	mdmv2 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v2"
+	mdmv4 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v4"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/services"
+	systemv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/system/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 // Client re-exports

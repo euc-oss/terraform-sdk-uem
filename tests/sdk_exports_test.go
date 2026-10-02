@@ -3,7 +3,7 @@ package tests
 import (
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 func TestSDKExportsCompile(t *testing.T) {

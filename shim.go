@@ -9,9 +9,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	"github.com/euc-oss/terraform-sdk-uem/models"
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/models"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 // OAuth2Config holds the fields needed to create an OAuth2 auth provider.

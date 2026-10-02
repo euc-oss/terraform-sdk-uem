@@ -1,23 +1,37 @@
 # Releasing
 
 This document describes the manual release process for the Workspace ONE UEM
-Go SDK. Automated release tooling is planned for v1.0.
+Go SDK.
+
+## Versions and tags
+
+- The Go module path is `github.com/euc-oss/terraform-sdk-uem/v26`: the major-version suffix is the UEM major
+  version (`/v26` for UEM 26.x; UEM 27 will publish `/v27`). Go requires the
+  suffix from v2 on, so every import and every `go get` carries it. The sync derives
+  it from the release version, so nothing is edited by hand.
+- Tags are `v26.<minor>.<patch>`, with `-beta.N` on a beta
+  (`v26.2.0-beta.1` -> `v26.2.0` -> `v26.2.1`), and are created on the release branch of
+  the UEM version they target. Three parts only: the internal four-part build number is
+  never a tag.
+- A tag is never moved or reused; a bad release is superseded by the next patch.
 
 ## When to release
 
 A release is cut when the internal source pipeline produces a sync commit
 that the maintainers determine warrants a new public version. There is no
-fixed cadence at v0.
+fixed cadence.
 
 ## Release checklist
 
 1. Confirm `[Unreleased]` in [CHANGELOG.md](CHANGELOG.md) describes all
    user-visible changes since the prior release.
-2. Choose the next version number per [semver](https://semver.org/):
-   - **Patch** (`v0.x.Y` → `v0.x.Y+1`): bug fixes only, no API changes.
-   - **Minor** (`v0.X.0` → `v0.X+1.0`): new functionality, additive API
-     changes. While at v0, minor versions MAY include breaking changes.
-   - **Major** (`v0.X.Y` → `v1.0.0`): API stability commitment.
+2. Choose the next version number (`v26.<minor>.<patch>[-beta.N]`):
+   - **Patch** (`v26.2.0` -> `v26.2.1`): bug fixes only, no API changes.
+   - **Minor** (`v26.2.0` -> `v26.3.0`): new functionality and additive API
+     changes; a breaking change to the Go API also ships in a minor.
+   - **Beta** (`v26.2.0-beta.1` -> `v26.2.0-beta.2`): a pre-release of the next
+     version; its API may still change before the final tag.
+   A breaking change is recorded under "Breaking" in the CHANGELOG.
 3. The `Version` constant in `version.go` needs no manual bump: the sync renders it
    from its `--version` flag (the 3-part form, e.g. `26.2.0`) each time it assembles
    the tree, so it carries the internal release version of the build, which is not
@@ -38,8 +52,10 @@ fixed cadence at v0.
 8. Verify pkg.go.dev picks up the new version (allow up to 30 minutes):
 
    ```bash
-   curl -s "https://proxy.golang.org/github.com/euc-oss/terraform-sdk-uem/@v/vX.Y.Z.info"
+   curl -s "https://proxy.golang.org/github.com/euc-oss/terraform-sdk-uem/v26/@v/vX.Y.Z.info"
    ```
+
+   and that a consumer resolves it: `go get github.com/euc-oss/terraform-sdk-uem/v26@vX.Y.Z`.
 
 ## Out-of-band patch releases
 

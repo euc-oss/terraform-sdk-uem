@@ -10,5 +10,5 @@
 // The package is designed for direct use in Go applications and as the
 // underlying client used by the Workspace ONE UEM Terraform provider.
 //
-// Module path: github.com/euc-oss/terraform-sdk-uem
+// Module path: github.com/euc-oss/terraform-sdk-uem/v26
 package sdk

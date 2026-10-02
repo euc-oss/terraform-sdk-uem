@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // TestOrgGroupDeleteV2Fixtures replays the live-captured v2 org group DELETE

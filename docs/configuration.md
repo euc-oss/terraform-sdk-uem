@@ -10,7 +10,7 @@ Workspace ONE UEM SDK client.
 request routing, rate limiting, and retries.
 
 ```go
-import wsone "github.com/euc-oss/terraform-sdk-uem"
+import wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 
 c, err := wsone.NewClient(wsone.Config{
     BaseURL:    "https://your-instance.awmdm.com",
@@ -72,7 +72,7 @@ Example — override all three:
 ```go
 import (
     "time"
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 c, err := wsone.NewClient(wsone.Config{
@@ -98,7 +98,7 @@ import (
     "crypto/tls"
     "net/http"
     "net/url"
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 proxy, err := url.Parse("http://proxy.corp.example.com:8080")
@@ -216,7 +216,7 @@ import (
     "context"
     "fmt"
     "time"
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)

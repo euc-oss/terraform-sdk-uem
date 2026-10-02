@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 func TestNewProfileDeleteCleanup_InvokesDeleteWithID(t *testing.T) {

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	"github.com/euc-oss/terraform-sdk-uem/models"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/models"
 )
 
 const (

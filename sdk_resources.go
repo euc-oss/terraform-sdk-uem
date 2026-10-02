@@ -7,7 +7,7 @@
 package sdk
 
 import (
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 // BaselineCreator is the multipart-create helper for the Baselines V1

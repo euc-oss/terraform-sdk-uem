@@ -5,9 +5,9 @@ import (
 	"context"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	mamv1 "github.com/euc-oss/terraform-sdk-uem/internal/mam/v1"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	mamv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mam/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // TestGeneratedInternalAppsV1Lifecycle_APK and its MSI sibling below verify

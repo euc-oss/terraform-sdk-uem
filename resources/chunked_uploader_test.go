@@ -20,7 +20,7 @@ import (
 	"strings"
 	"testing"
 
-	mamv1 "github.com/euc-oss/terraform-sdk-uem/internal/mam/v1"
+	mamv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mam/v1"
 )
 
 // stubChunkClient is a configurable mock of internalAppsChunkClient. Each

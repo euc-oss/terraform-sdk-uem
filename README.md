@@ -1,14 +1,11 @@
 # Workspace ONE UEM Go SDK
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/euc-oss/terraform-sdk-uem.svg)](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem)
+[![Go Reference](https://pkg.go.dev/badge/github.com/euc-oss/terraform-sdk-uem/v26.svg)](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26)
 [![Go Report Card](https://goreportcard.com/badge/github.com/euc-oss/terraform-sdk-uem)](https://goreportcard.com/report/github.com/euc-oss/terraform-sdk-uem)
 [![CI](https://github.com/euc-oss/terraform-sdk-uem/actions/workflows/ci.yml/badge.svg)](https://github.com/euc-oss/terraform-sdk-uem/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 
 Typed Go client for the Workspace ONE UEM REST API.
-
-> Badge URLs reference `github.com/euc-oss/terraform-sdk-uem` and `euc-oss/terraform-sdk-uem` placeholders that are
-> substituted at sync time before this README ships in the public repository.
 
 ## What this is
 
@@ -24,8 +21,9 @@ This SDK is maintained by Omnissa.
 
 ## Status
 
-The SDK is pre-1.0. The public API may change between minor versions until
-v1.0 ships. See [CHANGELOG.md](CHANGELOG.md) for release history.
+The module follows the Workspace ONE UEM release line it targets: version
+`v26.2.0-beta.1` is the first beta of the UEM 26.2 line, and its module path ends in
+`/v26`. See [Versioning](#versioning) and [CHANGELOG.md](CHANGELOG.md).
 
 - **Go version:** 1.25 or later
 - **Workspace ONE UEM:** cloud and on-premises deployments are both supported
@@ -34,13 +32,13 @@ v1.0 ships. See [CHANGELOG.md](CHANGELOG.md) for release history.
 ## Installation
 
 ```bash
-go get github.com/euc-oss/terraform-sdk-uem
+go get github.com/euc-oss/terraform-sdk-uem/v26@v26.2.0-beta.1
 ```
 
 Add an import:
 
 ```go
-import wsone "github.com/euc-oss/terraform-sdk-uem"
+import wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 ```
 
 ## Quickstart
@@ -59,7 +57,7 @@ import (
     "os"
     "time"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 func main() {
@@ -154,7 +152,7 @@ See [docs/authentication.md](docs/authentication.md) for the full guide.
 | ------------ | --------------------- | ---------------------------------------------------------- |
 | Profiles     | CRUD                  | iOS, macOS, Android, Windows 10, Windows Rugged (no create), Linux |
 | Smart Groups | Search                | All platforms                                              |
-| Sensors      | Read                  | Read-only at v0                                            |
+| Sensors      | Read                  | Read-only                                                  |
 | Apps (MAM)   | Read                  | Internal apps; categories                                  |
 
 ### Roadmap
@@ -214,7 +212,7 @@ See [docs/error-handling.md](docs/error-handling.md) for full details.
 - [Platform support reference](docs/reference/platform-support.md)
 - [Troubleshooting](docs/troubleshooting.md)
 
-API reference: [pkg.go.dev/github.com/euc-oss/terraform-sdk-uem](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem).
+API reference: [pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26).
 
 ## Examples
 
@@ -258,16 +256,21 @@ network access.
 
 ## Versioning
 
-This project follows [Semantic Versioning](https://semver.org/). While at
-v0.x, breaking changes can occur in any minor release; pin a specific minor
-version in your `go.mod` to avoid surprises. Once v1.0 ships, the public
-API will be stable per semver guarantees.
+Releases are tagged `v26.<minor>.<patch>`, with `-beta.N` on a beta
+(`v26.2.0-beta.1`, then `v26.2.0`), on the release branch of the UEM version they
+target. The first number is the UEM major version, and Go's rule for major versions
+applies: from v2 on, the module path ends in `/vN`. This module is
+`github.com/euc-oss/terraform-sdk-uem/v26`, so every import and every `go get` carries the `/v26`:
 
-**v0.0.2** introduced a cleaner public API surface:
-`wsone.Config{BaseURL, Auth, TenantCode, HTTPClient}`, `wsone.NewClient`,
-`wsone.NewOAuth2Auth`, `wsone.ListProfiles`, and `apiErr.IsRetryable()`. v0.0.1
-had a different, lower-level surface; v0.0.2 was a coordinated breaking change
-while still pre-1.0.
+```text
+import wsone "github.com/euc-oss/terraform-sdk-uem/v26"
+import "github.com/euc-oss/terraform-sdk-uem/v26/client"
+```
+
+A line for UEM 27 will be a new module path ending in `/v27`; both can be required
+side by side. Within a line, a patch release changes no API and a minor release adds API; a
+breaking change to the Go API ships in a minor release and is listed under "Breaking"
+in [CHANGELOG.md](CHANGELOG.md), so pin the version you have tested.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history.
 

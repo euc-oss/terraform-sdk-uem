@@ -5,7 +5,7 @@ package mdmv2
 import (
 	"fmt"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 )
 
 // AllowRuleV2 represents AllowRule field set.

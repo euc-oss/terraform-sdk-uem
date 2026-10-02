@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 )
 
 // fakeT is a standalone HierarchyT double -- deliberately NOT built on a

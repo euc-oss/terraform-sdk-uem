@@ -120,7 +120,7 @@ shows the standard pattern:
 import (
     "errors"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 profile, err := wsone.GetProfile(ctx, c, profileID, platform)
@@ -146,7 +146,7 @@ in the `General` map you pass to `wsone.UpdateProfile`. Because
 syntax to set values:
 
 ```go
-import wsone "github.com/euc-oss/terraform-sdk-uem"
+import wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 
 request := models.ProfileUpdateRequest{}
 general := map[string]interface{}{
@@ -183,19 +183,19 @@ Wi-Fi, Restrictions) work normally.
 
 ## Installation
 
-### `cannot find package "github.com/euc-oss/terraform-sdk-uem"`
+### `cannot find package "github.com/euc-oss/terraform-sdk-uem/v26"`
 
 **Fix.**
 
 ```bash
 go mod download
-go list -m "github.com/euc-oss/terraform-sdk-uem"
+go list -m "github.com/euc-oss/terraform-sdk-uem/v26"
 ```
 
 If the second command shows nothing, add the dependency:
 
 ```bash
-go get "github.com/euc-oss/terraform-sdk-uem"
+go get "github.com/euc-oss/terraform-sdk-uem/v26"
 ```
 
 ## Datetime Fields
@@ -263,7 +263,7 @@ import (
     "errors"
     "log"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 profile, err := wsone.GetProfile(ctx, c, profileID, platform)

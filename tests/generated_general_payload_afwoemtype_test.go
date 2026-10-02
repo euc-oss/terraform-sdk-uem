@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	mdmv2 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v2"
-	mdmv4 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v4"
+	mdmv2 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v2"
+	mdmv4 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v4"
 )
 
 // TestGeneralPayloadV2Entity_AfwOemType_WireInt and its v4 sibling below

@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
-	"github.com/euc-oss/terraform-sdk-uem/models"
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
+	"github.com/euc-oss/terraform-sdk-uem/v26/models"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 // TestProfileServiceGet_ManagedLocationGroupIDFromGeneral exercises the

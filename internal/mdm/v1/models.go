@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 )
 
 // BaseElementModelV1 represents Base presentation element.

@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // TestGeneratedGetDeviceSensorsByDeviceV1 verifies GET /api/mdm/devices/{deviceUuid}/sensors

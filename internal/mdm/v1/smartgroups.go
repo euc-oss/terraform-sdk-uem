@@ -5,7 +5,7 @@ package mdmv1
 import (
 	"context"
 	"fmt"
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 	"net/http"
 	"net/url"
 )

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // loadFixtureResponseBodyForTest reads a mock-response fixture's

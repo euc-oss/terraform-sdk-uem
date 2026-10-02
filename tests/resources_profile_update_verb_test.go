@@ -9,9 +9,9 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	"github.com/euc-oss/terraform-sdk-uem/models"
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/models"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 // recordRequest serves a tiny JSON body and records the last request's

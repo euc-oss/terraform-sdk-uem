@@ -13,8 +13,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	systemv1 "github.com/euc-oss/terraform-sdk-uem/internal/system/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	systemv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/system/v1"
 )
 
 // HierarchyT is a narrow testing interface so both *testing.T and small

@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
-	mdmv2 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v2"
-	mdmv4 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v4"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v1"
+	mdmv2 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v2"
+	mdmv4 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v4"
 )
 
 // ProfileService provides typed CRUD operations for profiles

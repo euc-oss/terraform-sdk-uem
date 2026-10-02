@@ -26,8 +26,8 @@ For installation and a quick overview, start with the top-level
 | [Profiles](guides/profiles.md)    | Full CRUD for profiles across all six supported platforms    |
 
 Other resources (Smart Groups, Sensors, Apps, Org Groups) are documented via
-godoc on [pkg.go.dev/github.com/euc-oss/terraform-sdk-uem](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem) and the runnable
-[examples/](../examples/) directory for v0. Per-resource guides will be added
+godoc on [pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26) and the runnable
+[examples/](../examples/) directory. Per-resource guides will be added
 as the API surface stabilizes.
 
 ## Reference
@@ -44,4 +44,4 @@ as the API surface stabilizes.
 
 ## External
 
-- [pkg.go.dev/github.com/euc-oss/terraform-sdk-uem](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem) — full Go API reference
+- [pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26) — full Go API reference

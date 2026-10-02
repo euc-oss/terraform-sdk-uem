@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 	"github.com/joho/godotenv"
 )
 

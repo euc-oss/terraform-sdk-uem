@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // sharedMockCall sends one request to the shared mock server and returns the

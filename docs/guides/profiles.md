@@ -14,7 +14,7 @@ import (
     "os"
     "time"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 func main() {
@@ -253,7 +253,7 @@ import (
     "errors"
     "fmt"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 profile, err := wsone.GetProfile(ctx, client, profileID, wsone.PlatformAndroid)
@@ -342,4 +342,4 @@ issue.
   operation support matrix and API version coverage
 - [Error handling guide](../error-handling.md) — comprehensive error patterns
 - [Authentication guide](../authentication.md) — OAuth2 setup, on-prem vs. cloud
-- [pkg.go.dev reference](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem) — full API reference
+- [pkg.go.dev reference](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26) — full API reference

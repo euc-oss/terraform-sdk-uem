@@ -39,7 +39,7 @@ import (
     "errors"
     "fmt"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 profile, err := wsone.GetProfile(ctx, c, id, wsone.PlatformAndroid)
@@ -92,7 +92,7 @@ import (
     "context"
     "errors"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
     "github.com/hashicorp/terraform-plugin-framework/resource"
 )
 
@@ -173,7 +173,7 @@ before being dispatched.
 Configure the limit when creating the client:
 
 ```go
-import wsone "github.com/euc-oss/terraform-sdk-uem"
+import wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 
 c, err := wsone.NewClient(wsone.Config{
     // ...

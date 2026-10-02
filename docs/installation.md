@@ -25,18 +25,19 @@ go version
 ### Quick install
 
 ```bash
-go get github.com/euc-oss/terraform-sdk-uem
+go get github.com/euc-oss/terraform-sdk-uem/v26
 ```
 
 This adds the latest SDK version to your `go.mod` and downloads the source.
 
 ### Pin to a specific version
 
-For production use, pin a specific version to avoid unexpected changes while
-the SDK is still pre-1.0:
+The module path ends in `/v26` (Go's rule for major versions from v2 on), and
+releases are tagged `v26.<minor>.<patch>[-beta.N]`. For production use, pin a
+specific version to avoid unexpected changes:
 
 ```bash
-go get github.com/euc-oss/terraform-sdk-uem@v0.1.0
+go get github.com/euc-oss/terraform-sdk-uem/v26@v26.2.0-beta.1
 ```
 
 Your `go.mod` will look like:
@@ -47,7 +48,7 @@ module your-project-name
 go 1.25
 
 require (
-    github.com/euc-oss/terraform-sdk-uem v0.1.0
+    github.com/euc-oss/terraform-sdk-uem/v26 v26.2.0-beta.1
 )
 ```
 
@@ -57,7 +58,7 @@ If your project does not yet have a `go.mod` file:
 
 ```bash
 go mod init your-project-name
-go get github.com/euc-oss/terraform-sdk-uem
+go get github.com/euc-oss/terraform-sdk-uem/v26
 ```
 
 ## Verifying the installation
@@ -73,7 +74,7 @@ import (
     "fmt"
     "log"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 func main() {
@@ -131,7 +132,7 @@ Then in your Go code:
 import (
     "log"
     "os"
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 auth, err := wsone.NewOAuth2Auth(wsone.OAuth2Config{
@@ -173,7 +174,7 @@ if err != nil {
 ### Update to the latest version
 
 ```bash
-go get -u github.com/euc-oss/terraform-sdk-uem
+go get -u github.com/euc-oss/terraform-sdk-uem/v26
 go mod tidy
 ```
 
@@ -186,7 +187,7 @@ go mod tidy
 ### List the installed SDK version
 
 ```bash
-go list -m github.com/euc-oss/terraform-sdk-uem
+go list -m github.com/euc-oss/terraform-sdk-uem/v26
 ```
 
 ## Troubleshooting

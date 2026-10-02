@@ -2,7 +2,7 @@
 
 package mamv1
 
-import "github.com/euc-oss/terraform-sdk-uem/client"
+import "github.com/euc-oss/terraform-sdk-uem/v26/client"
 
 // AppChunkTranscationResponseV1 represents Response for Application chunk upload request.
 

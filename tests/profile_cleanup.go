@@ -3,7 +3,7 @@ package tests
 import (
 	"context"
 
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 // newProfileDeleteCleanup returns a closure that deletes the given profile,

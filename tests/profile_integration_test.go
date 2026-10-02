@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/euc-oss/terraform-sdk-uem/models"
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	"github.com/euc-oss/terraform-sdk-uem/v26/models"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 	"github.com/joho/godotenv"
 )
 

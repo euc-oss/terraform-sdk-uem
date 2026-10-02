@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // The two tests below exercise genuine live captures of the device sensors

@@ -1,4 +1,4 @@
-module github.com/euc-oss/terraform-sdk-uem
+module github.com/euc-oss/terraform-sdk-uem/v26
 
 go 1.25.0
 

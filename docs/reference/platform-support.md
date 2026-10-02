@@ -42,7 +42,7 @@ Use the constants from the root `wsone` package for type safety:
 import (
     "fmt"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 profile, err := wsone.GetProfile(ctx, client, profileID, wsone.PlatformAndroid)
@@ -63,13 +63,13 @@ fmt.Println(profile.GetProfileID())
 
 ## Resource and Platform Coverage
 
-### Current (v0)
+### Current
 
 | Resource     | Operations | Notes                                                  |
 |--------------|------------|--------------------------------------------------------|
 | Profiles     | CRUD       | iOS, macOS, Android, Windows 10, Windows Rugged, Linux |
 | Smart Groups | Search     | All platforms                                          |
-| Sensors      | Read       | Read-only at v0                                        |
+| Sensors      | Read       | Read-only                                              |
 | Apps (MAM)   | CRUD       | Internal apps + assignments (macOS); categories        |
 
 ### Roadmap

@@ -12,8 +12,8 @@ import (
 	"sync"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 )
 
 // discoverPagingServer serves GET /api/mdm/profiles/search with the

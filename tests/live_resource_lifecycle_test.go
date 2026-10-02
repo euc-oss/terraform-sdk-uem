@@ -11,11 +11,11 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	mamv1 "github.com/euc-oss/terraform-sdk-uem/internal/mam/v1"
-	"github.com/euc-oss/terraform-sdk-uem/internal/orgtest"
-	"github.com/euc-oss/terraform-sdk-uem/models"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	mamv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mam/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/orgtest"
+	"github.com/euc-oss/terraform-sdk-uem/v26/models"
 )
 
 // This file is the FIRST live-mode ("TEST_MODE=live") variant of a

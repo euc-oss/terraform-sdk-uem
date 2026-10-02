@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // TestGeneratedMacOsAppsV1Create exercises MacOsAppsV1Service.CreateMacOSApplication

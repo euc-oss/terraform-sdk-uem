@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	mdmv2 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v2"
+	mdmv2 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v2"
 )
 
 // UEM's Newtonsoft deserializer applies JSON keys in request order, and the

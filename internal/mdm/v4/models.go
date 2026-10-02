@@ -2,7 +2,7 @@
 
 package mdmv4
 
-import "github.com/euc-oss/terraform-sdk-uem/client"
+import "github.com/euc-oss/terraform-sdk-uem/v26/client"
 
 // CertificateMetadataModel1V4 represents Certificate Metadata Model.
 

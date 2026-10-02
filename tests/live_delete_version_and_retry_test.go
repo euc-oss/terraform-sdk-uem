@@ -12,11 +12,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
-	"github.com/euc-oss/terraform-sdk-uem/internal/orgtest"
-	"github.com/euc-oss/terraform-sdk-uem/models"
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/orgtest"
+	"github.com/euc-oss/terraform-sdk-uem/v26/models"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 // recordingTransport keeps the status and X-Api-Version of the last

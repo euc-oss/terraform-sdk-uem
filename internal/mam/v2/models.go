@@ -5,7 +5,7 @@ package mamv2
 import (
 	"fmt"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 )
 
 // AppAssignmentBspV1ModelV2 represents BSP app assignments with smart groups applicable for online and offline licenses.

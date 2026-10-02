@@ -3,7 +3,7 @@ package resources
 import (
 	"context"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 )
 
 // SmartGroupService provides access to Smart Group operations.

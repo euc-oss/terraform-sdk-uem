@@ -11,8 +11,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v1"
 )
 
 // TestBaselineCreator_Create_NoCustomFile verifies that BaselineCreator

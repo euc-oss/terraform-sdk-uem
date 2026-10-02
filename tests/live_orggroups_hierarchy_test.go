@@ -7,11 +7,11 @@ import (
 	"strconv"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	"github.com/euc-oss/terraform-sdk-uem/internal/orgtest"
-	systemv1 "github.com/euc-oss/terraform-sdk-uem/internal/system/v1"
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/orgtest"
+	systemv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/system/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 // profileSecondDeleteStatusEnvVar overrides the HTTP status the profile's

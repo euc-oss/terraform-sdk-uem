@@ -6,10 +6,10 @@ import (
 	"os"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
-	"github.com/euc-oss/terraform-sdk-uem/internal/orgtest"
-	"github.com/euc-oss/terraform-sdk-uem/resources"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/orgtest"
+	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
 // These tests exercise the generated macOS profile surface end-to-end through

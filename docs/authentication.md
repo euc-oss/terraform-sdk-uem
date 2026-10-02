@@ -15,7 +15,7 @@ The SDK supports two authentication methods:
 Basic Authentication uses a username and password to authenticate API requests.
 
 ```go
-import wsone "github.com/euc-oss/terraform-sdk-uem"
+import wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 
 auth := wsone.NewBasicAuth("admin-username", "admin-password")
 
@@ -38,7 +38,7 @@ OAuth2 uses client credentials to obtain access tokens. The SDK caches the token
 and refreshes it automatically before it expires (with a 5-minute safety buffer).
 
 ```go
-import wsone "github.com/euc-oss/terraform-sdk-uem"
+import wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 
 auth, err := wsone.NewOAuth2Auth(wsone.OAuth2Config{
     ClientID:     "your-client-id",
@@ -118,7 +118,7 @@ import (
     "os"
 
     "github.com/joho/godotenv"
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 if err := godotenv.Load(); err != nil {

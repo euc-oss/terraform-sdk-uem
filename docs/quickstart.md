@@ -8,7 +8,7 @@ installed and access to a Workspace ONE UEM environment with OAuth2 credentials.
 
 ```bash
 go mod init myapp
-go get github.com/euc-oss/terraform-sdk-uem
+go get github.com/euc-oss/terraform-sdk-uem/v26
 ```
 
 ## 2. Set environment variables
@@ -40,7 +40,7 @@ import (
     "os"
     "time"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 func main() {
@@ -141,7 +141,7 @@ import (
     "errors"
     "log"
 
-    wsone "github.com/euc-oss/terraform-sdk-uem"
+    wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 profiles, err := wsone.ListProfiles(ctx, client, nil)
@@ -230,4 +230,4 @@ for page := 0; ; page++ {
   behavior
 - [Profiles guide](guides/profiles.md) — create, update, and delete profiles
   across all platforms
-- [pkg.go.dev reference](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem) — full API reference
+- [pkg.go.dev reference](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26) — full API reference

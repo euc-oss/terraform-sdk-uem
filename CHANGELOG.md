@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 Derived mechanically from the exported-symbol diff of the assembled public
-module (v26.2.0 against this release).
+module (the 26.2.0 internal baseline against this release).
 
 - `client.NotFoundError` (`Resource`, `ID`; `Error()`) and `client.IsNotFound(err)`,
   which recognises the not-found responses of the profile, smart group and internal app
@@ -52,6 +52,12 @@ module (v26.2.0 against this release).
 
 ### Changed
 
+- **The module path is now `github.com/euc-oss/terraform-sdk-uem/v26`** (it ends in `/v26`), and releases are tagged
+  `v26.<minor>.<patch>[-beta.N]`, starting with `v26.2.0-beta.1`. Go requires the
+  major-version suffix from v2 on, and the major version is the UEM major version
+  (UEM 27 will be `/v27`). Earlier `v0.x` versions were published without a suffix:
+  add `/v26` to the module path in your import statements and in the `require` line of
+  your `go.mod`, for example `go get github.com/euc-oss/terraform-sdk-uem/v26@v26.2.0-beta.1`.
 - When the client's retry policy gives up on a retryable status (for example a
   persistent HTTP 500), the error is now a `*client.APIError` carrying the final
   status, `errorCode` and message, with `Attempts` set to the number of requests

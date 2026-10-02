@@ -5,8 +5,7 @@ how to report security vulnerabilities and what to expect after you do.
 
 ## Supported versions
 
-Until the SDK reaches v1.0, only the latest minor version receives security
-fixes. After v1.0, supported versions will be listed in this section and on
+Only the newest release of the newest UEM line receives security fixes. Supported versions are listed in this section and on
 the [GitHub releases page](../../releases).
 
 ## Reporting a vulnerability

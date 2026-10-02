@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 )
 
 func TestNextSdkTestRunName_NoExisting(t *testing.T) {

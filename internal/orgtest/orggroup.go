@@ -30,7 +30,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 )
 
 // SdkTestRunPrefix is the naming convention every disposable org group

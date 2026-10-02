@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // newMockServerWithBypassFixtures builds a *mockserver.MockServer for tests

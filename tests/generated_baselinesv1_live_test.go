@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // The four tests below exercise genuine live captures against a persistent

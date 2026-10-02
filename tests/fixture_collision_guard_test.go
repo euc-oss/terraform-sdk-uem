@@ -8,7 +8,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // fixtureEndpointKey identifies a fixture's (endpoint, method, version) --

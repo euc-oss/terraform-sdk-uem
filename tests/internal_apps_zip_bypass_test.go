@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	mamv1 "github.com/euc-oss/terraform-sdk-uem/internal/mam/v1"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	mamv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mam/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // TestInternalAppsV1ZipGetDeleteBypassSurvivesTestdataAbsence proves

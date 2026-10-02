@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 const testScriptsOrgGroupUUID = "7d0aef64-735e-853e-1695-fdb07ba63f5c"

@@ -7,10 +7,10 @@ import (
 	"strings"
 	"testing"
 
-	mamv2 "github.com/euc-oss/terraform-sdk-uem/internal/mam/v2"
-	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
-	mdmv2 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v2"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	mamv2 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mam/v2"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v1"
+	mdmv2 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v2"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // TestFixtureSchemaValidation strict-decodes each listed fixture's response

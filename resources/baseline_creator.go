@@ -31,8 +31,8 @@ import (
 	"mime/multipart"
 	"net/http"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
-	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v1"
 )
 
 // baselineCreateEndpoint is the canonical multipart-create path for the

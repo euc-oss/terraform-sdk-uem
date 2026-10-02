@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"testing"
 
-	sdk "github.com/euc-oss/terraform-sdk-uem"
-	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
-	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
+	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mdm/v1"
+	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
 
 // fixtureBodyLen reads a fixture's response body and returns the length of

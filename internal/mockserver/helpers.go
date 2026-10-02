@@ -3,7 +3,7 @@ package mockserver
 import (
 	"testing"
 
-	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 )
 
 // NewMockClient creates a client configured to use the mock server

@@ -28,7 +28,7 @@ import (
 	"os"
 	"time"
 
-	wsone "github.com/euc-oss/terraform-sdk-uem"
+	wsone "github.com/euc-oss/terraform-sdk-uem/v26"
 )
 
 func main() {
