@@ -61,24 +61,11 @@ fmt.Println(profile.GetProfileID())
 | `wsone.PlatformWindowsRugged` | `"Windows_Rugged"` |
 | `wsone.PlatformLinux`         | `"To do"`          |
 
-## Resource and Platform Coverage
+## Resource Coverage
 
-### Current
-
-| Resource     | Operations | Notes                                                  |
-|--------------|------------|--------------------------------------------------------|
-| Profiles     | CRUD       | iOS, macOS, Android, Windows 10, Windows Rugged, Linux |
-| Smart Groups | Search     | All platforms                                          |
-| Sensors      | Read       | Read-only                                              |
-| Apps (MAM)   | CRUD       | Internal apps + assignments (macOS); categories        |
-
-### Roadmap
-
-| Resource     | Planned work            |
-|--------------|-------------------------|
-| Smart Groups | Full CRUD (planned)     |
-| Sensors      | Write support (planned) |
-| Org Groups   | Read (planned)          |
+The services the SDK covers, and what each does, are listed under
+[Supported resources](../../README.md#supported-resources) in the README. This page
+covers what differs by platform.
 
 ## Profile Operation Support Matrix
 

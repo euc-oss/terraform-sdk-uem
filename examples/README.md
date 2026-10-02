@@ -25,7 +25,7 @@ configuration from environment variables — no hardcoded credentials.
 | [auth-basic/](auth-basic)                     | Basic auth flow                                        |
 | [profile-crud/](profile-crud)                 | Create / read / update / delete a macOS profile        |
 | [pagination/](pagination)                     | Iterating through paginated list responses             |
-| [smart-groups/](smart-groups)                 | List smart groups (read-only; full CRUD on roadmap)    |
+| [smart-groups/](smart-groups)                 | List smart groups (the service also creates, updates and deletes them) |
 | [error-handling/](error-handling)             | Type-asserting errors; retryable detection             |
 | [custom-http-client/](custom-http-client)     | Inject your own `*http.Client` (proxy, custom TLS)     |
 

@@ -146,24 +146,62 @@ See [docs/authentication.md](docs/authentication.md) for the full guide.
 
 ## Supported resources
 
-### Current
+Every service below is a type of the root package (`wsone.<Service>` for the name in
+the first column), built on the same client as the rest of the SDK. The Python package
+exposes the same services under the same names without the `Service` suffix (all but
+`ProfileService`, the platform-aware convenience client). A service
+named for an API version (`V1`, `V2`, `V4`) wraps the routes of that version; the
+version is chosen per operation, so you call the method, not the version.
 
-| Resource     | Operations            | Platforms / notes                                          |
-| ------------ | --------------------- | ---------------------------------------------------------- |
-| Profiles     | CRUD                  | iOS, macOS, Android, Windows 10, Windows Rugged (no create), Linux |
-| Smart Groups | Search                | All platforms                                              |
-| Sensors      | Read                  | Read-only                                                  |
-| Apps (MAM)   | Read                  | Internal apps; categories                                  |
+### Device management (MDM)
 
-### Roadmap
+| Service | What it covers |
+| ------- | -------------- |
+| `ProfileService` | Platform-aware profile client: get, create (Android, Apple iOS, macOS, Windows 10), update (all six platforms) and delete, discovering each profile's platform |
+| `ProfilesV2Service` | Get profile details and search; create and update for Android, Apple iOS, macOS and Windows 10; Windows Rugged: update only (UEM has no create route for it) |
+| `ProfilesV4Service` | Create and update Linux profiles |
+| `ProfilesV1Service` | Delete a profile (the delete route exists only at API v1), search, upload a certificate |
+| `SmartGroupsService` | Create, load, update, delete and search smart groups |
+| `DeviceSensorsV1Service` | Get, list, create, update and bulk delete sensors; assign a sensor |
+| `DeviceSensorsV2Service` | Get, list, create and update sensors; sensor assignments (get, list, add, update, delete, bulk re-rank) |
+| `DeviceSensorsService` | The sensors of one device |
+| `ScriptsV1Service` | Create, get, list by organization group, replace the definition, bulk delete; script samples |
+| `ScriptAssignmentV1Service` | Get, list, add and bulk update script assignments |
+| `BaselinesV1Service` | Get, list, clone, update, delete and assign baselines; assignments, status, devices and per-device policy compliance |
+| `TemplatesV1Service` | Baseline templates: list, search, get a policy |
+| `CatalogsV1Service` | Baseline policy catalogs: get the catalog, list all policies, get a policy |
+| `UpdatesV1Service` | OS update deployments (create, update, delete, bulk update) and device update status, readiness and details |
+| `OSVersionsV1Service` | Active OS versions, all platforms or one platform |
+| `PlatformsV1Service` | Active platforms |
 
-| Resource     | Planned work                |
-| ------------ | --------------------------- |
-| Smart Groups | Full CRUD (planned)         |
-| Sensors      | Write support (planned)     |
-| Org Groups   | Read (planned)              |
+Windows Rugged profiles have no create operation anywhere in the SDK; every other
+platform (Android, Apple iOS, macOS, Windows 10, Linux) can be created, read, updated
+and deleted. Linux profiles use API v4.
 
-See issues for tracking planned work. The full coverage matrix lives at
+### Application management (MAM)
+
+| Service | What it covers |
+| ------- | -------------- |
+| `InternalAppsV1Service` | Create an internal app from a blob, upload it in chunks, get, delete, and manage its assignments |
+| `InternalAppsV2Service` | Get by UUID, list, branch cache statistics, renew a provisioning profile |
+| `AppsV2Service` | Search apps, assignment rules, categories, Android custom tracks, filter values, configuration template, Office 365 policy |
+| `MacOsAppsV1Service` | Create a macOS application |
+| `PurchasedAppsV1Service` | Purchased (VPP) app search |
+| `PurchasedAppsV2Service` | Get a purchased app with its assignments; install it on and remove it from a device |
+| `AppBookmarksV2Service` | List kiosk bookmarks |
+| `EnterpriseAppRepositoryV2Service` | Search, bulk search, package details, import a package |
+| `AppRemovalProtectionLogsV2Service` | Removal protection logs, device reports, the removal threshold |
+| `BlobsV1Service` | Upload and delete a blob (delete takes the numeric id) |
+| `BlobsV2Service` | Upload, get, head and delete a blob (by UUID) |
+
+### System
+
+| Service | What it covers |
+| ------- | -------------- |
+| `OrganizationGroupsService` | Read organization groups: get one, list its children and parents, search (read-only) |
+
+The full list of operations per service is in the package documentation on
+[pkg.go.dev](https://pkg.go.dev/github.com/euc-oss/terraform-sdk-uem/v26); platform behaviour is in
 [docs/reference/platform-support.md](docs/reference/platform-support.md).
 
 ## Configuration
