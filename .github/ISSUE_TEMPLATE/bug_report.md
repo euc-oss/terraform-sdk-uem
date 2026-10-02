@@ -12,7 +12,7 @@ A clear and concise description of the bug.
 
 ## Environment
 
-- SDK version: <!-- e.g. v0.1.0; the value of the `Version` constant or your go.mod entry -->
+- SDK version: <!-- e.g. v26.2.0-beta.1; the value of the `Version` constant or your go.mod entry -->
 - Go version: <!-- output of `go version` -->
 - Operating system: <!-- e.g. macOS 14.5, Ubuntu 22.04 -->
 - Workspace ONE UEM deployment: <!-- cloud or on-prem -->
