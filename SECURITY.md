@@ -5,8 +5,7 @@ how to report security vulnerabilities and what to expect after you do.
 
 ## Supported versions
 
-Until the SDK reaches v1.0, only the latest minor version receives security
-fixes. After v1.0, supported versions will be listed in this section and on
+Only the newest release of the newest UEM line receives security fixes. Supported versions are listed in this section and on
 the [GitHub releases page](../../releases).
 
 ## Reporting a vulnerability
@@ -16,7 +15,7 @@ the [GitHub releases page](../../releases).
 Use one of the following private channels:
 
 - [GitHub Security Advisories](https://github.com/euc-oss/terraform-sdk-uem/security/advisories/new) — preferred. Allows the maintainers and you to coordinate a fix in private.
-- Email the Omnissa product security team. <!-- TBD: confirm address; placeholder will be replaced before public launch. -->
+- Email the Omnissa product security team at <security@omnissa.com>.
 
 The use of encrypted email is encouraged.
 
