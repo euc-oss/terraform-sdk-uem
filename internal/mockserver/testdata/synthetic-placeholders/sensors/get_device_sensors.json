@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devices/{deviceUuid}/sensors",
+    "method": "GET",
+    "description": "SYNTHETIC PLACEHOLDER -- NOT live-captured. Relocated 2026-08-06 from testdata/mock-responses/sensors/get_device_sensors.json (left in place, unmodified, for CI existence checks and the default non-override test run -- this copy is the one actually loaded by TestGeneratedGetDeviceSensorsByDeviceV1 via the bypass mechanism in tests/bypass_fixture_helper_test.go). The 2026-08-05 ledger audit (tests/verified-endpoints.json unverified[]) flagged the prior body as SUSPICIOUS: both uuids were textbook hand-typed sequential-hex placeholders (spelling out 1,2,3,4...5,6,7,8,9,0), not gofakeit.UUID() output, and the timestamps were suspiciously round 5-minute increments. This copy keeps the same overall shape (total_results + results array of {uuid, name, value, last_executed_at}) but uses deliberately-obvious placeholder values with no claim of ever having been captured against a live tenant. GET /api/mdm/devices/{deviceUuid}/sensors (V1, mdmv1 device-scoped sensor list).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "total_results": 2,
+      "results": [
+        {
+          "uuid": "ff5a16e4-3c53-7dfa-b249-e79b6b3fe82b",
+          "name": "synthetic_sensor_a",
+          "value": "synthetic-value-a",
+          "last_executed_at": "2026-01-01T00:00:00Z"
+        },
+        {
+          "uuid": "3e2963f7-96b9-bbd5-e010-bd5a40a2a822",
+          "name": "synthetic_sensor_b",
+          "value": "synthetic-value-b",
+          "last_executed_at": "2026-01-01T00:00:00Z"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/assignments/{assignmentUuid}",
+    "method": "PUT",
+    "description": "V2 update assignment (PUT /devicesensors/assignments/{assignmentUuid}), 204 no content. Body changed name to 'Batch3 Test Assignment Updated'; confirmed genuinely persisted via a follow-up raw (non-fixture) GET showing the real name change, not a silent no-op.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

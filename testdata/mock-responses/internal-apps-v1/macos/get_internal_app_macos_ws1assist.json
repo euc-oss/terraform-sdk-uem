@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/67004",
+    "method": "GET",
+    "description": "GET /api/mam/apps/internal/{applicationId} for a second, independent macOS full-SLM asset, RE-CAPTURED live 2026-08-01 against <internal-env>/26.2.1614.12 using the fully placeholder vendored MacOSPkgTestApp-1.0.pkg + MacOSPkgStyleTestApp-1.0.plist (chore/vendored-sdk-test-apps) -- native pkg-install Munki style (no installer_type key), replacing the original 2026-07-31 capture that used a real WS1 Assist .pkg + its shipped Munki plist, to remove real-vendor-name residue from the committed fixture. The real live-captured id (65683) was anonymized here and re-baked as the literal path /api/mam/apps/internal/67004 (unchanged from the prior capture) to preserve the established collision-avoidance routing scheme this test's other fixtures/wantLocationID/capturedAppID already depend on. Anonymized via mock-capture's Anonymize() before commit; no manual plist scrub was needed this time (source content was already fully placeholder). REAL-WIRE FINDING (still holds, reconfirmed on this placeholder re-capture): CreateMacOSApplication is confirmed the SAME endpoint/controller for both a copy_from_dmg-style asset and a native pkg-install asset (no installer_type key) -- installer_type remains purely a client-side (Munki agent) install-behavior hint the server never inspects.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "ActualFileVersion": "1.0",
+      "AirwatchAppVersion": "1.0.0.0",
+      "AppId": "com.example.ulESXDnd",
+      "AppProvisioningProfileUuid": "1ea79f01-e34d-b09e-7e73-4c621db995f9",
+      "AppSizeInKB": 1,
+      "ApplicationFileBlobGUID": "8fe98ed4-4ad2-ac03-26a2-60eb985e3f18",
+      "ApplicationFileHash": "36200EB1D6FAB91BCE15AD9BA55680222B1EFD8547AF99CA93654A21A7F83395",
+      "ApplicationName": "Test Trouthave",
+      "ApplicationUrl": "https://example.com/fkFCpQIi",
+      "Assignments": [],
+      "AssumeManagementOfUserInstalledApp": "UptightPlant5",
+      "BuildVersion": "",
+      "CategoryList": [],
+      "ChangeLog": "",
+      "Comments": "Synthetic mock test app for Workspace ONE UEM SDK full-SLM InternalAppsV1 capture testing (native pkg-install Munki style, omitting the type-of-installer key -- mirrors the real WS1 Assist pkginfo shape this replaces). Not a real product.",
+      "DevicesAssignedCount": 0,
+      "DevicesInstalledCount": 0,
+      "DevicesNotInstalledCount": 0,
+      "ExcludedSmartGroupGuids": [],
+      "ExcludedSmartGroupIds": [],
+      "LargeIconBlobGUID": "439844af-95b5-f1bb-1cf1-e4fbaec497c6",
+      "MacOsSoftwareDeploymentSummary": {
+        "IsManaged": "True",
+        "Pkginfo": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>_metadata</key>\n\t<dict>\n\t\t<key>created_by</key>\n\t\t<string>sdk-test</string>\n\t\t<key>creation_date</key>\n\t\t<date>2024-01-15T00:00:00Z</date>\n\t\t<key>munki_version</key>\n\t\t<string>5.0.0</string>\n\t\t<key>os_version</key>\n\t\t<string>14.0</string>\n\t</dict>\n\t<key>autoremove</key>\n\t<false/>\n\t<key>catalogs</key>\n\t<array>\n\t\t<string>testing</string>\n\t</array>\n\t<key>category</key>\n\t<string>Software</string>\n\t<key>description</key>\n\t<string>Synthetic mock test app for Workspace ONE UEM SDK full-SLM InternalAppsV1 capture testing (native pkg-install Munki style, omitting the type-of-installer key -- mirrors the real WS1 Assist pkginfo shape this replaces). Not a real product.</string>\n\t<key>developer</key>\n\t<string></string>\n\t<key>display_name</key>\n\t<string>MacOSPkgStyleTestApp</string>\n\t<key>installer_item_hash</key>\n\t<string>36200eb1d6fab91bce15ad9ba55680222b1efd8547af99ca93654a21a7f83395</string>\n\t<key>installer_item_location</key>\n\t<string>MacOSPkgTestApp-1.0.pkg</string>\n\t<key>installer_item_size</key>\n\t<integer>1687</integer>\n\t<key>installs</key>\n\t<array>\n\t\t<dict>\n\t\t\t<key>CFBundleIdentifier</key>\n\t\t\t<string>com.omnissa.sdktest.macospkgstyle</string>\n\t\t\t<key>CFBundleName</key>\n\t\t\t<string>MacOSPkgStyleTestApp</string>\n\t\t\t<key>CFBundleShortVersionString</key>\n\t\t\t<string>1.0</string>\n\t\t\t<key>CFBundleVersion</key>\n\t\t\t<string>1</string>\n\t\t\t<key>minosversion</key>\n\t\t\t<string>10.14</string>\n\t\t\t<key>path</key>\n\t\t\t<string>/Applications/MacOSPkgStyleTestApp.app</string>\n\t\t\t<key>type</key>\n\t\t\t<string>application</string>\n\t\t\t<key>version_comparison_key</key>\n\t\t\t<string>CFBundleShortVersionString</string>\n\t\t</dict>\n\t</array>\n\t<key>minimum_os_version</key>\n\t<string>10.14</string>\n\t<key>name</key>\n\t<string>MacOSPkgStyleTestApp</string>\n\t<key>receipts</key>\n\t<array>\n\t\t<dict>\n\t\t\t<key>packageid</key>\n\t\t\t<string>com.omnissa.sdktest.macospkgstyle</string>\n\t\t\t<key>version</key>\n\t\t\t<string>1.0</string>\n\t\t</dict>\n\t</array>\n\t<key>unattended_install</key>\n\t<false/>\n\t<key>unattended_uninstall</key>\n\t<false/>\n\t<key>uninstall_method</key>\n\t<string>removepackages</string>\n\t<key>uninstallable</key>\n\t<true/>\n\t<key>version</key>\n\t<string>1.0</string>\n</dict>\n</plist>\n"
+      },
+      "ManagedBy": "hamburger947",
+      "ManagedByUuid": "47e0d844-0381-60ea-166e-89b79aed620c",
+      "MediumIconBlobGUID": "950e6465-dc52-c45c-c785-aaae15b83b0e",
+      "MinimumOperatingSystem": "",
+      "Platform": "AppleOsX",
+      "Rating": 0,
+      "Sdk": "Disabled",
+      "SmallIconBlobGUID": "0da6576f-2cf3-8a86-6f2f-55ba048b1324",
+      "Status": "Active",
+      "SupportedModels": [
+        {
+          "Name": "Test Manateehas",
+          "id": 12346
+        },
+        {
+          "Name": "Test Camellisten",
+          "id": 12347
+        },
+        {
+          "Name": "Test Yearride",
+          "id": 12348
+        },
+        {
+          "Name": "Test Koalashall",
+          "id": 12349
+        },
+        {
+          "Name": "Test Regimentbe",
+          "id": 12350
+        },
+        {
+          "Name": "Test LightSteelBlueimportance",
+          "id": 12351
+        },
+        {
+          "Name": "Test Chimpanzeedig",
+          "id": 12352
+        }
+      ],
+      "SupportedModelsName": [
+        "Test Servalmay",
+        "Test Mosquitowould",
+        "Test Ringclimb",
+        "Test Turtleplay",
+        "Test Tradebeing",
+        "Test Ravencould",
+        "Test Dogdo"
+      ],
+      "id": 12353,
+      "uuid": "14156068-dc28-73b9-7ad6-e7371789bce2"
+    }
+  }
+}

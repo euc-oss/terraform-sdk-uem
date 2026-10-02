@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/bulkdelete",
     "method": "POST",
-    "description": "Bulk delete device sensors",
+    "description": "Bulk delete device sensor(s) (V1). Live-captured against <internal-env>/26.2.0.0, org 138883 (sdktest): deleted the sensor created in create_sensor.json. Empty 204 response confirmed genuine. Deletion verified via follow-up calls: GET on the deleted UUID returned 404 (errorCode 5178, 'Device sensor having identifier {uuid} not found'), and the list endpoint returned to the tenant's original empty/204 baseline (matches list_sensors.json).",
     "version": "1"
   },
   "request": {

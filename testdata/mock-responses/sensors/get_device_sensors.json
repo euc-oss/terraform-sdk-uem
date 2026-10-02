@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devices/{deviceUuid}/sensors",
+    "method": "GET",
+    "description": "Returns the list of sensors reported by a specific device. GET /api/mdm/devices/{deviceUuid}/sensors (V1). The body's uuid values (a1b2c3d4_e5f6_7890_abcd_ef1234567890, b2c3d4e5_f6a7_8901_bcde_f01234567891) are hand-typed ascending-hex placeholders, not gofakeit output -- not a genuine live capture.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "total_results": 2,
+      "results": [
+        {
+          "uuid": "a447ee15-78a8-4992-cb7a-7ce115d8c83d",
+          "name": "os_version",
+          "value": "10.0.19045",
+          "last_executed_at": "2026-07-01T10:00:00Z"
+        },
+        {
+          "uuid": "52b799d3-1d8f-b899-6cf2-ba530f05cf21",
+          "name": "cpu_usage",
+          "value": "42",
+          "last_executed_at": "2026-07-01T10:05:00Z"
+        }
+      ]
+    }
+  }
+}

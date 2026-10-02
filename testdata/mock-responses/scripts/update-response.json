@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/scripts/{scriptUuid}",
+    "method": "PUT",
+    "description": "Captured PUT /api/mdm/scripts/{scriptUuid}",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {
+      "Location": "/api/mdm/scripts/b1bfacb4-9b81-bf73-9865-fa75378c42a5"
+    },
+    "body": null
+  }
+}

@@ -2,6 +2,432 @@
 
 package mdmv1
 
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/euc-oss/terraform-sdk-uem/client"
+)
+
+// BaseElementModelV1 represents Base presentation element.
+
+type BaseElementModelV1 struct {
+	// Gets or sets the identifier.
+	ID string `json:"id"`
+	// Gets or sets the label.
+	Label string `json:"label"`
+	// Gets or sets the type.
+	Type string `json:"type"`
+
+	// Extra holds undeclared JSON properties present on the wire but not
+	// modeled as named fields above — the canonical C# type carries
+	// [JsonExtensionData], which spills unknown keys in as SIBLING
+	// properties, not a nested object. Populated by UnmarshalJSON below;
+	// re-merged as sibling keys (never nested under "Extra") by MarshalJSON.
+	Extra map[string]json.RawMessage `json:"-"`
+}
+
+// UnmarshalJSON implements [json.Unmarshaler]. Declared fields decode
+// normally; any undeclared JSON key is preserved in Extra instead of being
+// silently dropped (the [JsonExtensionData] round-trip contract — see
+// ir.ModelDef.HasExtensionData's doc comment).
+func (m *BaseElementModelV1) UnmarshalJSON(data []byte) error {
+	type alias BaseElementModelV1
+	aux := &struct{ *alias }{alias: (*alias)(m)}
+	if err := json.Unmarshal(data, aux); err != nil {
+		return err
+	}
+	var raw map[string]json.RawMessage
+	if err := json.Unmarshal(data, &raw); err != nil {
+		return err
+	}
+	declared := map[string]bool{
+		"id":    true,
+		"label": true,
+		"type":  true,
+	}
+	extra := make(map[string]json.RawMessage)
+	for k, v := range raw {
+		if declared[k] {
+			continue
+		}
+		extra[k] = v
+	}
+	if len(extra) > 0 {
+		m.Extra = extra
+	}
+	return nil
+}
+
+// MarshalJSON implements [json.Marshaler]. Declared fields marshal
+// normally; Extra's entries are re-merged back in as top-level SIBLING
+// keys (never nested under "Extra"), mirroring how the canonical C#
+// [JsonExtensionData] dictionary serializes.
+func (m BaseElementModelV1) MarshalJSON() ([]byte, error) {
+	type alias BaseElementModelV1
+	base, err := json.Marshal(alias(m))
+	if err != nil {
+		return nil, err
+	}
+	if len(m.Extra) == 0 {
+		return base, nil
+	}
+	merged := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(base, &merged); err != nil {
+		return nil, err
+	}
+	for k, v := range m.Extra {
+		merged[k] = v
+	}
+	return json.Marshal(merged)
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *BaseElementModelV1) Validate() error {
+	if r.ID == "" {
+		return fmt.Errorf("ID is required for BaseElementModelV1")
+	}
+	if r.Label == "" {
+		return fmt.Errorf("Label is required for BaseElementModelV1")
+	}
+	if r.Type == "" {
+		return fmt.Errorf("Type is required for BaseElementModelV1")
+	}
+	return nil
+}
+
+// BaseModelV1 represents Base class for ViewModels.
+
+type BaseModelV1 struct {
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// BaseScriptAssignmentV1 is a generated model type.
+
+type BaseScriptAssignmentV1 struct {
+	// C# property typo (Scrip_Uuid missing the 't' in 'Script') preserved on the wire per project policy. Server's BaseScriptAssignment carries two UUID fields: assignment_uuid (the assignment's own UUID, written as snake_case via [JsonProperty]) and this ScripUuid (the linked script's UUID, written PascalCase via JSON.NET default since no [JsonProperty] overrides the typo'd C# property name).
+	ScripUUID      string `json:"ScripUuid,omitempty"`
+	AssignmentUUID string `json:"assignment_uuid,omitempty"`
+	CreatedBy      string `json:"created_by,omitempty"`
+	// Deployment mode for the script assignment (string enum on wire, e.g. AUTO).
+	DeploymentMode        string              `json:"deployment_mode,omitempty"`
+	Memberships           []SmartGroupDataV1  `json:"memberships,omitempty"`
+	Name                  string              `json:"name,omitempty"`
+	OrganizationGroupUUID string              `json:"organization_group_uuid,omitempty"`
+	Priority              *int                `json:"priority,omitempty"`
+	ScriptDeployment      *ScriptDeploymentV1 `json:"script_deployment,omitempty"`
+	ShowInCatalog         *bool               `json:"show_in_catalog,omitempty"`
+	Version               string              `json:"version,omitempty"`
+}
+
+// BaselineAssignmentRequestV1Model represents Assign smart group to baseline
+
+type BaselineAssignmentRequestV1Model struct {
+	SmartGroups []*int `json:"smartGroups"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *BaselineAssignmentRequestV1Model) Validate() error {
+	if r.SmartGroups == nil {
+		return fmt.Errorf("SmartGroups is required for BaselineAssignmentRequestV1Model")
+	}
+	return nil
+}
+
+// BaselineAssignmentsV1Model represents Smart group assignment details
+
+type BaselineAssignmentsV1Model struct {
+	// smart group id
+	ID *int `json:"id,omitempty"`
+	// Name of the smart group
+	Name string `json:"name,omitempty"`
+	// Unique identifier of the smart group
+	SmartGroupUUID string `json:"smartGroupUUID,omitempty"`
+}
+
+// BaselineComplianceSummaryModelV1 is a generated model type.
+
+type BaselineComplianceSummaryModelV1 struct {
+	// The count of devices with this compliance status.
+	Count *int `json:"count,omitempty"`
+	// The baseline compliance status.
+	Status string `json:"status,omitempty"`
+}
+
+// BaselineDeviceComplianceV1Model represents The device compliance level for a baseline.
+
+type BaselineDeviceComplianceV1Model struct {
+	// The reported device compliance level.
+	Level *int `json:"level,omitempty"`
+	// The policies for which compliance was checked on the device.
+	PoliciesChecked string `json:"policiesChecked,omitempty"`
+	// The device compliance level (string enum on wire).
+	Status string `json:"status,omitempty"`
+}
+
+// BaselineDevicePoliciesV1Model represents A device's per-policy baseline results (canonical BaselineComplianceDetailsModel). Always HTTP 200, including an empty {total: 0, results: []}; never 204.
+
+type BaselineDevicePoliciesV1Model struct {
+	Results []BaselineDevicePolicyV1Model `json:"results,omitempty"`
+	// GRAND total of policies matching the compliance_level filter, counted before offset/limit are applied (canonical BaselineLoadBusiness.cs:510-531). Not the item count of this page.
+	Total *int `json:"total,omitempty"`
+}
+
+// BaselineDevicePolicyComplianceV1Model represents A policy's compliance on the device (canonical PolicyComplianceModel).
+
+type BaselineDevicePolicyComplianceV1Model struct {
+	// Error code reported for a non-compliant policy (canonical int?); absent or null when none.
+	ErrorCode *int `json:"errorCode,omitempty"`
+	// Compliance status (canonical ComplianceStatus, serialized by name: ComplianceStatus.cs:14-35). NotAvailable when the device has reported no sample.
+	Status string `json:"status,omitempty"`
+}
+
+// BaselineDevicePolicyV1Model represents One policy's state and compliance on a device under a baseline (canonical GPOResultPolicyModel).
+
+type BaselineDevicePolicyV1Model struct {
+	// Policy class name.
+	ClassName string `json:"className,omitempty"`
+	// A policy's compliance on the device (canonical PolicyComplianceModel).
+	Compliance *BaselineDevicePolicyComplianceV1Model `json:"compliance,omitempty"`
+	// Policy display name.
+	Name string `json:"name,omitempty"`
+	// Policy location, e.g. Computer Configuration/Windows Settings/...
+	Path string `json:"path,omitempty"`
+	// Policy setting state (canonical PolicyState, serialized by name: PolicyState.cs:14-30).
+	Status string `json:"status,omitempty"`
+	// Policy identifier.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// BaselineDeviceStatusV1Model represents The baseline installed status on a particular device
+
+type BaselineDeviceStatusV1Model struct {
+	// The baseline status error code
+	ErrorCode *int `json:"errorCode,omitempty"`
+	// The error message sent by the device
+	ErrorMessage string `json:"errorMessage,omitempty"`
+	// The policies installed on the device.
+	PoliciesApplied string `json:"policiesApplied,omitempty"`
+	// The last status report date
+	ReportedOn client.UEMTime `json:"reportedOn,omitempty"`
+	// The baseline install status on the device
+	Status string `json:"status,omitempty"`
+	// The baseline version
+	Version *int `json:"version,omitempty"`
+}
+
+// BaselineDeviceV1Model represents A device managed by AirWatch
+
+type BaselineDeviceV1Model struct {
+	// The device compliance level for a baseline.
+	Compliance *BaselineDeviceComplianceV1Model `json:"compliance,omitempty"`
+	// The device identifier
+	DeviceID *int `json:"deviceID,omitempty"`
+	// The device model identifier
+	DeviceModelID *int `json:"deviceModelID,omitempty"`
+	// The device model name
+	DeviceModelName string `json:"deviceModelName,omitempty"`
+	// The device type (string enum on wire, e.g. 'Windows Desktop').
+	DeviceType string `json:"deviceType,omitempty"`
+	// The device unique identifier
+	DeviceUUID string `json:"deviceUUID,omitempty"`
+	// The name assigned to a device
+	FriendlyName string `json:"friendlyName,omitempty"`
+	// The device operating system version
+	OperatingSystem string `json:"operatingSystem,omitempty"`
+	// The baseline installed status on a particular device
+	Status *BaselineDeviceStatusV1Model `json:"status,omitempty"`
+	// The device enrollment user
+	UserName string `json:"userName,omitempty"`
+}
+
+// BaselineInstallStatusReasonModelV1 is a generated model type.
+
+type BaselineInstallStatusReasonModelV1 struct {
+	// The count of devices with this install status error code.
+	Count *int `json:"count,omitempty"`
+	// The install status error code.
+	ErrorCode *int `json:"errorCode,omitempty"`
+}
+
+// BaselineInstallStatusSummaryModelV1 is a generated model type.
+
+type BaselineInstallStatusSummaryModelV1 struct {
+	// The count of devices with this install status.
+	Count   *int                                 `json:"count,omitempty"`
+	Reasons []BaselineInstallStatusReasonModelV1 `json:"reasons,omitempty"`
+	// The baseline install status.
+	Status string `json:"status,omitempty"`
+}
+
+// BaselineStatusV1Model represents Baseline device status details
+
+type BaselineStatusV1Model struct {
+	// Number of devices with status
+	Count *int `json:"count,omitempty"`
+	// The baseline install status on the device
+	Status string `json:"status,omitempty"`
+}
+
+// BaselineSummaryModelV1 is a generated model type.
+
+type BaselineSummaryModelV1 struct {
+	Compliance []BaselineComplianceSummaryModelV1    `json:"compliance,omitempty"`
+	Installs   []BaselineInstallStatusSummaryModelV1 `json:"installs,omitempty"`
+	Versions   []BaselineVersionSummaryModelV1       `json:"versions,omitempty"`
+}
+
+// BaselineTemplateV1 represents A vendor baseline template
+
+type BaselineTemplateV1 struct {
+	ID *int `json:"id,omitempty"`
+	// The Windows release version
+	OsVersion *OSVersionV1Model `json:"osVersion,omitempty"`
+	// A hierarchical list of category and policies
+	PolicyTree []CategoryTreeItemV1 `json:"policyTree,omitempty"`
+	// A Baseline security level
+	SecurityLevel *SecurityLevelV1Model `json:"securityLevel,omitempty"`
+	// Type of the Baseline (string enum on wire).
+	Type string `json:"type,omitempty"`
+	// Unique identifier of the baseline
+	UUID string `json:"uuid,omitempty"`
+	// A security baseline template
+	VendorTemplate *BaselineVendorTemplateV1Model `json:"vendorTemplate,omitempty"`
+	// Current version of the baseline template
+	Version *int `json:"version,omitempty"`
+}
+
+// BaselineV1Model represents A GPO Baseline
+
+type BaselineV1Model struct {
+	// The number of Smart Groups assigned to this baseline
+	AssignmentCount *int `json:"assignmentCount,omitempty"`
+	// Unique identifier of the baseline template
+	BaselineTemplateUUID string `json:"baselineTemplateUUID,omitempty"`
+	// Unique identifier of the baseline
+	BaselineUUID string `json:"baselineUUID,omitempty"`
+	// The custom baseline archive blob identifier
+	CustomTemplateBlobID *int `json:"customTemplateBlobID,omitempty"`
+	// The uploaded custom template file name.
+	CustomTemplateFileName string `json:"customTemplateFileName,omitempty"`
+	// The blob identifier of the stored baseline customizations
+	CustomizationBlobID *int `json:"customizationBlobID,omitempty"`
+	// The policy tree customizations
+	Customizations []PolicyModelV1 `json:"customizations,omitempty"`
+	// Description of the baseline
+	Description string `json:"description,omitempty"`
+	// Name of the baseline
+	Name string `json:"name,omitempty"`
+	// Unique identifier of the OS version
+	OsVersionUUID string `json:"osVersionUUID,omitempty"`
+	// The platform name.
+	PlatformName string `json:"platformName,omitempty"`
+	// Unique identifier of the platform UUID
+	PlatformUUID string `json:"platformUUID,omitempty"`
+	// The add policy customizations
+	Policies []PolicyModelV1 `json:"policies,omitempty"`
+	// The organization group identifier
+	RootLocationGroupID *int `json:"rootLocationGroupID,omitempty"`
+	// The organization group name which manages this baseline
+	RootLocationGroupName string `json:"rootLocationGroupName,omitempty"`
+	// Unique identifier of the organization group
+	RootLocationGroupUUID string `json:"rootLocationGroupUUID,omitempty"`
+	// Unique identifier of the security level
+	SecurityLevelUUID string                  `json:"securityLevelUUID,omitempty"`
+	Summary           *BaselineSummaryModelV1 `json:"summary,omitempty"`
+	// Template name for the baseline
+	TemplateName string `json:"templateName,omitempty"`
+	// Unique identifier of the vendor template
+	VendorTemplateUUID string `json:"vendorTemplateUUID,omitempty"`
+	// Current version of the baseline
+	Version *int `json:"version,omitempty"`
+}
+
+// BaselineVendorTemplateV1Model represents A security baseline template
+
+type BaselineVendorTemplateV1Model struct {
+	ID int `json:"id"`
+	// Name of the baseline template vendor
+	Name string `json:"name"`
+	// Short name of the baseline template vendor
+	ShortName string `json:"shortName"`
+	// Unique identifier of the baseline vendor
+	UUID string `json:"uuid,omitempty"`
+	// Various windows versions supported by the security baseline
+	Versions []OSVersionV1Model `json:"versions,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *BaselineVendorTemplateV1Model) Validate() error {
+	if r.ID == 0 {
+		return fmt.Errorf("ID is required for BaselineVendorTemplateV1Model")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for BaselineVendorTemplateV1Model")
+	}
+	if r.ShortName == "" {
+		return fmt.Errorf("ShortName is required for BaselineVendorTemplateV1Model")
+	}
+	return nil
+}
+
+// BaselineVersionSummaryModelV1 is a generated model type.
+
+type BaselineVersionSummaryModelV1 struct {
+	// The count of devices with this compliance status.
+	Count *int `json:"count,omitempty"`
+	// The installed Baseline version.
+	Version *int `json:"version,omitempty"`
+}
+
+// BulkUpdateScriptAssignmentV1 is a generated model type.
+
+type BulkUpdateScriptAssignmentV1 struct {
+	Assignments []BaseScriptAssignmentV1 `json:"assignments"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *BulkUpdateScriptAssignmentV1) Validate() error {
+	if r.Assignments == nil {
+		return fmt.Errorf("Assignments is required for BulkUpdateScriptAssignmentV1")
+	}
+	return nil
+}
+
+// CatalogDisplayV1 is a generated model type.
+
+type CatalogDisplayV1 struct {
+	ActionType     string `json:"action_type,omitempty"`
+	CatalogIconURL string `json:"catalog_icon_url,omitempty"`
+	Categories     []*int `json:"categories,omitempty"`
+	// Catalog display description (wire key 'description'; distinct from the swagger-declared but evidently unused 'display_desc').
+	Description string `json:"description,omitempty"`
+	DisplayDesc string `json:"display_desc,omitempty"`
+	DisplayName string `json:"display_name,omitempty"`
+	// Catalog display name (wire key 'name'; distinct from the swagger-declared but evidently unused 'display_name').
+	Name           string `json:"name,omitempty"`
+	PostActionText string `json:"post_action_text,omitempty"`
+	PreActionText  string `json:"pre_action_text,omitempty"`
+	UseDefaultIcon *bool  `json:"use_default_icon,omitempty"`
+}
+
+// CategoryTreeItemV1 is a generated model type.
+
+type CategoryTreeItemV1 struct {
+	// A hierarchical list of category and policies
+	Categories []CategoryTreeItemV1 `json:"categories,omitempty"`
+	ID         *int                 `json:"id,omitempty"`
+	// Name of the category
+	Name string `json:"name,omitempty"`
+	// A collection of policies
+	Policies []PolicyTreeItemV1 `json:"policies,omitempty"`
+	// Unique identifier of the category
+	UUID string `json:"uuid,omitempty"`
+}
+
 // CertificateV1 represents Model representing the Certificate Resource.
 
 type CertificateV1 struct {
@@ -9,6 +435,108 @@ type CertificateV1 struct {
 	CertificatePayload string `json:"CertificatePayload,omitempty"`
 	// Gets or sets certificate Password.
 	Password string `json:"Password,omitempty"`
+}
+
+// CreateBaselineRequestV1Model represents Contains metadata to create a new baseline
+
+type CreateBaselineRequestV1Model struct {
+	// Policy customizations to the baseline policies
+	Customizations []PolicyItemModelV1 `json:"customizations,omitempty"`
+	// Description of the baseline
+	Description string `json:"description,omitempty"`
+	// Name of the baseline
+	Name string `json:"name"`
+	// The operating system version identifier
+	OsVersionUUID string `json:"osVersionUUID,omitempty"`
+	// The operating system version identifier
+	PlatformUUID string `json:"platformUUID,omitempty"`
+	// Additional policies to include with the baseline
+	Policies []PolicyItemModelV1 `json:"policies,omitempty"`
+	// The organization group identifier
+	RootLocationGroupID int `json:"rootLocationGroupID"`
+	// The baseline security level identifier
+	SecurityLevelUUID string `json:"securityLevelUUID,omitempty"`
+	// The baseline template vendor identifier
+	VendorTemplateUUID string `json:"vendorTemplateUUID,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *CreateBaselineRequestV1Model) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for CreateBaselineRequestV1Model")
+	}
+	if r.RootLocationGroupID == 0 {
+		return fmt.Errorf("RootLocationGroupID is required for CreateBaselineRequestV1Model")
+	}
+	return nil
+}
+
+// CreateScriptAssignmentV1 is a generated model type.
+
+type CreateScriptAssignmentV1 struct {
+	AssignmentUUID string `json:"assignment_uuid,omitempty"`
+	CreatedBy      string `json:"created_by,omitempty"`
+	// Deployment mode for the script assignment (string enum on wire, e.g. AUTO).
+	DeploymentMode        string              `json:"deployment_mode,omitempty"`
+	Memberships           []SmartGroupDataV1  `json:"memberships,omitempty"`
+	Name                  string              `json:"name,omitempty"`
+	OrganizationGroupUUID string              `json:"organization_group_uuid,omitempty"`
+	Priority              *int                `json:"priority,omitempty"`
+	ScriptDeployment      *ScriptDeploymentV1 `json:"script_deployment,omitempty"`
+	ShowInCatalog         *bool               `json:"show_in_catalog,omitempty"`
+	Version               string              `json:"version,omitempty"`
+}
+
+// CreateScriptV1 is a generated model type.
+
+type CreateScriptV1 struct {
+	AllowedInCatalog bool              `json:"allowed_in_catalog"`
+	CatalogDisplay   *CatalogDisplayV1 `json:"catalog_display,omitempty"`
+	CreatedBy        string            `json:"created_by,omitempty"`
+	Description      string            `json:"description,omitempty"`
+	// Execution context for the script (string enum on wire, e.g. USER).
+	ExecutionContext      string `json:"execution_context,omitempty"`
+	IsIdempotent          *bool  `json:"is_idempotent,omitempty"`
+	Name                  string `json:"name,omitempty"`
+	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
+	// Platform the script targets (string enum on wire, e.g. WIN_RT).
+	Platform string `json:"platform,omitempty"`
+	// x-override: platform_architecture is a QUIRK-11 polymorphic field — returns int 0 when unset, string (e.g. LEGACY) when set. Uses client.IntOrString. Retire when upstream declares a consistent wire type.
+	PlatformArchitecture *client.IntOrString `json:"platform_architecture,omitempty"`
+	ScriptData           string              `json:"script_data,omitempty"`
+	// Script language (string enum on wire, e.g. POWERSHELL).
+	ScriptType      string              `json:"script_type,omitempty"`
+	ScriptUUID      string              `json:"script_uuid,omitempty"`
+	ScriptVariables []ScriptVariablesV1 `json:"script_variables,omitempty"`
+	Timeout         *int                `json:"timeout,omitempty"`
+	UserInteraction *bool               `json:"user_interaction,omitempty"`
+	Version         string              `json:"version,omitempty"`
+}
+
+// DeleteScriptResourceV1 represents Response body for POST /groups/{ogUuid}/scripts/bulkdelete (200 = full success, 206 = partial). XML comment in canonical names the count property 'deletedcount' but the wire JSON name is scripts_deleted.
+
+type DeleteScriptResourceV1 struct {
+	// UUIDs of scripts that failed to delete.
+	DeleteFailed []string `json:"delete_failed,omitempty"`
+	// Count of scripts successfully deleted.
+	ScriptsDeleted *int `json:"scripts_deleted,omitempty"`
+}
+
+// DeploymentV1Model represents The device update deployment model containing deployment parameters.
+
+type DeploymentV1Model struct {
+	// The deployment start time.
+	DeploymentStartTime client.UEMTime `json:"deployment_start_time,omitempty"`
+	// The deployment type.
+	DeploymentType string `json:"deployment_type,omitempty"`
+	// The name of the deployment
+	Name string `json:"name,omitempty"`
+	// Ranking of the deployment. 1 specifies highest ranking.
+	Ranking *int `json:"ranking,omitempty"`
+	// The total count of smart groups associated with the deployment.
+	SmartGroupCount *int `json:"smart_group_count,omitempty"`
+	// Deployment UUID
+	UUID string `json:"uuid,omitempty"`
 }
 
 // DeviceSensorAssignedSmartGroupV1Model represents A model holding the details of smart groups assigned to device sensors.
@@ -29,13 +557,40 @@ type DeviceSensorListResponseV1Model struct {
 	TotalResults *int `json:"total_results,omitempty"`
 }
 
+// DeviceSensorModelV1 is a generated model type.
+
+type DeviceSensorModelV1 struct {
+	// A timestamp specifying when the sensor script was last executed.
+	LastExecutedAt client.UEMTime `json:"last_executed_at"`
+	// The sensor name.
+	Name string `json:"name"`
+	// The unique identifier of the sensor in UEM system.
+	UUID string `json:"uuid"`
+	// The sensor value.
+	Value string `json:"value"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceSensorModelV1) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for DeviceSensorModelV1")
+	}
+	if r.UUID == "" {
+		return fmt.Errorf("UUID is required for DeviceSensorModelV1")
+	}
+	if r.Value == "" {
+		return fmt.Errorf("Value is required for DeviceSensorModelV1")
+	}
+	return nil
+}
+
 // DeviceSensorRequestV1Model represents Request model for creating a device sensor
 
 type DeviceSensorRequestV1Model struct {
 	// Description of the device sensor.
 	Description string `json:"description,omitempty"`
-	// Event triggers defining the trigger for the data collection.
-	EventTrigger []*int `json:"event_trigger,omitempty"`
+	// Event triggers defining the trigger for the data collection (string enum on wire, e.g. LOGIN, ENROLLMENT, PERIODIC).
+	EventTrigger []string `json:"event_trigger,omitempty"`
 	// Execution architecture under which the script would be run on device.
 	ExecutionArchitecture string `json:"execution_architecture,omitempty"`
 	// Execution context under which the script would be run on device.
@@ -64,6 +619,29 @@ type DeviceSensorRequestV1Model struct {
 	UUID string `json:"uuid,omitempty"`
 }
 
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceSensorRequestV1Model) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for DeviceSensorRequestV1Model")
+	}
+	if r.OrganizationGroupUUID == "" {
+		return fmt.Errorf("OrganizationGroupUUID is required for DeviceSensorRequestV1Model")
+	}
+	if r.Platform == "" {
+		return fmt.Errorf("Platform is required for DeviceSensorRequestV1Model")
+	}
+	if r.QueryType == "" {
+		return fmt.Errorf("QueryType is required for DeviceSensorRequestV1Model")
+	}
+	if r.ScriptData == "" {
+		return fmt.Errorf("ScriptData is required for DeviceSensorRequestV1Model")
+	}
+	if r.TriggerType == "" {
+		return fmt.Errorf("TriggerType is required for DeviceSensorRequestV1Model")
+	}
+	return nil
+}
+
 // DeviceSensorResponseV1Model represents A model holding the details of a device sensor
 
 type DeviceSensorResponseV1Model struct {
@@ -71,8 +649,8 @@ type DeviceSensorResponseV1Model struct {
 	AssignedSmartGroups []DeviceSensorAssignedSmartGroupV1Model `json:"assigned_smart_groups,omitempty"`
 	// Description of the device sensor.
 	Description string `json:"description,omitempty"`
-	// Event triggers defining the trigger for the data collection.
-	EventTrigger []*int `json:"event_trigger,omitempty"`
+	// Event triggers defining the trigger for the data collection (string enum on wire, e.g. LOGIN, ENROLLMENT, PERIODIC).
+	EventTrigger []string `json:"event_trigger,omitempty"`
 	// Execution architecture under which the script would be run on device.
 	ExecutionArchitecture string `json:"execution_architecture,omitempty"`
 	// Execution context under which the script would be run on device.
@@ -91,8 +669,8 @@ type DeviceSensorResponseV1Model struct {
 	Platform string `json:"platform,omitempty"`
 	// Response type of the data.
 	QueryResponseType string `json:"query_response_type,omitempty"`
-	// Query type of the script.
-	QueryType string `json:"query_type,omitempty"`
+	// x-override: query_type is a polymorphic field on this response model — a live macOS/BASH sensor returns it as a JSON number (e.g. 3), while a live WinRT/PowerShell sensor returns it as a JSON string (e.g. "POWERSHELL"), confirmed by direct live capture of both. Uses client.IntOrString (same pattern as scripts' platform_architecture). Retire when upstream declares a consistent wire type.
+	QueryType *client.IntOrString `json:"query_type,omitempty"`
 	// Schedule trigger (in hours) defining the trigger for the data collection.
 	ScheduleTrigger string `json:"schedule_trigger,omitempty"`
 	// Script to be executed on device.
@@ -105,13 +683,95 @@ type DeviceSensorResponseV1Model struct {
 	UUID string `json:"uuid,omitempty"`
 }
 
+// DeviceSensorSearchResponseModelV1 is a generated model type.
+
+type DeviceSensorSearchResponseModelV1 struct {
+	// An array of sensors containing the search results.
+	Results []DeviceSensorModelV1 `json:"results"`
+	// An integer describing the total number of sensors available on the device.
+	TotalResults int `json:"total_results"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceSensorSearchResponseModelV1) Validate() error {
+	if r.Results == nil {
+		return fmt.Errorf("Results is required for DeviceSensorSearchResponseModelV1")
+	}
+	return nil
+}
+
+// DeviceSensorSmartGroupAssignmentFailedResponseV1Model represents Error details of the device sensors that failed to map the assignment.
+
+type DeviceSensorSmartGroupAssignmentFailedResponseV1Model struct {
+	// Error code of the failure
+	ErrorCode int `json:"error_code"`
+	// Error message
+	ErrorMessage string `json:"error_message"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceSensorSmartGroupAssignmentFailedResponseV1Model) Validate() error {
+	if r.ErrorMessage == "" {
+		return fmt.Errorf("ErrorMessage is required for DeviceSensorSmartGroupAssignmentFailedResponseV1Model")
+	}
+	return nil
+}
+
+// DeviceSensorSmartGroupAssignmentResponseV1Model represents Model for smart group assignment to device sensors response.
+
+type DeviceSensorSmartGroupAssignmentResponseV1Model struct {
+	// Number of items accepted for processing.
+	AcceptedItems *int `json:"accepted_items,omitempty"`
+	// The activity id associated with the response
+	ActivityID string `json:"activity_id,omitempty"`
+	// Number of items not accepted for processing.
+	FailedItems *int `json:"failed_items,omitempty"`
+	// A list of failed sensors with error details.
+	FailedSensors []DeviceSensorSmartGroupAssignmentFailedResponseV1Model `json:"failed_sensors,omitempty"`
+	// A list of failed smart groups with error details.
+	FailedSmartGroups []DeviceSensorSmartGroupAssignmentFailedResponseV1Model `json:"failed_smart_groups,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Total number of items count sent for processing.
+	TotalItems *int `json:"total_items,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// DeviceSensorSmartGroupAssignmentV1Model represents Model for smart group assignment to device sensors
+
+type DeviceSensorSmartGroupAssignmentV1Model struct {
+	// List of device sensor identifiers.
+	DeviceSensors []string `json:"device_sensors,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Organization Group uuid
+	OrganizationGroupUUID string `json:"organization_group_uuid"`
+	// List of smart group identifiers.
+	SmartGroups []string `json:"smart_groups,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceSensorSmartGroupAssignmentV1Model) Validate() error {
+	if r.OrganizationGroupUUID == "" {
+		return fmt.Errorf("OrganizationGroupUUID is required for DeviceSensorSmartGroupAssignmentV1Model")
+	}
+	return nil
+}
+
 // DeviceSensorUpdateV1Model represents Request model for updating a device sensor
 
 type DeviceSensorUpdateV1Model struct {
 	// Description of the device sensor.
 	Description string `json:"description,omitempty"`
-	// Event triggers defining the trigger for the data collection.
-	EventTrigger []*int `json:"event_trigger,omitempty"`
+	// Event triggers defining the trigger for the data collection (string enum on wire, e.g. LOGIN, ENROLLMENT, PERIODIC).
+	EventTrigger []string `json:"event_trigger,omitempty"`
 	// Execution architecture under which the script would be run on device.
 	ExecutionArchitecture string `json:"execution_architecture,omitempty"`
 	// Execution context under which the script would be run on device.
@@ -143,10 +803,854 @@ type DeviceSensorsBulkDeleteRequestV1Model struct {
 	SensorUUIDs []string `json:"sensor_uuids"`
 }
 
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceSensorsBulkDeleteRequestV1Model) Validate() error {
+	if r.OrganizationGroupUUID == "" {
+		return fmt.Errorf("OrganizationGroupUUID is required for DeviceSensorsBulkDeleteRequestV1Model")
+	}
+	if r.SensorUUIDs == nil {
+		return fmt.Errorf("SensorUUIDs is required for DeviceSensorsBulkDeleteRequestV1Model")
+	}
+	return nil
+}
+
+// DeviceUpdateCountDeviceStatusV1Model represents The model containing the counts of the different device statuses for the published device update
+
+type DeviceUpdateCountDeviceStatusV1Model struct {
+	// The count of devices that have completed the download of the update but are not yet on the specified version
+	DownloadComplete *int `json:"download_complete,omitempty"`
+	// The count of devices where the download has failed for some reason
+	DownloadFailed *int `json:"download_failed,omitempty"`
+	// The count of devices where download failed because there is insufficient network capacity to download the update
+	DownloadInsufficientNetwork *int `json:"download_insufficient_network,omitempty"`
+	// The count of devices where download failed because there is not enough power to download the update
+	DownloadInsufficientPower *int `json:"download_insufficient_power,omitempty"`
+	// The count of devices where download failed because there is not enough space to download the update
+	DownloadInsufficientSpace *int `json:"download_insufficient_space,omitempty"`
+	// The count of devices where download could not complete because the device must be connected to a computer to download the update (iOS only)
+	DownloadRequiresComputer *int `json:"download_requires_computer,omitempty"`
+	// The count of devices where the update is currently downloading
+	Downloading *int `json:"downloading,omitempty"`
+	// The count of devices where no action is currently being taken on the update
+	Idle *int `json:"idle,omitempty"`
+	// The count of devices that have completed installation and are on or above the specified version
+	InstallComplete *int `json:"install_complete,omitempty"`
+	// The count of devices where installation has failed for an unspecified reason
+	InstallFailed *int `json:"install_failed,omitempty"`
+	// The count of devices where there is not enough power to install the update
+	InstallInsufficientPower *int `json:"install_insufficient_power,omitempty"`
+	// The count of devices where there is not enough space to install the update
+	InstallInsufficientSpace *int `json:"install_insufficient_space,omitempty"`
+	// The count of devices where installation has been rejected because a phone call is in progress
+	InstallPhoneCallInProgress *int `json:"install_phone_call_in_progress,omitempty"`
+	// The count of devices where the update is being installed
+	Installing *int `json:"installing,omitempty"`
+	// The count of devices where they are not eligible to receive the update
+	NotEligible *int `json:"not_eligible,omitempty"`
+	// The count of devices that haven't started the download/install of the specified update
+	NotStarted *int `json:"not_started,omitempty"`
+}
+
+// DeviceUpdateDeploymentBaseV1Model represents The device update deployment model containing deployment parameters and notification preferences.
+
+type DeviceUpdateDeploymentBaseV1Model struct {
+	// Gets or sets the deployment start time.
+	DeploymentStartTime client.UEMTime `json:"deployment_start_time"`
+	// Gets or sets the deployment type. Possible Values [DOWNLOAD_AND_INSTALL, DOWNLOAD_ONLY, INSTALL_ONLY].
+	DeploymentType string `json:"deployment_type"`
+	// Gets or sets the name of the deployment.
+	Name string `json:"name"`
+	// Gets or sets the list of notification preferences for the deployment.
+	Notifications []NotificationV1Model `json:"notifications,omitempty"`
+	// Gets or sets the list of smart group UUID where update needs to be deployed.
+	SmartGroupUUIDs []string `json:"smart_group_uuids"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceUpdateDeploymentBaseV1Model) Validate() error {
+	if r.DeploymentType == "" {
+		return fmt.Errorf("DeploymentType is required for DeviceUpdateDeploymentBaseV1Model")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for DeviceUpdateDeploymentBaseV1Model")
+	}
+	if r.SmartGroupUUIDs == nil {
+		return fmt.Errorf("SmartGroupUUIDs is required for DeviceUpdateDeploymentBaseV1Model")
+	}
+	return nil
+}
+
+// DeviceUpdateDeploymentRankingV1Model represents The device update deployment model containing deployment ranking.
+
+type DeviceUpdateDeploymentRankingV1Model struct {
+	// Gets or sets the device update deployment ranking.
+	Ranking *int `json:"ranking,omitempty"`
+	// Gets or sets the device update deployment uuid.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// DeviceUpdateDeploymentUpdateV1Model represents Presents a model to update an existing device update deployment.
+
+type DeviceUpdateDeploymentUpdateV1Model struct {
+	// Gets or sets the deployment start time.
+	DeploymentStartTime client.UEMTime `json:"deployment_start_time"`
+	// Gets or sets the deployment type. Possible Values [DOWNLOAD_AND_INSTALL, DOWNLOAD_ONLY, INSTALL_ONLY].
+	DeploymentType string `json:"deployment_type"`
+	// Gets or sets the name of the deployment.
+	Name string `json:"name"`
+	// Gets or sets the list of notification preferences for the deployment.
+	Notifications []NotificationV1Model `json:"notifications,omitempty"`
+	// Gets or sets the list of smart group UUID where update needs to be deployed.
+	SmartGroupUUIDs []string `json:"smart_group_uuids"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceUpdateDeploymentUpdateV1Model) Validate() error {
+	if r.DeploymentType == "" {
+		return fmt.Errorf("DeploymentType is required for DeviceUpdateDeploymentUpdateV1Model")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for DeviceUpdateDeploymentUpdateV1Model")
+	}
+	if r.SmartGroupUUIDs == nil {
+		return fmt.Errorf("SmartGroupUUIDs is required for DeviceUpdateDeploymentUpdateV1Model")
+	}
+	return nil
+}
+
+// DeviceUpdateDeploymentUrlV1Model represents Device update deployments with the list of deployment URLs.
+
+type DeviceUpdateDeploymentUrlV1Model struct {
+	// The list of device update deployment URLs
+	Links []LinkV1 `json:"links,omitempty"`
+	// Name of the deployment
+	Name string `json:"name,omitempty"`
+}
+
+// DeviceUpdateDeploymentV1Model represents The device update deployment model containing deployment parameters, notification preferences, and deployment status fields. Canonical source: AW.Mdm.Api.Model/OsUpdates/V1/ DeviceUpdateDeploymentV1Model.cs (release/26.2.0.0); extends DeviceUpdateDeploymentCreateV1Model. Flattened here per this swagger's existing inheritance-flattening convention (see mdmv1.scripts.overlay.yaml).
+
+type DeviceUpdateDeploymentV1Model struct {
+	// Gets or sets a value indicating whether the macOS deployment allows user deferral. Canonical DeviceUpdateDeploymentV1Model.cs:38-39 (bool?).
+	AllowUserDeferral *bool `json:"allow_user_deferral,omitempty"`
+	// Gets or sets the deployment start time. Backing C# type is DateTime? (nullable) per the canonical capture (docs/guides/updates/canonical-models/updates-models-v1.yaml) despite being a required field on create.
+	DeploymentStartTime client.UEMTime `json:"deployment_start_time"`
+	// Gets or sets the deployment type. On V1 create/update requests the accepted set is all 8 non-Unknown values (validator rejects only UNKNOWN — see DeviceUpdateDeploymentBaseV1ModelValidator.cs:60 and DeviceUpdateDeploymentUpdateV1ModelValidator.cs:60, both release/26.2.0.0; NOT the 3-value list in the stale [ProducesResponseType] doc text). Acceptance is NOT validated against the deployment's platform: iOS/AppleTV only honor DOWNLOAD_AND_INSTALL/INSTALL_ONLY/DOWNLOAD_ONLY and AppleOsX only honors DEFAULT/DOWNLOAD_ONLY/INSTALL_ASAP/NOTIFY_ONLY/ INSTALL_LATER/INSTALL_FORCE_RESTART; a platform-incompatible value is accepted at request time and fails later during deployment execution (a separate canonical defect). UNKNOWN IS included in this response enum deliberately, not by oversight: it is genuinely reachable in real responses. V2's create/update path (OsUpdatesV2Controller) has no equivalent Unknown-rejection validator (confirmed: zero AbstractValidator<DeviceUpdateDeploymentV2RequestModel> matches in canonical); DeviceUpdateDeploymentEntity.DeploymentType is a nullable enum, so UNKNOWN(0) passes the only guard present (a bare NotNull check in AppleOsUpdateBusiness.cs) and is persisted as-is. V1's GET reads the same entity/table and maps it to this response model via a convention-based AutoMapper copy with no override on DeploymentType — StringEnumConverter still serializes "UNKNOWN" ([JsonIgnore] on the enum member is inert for enum-to-string conversion; it only affects POCO property contract resolution, not this path). This V2 validation gap is a separate canonical defect from the platform-mismatch one above, with a different controller and a different fix site.
+	DeploymentType string `json:"deployment_type"`
+	// Gets or sets the device update uuid.
+	DeviceUpdateUUID string `json:"device_update_uuid,omitempty"`
+	// Gets or sets the Max Number Of Deferrals value of the macOS deployment. Canonical DeviceUpdateDeploymentV1Model.cs:44-45 (int?).
+	MaxNumberOfDeferrals *int `json:"max_number_of_deferrals,omitempty"`
+	// Gets or sets the name of the deployment.
+	Name string `json:"name"`
+	// Gets or sets the list of notification preferences for the deployment.
+	Notifications []NotificationV1Model `json:"notifications,omitempty"`
+	// Gets or sets the organization group uuid.
+	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
+	// Gets or sets the OsUpdate Priority Type. Canonical DeviceUpdateDeploymentV1Model.cs:50-52 (OsUpdatePriorityType?), wire-serialized via [JsonConverter(StringEnumConverter)] per OsUpdatePriorityType.cs:17-38 (EnumMember values UNKNOWN/LOW/HIGH — same [JsonIgnore]-on-Unknown pattern as deployment_type, and equally inert for enum-to-string conversion). This field is NEVER set by V1 create/update (Priority does not exist on DeviceUpdateDeploymentBaseV1Model/UpdateV1Model at all — V1 cannot write it); when never set, the entity's Priority stays real C# null and the response OMITS the priority key entirely (this API's JsonNetFormatter sets NullValueHandling.Ignore globally — see AW.WebApi.Common/Net48/MediaTypeFormatters/JsonNetFormatter.cs:166-173), it does NOT come back as "priority": null or "UNKNOWN". UNKNOWN IS genuinely reachable via a narrower, fully explicit path: V2's DeviceUpdateDeploymentV2RequestModel.Priority has no [Required] and NO validator anywhere (Base/Update/V1/V2) rejects Unknown -- a strictly weaker gate than deployment_type's V2 gap described above. A client sending "priority": "UNKNOWN" on a V2 call round-trips through persistence (stored 0 is treated as a defined, valid value, not nulled) and is echoed back verbatim by V1's GET via a bare AutoMapper copy. Untested/unexercised by any known internal flow, but reachable by construction. Flagged to maintainer for a filing decision (likely same defect family as the deployment_type V2 gap, possibly the same fix site) as of this writing.
+	Priority string `json:"priority,omitempty"`
+	// Gets or sets the deployment ranking. Canonical DeviceUpdateDeploymentV1Model.cs:32-33.
+	Ranking *int `json:"ranking,omitempty"`
+	// Gets or sets the list of smart group UUID where update needs to be deployed.
+	SmartGroupUUIDs []string `json:"smart_group_uuids"`
+	// Gets or sets the deployment UUID. Canonical DeviceUpdateDeploymentV1Model.cs:26-27, DataMember EmitDefaultValue=false.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceUpdateDeploymentV1Model) Validate() error {
+	if r.DeploymentType == "" {
+		return fmt.Errorf("DeploymentType is required for DeviceUpdateDeploymentV1Model")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for DeviceUpdateDeploymentV1Model")
+	}
+	if r.SmartGroupUUIDs == nil {
+		return fmt.Errorf("SmartGroupUUIDs is required for DeviceUpdateDeploymentV1Model")
+	}
+	return nil
+}
+
+// DeviceUpdateDetailsDeploymentsV1Model represents Details of the device update with the list of associated deployments.
+
+type DeviceUpdateDetailsDeploymentsV1Model struct {
+	// Gets or sets a value indicating whether the update is available for installing.
+	AvailableForInstall *bool `json:"available_for_install,omitempty"`
+	// Gets or sets the external key for the device update.
+	Description string `json:"description,omitempty"`
+	// The list of device update deployments for the device update
+	DeviceUpdateDeployments []DeviceUpdateDeploymentUrlV1Model `json:"device_update_deployments,omitempty"`
+	// Gets or sets the expiration date of the update.
+	ExpirationDate client.UEMTime `json:"expiration_date,omitempty"`
+	// Gets or sets the external key for the device update.
+	ExternalKey string `json:"external_key,omitempty"`
+	// Gets or sets a value indicating whether the device update is currently paused.
+	IsPaused *bool `json:"is_paused,omitempty"`
+	// Gets or sets the name of the update.
+	Name string `json:"name,omitempty"`
+	// Gets or sets the release date of the update.
+	ReleaseDate client.UEMTime `json:"release_date,omitempty"`
+	// Gets or sets the type of the update.
+	UpdateType string `json:"update_type,omitempty"`
+	// Gets or sets the device update UUID.
+	UUID string `json:"uuid,omitempty"`
+	// Gets or sets the version of the update.
+	Version string `json:"version,omitempty"`
+}
+
+// DeviceUpdateDetailsSupportedDevicesV1Model represents Details of the specific updates with supported device list.
+
+type DeviceUpdateDetailsSupportedDevicesV1Model struct {
+	// Gets or sets a value indicating whether the update is available for installing.
+	AvailableForInstall *bool `json:"available_for_install,omitempty"`
+	// Gets or sets the external key for the device update.
+	Description string `json:"description,omitempty"`
+	// Gets or sets the expiration date of the update.
+	ExpirationDate client.UEMTime `json:"expiration_date,omitempty"`
+	// Gets or sets the external key for the device update.
+	ExternalKey string `json:"external_key,omitempty"`
+	// Gets or sets a value indicating whether the device update is currently paused.
+	IsPaused *bool `json:"is_paused,omitempty"`
+	// Gets or sets the name of the update.
+	Name string `json:"name,omitempty"`
+	// Gets or sets the release date of the update.
+	ReleaseDate client.UEMTime `json:"release_date,omitempty"`
+	// Gets or sets the list of device types that support the update.
+	SupportedDevices []string `json:"supported_devices,omitempty"`
+	// Gets or sets the type of the update.
+	UpdateType string `json:"update_type,omitempty"`
+	// Gets or sets the device update UUID.
+	UUID string `json:"uuid,omitempty"`
+	// Gets or sets the version of the update.
+	Version string `json:"version,omitempty"`
+}
+
+// DeviceUpdateDeviceReadinessV1Model represents The device update device readiness model that returns the count of eligible devices, not eligible devices, devices already on the version and devices on a higher version.
+
+type DeviceUpdateDeviceReadinessV1Model struct {
+	// The count of devices already on the device update version
+	AlreadyOnThisVersion *int `json:"already_on_this_version,omitempty"`
+	// The count of devices eligible to receive the device update
+	Eligible *int `json:"eligible,omitempty"`
+	// The count of devices not eligible to receive the device update
+	NotEligible *int `json:"not_eligible,omitempty"`
+	// The count of devices on a higher version than the selected device update version
+	OnHigherVersion *int `json:"on_higher_version,omitempty"`
+}
+
+// DeviceUpdatePagedSearchResultsV1Model represents The device update result model containing the list of updates.
+
+type DeviceUpdatePagedSearchResultsV1Model struct {
+	// The current page
+	Page *int `json:"page,omitempty"`
+	// The current page size
+	PageSize *int `json:"page_size,omitempty"`
+	// The total number of results
+	Total *int `json:"total,omitempty"`
+	// The list of device updates
+	UpdateList []DeviceUpdateDetailsDeploymentsV1Model `json:"update_list,omitempty"`
+}
+
+// DeviceUpdateStatusDetailsV1Model represents Device update status details.
+
+type DeviceUpdateStatusDetailsV1Model struct {
+	// Gets or sets the friendly name of the device.
+	DeviceName string `json:"device_name,omitempty"`
+	// Gets or sets first name of user of the device.
+	FirstName string `json:"first_name,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets last name of user of the device.
+	LastName string `json:"last_name,omitempty"`
+	// Gets or sets the time when the device was last seen.
+	LastSeen client.UEMTime `json:"last_seen,omitempty"`
+	// Gets or sets the next retry time if the previous attempt failed.
+	NextRetry client.UEMTime `json:"next_retry,omitempty"`
+	// Gets or sets the reason for the update status.
+	Reason string `json:"reason,omitempty"`
+	// Gets or sets the status of the update.
+	Status string `json:"status,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// DeviceUpdateStatusPagedSearchResultsV1Model represents The device update status result model containing the list of assigned devices with update status in each device.
+
+type DeviceUpdateStatusPagedSearchResultsV1Model struct {
+	// Gets or sets the list of all assigned devices with update status.
+	DeviceList []DeviceUpdateStatusDetailsV1Model `json:"device_list,omitempty"`
+	// Gets or sets the current page.
+	Page *int `json:"page,omitempty"`
+	// Gets or sets the current page size.
+	PageSize *int `json:"page_size,omitempty"`
+	// Gets or sets the total number of results.
+	Total *int `json:"total,omitempty"`
+}
+
 // EntityIdV1 is a generated model type.
 
 type EntityIdV1 struct {
 	Value *int64 `json:"Value,omitempty"`
+}
+
+// GetAllPoliciesResponseV1Model represents A collection of policies
+
+type GetAllPoliciesResponseV1Model struct {
+	// The list of policies
+	Results []PolicySearchItemV1Model `json:"results,omitempty"`
+	// The total number of policies
+	Total *int `json:"total,omitempty"`
+}
+
+// GetBaselineDeviceSummaryResponseV1Model represents A paged list of devices
+
+type GetBaselineDeviceSummaryResponseV1Model struct {
+	// The current page
+	Page *int `json:"page,omitempty"`
+	// The current page size
+	PageSize *int                    `json:"pageSize,omitempty"`
+	Results  []BaselineDeviceV1Model `json:"results,omitempty"`
+	// The total number of results
+	Total *int `json:"total,omitempty"`
+}
+
+// LinkV1 represents The link.
+
+type LinkV1 struct {
+	// Gets or sets hyper text reference.
+	Href string `json:"Href,omitempty"`
+	// Gets or sets relational links.
+	Rel string `json:"Rel,omitempty"`
+	// Gets or sets title of the link.
+	Title string `json:"Title,omitempty"`
+}
+
+// NotificationV1Model represents Notification preferences for the deployment.
+
+type NotificationV1Model struct {
+	// Gets or sets the action that causes the notification. Possible values [DOWNLOAD_SUCCESS, INSTALL_SUCCESS].
+	Action string `json:"action,omitempty"`
+	// Gets or sets the message for the push notification.
+	Message string `json:"message,omitempty"`
+	// Gets or sets the message template id for the email notification.
+	MessageTemplateID *int `json:"message_template_id,omitempty"`
+}
+
+// OEMAndModelV1 represents Represents Smart group OEM and Model.
+
+type OEMAndModelV1 struct {
+	// Gets or sets list of model.
+	Models []SmartGroupModelDetailV1 `json:"Models,omitempty"`
+	// Represents Smart group Manufacturer Resource.
+	OEM *OEMV1 `json:"OEM,omitempty"`
+}
+
+// OEMV1 represents Represents Smart group Manufacturer Resource.
+
+type OEMV1 struct {
+	// Gets or sets oEM Identifier.
+	ID string `json:"Id,omitempty"`
+	// Gets or sets oEM Name.
+	Name string `json:"Name,omitempty"`
+}
+
+// OSVersionV1Model represents The Windows release version
+
+type OSVersionV1Model struct {
+	// Unique identifier for the windows version
+	ID int `json:"id"`
+	// The various security levels available for this windows version of the security baseline
+	Levels []SecurityLevelV1Model `json:"levels,omitempty"`
+	// The Windows Version display name
+	Name string `json:"name"`
+	// Unique identifier of the operating system version
+	UUID string `json:"uuid,omitempty"`
+	// The Windows Version
+	Version string `json:"version"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *OSVersionV1Model) Validate() error {
+	if r.ID == 0 {
+		return fmt.Errorf("ID is required for OSVersionV1Model")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for OSVersionV1Model")
+	}
+	if r.Version == "" {
+		return fmt.Errorf("Version is required for OSVersionV1Model")
+	}
+	return nil
+}
+
+// OSVersionV2ModelV1 represents The Windows release version
+
+type OSVersionV2ModelV1 struct {
+	// The various security levels available for this windows version of the security baseline
+	Levels []SecurityLevelV2ModelV1 `json:"levels,omitempty"`
+	// The Windows Version display name
+	Name string `json:"name"`
+	// Unique identifier of the operating system version
+	UUID string `json:"uuid"`
+	// The Windows Version
+	Version string `json:"version"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *OSVersionV2ModelV1) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for OSVersionV2ModelV1")
+	}
+	if r.UUID == "" {
+		return fmt.Errorf("UUID is required for OSVersionV2ModelV1")
+	}
+	if r.Version == "" {
+		return fmt.Errorf("Version is required for OSVersionV2ModelV1")
+	}
+	return nil
+}
+
+// PlatformV2ModelV1 represents V2-adjacent platform shape used by the PlatformsV1Controller. Canonical source: AW.Mdm.Api/AW.Mdm.Api.Model/Baseline/V2/PlatformV2Model.cs. Note: swagger summary text on the uuid field says 'operating system version'; canonical fields say 'platform uuid'. Wire wins.
+
+type PlatformV2ModelV1 struct {
+	// Platform name.
+	Name string `json:"name"`
+	// Platform UUID.
+	UUID string `json:"uuid"`
+	// OS versions supported on this platform.
+	Versions []OSVersionV2ModelV1 `json:"versions,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *PlatformV2ModelV1) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for PlatformV2ModelV1")
+	}
+	if r.UUID == "" {
+		return fmt.Errorf("UUID is required for PlatformV2ModelV1")
+	}
+	return nil
+}
+
+// PolicyCatalogModelV1 represents A policy catalog.
+
+type PolicyCatalogModelV1 struct {
+	// The Windows release version
+	OsVersion *OSVersionV1Model `json:"osVersion,omitempty"`
+	// A hierarchical list of category and policies
+	PolicyTree []CategoryTreeItemV1 `json:"policyTree,omitempty"`
+}
+
+// PolicyItemModelV1 represents A policy
+
+type PolicyItemModelV1 struct {
+	// The policy options to configure
+	Options []PolicyOptionModelV1 `json:"options,omitempty"`
+	// The policy configuration state
+	Status string `json:"status"`
+	// Unique identifier of the policy
+	UUID string `json:"uuid"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *PolicyItemModelV1) Validate() error {
+	if r.Status == "" {
+		return fmt.Errorf("Status is required for PolicyItemModelV1")
+	}
+	if r.UUID == "" {
+		return fmt.Errorf("UUID is required for PolicyItemModelV1")
+	}
+	return nil
+}
+
+// PolicyModelV1 represents A policy
+
+type PolicyModelV1 struct {
+	// The allowed states for this policy
+	AvailableStates []string `json:"availableStates,omitempty"`
+	// The classification of the policy (Machine/User/Both)
+	Class string `json:"class,omitempty"`
+	// The classification of the policy (Machine/User/Both)
+	ClassName string `json:"className,omitempty"`
+	// Help text associated with the policy
+	Explanation string `json:"explanation,omitempty"`
+	ID          int    `json:"id"`
+	// The policy options
+	Layout []BaseElementModelV1 `json:"layout,omitempty"`
+	// Name of the policy
+	Name string `json:"name"`
+	// The path to the policy
+	Path string `json:"path,omitempty"`
+	// Policy state (string enum on wire).
+	Status string `json:"status,omitempty"`
+	// Unique identifier of the policy
+	UUID string `json:"uuid"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *PolicyModelV1) Validate() error {
+	if r.ID == 0 {
+		return fmt.Errorf("ID is required for PolicyModelV1")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for PolicyModelV1")
+	}
+	if r.UUID == "" {
+		return fmt.Errorf("UUID is required for PolicyModelV1")
+	}
+	return nil
+}
+
+// PolicyOptionModelV1 represents A configured Policy option
+
+type PolicyOptionModelV1 struct {
+	// Identifier
+	ID string `json:"id"`
+	// The value of the option
+	Value map[string]interface{} `json:"value,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *PolicyOptionModelV1) Validate() error {
+	if r.ID == "" {
+		return fmt.Errorf("ID is required for PolicyOptionModelV1")
+	}
+	return nil
+}
+
+// PolicySearchItemV1Model represents A policy
+
+type PolicySearchItemV1Model struct {
+	// The classification of the policy (Machine/User/Both)
+	Class string `json:"class,omitempty"`
+	// The classification of the policy (Machine/User/Both)
+	ClassName string `json:"className,omitempty"`
+	ID        int    `json:"id"`
+	// Name of the policy
+	Name string `json:"name"`
+	// The path to the policy
+	Path string `json:"path,omitempty"`
+	// Unique identifier of the policy
+	UUID string `json:"uuid"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *PolicySearchItemV1Model) Validate() error {
+	if r.ID == 0 {
+		return fmt.Errorf("ID is required for PolicySearchItemV1Model")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for PolicySearchItemV1Model")
+	}
+	if r.UUID == "" {
+		return fmt.Errorf("UUID is required for PolicySearchItemV1Model")
+	}
+	return nil
+}
+
+// PolicyTreeItemV1 represents A policy
+
+type PolicyTreeItemV1 struct {
+	// The classification of the policy (Machine/User/Both)
+	Class string `json:"class,omitempty"`
+	// The classification of the policy (Machine/User/Both)
+	ClassName string `json:"className,omitempty"`
+	ID        int    `json:"id"`
+	// Name of the policy
+	Name string `json:"name"`
+	// The configured policy status
+	Status string `json:"status,omitempty"`
+	// Unique identifier of the policy
+	UUID string `json:"uuid"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *PolicyTreeItemV1) Validate() error {
+	if r.ID == 0 {
+		return fmt.Errorf("ID is required for PolicyTreeItemV1")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for PolicyTreeItemV1")
+	}
+	if r.UUID == "" {
+		return fmt.Errorf("UUID is required for PolicyTreeItemV1")
+	}
+	return nil
+}
+
+// ScriptAssignmentResourceV1 is a generated model type.
+
+type ScriptAssignmentResourceV1 struct {
+	AssignedSmartGroups []SmartGroupDataV1 `json:"assigned_smart_groups,omitempty"`
+	AssignmentUUID      string             `json:"assignment_uuid,omitempty"`
+	// Deployment mode for the script assignment (string enum on wire, e.g. AUTO).
+	DeploymentMode string   `json:"deployment_mode,omitempty"`
+	EventTriggers  []string `json:"event_triggers,omitempty"`
+	Name           string   `json:"name,omitempty"`
+	Priority       *int     `json:"priority,omitempty"`
+	// Schedule trigger for the script assignment (string enum on wire).
+	ScheduleTrigger string `json:"schedule_trigger,omitempty"`
+	ShowInCatalog   *bool  `json:"show_in_catalog,omitempty"`
+	SmartGroupCount *int   `json:"smart_group_count,omitempty"`
+	// Trigger type for the script assignment (string enum on wire).
+	TriggerType string `json:"trigger_type,omitempty"`
+}
+
+// ScriptAssignmentsSearchResultV1 represents Paged result wrapper for GET /scripts/{scriptUuid}/assignments.
+
+type ScriptAssignmentsSearchResultV1 struct {
+	RecordCount   *int                         `json:"RecordCount,omitempty"`
+	SearchResults []ScriptAssignmentResourceV1 `json:"SearchResults,omitempty"`
+}
+
+// ScriptDeploymentV1 is a generated model type.
+
+type ScriptDeploymentV1 struct {
+	DisplayAttributes *CatalogDisplayV1 `json:"DisplayAttributes,omitempty"`
+	TriggerEvents     []string          `json:"trigger_events,omitempty"`
+	// Trigger schedule for the script deployment (string enum on wire).
+	TriggerSchedule string `json:"trigger_schedule,omitempty"`
+	// Trigger type for the script deployment (string enum on wire).
+	TriggerType string `json:"trigger_type,omitempty"`
+}
+
+// ScriptResourceLiteV1 is a generated model type.
+
+type ScriptResourceLiteV1 struct {
+	AssignmentCount       *int           `json:"assignment_count,omitempty"`
+	CreatedOrModifiedBy   string         `json:"created_or_modified_by,omitempty"`
+	CreatedOrModifiedOn   client.UEMTime `json:"created_or_modified_on,omitempty"`
+	Description           string         `json:"description,omitempty"`
+	Name                  string         `json:"name,omitempty"`
+	OrganizationGroupName string         `json:"organization_group_name,omitempty"`
+	OrganizationGroupUUID string         `json:"organization_group_uuid,omitempty"`
+	// Platform the script targets (string enum on wire, e.g. WIN_RT).
+	Platform string `json:"platform,omitempty"`
+	// Script language (string enum on wire, e.g. POWERSHELL).
+	ScriptType string `json:"script_type,omitempty"`
+	ScriptUUID string `json:"script_uuid,omitempty"`
+	Version    string `json:"version,omitempty"`
+}
+
+// ScriptResourceV1 is a generated model type.
+
+type ScriptResourceV1 struct {
+	AllowedInCatalog    *bool             `json:"allowed_in_catalog,omitempty"`
+	AssignmentCount     *int              `json:"assignment_count,omitempty"`
+	CatalogDisplay      *CatalogDisplayV1 `json:"catalog_display,omitempty"`
+	CreatedOrModifiedBy string            `json:"created_or_modified_by,omitempty"`
+	CreatedOrModifiedOn client.UEMTime    `json:"created_or_modified_on,omitempty"`
+	Description         string            `json:"description,omitempty"`
+	// Execution context for the script (string enum on wire, e.g. USER).
+	ExecutionContext      string `json:"execution_context,omitempty"`
+	IsIdempotent          *bool  `json:"is_idempotent,omitempty"`
+	Name                  string `json:"name,omitempty"`
+	OrganizationGroupName string `json:"organization_group_name,omitempty"`
+	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
+	// Platform the script targets (string enum on wire, e.g. WIN_RT).
+	Platform string `json:"platform,omitempty"`
+	// x-override: platform_architecture is a QUIRK-11 polymorphic field — returns int 0 when unset, string (e.g. LEGACY) when set. Uses client.IntOrString. Retire when upstream declares a consistent wire type.
+	PlatformArchitecture *client.IntOrString `json:"platform_architecture,omitempty"`
+	ScriptData           string              `json:"script_data,omitempty"`
+	// Script language (string enum on wire, e.g. POWERSHELL).
+	ScriptType      string              `json:"script_type,omitempty"`
+	ScriptUUID      string              `json:"script_uuid,omitempty"`
+	ScriptVariables []ScriptVariablesV1 `json:"script_variables,omitempty"`
+	Timeout         *int                `json:"timeout,omitempty"`
+	UserInteraction *bool               `json:"user_interaction,omitempty"`
+	Version         string              `json:"version,omitempty"`
+}
+
+// ScriptSampleSearchRequestModelV1 represents Device Script search request model.
+
+type ScriptSampleSearchRequestModelV1 struct {
+	// Gets or sets optional device identifier search criteria.
+	DeviceUUID string `json:"device_uuid,omitempty"`
+	// Gets or sets an integer that indicates the maximum number of results to return.
+	Limit *int `json:"limit,omitempty"`
+	// Gets or sets an integer describing the starting position in the result set.
+	Offset *int `json:"offset,omitempty"`
+	// Gets or sets optional Script identifier search criteria.
+	ScriptUUID string `json:"script_uuid,omitempty"`
+	// Gets or sets matches Script data where Script Name is like {search_text} or Script Value is like {search_text.
+	SearchText string `json:"search_text,omitempty"`
+	// Gets or sets specifies which attribute is used to sort the result set.
+	SortBy string `json:"sort_by,omitempty"`
+	// Gets or sets specifies the sort order for the result set.
+	SortOrder string `json:"sort_order,omitempty"`
+}
+
+// ScriptVariablesV1 is a generated model type.
+
+type ScriptVariablesV1 struct {
+	IsLookup *bool  `json:"is_lookup,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Value    string `json:"value,omitempty"`
+}
+
+// ScriptsSearchResultV1 represents Paged result wrapper for GET /groups/{ogUuid}/scripts. Field names mirror canonical SearchResult<T> (SearchResults + RecordCount, PascalCase, JSON.NET default since no [JsonProperty] attributes).
+
+type ScriptsSearchResultV1 struct {
+	RecordCount   *int                   `json:"RecordCount,omitempty"`
+	SearchResults []ScriptResourceLiteV1 `json:"SearchResults,omitempty"`
+}
+
+// SecurityLevelV1Model represents A Baseline security level
+
+type SecurityLevelV1Model struct {
+	// Unique identifier of the baseline Security Level
+	ID int `json:"id"`
+	// Name of the security level
+	Name string `json:"name"`
+	// Short name of the security level
+	ShortName string `json:"shortName"`
+	// Unique identifier of the security level
+	UUID string `json:"uuid,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *SecurityLevelV1Model) Validate() error {
+	if r.ID == 0 {
+		return fmt.Errorf("ID is required for SecurityLevelV1Model")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for SecurityLevelV1Model")
+	}
+	if r.ShortName == "" {
+		return fmt.Errorf("ShortName is required for SecurityLevelV1Model")
+	}
+	return nil
+}
+
+// SecurityLevelV2ModelV1 represents A Baseline security level
+
+type SecurityLevelV2ModelV1 struct {
+	// Name of the security level
+	Name string `json:"name"`
+	// Short name of the security level
+	ShortName string `json:"shortName"`
+	// Unique identifier of the security level
+	UUID string `json:"uuid"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *SecurityLevelV2ModelV1) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for SecurityLevelV2ModelV1")
+	}
+	if r.ShortName == "" {
+		return fmt.Errorf("ShortName is required for SecurityLevelV2ModelV1")
+	}
+	if r.UUID == "" {
+		return fmt.Errorf("UUID is required for SecurityLevelV2ModelV1")
+	}
+	return nil
+}
+
+// SmartGroupCreateResponseV1 represents Response body for POST /smartgroups. Same shape as EntityId (Value) plus a uuid field the live wire response includes but EntityId does not declare.
+
+type SmartGroupCreateResponseV1 struct {
+	Value *int64 `json:"Value,omitempty"`
+	UUID  string `json:"uuid,omitempty"`
+}
+
+// SmartGroupDataV1 is a generated model type.
+
+type SmartGroupDataV1 struct {
+	SmartGroupName string `json:"smart_group_name,omitempty"`
+	SmartGroupUUID string `json:"smart_group_uuid,omitempty"`
+}
+
+// SmartGroupDeviceV1 represents Represents Smart group Device-Criteria Resource.
+
+type SmartGroupDeviceV1 struct {
+	// Gets or sets device Identifier.
+	ID string `json:"Id,omitempty"`
+	// Gets or sets device Model.
+	Model string `json:"Model,omitempty"`
+	// Gets or sets device Friendly Name.
+	Name string `json:"Name,omitempty"`
+	// Gets or sets device OS Version.
+	OSVersion string `json:"OSVersion,omitempty"`
+	// Gets or sets device Ownership.
+	Ownership string `json:"Ownership,omitempty"`
+	// Gets or sets device Platform name.
+	Platform string `json:"Platform,omitempty"`
+	// Gets or sets device Username, user who enrolled into device.
+	Username string `json:"Username,omitempty"`
+}
+
+// SmartGroupEditV1Model represents Smart group edit v1 model.
+
+type SmartGroupEditV1Model struct {
+	// Gets or sets device cpu architectures.
+	CPUArchitectures []string `json:"CPUArchitectures,omitempty"`
+	// Gets or sets smart Group Criteria Type (example: "All", "UserDevice").
+	CriteriaType string `json:"CriteriaType,omitempty"`
+	// Gets or sets list of explicitly added devices.
+	DeviceAdditions []SmartGroupDeviceV1 `json:"DeviceAdditions,omitempty"`
+	// Gets or sets list of excluded devices.
+	DeviceExclusions []SmartGroupDeviceV1 `json:"DeviceExclusions,omitempty"`
+	// Gets or sets enrollment Category list (example : DepEnrolled, Supervised, UserApprovedMdmEnrolled , SharedIpad, AndroidLegacy, AndroidEnterprise, AadEnrolled, CustomDpcWorkManaged, CustomDpcCope, CustomDpcWorkProfile, AMAPI, AMAPIWorkManaged, AMAPICope, AMAPIWorkProfile).
+	EnrollmentCategories []string `json:"EnrollmentCategories,omitempty"`
+	// Gets or sets managedBy Organization Group Identifier.
+	ManagedByOrganizationGroupID string `json:"ManagedByOrganizationGroupId,omitempty"`
+	// Gets or sets management Type list (example : MdmEnrolled, ApplicationManaged).
+	ManagementTypes []string `json:"ManagementTypes,omitempty"`
+	// Gets or sets models (example : iPad).
+	Models []string `json:"Models,omitempty"`
+	// Gets or sets smart Group Name.
+	Name string `json:"Name,omitempty"`
+	// Gets or sets device Manufacturer/OEM and Model.
+	OEMAndModels []OEMAndModelV1 `json:"OEMAndModels,omitempty"`
+	// Gets or sets operating Systems List.
+	OperatingSystems []SmartGroupOperatingSystemV1 `json:"OperatingSystems,omitempty"`
+	// Gets or sets organizationGroups List.
+	OrganizationGroups []SmartGroupOGV1 `json:"OrganizationGroups,omitempty"`
+	// Gets or sets ownerships List (example : CorporateDedicated, CorporateShared, EmployeeOwned, AllOwnerships).
+	Ownerships []string `json:"Ownerships,omitempty"`
+	// Gets or sets platforms List (example : WindowsMobile, Apple, BlackBerry, Android, WindowsPhone, WindowsPc, AppleOsX, WindowsPhone8, WinRT, etc ).
+	Platforms []string `json:"Platforms,omitempty"`
+	// Gets or sets smartGroup Tags List.
+	Tags []SmartGroupTagV1 `json:"Tags,omitempty"`
+	// Gets or sets list of explicitly added users.
+	UserAdditions []SmartGroupUserV1 `json:"UserAdditions,omitempty"`
+	// Gets or sets list of excluded users.
+	UserExclusions []SmartGroupUserV1 `json:"UserExclusions,omitempty"`
+	// Gets or sets list of excluded user groups.
+	UserGroupExclusions []SmartGroupUserGroupV1 `json:"UserGroupExclusions,omitempty"`
+	// Gets or sets userGroups List.
+	UserGroups []SmartGroupUserGroupV1 `json:"UserGroups,omitempty"`
+}
+
+// SmartGroupModelDetailV1 represents Represents Smart group Model Detail Resource.
+
+type SmartGroupModelDetailV1 struct {
+	// Gets or sets modelDetail Identifier.
+	ID string `json:"Id,omitempty"`
+	// Gets or sets modelDetail Name.
+	Name string `json:"Name,omitempty"`
+}
+
+// SmartGroupOGV1 represents Represents Smart group Organization Group-Criteria Resource.
+
+type SmartGroupOGV1 struct {
+	// Gets or sets organization Group Identifier.
+	ID string `json:"Id,omitempty"`
+	// Gets or sets organization Group Name.
+	Name string `json:"Name,omitempty"`
+	// Gets or sets organization Group Identifier.
+	UUID string `json:"Uuid,omitempty"`
+}
+
+// SmartGroupOperatingSystemV1 represents Represents Smart group Operating System Criteria Resource.
+
+type SmartGroupOperatingSystemV1 struct {
+	// Gets or sets device Type name.
+	DeviceType string `json:"DeviceType,omitempty"`
+	// Gets or sets operator for the Device OS value comparison like, Greater Than, Less Than etc...
+	Operator string `json:"Operator,omitempty"`
+	// Gets or sets operating System Version of device.
+	Value string `json:"Value,omitempty"`
 }
 
 // SmartGroupSearchModelV1 represents Represents Smart Group Search Model.
@@ -175,9 +1679,149 @@ type SmartGroupSearchModelV1 struct {
 // SmartGroupSearchResultV1 represents This holds the details of response for Smart group search.
 
 type SmartGroupSearchResultV1 struct {
-	Page     *int `json:"Page,omitempty"`
+	// Gets or sets the result set page index.
+	Page *int `json:"Page,omitempty"`
+	// Gets or sets the result set page size.
 	PageSize *int `json:"PageSize,omitempty"`
 	// Gets or sets list of Smart group details resulted in the search operation.
 	SmartGroups []SmartGroupSearchModelV1 `json:"SmartGroups,omitempty"`
-	Total       *int                      `json:"Total,omitempty"`
+	// Gets or sets the total number of results.
+	Total *int `json:"Total,omitempty"`
+}
+
+// SmartGroupTagV1 represents Represents Smart group Tag-Criteria Resource.
+
+type SmartGroupTagV1 struct {
+	// Gets or sets tag Identifier.
+	ID string `json:"Id,omitempty"`
+	// Gets or sets tag Name.
+	Name string `json:"Name,omitempty"`
+}
+
+// SmartGroupUserGroupV1 represents Represents Smart group UserGroup-Criteria Resource.
+
+type SmartGroupUserGroupV1 struct {
+	// Gets or sets user Group Identifier.
+	ID string `json:"Id,omitempty"`
+	// Gets or sets user Group Name.
+	Name string `json:"Name,omitempty"`
+}
+
+// SmartGroupUserV1 represents Represents Smart group User-Criteria Resource.
+
+type SmartGroupUserV1 struct {
+	// Gets or sets user Identifier.
+	ID string `json:"Id,omitempty"`
+	// Gets or sets user name.
+	Name string `json:"Name,omitempty"`
+}
+
+// SmartGroupV1 represents Represents Smart Group Resource.
+
+type SmartGroupV1 struct {
+	// Gets or sets number of entities to which smart group is assigned.
+	Assignments *int `json:"Assignments,omitempty"`
+	// Gets or sets device cpu architectures.
+	CpuArchitectures []string `json:"CpuArchitectures,omitempty"`
+	// Gets or sets smart Group Criteria Type (example: "All", "UserDevice").
+	CriteriaType string `json:"CriteriaType,omitempty"`
+	// Gets or sets list of explicitly added devices.
+	DeviceAdditions []SmartGroupDeviceV1 `json:"DeviceAdditions,omitempty"`
+	// Gets or sets list of excluded devices.
+	DeviceExclusions []SmartGroupDeviceV1 `json:"DeviceExclusions,omitempty"`
+	// Gets or sets number of devices in Smart Group.
+	Devices *int `json:"Devices,omitempty"`
+	// Gets or sets enrollment Category list (example : DepEnrolled, Supervised, UserApprovedMdmEnrolled , SharedIpad, AndroidLegacy, AndroidEnterprise, AadEnrolled, CustomDpcWorkManaged, CustomDpcCope, CustomDpcWorkProfile, AMAPI, AMAPIWorkManaged, AMAPICope, AMAPIWorkProfile).
+	EnrollmentCategories []string `json:"EnrollmentCategories,omitempty"`
+	// Gets or sets number of entities from which the smart group is excluded.
+	Exclusions *int `json:"Exclusions,omitempty"`
+	// Gets or sets managedBy Organization Group Identifier.
+	ManagedByOrganizationGroupID string `json:"ManagedByOrganizationGroupId,omitempty"`
+	// Gets or sets managedBy Organization Group Name.
+	ManagedByOrganizationGroupName string `json:"ManagedByOrganizationGroupName,omitempty"`
+	// Gets or sets managedBy Organization Group Identifier.
+	ManagedByOrganizationGroupUUID string `json:"ManagedByOrganizationGroupUuid,omitempty"`
+	// Gets or sets management Type list (example : MdmEnrolled, ApplicationManaged).
+	ManagementTypes []string `json:"ManagementTypes,omitempty"`
+	// Gets or sets models (example : iPad).
+	Models []string `json:"Models,omitempty"`
+	// Gets or sets smart Group Name.
+	Name string `json:"Name,omitempty"`
+	// Gets or sets device Manufacturer/OEM and Model.
+	OEMAndModels []OEMAndModelV1 `json:"OEMAndModels,omitempty"`
+	// Gets or sets operating Systems List.
+	OperatingSystems []SmartGroupOperatingSystemV1 `json:"OperatingSystems,omitempty"`
+	// Gets or sets organizationGroups List.
+	OrganizationGroups []SmartGroupOGV1 `json:"OrganizationGroups,omitempty"`
+	// Gets or sets ownerships List (example : CorporateDedicated, CorporateShared, EmployeeOwned, AllOwnerships).
+	Ownerships []string `json:"Ownerships,omitempty"`
+	// Gets or sets platforms List (example : WindowsMobile, Apple, BlackBerry, Android, WindowsPhone, WindowsPc, AppleOsX, WindowsPhone8, WinRT, etc ).
+	Platforms []string `json:"Platforms,omitempty"`
+	// Gets or sets smart Group Identifier.
+	SmartGroupID *int `json:"SmartGroupID,omitempty"`
+	// Gets or sets smart Group Identifier.
+	SmartGroupUUID string `json:"SmartGroupUuid,omitempty"`
+	// Gets or sets smartGroup Tags List.
+	Tags []SmartGroupTagV1 `json:"Tags,omitempty"`
+	// Gets or sets list of explicitly added users.
+	UserAdditions []SmartGroupUserV1 `json:"UserAdditions,omitempty"`
+	// Gets or sets list of excluded users.
+	UserExclusions []SmartGroupUserV1 `json:"UserExclusions,omitempty"`
+	// Gets or sets list of excluded user groups.
+	UserGroupExclusions []SmartGroupUserGroupV1 `json:"UserGroupExclusions,omitempty"`
+	// Gets or sets userGroups List.
+	UserGroups []SmartGroupUserGroupV1 `json:"UserGroups,omitempty"`
+}
+
+// UpdateBaselineRequestV1Model represents Contains metadata to update an existing baseline.
+
+type UpdateBaselineRequestV1Model struct {
+	// Policy customizations to the baseline policies.
+	Customizations []PolicyItemModelV1 `json:"customizations,omitempty"`
+	// Description of the baseline
+	Description string `json:"description,omitempty"`
+	// Name of the baseline
+	Name string `json:"name"`
+	// Organization group uuid
+	OrganizationGroupUUID string `json:"organizationGroupUUID,omitempty"`
+	// The operating system version identifier
+	OsVersionUUID string `json:"osVersionUUID,omitempty"`
+	// The windows catalog platform identifier
+	PlatformUUID string `json:"platformUUID,omitempty"`
+	// Additional policies to include with the baseline.
+	Policies []PolicyItemModelV1 `json:"policies,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *UpdateBaselineRequestV1Model) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for UpdateBaselineRequestV1Model")
+	}
+	return nil
+}
+
+// UpdateScriptV1 is a generated model type.
+
+type UpdateScriptV1 struct {
+	AllowedInCatalog *bool             `json:"allowed_in_catalog,omitempty"`
+	CatalogDisplay   *CatalogDisplayV1 `json:"catalog_display,omitempty"`
+	CreatedBy        string            `json:"created_by,omitempty"`
+	Description      string            `json:"description,omitempty"`
+	// Execution context for the script (string enum on wire, e.g. USER).
+	ExecutionContext      string `json:"execution_context,omitempty"`
+	IsIdempotent          *bool  `json:"is_idempotent,omitempty"`
+	Name                  string `json:"name,omitempty"`
+	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
+	// Platform the script targets (string enum on wire, e.g. WIN_RT).
+	Platform string `json:"platform,omitempty"`
+	// x-override: platform_architecture is a QUIRK-11 polymorphic field — returns int 0 when unset, string (e.g. LEGACY) when set. Uses client.IntOrString. Retire when upstream declares a consistent wire type.
+	PlatformArchitecture *client.IntOrString `json:"platform_architecture,omitempty"`
+	ScriptData           string              `json:"script_data,omitempty"`
+	// Script language (string enum on wire, e.g. POWERSHELL).
+	ScriptType      string              `json:"script_type,omitempty"`
+	ScriptUUID      string              `json:"script_uuid,omitempty"`
+	ScriptVariables []ScriptVariablesV1 `json:"script_variables,omitempty"`
+	Timeout         *int                `json:"timeout,omitempty"`
+	UserInteraction *bool               `json:"user_interaction,omitempty"`
+	Version         string              `json:"version,omitempty"`
 }

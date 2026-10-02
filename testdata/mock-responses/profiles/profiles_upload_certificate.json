@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/uploadcertificate",
+    "method": "POST",
+    "description": "Live-captured POST /api/mdm/profiles/uploadcertificate against UEM 26.2.0.0, 2026-08-05, org group 138883 (sdktest). Request body was a genuinely valid self-signed PKCS#12 certificate (openssl req -x509 + pkcs12 -export, RSA 2048), base64-encoded, with Password set -- server-side X.509/PKCS12 parsing was exercised for real, not bypassed. KNOWN LIMITATION: no DELETE endpoint exists anywhere in the mdm v1-v4 swagger surface for a standalone uploaded certificate (the only certificate-adjacent DELETE, /profiles/certificatemap/{mappingID}, deletes a profile-to-certificate mapping, not the certificate resource) -- the real certificate created during this capture could not be cleaned up via the API. Accepted as a known, low-risk exception (self-signed test cert on a dedicated sdktest org group whose explicit purpose covers this).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Value": 12346
+    }
+  }
+}

@@ -36,6 +36,40 @@ func (s *InternalAppsV1Service) AddAssignmentsWithFlexibleDeploymentParametersAs
 	return headers, nil
 }
 
+// CreateInternalAppFromBlobAsync — Creates an internal application.
+// Operation ID: InternalAppsV1_CreateInternalAppFromBlobAsync
+// HTTP: POST /api/mam/apps/internal/begininstall
+func (s *InternalAppsV1Service) CreateInternalAppFromBlobAsync(
+	ctx context.Context,
+	request *InternalAppChunkTransactionV1,
+) (http.Header, *InternalApplicationEntityV1, error) {
+	// Build endpoint path
+	endpoint := "/api/mam/apps/internal/begininstall"
+	var response InternalApplicationEntityV1
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("InternalAppsV1_CreateInternalAppFromBlobAsync: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// CreateInternalApplicationFromBlob — Creates an internal application.
+// Operation ID: InternalAppsV1_CreateInternalApplicationFromBlob
+// HTTP: POST /api/mam/apps/internal/application
+func (s *InternalAppsV1Service) CreateInternalApplicationFromBlob(
+	ctx context.Context,
+	request *InternalAppChunkTransactionV1Model,
+) (http.Header, *InternalApplicationEntityV1, error) {
+	// Build endpoint path
+	endpoint := "/api/mam/apps/internal/application"
+	var response InternalApplicationEntityV1
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("InternalAppsV1_CreateInternalApplicationFromBlob: %w", err)
+	}
+	return headers, &response, nil
+}
+
 // DeleteInternalAppAsync — Deletes the specified internal application.
 // Operation ID: InternalAppsV1_DeleteInternalAppAsync
 // HTTP: DELETE /api/mam/apps/internal/{applicationid}
@@ -82,6 +116,23 @@ func (s *InternalAppsV1Service) GetInternalAppByIdAsync(
 	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
 	if err != nil {
 		return nil, nil, fmt.Errorf("InternalAppsV1_GetInternalAppByIdAsync: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// InsertInternalApplicationChunkAsync — Uploads the chunk data.
+// Operation ID: InternalAppsV1_InsertInternalApplicationChunkAsync
+// HTTP: POST /api/mam/apps/internal/uploadchunk
+func (s *InternalAppsV1Service) InsertInternalApplicationChunkAsync(
+	ctx context.Context,
+	request *InternalAppChunkV1,
+) (http.Header, *AppChunkTranscationResponseV1, error) {
+	// Build endpoint path
+	endpoint := "/api/mam/apps/internal/uploadchunk"
+	var response AppChunkTranscationResponseV1
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("InternalAppsV1_InsertInternalApplicationChunkAsync: %w", err)
 	}
 	return headers, &response, nil
 }

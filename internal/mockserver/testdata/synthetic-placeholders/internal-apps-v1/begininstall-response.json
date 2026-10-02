@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/begininstall",
+    "method": "POST",
+    "platform": "apk",
+    "description": "Internal-app begininstall (apk), captured live via tools/internalapps-capture --use-begininstall. Auto-anonymized via tools/internal/capturetools.Anonymize -- review before committing.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "AppRank": 0,
+      "AppVersion": "1.0.0",
+      "ApplicationName": "Test Rabbitthrow",
+      "ApplicationSource": "Unknown",
+      "AssignedDeviceCount": 0,
+      "AutoUpdateVersion": false,
+      "BundleId": "com.example.XDndwZhe",
+      "ContentGatewayId": 12346,
+      "EnableProvisioning": false,
+      "Id": {
+        "Value": 12347
+      },
+      "InstalledDeviceCount": 0,
+      "IsDependencyFile": false,
+      "IsReimbursable": false,
+      "LocationGroupId": 12348,
+      "NotInstalledDeviceCount": 0,
+      "OrganizationGroupUuid": "c64784b5-7327-97e3-9758-f05e2603e6a2",
+      "Platform": 5,
+      "PushMode": 0,
+      "Uuid": "b96eee9b-edb2-02b3-f245-7a823b349da9"
+    }
+  }
+}

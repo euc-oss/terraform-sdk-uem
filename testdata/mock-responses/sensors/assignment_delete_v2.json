@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/assignments/{assignmentUuid}",
+    "method": "DELETE",
+    "description": "V2 delete assignment (DELETE /devicesensors/assignments/{assignmentUuid}), 204 no content. Confirmed via a follow-up GET on the same assignment UUID returning 404, closing the lifecycle.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

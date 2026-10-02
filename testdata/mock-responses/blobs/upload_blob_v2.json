@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/blobs/uploadblob",
+    "method": "POST",
+    "description": "V2 blob upload (POST /blobs/uploadblob), live-captured against the 26.2.0.0 test tenant under the configured test org group, 2026-07-30. Hand-built from a direct-SDK-client capture, not mock-capture -- mock-capture's --body flag only json.Unmarshals the file and hardcodes Content-Type: application/json downstream, so it structurally cannot send this endpoint's raw-octet-stream body (tracked as a follow-up mock-capture-JSON-only-body limitation, not fixed here). REAL-WIRE FINDING: the generated method's hardcoded 'application/octet-stream' Content-Type is CORRECT, not a defect -- swagger's requestBody explicitly declares application/octet-stream for this operation. An initial attempt using a '.txt' filename got a 400 'Invalid blob type provided'; the swagger operation description enumerates the exact allowed file extensions (ipa, apk, xap, appx, msi, app, zip, xml, pem, exe, pkg, dmg, plist, mpkg, js, jse, ps1, ps1xml, psc1, psd1, psm1, pssc, cdxml, vbs, vbe, wsf, wsc, msp, mst, p12, pfx, p7b, jpg, jpeg, png, gif, bmp, p7m, ppkg, cat, apf), and '.txt' is not among them; switching to '.xml' resolved it cleanly on the first retry. This was a filename-extension validation, not a Content-Type or codegen defect. Response field-verification: EntityV1ModelV2's 'Value' (int) was populated by the real server, 'id' was absent/nil, and 'uuid' was populated -- the 'uuid' field is confirmed (via a follow-up direct GET using it) to be the identifier Get/Head/Delete expect as blobId, not Value.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/octet-stream"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Value": 12345,
+      "uuid": "ed043f31-54c4-72fc-e8af-7c1a61cca7aa"
+    }
+  }
+}

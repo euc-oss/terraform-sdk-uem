@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/baselines/catalogs/{osVersionUUID}/policies",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/baselines/catalogs/{osVersionUUID}/policies",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "results": [
+        {
+          "class": "User",
+          "className": "Test Rabbitthrow",
+          "id": 12346,
+          "name": "Test BlanchedAlmondstand",
+          "path": "User Configuration/Administrative Templates/Windows Components/Microsoft Management Console/Restricted/Permitted snap-ins",
+          "uuid": "1ea79f01-e34d-b09e-7e73-4c621db995f9"
+        },
+        {
+          "class": "User",
+          "className": "Test MediumAquaMarinehail",
+          "id": 12347,
+          "name": "Test Greenrice",
+          "path": "User Configuration/Administrative Templates/Network/Network Connections",
+          "uuid": "8e1b2805-313c-42d3-5ad1-c49a1657e355"
+        },
+        {
+          "class": "User",
+          "className": "Test Flydream",
+          "id": 12348,
+          "name": "Test LightSteelBlueweek",
+          "path": "User Configuration/Administrative Templates/Network/Network Connections",
+          "uuid": "eb875a11-4acb-0447-932c-47319863e180"
+        },
+        {
+          "class": "User",
+          "className": "Test Crowdcould",
+          "id": 12349,
+          "name": "Test Chinchillashould",
+          "path": "User Configuration/Administrative Templates/Network/Network Connections",
+          "uuid": "17854d04-8236-e03f-86ea-a8aa56466270"
+        },
+        {
+          "class": "User",
+          "className": "Test SaddleBrownwoman",
+          "id": 12350,
+          "name": "Test Wheatmob",
+          "path": "User Configuration/Administrative Templates/Windows Components/Microsoft User Experience Virtualization/Applications",
+          "uuid": "0149a655-e26e-d4cd-ab82-3262bab1b85b"
+        },
+        {
+          "class": "User",
+          "className": "Test CadetBlueairport",
+          "id": 12351,
+          "name": "Test Koalashall",
+          "path": "User Configuration/Administrative Templates/Network/Network Connections",
+          "uuid": "a5c4708d-313b-49c8-75b4-810dda087c84"
+        },
+        {
+          "class": "User",
+          "className": "Test Yellowwalk",
+          "id": 12352,
+          "name": "Test Orangeshower",
+          "path": "User Configuration/Administrative Templates/Network/Network Connections",
+          "uuid": "679dedd5-a00a-4063-e2d0-ef75f479bcb6"
+        },
+        {
+          "class": "User",
+          "className": "Test Pandashall",
+          "id": 12353,
+          "name": "Test Workwould",
+          "path": "User Configuration/Administrative Templates/Network/Network Connections",
+          "uuid": "0bc0ae11-9150-c868-1a05-91a4b842bb04"
+        },
+        {
+          "class": "Machine",
+          "className": "Test DarkSlateGraymuster",
+          "id": 12354,
+          "name": "Test Tortoiseplay",
+          "path": "Computer Configuration/Administrative Templates/Windows Components/Delivery Optimization",
+          "uuid": "9efa0644-4f4b-234d-5711-c793d8053076"
+        },
+        {
+          "class": "Machine",
+          "className": "Test Wildebeestam",
+          "id": 12355,
+          "name": "Test Spideram",
+          "path": "Computer Configuration/Administrative Templates/Windows Components/Microsoft User Experience Virtualization/Applications",
+          "uuid": "0fe5c02f-bb9d-cd21-06ef-e5eb5b27de27"
+        }
+      ],
+      "total": 4119
+    }
+  }
+}

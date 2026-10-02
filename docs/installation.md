@@ -129,6 +129,7 @@ Then in your Go code:
 
 ```go
 import (
+    "log"
     "os"
     wsone "github.com/euc-oss/terraform-sdk-uem"
 )
@@ -147,6 +148,9 @@ client, err := wsone.NewClient(wsone.Config{
     TenantCode: os.Getenv("WSONE_TENANT_CODE"),
     Auth:       auth,
 })
+if err != nil {
+    log.Fatal(err)
+}
 ```
 
 ## IDE setup

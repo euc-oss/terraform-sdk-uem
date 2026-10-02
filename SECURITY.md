@@ -16,7 +16,7 @@ the [GitHub releases page](../../releases).
 Use one of the following private channels:
 
 - [GitHub Security Advisories](https://github.com/euc-oss/terraform-sdk-uem/security/advisories/new) — preferred. Allows the maintainers and you to coordinate a fix in private.
-- Email the Omnissa product security team. <!-- TBD: confirm address; placeholder will be replaced before public launch. -->
+- Email the Omnissa product security team at <security@omnissa.com>.
 
 The use of encrypted email is encouraged.
 

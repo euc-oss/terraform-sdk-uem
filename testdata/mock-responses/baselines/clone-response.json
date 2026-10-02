@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}",
+    "method": "POST",
+    "description": "Schema-derived placeholder, not a live capture (Pattern C: 201 + body + Location). Triggered via ?action=clone query parameter; the mock matcher does not inspect query params by default so this fixture matches the bare POST. A genuine live capture was not possible when this was written -- the test tenant had no baseline available at that moment and no enrolled device -- NOT because the API lacks a create route: it does (resources/baseline_creator.go's BaselineCreator.Create, POST /api/mdm/groups/{organizationGroupUuid}/baselines, genuinely live-captured as baselines/create-response.json, ledger verified[12]). This file's own git history has no live-capture commit at any point (only refresh/prune/hydration/corpus-land commits), consistent with the 2026-08-04 integrity audit (commit dffd8b612), which found this class of BaselinesV1Service fixture lacked live-capture provenance.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json;version=1; charset=utf-8",
+      "Location": "/api/mdm/groups/7d0aef64-735e-853e-1695-fdb07ba63f5c/baselines/cecef9d7-5863-aecf-f36b-ee8c12c0b543"
+    },
+    "body": {
+      "baselineUUID": "cecef9d7-5863-aecf-f36b-ee8c12c0b543",
+      "name": "Win 10 baseline 1 (clone)",
+      "description": "Cloned from baseline 1",
+      "version": 1,
+      "rootLocationGroupID": 12345,
+      "rootLocationGroupUUID": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+      "platformUUID": "fea1c595-91f0-e37b-aef6-6769865efad2"
+    }
+  }
+}

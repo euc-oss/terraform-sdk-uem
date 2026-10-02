@@ -24,6 +24,9 @@ c, err := wsone.NewClient(wsone.Config{
     TenantCode: "your-tenant-code",
     Auth:       auth,
 })
+if err != nil {
+    return err
+}
 ```
 
 Use Basic Authentication when you are developing locally or your environment
@@ -51,6 +54,9 @@ c, err := wsone.NewClient(wsone.Config{
     TenantCode: "your-tenant-code",
     Auth:       auth,
 })
+if err != nil {
+    panic(err)
+}
 ```
 
 ### Token Endpoint URLs
@@ -124,12 +130,18 @@ auth, err := wsone.NewOAuth2Auth(wsone.OAuth2Config{
     ClientSecret: os.Getenv("WSONE_CLIENT_SECRET"),
     TokenURL:     os.Getenv("WSONE_TOKEN_URL"),
 })
+if err != nil {
+    log.Fatal(err)
+}
 
 c, err := wsone.NewClient(wsone.Config{
     BaseURL:    os.Getenv("WSONE_BASE_URL"),
     TenantCode: os.Getenv("WSONE_TENANT_CODE"),
     Auth:       auth,
 })
+if err != nil {
+    log.Fatal(err)
+}
 ```
 
 Add `.env` and `*.env` to `.gitignore` so credentials are never committed to

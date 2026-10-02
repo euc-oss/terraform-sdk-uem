@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/scripts",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/groups/{organizationGroupUuid}/scripts",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "RecordCount": 2,
+      "SearchResults": [
+        {
+          "assignment_count": 0,
+          "created_or_modified_by": "Enrique703",
+          "created_or_modified_on": "2024-01-15T00:00:00Z",
+          "description": "Quietly harden the government later.",
+          "name": "Test Koaladid",
+          "organization_group_name": "Test Trouthave",
+          "organization_group_uuid": "987afa5b-9012-ddc6-764a-e5c4168e1db1",
+          "platform": "APPLE_OSX",
+          "script_type": "BASH",
+          "script_uuid": "8e1b2805-313c-42d3-5ad1-c49a1657e355",
+          "version": "6077ea5e-0010-5924-f9ac-9ec15306e6b9"
+        },
+        {
+          "assignment_count": 0,
+          "created_or_modified_by": "Las Vegas16",
+          "created_or_modified_on": "2024-01-15T00:00:00Z",
+          "description": "Design for failure and graceful week.",
+          "name": "Test Tanline",
+          "organization_group_name": "Test Speedwould",
+          "organization_group_uuid": "c7b9a8d8-9ef9-0589-2712-8f9c3798f707",
+          "platform": "WIN_RT",
+          "script_type": "POWERSHELL",
+          "script_uuid": "47e0d844-0381-60ea-166e-89b79aed620c",
+          "version": "c36e3b7c-906e-d9d5-3f8a-47e0ce9cc3fe"
+        }
+      ]
+    }
+  }
+}

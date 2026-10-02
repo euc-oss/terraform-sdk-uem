@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "endpoint": "/api/system/groups/6dbaeac2-e813-beca-6849-68c2e7302194",
+    "method": "DELETE",
+    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. A repeat DELETE /api/system/groups/{uuid} (v2) of the same, already-deleted org group: 400, errorCode 400, 'Resource's organization group: <id> not found or user does not have access to this organization group.' (api-doctrine quirk 20). The real org group uuid in the path and the real id in the message are replaced by fixed values chosen to be unique in this corpus.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 400,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "activityId": "c6b19eaa-5ef7-6635-d757-255639dd248e",
+      "errorCode": 400,
+      "message": "Resource's organization group: 68992 not found or user does not have access to this organization group."
+    }
+  }
+}

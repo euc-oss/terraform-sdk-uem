@@ -1,0 +1,33 @@
+{
+  "api_validation": {
+    "console_url": "https://your-instance.awmdm.com",
+    "uem_version": "26.2.0.0",
+    "api_version": "4",
+    "accept_header": "application/json;version=4",
+    "endpoint": "POST /api/mdm/profiles/platforms/linux/update",
+    "org_group_id": 12345,
+    "captured_at": "2026-08-10",
+    "result": "accepted",
+    "ticket": "internal-ticket",
+    "notes": "Must be sent against an existing profile ID (resource-id in path or body, per buildProfileEndpoint()); General.CreateNewVersion=true was set to force a version bump. Untracked route -- not declared in any internal-source/*.json mdm file."
+  },
+  "General": {
+    "ProfileID": 12346,
+    "Name": "mocktest-linux-internal-task",
+    "Description": "SDK CRUD validation - minimal wifi payload - updated",
+    "DeviceType": "Linux",
+    "ProfileType": "Device",
+    "ManagedLocationGroupID": 12345,
+    "AssignmentType": "Auto",
+    "ProfileContext": "Device",
+    "ProfileScope": 1,
+    "CreateNewVersion": true
+  },
+  "Wifis": [
+    {
+      "ServiceSetIdentifier": "mocktest-ssid-internal-task-v2",
+      "SecurityType": "None",
+      "HiddenNetwork": false
+    }
+  ]
+}

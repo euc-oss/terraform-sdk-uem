@@ -10,6 +10,14 @@ func TestSDKExportsCompile(t *testing.T) {
 	// Verify service constructors are accessible
 	_ = sdk.NewDeviceSensorsV1Service
 	_ = sdk.NewProfilesV2Service
+	_ = sdk.NewScriptsV1Service
+	_ = sdk.NewScriptAssignmentV1Service
+	_ = sdk.NewBaselinesV1Service
+	_ = sdk.NewCatalogsV1Service
+	_ = sdk.NewOSVersionsV1Service
+	_ = sdk.NewPlatformsV1Service
+	_ = sdk.NewTemplatesV1Service
+	_ = sdk.NewBaselineCreator
 
 	// Verify key model types are accessible
 	var _ *sdk.DeviceSensorResponseV1Model

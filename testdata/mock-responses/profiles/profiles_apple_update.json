@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/apple/update",
+    "method": "POST",
+    "platform": "Apple",
+    "description": "Live-captured POST /api/mdm/profiles/platforms/apple/update against UEM 26.2.0.0, 2026-07-30 -- re-verified with clean v2 header post-fix. Real-wire finding: without General.CreateNewVersion=true in the request body, this returns 200 but is a SILENT NO-OP -- Description and payload field changes are dropped; only assignment-type fields (AssignedSmartGroups, ManagedLocationGroupID, AssignedGeofenceArea, AssignedSchedule) are honored, matching the doc comment on UpdateAndroidDeviceProfileAsync. Confirmed via a follow-up GET (see profiles_apple_get_after_update.json) after passing CreateNewVersion=true -- Version incremented from 1 to 2 and content changes persisted for real.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/68911",
+    "method": "GET",
+    "platform": "AppleOsX",
+    "description": "Live-captured (via direct SDK-client probe -- see profiles_apple_get_after_delete.json for why) GET /api/mdm/profiles/{profileId} immediately after DeleteProfileAsync, UEM 26.2.0.0, 2026-07-30. Real error text (status 400, errorCode 400, \"Invalid Profile <id>.\"), real id replaced with the same anonymized placeholder (68911) used across this platform's other fixtures. Shadowed by profiles_appleosx_get_after_create.json under the same literal path in a full-corpus load, so exercised via an isolated single-fixture mock server (see TestGeneratedProfilesV2AppleOsXGetAfterDelete).",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 400,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "activityId": "1f2c78bc-216d-02ee-ae7b-8f429733b0ba",
+      "errorCode": 400,
+      "message": "Invalid Profile 68911."
+    }
+  }
+}

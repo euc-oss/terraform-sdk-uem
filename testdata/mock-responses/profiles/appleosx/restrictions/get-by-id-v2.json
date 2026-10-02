@@ -1,0 +1,230 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/12349",
+    "method": "GET",
+    "description": "macOS restrictions profile — GET by int id (V2)",
+    "version": "2",
+    "platform": "AppleOsX",
+    "api_validation": {
+      "console_url": "https://cn0000.example.com",
+      "uem_version": "25.9.1134.9",
+      "api_version": "2",
+      "accept_header": "application/json;version=2",
+      "org_group_id": 12345,
+      "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+      "captured_at": "2026-04-23",
+      "result": "accepted",
+      "ticket": "regression-repro",
+      "endpoint": "GET /api/mdm/profiles/12349",
+      "response_id_example": 68965,
+      "notes": "Sharing sub-payload: when parent Sharing.RestrictWhichSharingServicesAreEnabled=false (default), the individual toggles (Mail, AirDrop, Facebook, etc.) all persist as false regardless of submitted value.",
+      "request_templates": [
+        "testdata/request-templates/profiles/appleosx/restrictions/restrictions-create-v2.json"
+      ]
+    }
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "CredentialsList": [],
+      "CustomAttributes": [],
+      "CustomSettingsList": [],
+      "EmailList": [],
+      "General": {
+        "AllowRemoval": "Always",
+        "AssignedSchedule": [],
+        "AssignedSmartGroups": [],
+        "AssignmentType": "Auto",
+        "Description": "Weekends reserve time for Rock Climbing and person.",
+        "EnableProvisioning": false,
+        "ExcludedSmartGroups": [],
+        "IsActive": true,
+        "IsManaged": true,
+        "IsProvisionedForOobe": false,
+        "ManagedLocationGroupID": 12346,
+        "Name": "Test LemonChiffonstairs",
+        "Password": "",
+        "ProfileContext": "Device",
+        "ProfileId": 12347,
+        "ProfileUuid": "08e56864-baa2-84e7-71b7-54711284a42e",
+        "Version": 1
+      },
+      "NetworkList": [],
+      "Restrictions": {
+        "Applications": {
+          "AllowApplication": [],
+          "AllowFolders": [],
+          "AppStore": {
+            "AllowAppStoreAppAdoption": true,
+            "RequireAdminPasswordToInstallOrUpdateApp": false,
+            "RestrictAppStoreToSoftwareUpdatesOnly": false
+          },
+          "AppleMusic": {
+            "AllowMusicService": false
+          },
+          "Camera": {
+            "AllowUseOfBuiltInCamera": false
+          },
+          "DisallowFolders": [],
+          "GameCentre": {
+            "AllowAddingGameCenterFriends": false,
+            "AllowGameCenterModification": false,
+            "AllowMultiplayerGaming": false,
+            "AllowUseOfGameCenter": false
+          },
+          "RestrictWhichApplicationsAreAllowedToLaunch": false,
+          "Safari": {
+            "AllowDeprecatedWebKitTls": false,
+            "AllowSafariAutoFill": false
+          }
+        },
+        "Desktop": {
+          "LockDesktopPicture": false
+        },
+        "Functionality": {
+          "AirPrint": {
+            "AllowAirPrint": false,
+            "AllowAirPrintiBeaconDiscovery": false,
+            "ForceAirPrintTrustedTLSRequirement": false
+          },
+          "ContentCaching": {
+            "AllowContentCaching": false
+          },
+          "ICloud": {
+            "AllowAirPrint": false,
+            "AllowAirPrintiBeaconDiscovery": false,
+            "AllowCloudDesktopAndDocuments": false,
+            "AllowDeprecatedWebKitTls": false,
+            "AllowICloudFMM": false,
+            "AllowIcloudAddressBook": false,
+            "AllowIcloudBTMM": false,
+            "AllowIcloudBookmarks": false,
+            "AllowIcloudCalendar": false,
+            "AllowIcloudDocumentsAndData": false,
+            "AllowIcloudKeychainSync": false,
+            "AllowIcloudMail": false,
+            "AllowIcloudNotes": false,
+            "AllowIcloudReminders": false,
+            "AllowPasswordAutoFill": false,
+            "AllowPasswordProximityRequests": false,
+            "AllowPasswordSharing": false,
+            "AllowUseIcloudPasswordForLocalAccounts": false,
+            "ForceAirPrintTrustedTLSRequirement": false
+          },
+          "Passwords": {
+            "AllowPasswordAutoFill": false,
+            "AllowPasswordProximityRequests": false,
+            "AllowPasswordSharing": false
+          },
+          "Spotlight": {
+            "AllowSpotlightSuggestions": false
+          }
+        },
+        "Media": {
+          "AutoEjectMedia": false,
+          "DiskMediaCDs": {
+            "Allow": false,
+            "Authenticate": false,
+            "Read-Only": false
+          },
+          "DiskMediaDVDs": {
+            "Allow": false,
+            "Authenticate": false,
+            "Read-Only": false
+          },
+          "ExternalHardDiskMediaAccess": {
+            "Allow": false,
+            "Authenticate": false,
+            "Read-Only": false
+          },
+          "HardDiskDvdRam": {
+            "Allow": false,
+            "Authenticate": false,
+            "Read-Only": false
+          },
+          "HardDiskImages": {
+            "Allow": false,
+            "Authenticate": false,
+            "Read-Only": false
+          },
+          "InternalHardDiskMediaAccess": {
+            "Allow": false,
+            "Authenticate": false,
+            "Read-Only": false
+          }
+        },
+        "Preferences": {
+          "Accessibility": false,
+          "AppStore": false,
+          "Bluetooth": false,
+          "CDsAndDVDs": false,
+          "DateAndTime": false,
+          "DesktopAndScreenSaver": false,
+          "DictationAndSpeech": false,
+          "Displays": false,
+          "Dock": false,
+          "EnabledPreferencePanes": false,
+          "EnergySaver": false,
+          "Extensions": false,
+          "FibreChannel": false,
+          "FlashPlayer": false,
+          "General": false,
+          "Ink": false,
+          "InternetAccounts": false,
+          "Keyboard": false,
+          "LanguageAndText": false,
+          "MissionControl": false,
+          "MobileMe": false,
+          "Mouse": false,
+          "Network": false,
+          "Notifications": false,
+          "ParentalControls": false,
+          "PrintAndScan": false,
+          "Profiles": false,
+          "SecurityAndPrivacy": false,
+          "Sharing": false,
+          "SoftwareUpdate": false,
+          "Sound": false,
+          "Spotlight": false,
+          "StartupDisk": false,
+          "TimeMachine": false,
+          "Trackpad": false,
+          "UsersAndGroups": false,
+          "Xsan": false,
+          "iCloud": false
+        },
+        "Sharing": {
+          "AddtoAperture": false,
+          "AddtoReadingList": false,
+          "AddtoiPhoto": false,
+          "AirDrop": false,
+          "AutomaticallyEnableNewSharingServices": false,
+          "Facebook": false,
+          "Mail": false,
+          "Messages": false,
+          "RestrictWhichSharingServicesAreEnabled": false,
+          "SinaWeibo": false,
+          "Twitter": false,
+          "VideoServices": false
+        },
+        "Widgets": {
+          "AllowOnlyConfiguredWidgets": false,
+          "AllowedWidgets": []
+        }
+      },
+      "ScepList": [],
+      "SsoExtensionList": [],
+      "VpnList": [],
+      "WebClipsList": []
+    }
+  }
+}

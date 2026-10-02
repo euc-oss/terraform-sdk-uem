@@ -5,6 +5,11 @@ type MockResponse struct {
 	Metadata ResponseMetadata `json:"metadata"`
 	Request  RequestSpec      `json:"request"`
 	Response ResponseSpec     `json:"response"`
+
+	// SourceFile is the base name of the file the fixture was loaded from,
+	// set by LoadResponseFromFile. It lets stateful routing pick one of
+	// several fixtures that share a route (see preferredSmartGroupFixture).
+	SourceFile string `json:"-"`
 }
 
 // ResponseMetadata contains information about the mock response.

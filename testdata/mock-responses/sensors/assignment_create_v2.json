@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/{sensorUuid}/assignment",
+    "method": "POST",
+    "description": "V2 create device sensor assignment (POST /devicesensors/{sensorUuid}/assignment), 201. NOTE: 'smart_group_uuids' is NOT listed as required in swagger's DeviceSensorAssignmentRequestV1Model but IS required on the real wire (422 'Smart group assignment identifiers cannot be empty' when omitted) -- reused an existing built-in smart group ('All Devices') rather than creating one. The response's uuid appears identical to create_sensor_v2.json's anonymized uuid only because both fixture bodies are the single-key shape {\"uuid\": ...} and mock-capture's anonymizer deterministically reseeds its PRNG (gofakeit.Seed(12345)) on every call -- the first fake UUID drawn after a reseed is the same each time. This is a coincidence of the anonymization scheme, not evidence of a real API defect (independently confirmed via a raw, non-fixture create+list check: real create-response uuids do match the real persisted resource).",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "uuid": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c"
+    }
+  }
+}

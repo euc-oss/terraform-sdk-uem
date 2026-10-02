@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines",
+    "method": "POST",
+    "description": "Captured POST /api/mdm/groups/{organizationGroupUuid}/baselines (multipart create via BaselineCreator helper; canonical impl returns 200 + BaselineV1Model body, not 201 + Location)",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "assignmentCount": 0,
+      "baselineTemplateUUID": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c",
+      "baselineUUID": "f9e174ca-9ee2-9354-2762-b0bf409a123b",
+      "customizations": [],
+      "description": "Reduce cognitive load in the person.",
+      "name": "Test Manateewill",
+      "osVersionUUID": "964426e5-7f69-e9e5-5641-b8b169107927",
+      "platformUUID": "a80ea502-3c05-9987-b114-b674f8f44f09",
+      "policies": [],
+      "rootLocationGroupID": 12346,
+      "rootLocationGroupName": "Test MediumAquaMarinehail",
+      "rootLocationGroupUUID": "b96eee9b-edb2-02b3-f245-7a823b349da9",
+      "templateName": "Test Olivepurse",
+      "vendorTemplateUUID": "6151ed79-729f-a8ce-97a4-220bbc892bf0",
+      "version": 1
+    }
+  }
+}

@@ -1,7 +1,7 @@
 # Integration Tests
 
-This directory contains integration tests for the go-wsone-sdk that test against
-a real Workspace ONE UEM environment.
+This directory contains integration tests for terraform-sdk-uem that test
+against a real Workspace ONE UEM environment.
 
 ## Prerequisites
 

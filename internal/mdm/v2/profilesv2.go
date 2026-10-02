@@ -71,23 +71,6 @@ func (s *ProfilesV2Service) CreateAppleOsXDeviceProfileAsync(
 	return headers, response, nil
 }
 
-// CreateQnxDeviceProfileAsync — Creates a QNX (Windows Rugged) Device Profile.
-// Operation ID: ProfilesV2_CreateQnxDeviceProfileAsync
-// HTTP: POST /api/mdm/profiles/platforms/qnx/create
-func (s *ProfilesV2Service) CreateQnxDeviceProfileAsync(
-	ctx context.Context,
-	request *QnxDeviceProfileEntityV2,
-) (http.Header, int, error) {
-	// Build endpoint path
-	endpoint := "/api/mdm/profiles/platforms/qnx/create"
-	var response int
-	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, &response)
-	if err != nil {
-		return nil, 0, fmt.Errorf("ProfilesV2_CreateQnxDeviceProfileAsync: %w", err)
-	}
-	return headers, response, nil
-}
-
 // CreateWinRTDeviceProfileAsync — Creates a WinRT (Windows 10) Device Profile.
 // Operation ID: ProfilesV2_CreateWinRTDeviceProfileAsync
 // HTTP: POST /api/mdm/profiles/platforms/winrt/create
@@ -103,22 +86,6 @@ func (s *ProfilesV2Service) CreateWinRTDeviceProfileAsync(
 		return nil, 0, fmt.Errorf("ProfilesV2_CreateWinRTDeviceProfileAsync: %w", err)
 	}
 	return headers, response, nil
-}
-
-// DeleteProfileAsync — Deletes the specified profile.
-// Operation ID: ProfilesV2_DeleteProfileAsync
-// HTTP: DELETE /api/mdm/profiles/{profileId}
-func (s *ProfilesV2Service) DeleteProfileAsync(
-	ctx context.Context,
-	ProfileID int,
-) (http.Header, error) {
-	// Build endpoint path
-	endpoint := fmt.Sprintf("/api/mdm/profiles/%d", ProfileID)
-	headers, err := s.client.DoRequest(ctx, "DELETE", endpoint, AcceptHeader, "application/json", nil, nil)
-	if err != nil {
-		return nil, fmt.Errorf("ProfilesV2_DeleteProfileAsync: %w", err)
-	}
-	return headers, nil
 }
 
 // GetDeviceProfileDetailsAsync — Gets Device Profile.
@@ -266,16 +233,16 @@ func (s *ProfilesV2Service) UpdateAppleOsXDeviceProfileAsync(
 	return headers, nil
 }
 
-// UpdateQnxDeviceProfileAsync — Updates an existing QNX (Windows Rugged) Device Profile.
+// UpdateQnxDeviceProfileAsync — Updates the custom attributes details of existing QNX Device Profile.
 // Operation ID: ProfilesV2_UpdateQnxDeviceProfileAsync
-// HTTP: PUT /api/mdm/profiles/platforms/qnx/update
+// HTTP: POST /api/mdm/profiles/platforms/qnx/update
 func (s *ProfilesV2Service) UpdateQnxDeviceProfileAsync(
 	ctx context.Context,
 	request *QnxDeviceProfileEntityV2,
 ) (http.Header, error) {
 	// Build endpoint path
 	endpoint := "/api/mdm/profiles/platforms/qnx/update"
-	headers, err := s.client.DoRequest(ctx, "PUT", endpoint, AcceptHeader, "application/json", request, nil)
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("ProfilesV2_UpdateQnxDeviceProfileAsync: %w", err)
 	}

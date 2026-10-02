@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/search",
     "method": "GET",
-    "description": "Profile search with no results",
+    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. A v1 search (GET /api/mdm/profiles/search) of an empty disposable org group: the server answers 204 No Content with no body, not a 200 with an empty Profiles list as the earlier unverified body claimed.",
     "version": "1"
   },
   "request": {
@@ -12,16 +12,8 @@
     }
   },
   "response": {
-    "status_code": 200,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "body": {
-      "Page": 0,
-      "PageSize": 10,
-      "Total": 0,
-      "Profiles": []
-    }
+    "status_code": 204,
+    "headers": {},
+    "body": null
   }
 }
-

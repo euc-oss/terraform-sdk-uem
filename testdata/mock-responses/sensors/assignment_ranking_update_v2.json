@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/{sensorUuid}/assignments",
+    "method": "POST",
+    "description": "V2 bulk update assignment rankings (POST /devicesensors/{sensorUuid}/assignments?action=update-ranking), 204 no content. Body is an array of {uuid, ranking} per DeviceSensorAssignmentRankingV1Model, unambiguous from swagger -- no guessing needed. NOTE: mock-capture's BuildFixture wrote the query string baked into metadata.endpoint (\"...assignments?action=update-ranking\") instead of splitting it into request.query_params like the sibling updates_deployments_bulk_rank.json fixture does -- a tool defect (metadata.endpoint should always be a bare path template). Hand-corrected here to the query_params form so the mock server's path matcher (which treats metadata.endpoint as a literal/regex path, never a path+query string) actually matches.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    },
+    "query_params": {
+      "action": "update-ranking"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

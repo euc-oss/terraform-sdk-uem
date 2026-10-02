@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/removal-protection-logs/devices",
+    "method": "GET",
+    "description": "Captured GET /api/mam/apps/removal-protection-logs/devices",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 412,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "activityId": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c",
+      "errorCode": 7026,
+      "message": "Feature for ARP Angular Migration Events is currently turned off"
+    }
+  }
+}

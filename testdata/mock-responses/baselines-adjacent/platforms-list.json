@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/baselines/platforms",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/baselines/platforms",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": [
+      {
+        "name": "Test Rabbitthrow",
+        "uuid": "eaa54c29-851f-fe01-320e-bce278850dab",
+        "versions": []
+      },
+      {
+        "name": "Test Manateewill",
+        "uuid": "8fe98ed4-4ad2-ac03-26a2-60eb985e3f18",
+        "versions": []
+      }
+    ]
+  }
+}

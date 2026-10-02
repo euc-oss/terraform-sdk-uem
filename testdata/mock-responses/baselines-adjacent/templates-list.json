@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/baselines/templates",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/baselines/templates",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": [
+      {
+        "id": 12346,
+        "name": "Test Rabbitthrow",
+        "shortName": "Test BlanchedAlmondstand",
+        "uuid": "1ea79f01-e34d-b09e-7e73-4c621db995f9",
+        "versions": [
+          {
+            "id": 12347,
+            "levels": [],
+            "name": "Test MediumAquaMarinehail",
+            "uuid": "b96eee9b-edb2-02b3-f245-7a823b349da9",
+            "version": "1709"
+          },
+          {
+            "id": 12348,
+            "levels": [],
+            "name": "Test Olivepurse",
+            "uuid": "6151ed79-729f-a8ce-97a4-220bbc892bf0",
+            "version": "1803"
+          },
+          {
+            "id": 12349,
+            "levels": [],
+            "name": "Test Bunchcan",
+            "uuid": "28d813d2-cb89-a7bb-d573-beef5b60b2cd",
+            "version": "1809"
+          },
+          {
+            "id": 12350,
+            "levels": [],
+            "name": "Test Speedwould",
+            "uuid": "c7b9a8d8-9ef9-0589-2712-8f9c3798f707",
+            "version": "1903"
+          },
+          {
+            "id": 12351,
+            "levels": [],
+            "name": "Test Caravanbe",
+            "uuid": "3d5a19b4-fa12-c3c1-3017-5ebd4fda2f11",
+            "version": "1909"
+          },
+          {
+            "id": 12352,
+            "levels": [],
+            "name": "Test LightSkyBluering",
+            "uuid": "bf7ab1cb-5f14-1f3a-45d9-86f3d02fc526",
+            "version": "2004"
+          },
+          {
+            "id": 12353,
+            "levels": [],
+            "name": "Test Castthink",
+            "uuid": "eb1f13b3-03de-268e-b627-d0e1d4e0e8ef",
+            "version": "20H2"
+          },
+          {
+            "id": 12354,
+            "levels": [],
+            "name": "Test Orangeliter",
+            "uuid": "039f5aee-b33b-934a-c392-a10b119cd572",
+            "version": "21H1"
+          },
+          {
+            "id": 12355,
+            "levels": [],
+            "name": "Test Buffalodoes",
+            "uuid": "e64e6151-aa01-28fa-11e3-d2c66d57688a",
+            "version": "21H2"
+          },
+          {
+            "id": 12356,
+            "levels": [],
+            "name": "Test Chimpanzeedig",
+            "uuid": "c322af42-6dab-4622-1b8d-00fabeebbbc3",
+            "version": "22H2"
+          }
+        ]
+      },
+      {
+        "id": 12357,
+        "name": "Test Cockroachmight",
+        "shortName": "Test PaleTurquoisespelling",
+        "uuid": "6c14a546-7a6e-8c75-975c-5c438afc286c",
+        "versions": [
+          {
+            "id": 12358,
+            "levels": [
+              {
+                "id": 12359,
+                "name": "Test FloralWhiteturtle",
+                "shortName": "Test Albummight",
+                "uuid": "be9157c8-2f11-4822-a7e2-b2a23bf9e4cd"
+              },
+              {
+                "id": 12360,
+                "name": "Test Ravencould",
+                "shortName": "Test Dogdo",
+                "uuid": "14156068-dc28-73b9-7ad6-e7371789bce2"
+              }
+            ],
+            "name": "Test Juicerkiss",
+            "uuid": "ae337448-a7e2-846b-e8ad-2f628c788ad0",
+            "version": "1709"
+          },
+          {
+            "id": 12361,
+            "levels": [
+              {
+                "id": 12362,
+                "name": "Test Tomatopatrol",
+                "shortName": "Test Indigosock",
+                "uuid": "50c433fc-8432-994b-718a-02e4cf4fec3c"
+              },
+              {
+                "id": 12363,
+                "name": "Test Childturn",
+                "shortName": "Test Successwere",
+                "uuid": "6fd776a1-6ba9-0c87-1011-a21997eaab19"
+              }
+            ],
+            "name": "Test Monthbeen",
+            "uuid": "10fc9127-d9d1-cabe-327e-2dd23ec0da6c",
+            "version": "1803"
+          },
+          {
+            "id": 12364,
+            "levels": [
+              {
+                "id": 12365,
+                "name": "Test Caseeat",
+                "shortName": "Test Archipelagodive",
+                "uuid": "20f9c203-be48-b302-015f-552a72b5d308"
+              },
+              {
+                "id": 12366,
+                "name": "Test Termitewould",
+                "shortName": "Test Wadwill",
+                "uuid": "7753d3d3-4a4f-8a11-750e-bc32313d5036"
+              }
+            ],
+            "name": "Test Navyschool",
+            "uuid": "24bbbf76-844f-b64c-b301-5b02790c8081",
+            "version": "1809"
+          },
+          {
+            "id": 12367,
+            "levels": [
+              {
+                "id": 12368,
+                "name": "Test DeepPinkoxygen",
+                "shortName": "Test Dogwere",
+                "uuid": "28fa130c-45bc-4b8f-3399-025ecebc9094"
+              },
+              {
+                "id": 12369,
+                "name": "Test Funcould",
+                "shortName": "Test Bodythink",
+                "uuid": "f1e62482-9640-a8a3-ca6b-63fe140774cb"
+              }
+            ],
+            "name": "Test DarkTurquoiseday",
+            "uuid": "d3d59090-8cb4-ed80-7c3c-ef9c734bc520",
+            "version": "1903"
+          },
+          {
+            "id": 12370,
+            "levels": [
+              {
+                "id": 12371,
+                "name": "Test Caribouride",
+                "shortName": "Test MediumSeaGreencomb",
+                "uuid": "08480489-0734-f319-8df3-9363a3d4f63b"
+              },
+              {
+                "id": 12372,
+                "name": "Test Codpaint",
+                "shortName": "Test Ferretjump",
+                "uuid": "2396e958-d34b-63de-8f6f-ffd542103a32"
+              }
+            ],
+            "name": "Test Grasshopperdid",
+            "uuid": "6d4fd7d1-947c-9631-5310-d26fa57b6157",
+            "version": "1909"
+          },
+          {
+            "id": 12373,
+            "levels": [
+              {
+                "id": 12374,
+                "name": "Test Gerbilcan",
+                "shortName": "Test Sealhave",
+                "uuid": "e7f1609f-6d91-0664-3039-9f7c81541602"
+              },
+              {
+                "id": 12375,
+                "name": "Test LightSkyBluelife",
+                "shortName": "Test Catalogmight",
+                "uuid": "5b577e5a-b227-1911-2388-3101bc526c1b"
+              }
+            ],
+            "name": "Test Quiverwas",
+            "uuid": "c05d2665-01a1-0581-5482-9684c65f45d6",
+            "version": "2004"
+          },
+          {
+            "id": 12376,
+            "levels": [
+              {
+                "id": 12377,
+                "name": "Test Wheatbread",
+                "shortName": "Test Coyotemust",
+                "uuid": "e387d077-fec5-4d3b-a68f-f8adfd125b90"
+              },
+              {
+                "id": 12378,
+                "name": "Test Yellowjacketwould",
+                "shortName": "Test DarkKhakiwoman",
+                "uuid": "b0bd0a93-8823-570e-d0d3-21255c26387c"
+              }
+            ],
+            "name": "Test Armadillois",
+            "uuid": "d5adbdff-ba05-5136-68e6-91cd5c5808d0",
+            "version": "21H2"
+          },
+          {
+            "id": 12379,
+            "levels": [
+              {
+                "id": 12380,
+                "name": "Test Bookclap",
+                "shortName": "Test Wombatare",
+                "uuid": "7101db25-dd61-6c6e-135a-a808127e0917"
+              },
+              {
+                "id": 12381,
+                "name": "Test Fuchsiapleasure",
+                "shortName": "Test Hornetmay",
+                "uuid": "1695210a-642c-0ceb-7365-50b9d4f9712b"
+              }
+            ],
+            "name": "Test Tealgauva",
+            "uuid": "f0878d3e-5a25-e221-03ff-c56e85721777",
+            "version": "22H2"
+          }
+        ]
+      },
+      {
+        "id": 12382,
+        "name": "Test DarkGreenbread",
+        "shortName": "Test DarkTurquoiseyear",
+        "uuid": "92a30654-2f25-8af9-443e-3dae47ecd2d8",
+        "versions": []
+      }
+    ]
+  }
+}

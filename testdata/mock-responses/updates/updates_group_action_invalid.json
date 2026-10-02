@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}",
+    "method": "POST",
+    "description": "Captured POST /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}?action=Pause (an invalid value for the required action enum) -- DISCLOSURE: activityId (cccccccc_dddd_eeee_ffff_000000000000) is a hand-typed sequential-letter placeholder, not a genuine server-issued value; the 422/errorCode 1012 status, message text, and shape are genuine, unmutated live-server content. Wire-vs-canonical-docs disagreement: canonical/swagger describe a 400 with errorCode 5222 ('Invalid device update action. Allowed values are \"START\" and \"STOP\".'). The actual wire response is HTTP 422 (not 400) with errorCode 1012 \u2014 the API's generic model-validation error shape, same family as the bulk-rank endpoint's 422 responses \u2014 and a different message text ('Invalid device update action. Allowed values are Start, Stop.', mixed-case, embedded in a RequestQuery.QueryParams validation wrapper) than the 5222 text documented for this operation. errorCode 5222 was never observed on the wire for this call.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    },
+    "query_params": {
+      "action": "Pause"
+    }
+  },
+  "response": {
+    "status_code": 422,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "errorCode": 1012,
+      "message": "Element: RequestQuery.QueryParams Message: [{\"MemberNames\":[\"action\"],\"ErrorMessage\":\"Invalid device update action. Allowed values are Start, Stop.\"}]\r\n",
+      "activityId": "0b0d6fc4-838a-e89b-d117-57f62678207d"
+    }
+  }
+}

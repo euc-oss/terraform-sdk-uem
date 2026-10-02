@@ -1,5 +1,6 @@
 // Package sdk provides a clean, idiomatic public API for the Workspace ONE UEM SDK.
 // This file is hand-written and must NOT carry a "Code generated. DO NOT EDIT." header.
+
 package sdk
 
 import (
@@ -106,8 +107,7 @@ func ListProfiles(ctx context.Context, c *client.Client, opts *ListOptions) ([]*
 
 	profiles := make([]*models.Profile, len(resp.Profiles))
 	for i := range resp.Profiles {
-		p := resp.Profiles[i]
-		profiles[i] = &p
+		profiles[i] = &resp.Profiles[i]
 	}
 	return profiles, nil
 }
@@ -133,9 +133,9 @@ func CreateProfile(ctx context.Context, c *client.Client, platform string, reque
 // UpdateProfile updates an existing profile.
 //
 // Platform must be one of the wsone.Platform* constants. The profileID
-// parameter identifies the existing profile; request carries the new
-// payload. Note: Windows updates use HTTP PUT; all other platforms use
-// POST. This is handled internally — callers do not need to choose.
+// identifies the existing profile; request carries the new payload. Note: Windows
+// updates use HTTP PUT; all other platforms use POST. This is handled
+// internally — callers do not need to choose.
 func UpdateProfile(ctx context.Context, c *client.Client, platform string, profileID int, request *models.ProfileUpdateRequest) (*models.Profile, error) {
 	return resources.NewProfileService(c).Update(ctx, platform, profileID, request)
 }

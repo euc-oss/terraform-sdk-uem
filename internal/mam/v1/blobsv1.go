@@ -20,6 +20,22 @@ func NewBlobsV1Service(c *client.Client) *BlobsV1Service {
 	return &BlobsV1Service{client: c}
 }
 
+// DeleteBlobAsync — New - Deletes a blob by ID
+// Operation ID: BlobsV1_DeleteBlobAsync
+// HTTP: DELETE /api/mam/blobs/blob/{blobId}
+func (s *BlobsV1Service) DeleteBlobAsync(
+	ctx context.Context,
+	BlobID int,
+) (http.Header, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mam/blobs/blob/%d", BlobID)
+	headers, err := s.client.DoRequest(ctx, "DELETE", endpoint, AcceptHeader, "application/json", nil, nil)
+	if err != nil {
+		return nil, fmt.Errorf("BlobsV1_DeleteBlobAsync: %w", err)
+	}
+	return headers, nil
+}
+
 // BlobsV1UploadBlobAsyncOptions holds optional query parameters for UploadBlobAsync.
 type BlobsV1UploadBlobAsyncOptions struct {
 	FileName             string  // Name of the file being uploaded(Required)

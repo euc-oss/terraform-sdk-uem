@@ -6,11 +6,14 @@ import (
 	"context"
 	"encoding/json"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"net/url"
 	"os"
+	"reflect"
+	"strconv"
 	"strings"
 	"time"
 
@@ -115,6 +118,7 @@ func NewClient(config *Config) (*Client, error) {
 	retryClient.RetryWaitMin = 1 * time.Second
 	retryClient.RetryWaitMax = 30 * time.Second
 	retryClient.CheckRetry = workspaceOneRetryPolicy
+	retryClient.ErrorHandler = exhaustedRetryHandler
 	retryClient.Backoff = retryablehttp.DefaultBackoff
 	retryClient.HTTPClient.Timeout = config.Timeout
 
@@ -139,14 +143,14 @@ func NewClient(config *Config) (*Client, error) {
 	var auth AuthProvider
 	if config.Auth != nil {
 		auth = config.Auth
-		// Infer AuthMethod from the concrete type so addHeaders picks the right prefix.
-		if config.AuthMethod == "" {
-			switch config.Auth.(type) {
-			case *OAuth2Auth:
-				config.AuthMethod = "oauth2"
-			default:
-				config.AuthMethod = "basic"
-			}
+		// Config.Auth doc states that AuthMethod is ignored when Auth is supplied.
+		// Always derive AuthMethod from the concrete provider type so addHeaders
+		// picks the right prefix regardless of any caller-set value.
+		switch config.Auth.(type) {
+		case *OAuth2Auth:
+			config.AuthMethod = "oauth2"
+		default:
+			config.AuthMethod = "basic"
 		}
 	} else if config.AuthMethod == "oauth2" {
 		tokenURL := config.OAuth2TokenURL
@@ -179,7 +183,15 @@ func NewClient(config *Config) (*Client, error) {
 // Returns the response headers and any error. Response headers are available even on successful requests,
 // enabling callers to read Location, X-Api-Version, and other response metadata.
 func (c *Client) DoRequest(ctx context.Context, method, endpoint, acceptHeader, contentType string, body interface{}, out interface{}) (http.Header, error) {
-	// Apply rate limiting
+	// Apply rate limiting.
+	//
+	// This deliberately runs BEFORE the request-body Validate() hook below, so a
+	// body that fails client-side validation still consumes a rate-limit token
+	// even though nothing reaches the wire. That ordering is intentional for now:
+	// moving the wait after validation would change behavior for every caller of
+	// this shared chokepoint, and any caller relying on the limiter for general
+	// client-side pacing would stop being throttled while hot-looping on an
+	// invalid body. Revisiting it is tracked separately.
 	if err := c.rateLimiter.Wait(ctx); err != nil {
 		return nil, fmt.Errorf("rate limiter error: %w", err)
 	}
@@ -190,6 +202,17 @@ func (c *Client) DoRequest(ctx context.Context, method, endpoint, acceptHeader, 
 	// Marshal request body if provided
 	var bodyReader io.Reader
 	if body != nil {
+		// Auto-run Validate() on any body that implements it (generated request types do).
+		// Guard against a typed-nil pointer: body != nil is TRUE for an interface holding a
+		// nil *T, and calling Validate() on a nil receiver would panic inside the zero-checks.
+		if v, ok := body.(interface{ Validate() error }); ok {
+			if rv := reflect.ValueOf(body); rv.Kind() != reflect.Ptr || !rv.IsNil() {
+				if err := v.Validate(); err != nil {
+					return nil, fmt.Errorf("validation failed: %w", err)
+				}
+			}
+		}
+
 		switch v := body.(type) {
 		case []byte:
 			bodyReader = bytes.NewReader(v)
@@ -233,11 +256,18 @@ func (c *Client) DoRequest(ctx context.Context, method, endpoint, acceptHeader, 
 		}
 	}()
 
-	// Capture response headers before handling the body
+	// Capture response headers before handling the body. The internal
+	// attempts marker (see exhaustedRetryHandler) is not a server header.
+	attempts, _ := strconv.Atoi(resp.Header.Get(attemptsHeader))
+	resp.Header.Del(attemptsHeader)
 	respHeaders := resp.Header.Clone()
 
 	// Handle response
 	if err := c.handleResponse(resp, out); err != nil {
+		var apiErr *APIError
+		if attempts > 0 && errors.As(err, &apiErr) {
+			apiErr.Attempts = attempts
+		}
 		return respHeaders, err
 	}
 	return respHeaders, nil
@@ -298,7 +328,11 @@ func (c *Client) handleResponse(resp *http.Response, out interface{}) error {
 
 	// Unmarshal response if output is provided
 	if out != nil && len(bodyBytes) > 0 {
-		if err := json.Unmarshal(bodyBytes, out); err != nil {
+		if bytesOut, ok := out.(*[]byte); ok {
+			// Raw byte responses (e.g. blob downloads) are not JSON on the wire;
+			// copy the body directly instead of attempting json.Unmarshal.
+			*bytesOut = bodyBytes
+		} else if err := json.Unmarshal(bodyBytes, out); err != nil {
 			return fmt.Errorf("failed to unmarshal response: %w", err)
 		}
 	}
@@ -376,6 +410,46 @@ type APIError struct {
 	StatusCode int    `json:"-"`
 	Message    string `json:"message"`
 	ErrorCode  string `json:"errorCode"`
+	// Attempts is the number of requests made when the SDK's retry policy
+	// gave up on a retryable status (e.g. a persistent 500); 0 otherwise.
+	Attempts int `json:"-"`
+}
+
+// UnmarshalJSON tolerates errorCode arriving as either a JSON string or a
+// JSON number. ErrorCode stays string-typed in the public struct (existing
+// consumers, e.g. public/examples/error-handling/main.go, compare/print it
+// as a string), but the wire is inconsistent: every errorCode value in the
+// vendored fixture corpus (published as testdata/mock-responses/) is a JSON
+// number, and a live InternalAppsV1 post-delete GET on a 26.2 tenant
+// returned the same ({"errorCode":7000,...}). A plain field-tag unmarshal
+// fails outright on the number, silently losing ErrorCode via
+// handleErrorResponse's generic fallback branch. This is the same defect
+// family as InternalApplicationEntityV1.PushMode (string-declared,
+// number-on-wire).
+func (e *APIError) UnmarshalJSON(data []byte) error {
+	var raw struct {
+		Message   string          `json:"message"`
+		ErrorCode json.RawMessage `json:"errorCode"`
+	}
+	if err := json.Unmarshal(data, &raw); err != nil {
+		return err
+	}
+	e.Message = raw.Message
+	if len(raw.ErrorCode) == 0 {
+		e.ErrorCode = ""
+		return nil
+	}
+	var asString string
+	if err := json.Unmarshal(raw.ErrorCode, &asString); err == nil {
+		e.ErrorCode = asString
+		return nil
+	}
+	var asNumber json.Number
+	if err := json.Unmarshal(raw.ErrorCode, &asNumber); err != nil {
+		return fmt.Errorf("errorCode: neither a JSON string nor a JSON number: %w", err)
+	}
+	e.ErrorCode = asNumber.String()
+	return nil
 }
 
 // Error implements the error interface.

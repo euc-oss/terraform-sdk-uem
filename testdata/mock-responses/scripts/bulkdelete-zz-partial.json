@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/scripts/bulkdelete",
+    "method": "POST",
+    "description": "SYNTHETIC: Hand-written mock (commit 6f2b0c593, 2026-05-27), never changed since -- not a live capture despite opening \"Captured POST\". DISCLOSURE: the delete_failed entry (\"deadbeef_dead_beef_dead_beefdeadbeef\") is a hand-typed repeated-hex-word placeholder UUID, not a genuine server-issued or anonymizer-fingerprinted value. POST /api/mdm/groups/{organizationGroupUuid}/scripts/bulkdelete (206 + DeleteScriptResource \u2014 partial failure path; canonical wire shape is List<Guid> on delete_failed, NOT a {uuid,reason} struct per plan-draft typo). Filename uses the 'zz-' prefix so the mockserver's lexical-order auto-load (LoadMockResponses) sorts this fixture AFTER bulkdelete-success.json \u2014 the lifecycle test wants success on auto-load; this fixture loads only via path-explicit LoadResponseFromFile in TestGeneratedScriptsV1BulkDeletePartial.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 206,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "scripts_deleted": 1,
+      "delete_failed": [
+        "2fea58d4-8d07-f072-ca6b-44a64414f081"
+      ]
+    }
+  }
+}

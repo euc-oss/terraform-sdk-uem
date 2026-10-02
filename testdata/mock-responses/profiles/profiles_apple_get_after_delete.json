@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/68910",
+    "method": "GET",
+    "platform": "Apple",
+    "description": "Live-captured (via direct SDK-client probe -- see below) GET /api/mdm/profiles/{profileId} immediately after DeleteProfileAsync, UEM 26.2.0.0, 2026-07-30. mock-capture's CLI cannot write a fixture for an error response (main.go calls log.Fatalf on any non-2xx before reaching the fixture-writing code), so this fixture was hand-assembled from the genuine error text returned by the live call (status 400, errorCode 400, message \"Invalid Profile <id>.\") with the real profile id replaced by the same anonymized placeholder (68910) used across this platform's other fixtures. Confirms deletion was real, not a silent no-op. Shadowed by profiles_apple_get_after_create.json under the same literal path in a full-corpus load, so exercised via an isolated single-fixture mock server (see TestGeneratedProfilesV2AppleGetAfterDelete).",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 400,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "activityId": "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c",
+      "errorCode": 400,
+      "message": "Invalid Profile 68910."
+    }
+  }
+}

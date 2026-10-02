@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/search",
     "method": "GET",
-    "description": "Profile search returning Android and Apple iOS profiles",
+    "description": "PLACEHOLDER: Profile search returning Android and Apple iOS profiles. Hand-written (commit c2450a48b, 2026-04-08), not a live capture -- DISCLOSURE: ProfileUuid values (\"abc12345_1234_1234_1234_abc123456789\", \"def12345_1234_1234_1234_def123456789\") are hand-typed placeholders, not genuine server-issued or anonymizer-fingerprinted values; ProfileId (68748/68749), Platform, ProfileType, and ProfileStatus are hand-authored alongside them, same fixture. Kept for TestLayer2ProfileServiceGet's Android/Apple (68748/68749) discovery-refresh flow, which depends on this file's full-corpus-scan content -- see tests/vendored_fixture_coverage_test.go's knownOrphanedVendoredFixtures entry for this path for the full consumption evidence.",
     "version": "2"
   },
   "request": {

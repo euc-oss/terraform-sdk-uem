@@ -2,11 +2,14 @@ package tests
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"testing"
 	"time"
 
+	"github.com/euc-oss/terraform-sdk-uem/client"
+	"github.com/euc-oss/terraform-sdk-uem/internal/orgtest"
 	"github.com/euc-oss/terraform-sdk-uem/models"
 	"github.com/euc-oss/terraform-sdk-uem/resources"
 	"github.com/joho/godotenv"
@@ -15,6 +18,28 @@ import (
 // TestIntegration_ProfileService_FullCRUD tests the complete CRUD lifecycle
 // Pattern: Create → Verify → Update → Verify → Delete → Verify.
 func TestIntegration_ProfileService_FullCRUD(t *testing.T) {
+	// Unlike skipUnlessLiveMutate (tests/live_mutate_test.go), this check is
+	// conditional on TEST_MODE, not unconditional: this test ALSO runs in
+	// mock mode via getTestClient's own internal dispatch (below), and a
+	// bare skipUnlessLiveMutate(t) call here would always skip under
+	// TEST_MODE=mock (the default), silently deleting this test's existing
+	// mock-mode CRUD coverage. This closes the exact same gap
+	// skipUnlessLiveMutate closes for the OTHER live-only files (a real
+	// mutation must never fire on TEST_MODE=live alone) without touching
+	// mock-mode behavior at all.
+	if os.Getenv("TEST_MODE") == "live" && getEnvOrDefault("LIVE_MUTATE", "") != "1" {
+		t.Skip("TEST_MODE=live but LIVE_MUTATE=1 not set; skipping mutating live test")
+	}
+
+	// outerT is this test's own *testing.T, captured before any t.Run
+	// subtest shadows the "t" identifier. registerProfileDeleteCleanup MUST
+	// use this, not the subtest's t: a subtest's t.Cleanup fires the moment
+	// that subtest returns, which would delete the profile after
+	// Create_Profile but BEFORE Verify_Created_Profile/Update_Profile/etc.
+	// run -- breaking the CRUD flow on the success path, not just guarding
+	// an early return.
+	outerT := t
+
 	// Load environment variables
 	if err := godotenv.Load("../.env"); err != nil {
 		t.Skip("No .env file found, skipping integration test")
@@ -34,6 +59,18 @@ func TestIntegration_ProfileService_FullCRUD(t *testing.T) {
 
 	var createdProfileID int
 
+	// ogID is a disposable child OG created under liveOrgGroupID(outerT),
+	// used for both Create_Profile and Update_Profile's
+	// ManagedLocationGroupID below (Task 2.4.3 / D5: this profile lives
+	// under a throwaway OG instead of the shared-fixed ORG_GROUP_ID, so a
+	// failed cleanup here never accumulates junk under a real, long-lived
+	// org group). orgtest.NewDisposableOrgGroupOrFatal registers its own OG-level
+	// delete cleanup on outerT; since t.Cleanup fires LIFO and this call
+	// happens before registerProfileDeleteCleanup (below, once
+	// createdProfileID is known), the profile delete fires BEFORE the OG
+	// delete -- the correct dependency order.
+	ogID := orgtest.NewDisposableOrgGroupOrFatal(outerT, c, liveOrgGroupID(outerT), nil)
+
 	// ========================================================================
 	// STEP 1: CREATE - Create a new test profile
 	// ========================================================================
@@ -45,10 +82,10 @@ func TestIntegration_ProfileService_FullCRUD(t *testing.T) {
 		createRequest := models.ProfileCreateRequest{
 			"General": map[string]interface{}{
 				"Name":                   profileName,
-				"Description":            "Test profile created by go-wsone-sdk integration tests",
+				"Description":            "Test profile created by terraform-sdk-uem integration tests",
 				"AssignmentType":         "Auto",
 				"ProfileScope":           "Production",
-				"ManagedLocationGroupID": getEnvOrDefault("ORG_GROUP_ID", "14165"),
+				"ManagedLocationGroupID": fmt.Sprintf("%d", ogID),
 				"IsActive":               true,
 			},
 			"AndroidForWorkCustomMessages": map[string]interface{}{
@@ -58,6 +95,9 @@ func TestIntegration_ProfileService_FullCRUD(t *testing.T) {
 
 		profile, err := profileService.Create(ctx, models.PlatformAndroid, &createRequest)
 		if err != nil {
+			if isAndroidEMMPreconditionError(err) {
+				t.Skip(androidEMMPreconditionSkipReason)
+			}
 			t.Fatalf("Failed to create profile: %v", err)
 		}
 
@@ -65,6 +105,8 @@ func TestIntegration_ProfileService_FullCRUD(t *testing.T) {
 		if createdProfileID == 0 {
 			t.Fatal("Created profile has ID 0")
 		}
+
+		registerProfileDeleteCleanup(outerT, profileService, createdProfileID)
 
 		// Track this profile for cleanup
 		if err := records.AddProfile(createdProfileID); err != nil {
@@ -87,6 +129,9 @@ func TestIntegration_ProfileService_FullCRUD(t *testing.T) {
 		profile, err := profileService.Get(ctx, createdProfileID, models.PlatformAndroid)
 		if err != nil {
 			t.Fatalf("Failed to retrieve created profile: %v", err)
+		}
+		if profile == nil {
+			t.Fatal("Get returned nil profile with nil error")
 		}
 
 		retrievedID := profile.GetProfileID()
@@ -123,7 +168,7 @@ func TestIntegration_ProfileService_FullCRUD(t *testing.T) {
 				"Description":            updatedDescription,
 				"AssignmentType":         "Auto",
 				"ProfileScope":           "Production",
-				"ManagedLocationGroupID": getEnvOrDefault("ORG_GROUP_ID", "14165"),
+				"ManagedLocationGroupID": fmt.Sprintf("%d", ogID),
 				"IsActive":               true,
 			},
 			"AndroidForWorkCustomMessages": map[string]interface{}{
@@ -213,4 +258,23 @@ func getEnvOrDefault(key, defaultValue string) string {
 		return value
 	}
 	return defaultValue
+}
+
+// androidEMMPreconditionSkipReason documents the exact tenant-precondition
+// carve-out this file's Create_Profile step skips on, matching the
+// unverified[] reason recorded for the equivalent Android profile-update
+// capture gap in tests/verified-endpoints.json (around line 1204).
+const androidEMMPreconditionSkipReason = "BLOCKED on a UEM 26.2.0.0 test tenant -- not a request-shape defect. Android profile CREATE (a precondition for capturing update against a real profile) is refused tenant-wide with a live 412 (errorCode 5163) 'Android EMM Registration should be completed prior to profile setup.' Confirmed across multiple General.ProfileScope values (0/1/3/4/5 all blocked; only ProfileScope=2 'Staging' bypasses this specific error but still requires an EMM-registered tenant for any subsequent step) and multiple payload shapes (Restrictions, WifiList) -- the 412 is a tenant Android-Enterprise-registration gap, not a malformed request. No Android profile could be created to then update, so the update route itself remains genuinely uncaptured. Re-attempt once this tenant (or an equivalent one) has Android EMM/Enterprise registration completed."
+
+// isAndroidEMMPreconditionError reports whether err is precisely the
+// documented tenant Android-EMM-registration precondition failure (HTTP 412,
+// errorCode 5163) -- matched on both status and error code together so a
+// different 412 (or a different errorCode under some other status) still
+// fails the test loudly instead of being masked as this known carve-out.
+func isAndroidEMMPreconditionError(err error) bool {
+	var apiErr *client.APIError
+	if !errors.As(err, &apiErr) {
+		return false
+	}
+	return apiErr.StatusCode == 412 && apiErr.ErrorCode == "5163"
 }

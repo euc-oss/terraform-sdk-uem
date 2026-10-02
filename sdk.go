@@ -12,6 +12,8 @@ import (
 	mdmv2 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v2"
 	mdmv4 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v4"
 	"github.com/euc-oss/terraform-sdk-uem/internal/services"
+	systemv1 "github.com/euc-oss/terraform-sdk-uem/internal/system/v1"
+	"github.com/euc-oss/terraform-sdk-uem/resources"
 )
 
 // Client re-exports
@@ -41,7 +43,18 @@ type MacOsAppsV1Service = mamv1.MacOsAppsV1Service
 
 var NewMacOsAppsV1Service = mamv1.NewMacOsAppsV1Service
 
+// PurchasedAppsV1Service service
+type PurchasedAppsV1Service = mamv1.PurchasedAppsV1Service
+
+var NewPurchasedAppsV1Service = mamv1.NewPurchasedAppsV1Service
+
+type AppChunkTranscationResponseV1 = mamv1.AppChunkTranscationResponseV1
+
 type AppCriteriaApiModelV1 = mamv1.AppCriteriaApiModelV1
+
+type AppCriteriaModel1V1 = mamv1.AppCriteriaModel1V1
+
+type AppCriteriaV1Model = mamv1.AppCriteriaV1Model
 
 type AppDependencyModelV1 = mamv1.AppDependencyModelV1
 
@@ -51,6 +64,8 @@ type AppFilesOptionsModelV1 = mamv1.AppFilesOptionsModelV1
 
 type AppPatchModelV1 = mamv1.AppPatchModelV1
 
+type AppSupportedV1Model = mamv1.AppSupportedV1Model
+
 type AppTransformModelV1 = mamv1.AppTransformModelV1
 
 type AppUnInstallProcessModelV1 = mamv1.AppUnInstallProcessModelV1
@@ -59,41 +74,149 @@ type ApplicationAssignmentModelV1 = mamv1.ApplicationAssignmentModelV1
 
 type ApplicationAssignmentsModelV1 = mamv1.ApplicationAssignmentsModelV1
 
+type ApplicationCategories1V1 = mamv1.ApplicationCategories1V1
+
 type ApplicationCategoriesModelV1 = mamv1.ApplicationCategoriesModelV1
+
+type ApplicationCategoriesV1Model = mamv1.ApplicationCategoriesV1Model
 
 type ApplicationConfigurationModelV1 = mamv1.ApplicationConfigurationModelV1
 
+type ApplicationDependencyModel1V1 = mamv1.ApplicationDependencyModel1V1
+
+type ApplicationDependencyV1Model = mamv1.ApplicationDependencyV1Model
+
+type ApplicationDeploymentOptionsModel1V1 = mamv1.ApplicationDeploymentOptionsModel1V1
+
+type ApplicationDeploymentOptionsV1Model = mamv1.ApplicationDeploymentOptionsV1Model
+
 type ApplicationDeploymentParametersModelV1 = mamv1.ApplicationDeploymentParametersModelV1
+
+type ApplicationFilesOptionsModel1V1 = mamv1.ApplicationFilesOptionsModel1V1
+
+type ApplicationFilesOptionsV1Model = mamv1.ApplicationFilesOptionsV1Model
+
+type ApplicationPatchModel1V1 = mamv1.ApplicationPatchModel1V1
+
+type ApplicationPatchV1Model = mamv1.ApplicationPatchV1Model
+
+type ApplicationSupportedModel12V1 = mamv1.ApplicationSupportedModel12V1
+
+type ApplicationSupportedModel1V1 = mamv1.ApplicationSupportedModel1V1
+
+type ApplicationSupportedModels12V1 = mamv1.ApplicationSupportedModels12V1
+
+type ApplicationSupportedModels1V1 = mamv1.ApplicationSupportedModels1V1
 
 type ApplicationSupportedModelsModelV1 = mamv1.ApplicationSupportedModelsModelV1
 
+type ApplicationSupportedV1Model = mamv1.ApplicationSupportedV1Model
+
+type ApplicationTransformModel1V1 = mamv1.ApplicationTransformModel1V1
+
+type ApplicationUnInstallProcessModel1V1 = mamv1.ApplicationUnInstallProcessModel1V1
+
+type ApplicationUnInstallProcessV1Model = mamv1.ApplicationUnInstallProcessV1Model
+
+type Category12V1 = mamv1.Category12V1
+
+type CategoryV1Model = mamv1.CategoryV1Model
+
 type CustomScriptApiModelV1 = mamv1.CustomScriptApiModelV1
+
+type CustomScriptModel1V1 = mamv1.CustomScriptModel1V1
+
+type CustomScriptV1Model = mamv1.CustomScriptV1Model
 
 type DeploymentByCriteriaApiModelV1 = mamv1.DeploymentByCriteriaApiModelV1
 
+type DeploymentByCriteriaModel1V1 = mamv1.DeploymentByCriteriaModel1V1
+
+type DeploymentByCriteriaV1Model = mamv1.DeploymentByCriteriaV1Model
+
 type DeploymentByCustomScriptApiModelV1 = mamv1.DeploymentByCustomScriptApiModelV1
+
+type DeploymentByCustomScriptModel1V1 = mamv1.DeploymentByCustomScriptModel1V1
+
+type DeploymentByCustomScriptV1Model = mamv1.DeploymentByCustomScriptV1Model
+
+type EarAppAutoUpdateConfigurationEntityV1 = mamv1.EarAppAutoUpdateConfigurationEntityV1
+
+type EarAppAutoUpdateConfigurationV1Model = mamv1.EarAppAutoUpdateConfigurationV1Model
+
+type EntityIdV1 = mamv1.EntityIdV1
 
 type EntityV1Model = mamv1.EntityV1Model
 
 type FileCriteriaApiModelV1 = mamv1.FileCriteriaApiModelV1
 
+type FileCriteriaModel1V1 = mamv1.FileCriteriaModel1V1
+
+type FileCriteriaV1Model = mamv1.FileCriteriaV1Model
+
 type HowToInstallApiModelV1 = mamv1.HowToInstallApiModelV1
 
+type HowToInstallModel1V1 = mamv1.HowToInstallModel1V1
+
+type HowToInstallV1Model = mamv1.HowToInstallV1Model
+
+type InternalAppChunkTransactionV1 = mamv1.InternalAppChunkTransactionV1
+
+type InternalAppChunkTransactionV1Model = mamv1.InternalAppChunkTransactionV1Model
+
+type InternalAppChunkV1 = mamv1.InternalAppChunkV1
+
 type InternalAppModelV1 = mamv1.InternalAppModelV1
+
+type InternalApplicationEntityV1 = mamv1.InternalApplicationEntityV1
+
+type InternalApplicationTransformV1Model = mamv1.InternalApplicationTransformV1Model
 
 type MacOsCreateApplicationRequestV1Model = mamv1.MacOsCreateApplicationRequestV1Model
 
 type MacOsSoftwareDeploymentSummaryModelV1 = mamv1.MacOsSoftwareDeploymentSummaryModelV1
 
+type MsiDeploymentParamModel1V1 = mamv1.MsiDeploymentParamModel1V1
+
+type MsiDeploymentParamV1Model = mamv1.MsiDeploymentParamV1Model
+
 type MsiDeploymentParameterModelV1 = mamv1.MsiDeploymentParameterModelV1
+
+type PurchasedAppAssignment1V1 = mamv1.PurchasedAppAssignment1V1
+
+type PurchasedAppDeploymentDetails1V1 = mamv1.PurchasedAppDeploymentDetails1V1
+
+type PurchasedAppManagedDistributionDetialsV1 = mamv1.PurchasedAppManagedDistributionDetialsV1
+
+type PurchasedAppRedeemableCodesDetailsV1 = mamv1.PurchasedAppRedeemableCodesDetailsV1
+
+type PurchasedApplicationEntityV1 = mamv1.PurchasedApplicationEntityV1
+
+type PurchasedApplicationSearchResultV1 = mamv1.PurchasedApplicationSearchResultV1
 
 type RegistryCriteriaApiModelV1 = mamv1.RegistryCriteriaApiModelV1
 
+type RegistryCriteriaModel1V1 = mamv1.RegistryCriteriaModel1V1
+
+type RegistryCriteriaV1Model = mamv1.RegistryCriteriaV1Model
+
+type SmartGroupAppMap1V1 = mamv1.SmartGroupAppMap1V1
+
 type WhenToCallInstallCompleteApiModelV1 = mamv1.WhenToCallInstallCompleteApiModelV1
+
+type WhenToCallInstallCompleteModel1V1 = mamv1.WhenToCallInstallCompleteModel1V1
+
+type WhenToCallInstallCompleteV1Model = mamv1.WhenToCallInstallCompleteV1Model
 
 type WhenToInstallApiModelV1 = mamv1.WhenToInstallApiModelV1
 
+type WhenToInstallModel1V1 = mamv1.WhenToInstallModel1V1
+
+type WhenToInstallV1Model = mamv1.WhenToInstallV1Model
+
 type BlobsV1UploadBlobAsyncOptions = mamv1.BlobsV1UploadBlobAsyncOptions
+
+type PurchasedAppsV1VppAppSearchAsyncOptions = mamv1.PurchasedAppsV1VppAppSearchAsyncOptions
 
 // --- mam/v2 (from internal-source/mamv2.json) ---
 
@@ -226,8 +349,6 @@ type ApplicationSupportedModelsV2Model = mamv2.ApplicationSupportedModelsV2Model
 
 type ApplicationTransformV2Model = mamv2.ApplicationTransformV2Model
 
-type ApplicationUuidV2 = mamv2.ApplicationUuidV2
-
 type ApplicationV2Model = mamv2.ApplicationV2Model
 
 type ApplicationsProvisionProfileModelV2 = mamv2.ApplicationsProvisionProfileModelV2
@@ -264,6 +385,8 @@ type EntityIdV2 = mamv2.EntityIdV2
 
 type EntityV1ModelV2 = mamv2.EntityV1ModelV2
 
+type ExpectedReturnCodeV2Model = mamv2.ExpectedReturnCodeV2Model
+
 type FileCriteriaApiModelV2 = mamv2.FileCriteriaApiModelV2
 
 type HowToInstallApiModelV2 = mamv2.HowToInstallApiModelV2
@@ -298,9 +421,17 @@ type Office365MamIntegrationPolicyResponseModelV2 = mamv2.Office365MamIntegratio
 
 type PackageDependencyV2Model = mamv2.PackageDependencyV2Model
 
+type PhaseProgressionRuleV1ModelV2 = mamv2.PhaseProgressionRuleV1ModelV2
+
+type PhaseV1ModelV2 = mamv2.PhaseV1ModelV2
+
+type PhasedDeploymentV1ModelV2 = mamv2.PhasedDeploymentV1ModelV2
+
 type PurchasedApplicationV2Model = mamv2.PurchasedApplicationV2Model
 
 type RegistryCriteriaApiModelV2 = mamv2.RegistryCriteriaApiModelV2
+
+type RuleV1ModelV2 = mamv2.RuleV1ModelV2
 
 type RuntimeApplicationPermissionV2 = mamv2.RuntimeApplicationPermissionV2
 
@@ -336,48 +467,290 @@ type InternalAppsV2GetApplicationBranchCacheStatisticsAsyncOptions = mamv2.Inter
 
 // --- mdm/v1 (from internal-source/mdmv1.json) ---
 
+// BaselinesV1Service service
+type BaselinesV1Service = mdmv1.BaselinesV1Service
+
+var NewBaselinesV1Service = mdmv1.NewBaselinesV1Service
+
+// CatalogsV1Service service
+type CatalogsV1Service = mdmv1.CatalogsV1Service
+
+var NewCatalogsV1Service = mdmv1.NewCatalogsV1Service
+
+// DeviceSensorsService service
+type DeviceSensorsService = mdmv1.DeviceSensorsService
+
+var NewDeviceSensorsService = mdmv1.NewDeviceSensorsService
+
 // DeviceSensorsV1Service service
 type DeviceSensorsV1Service = mdmv1.DeviceSensorsV1Service
 
 var NewDeviceSensorsV1Service = mdmv1.NewDeviceSensorsV1Service
+
+// OSVersionsV1Service service
+type OSVersionsV1Service = mdmv1.OSVersionsV1Service
+
+var NewOSVersionsV1Service = mdmv1.NewOSVersionsV1Service
+
+// PlatformsV1Service service
+type PlatformsV1Service = mdmv1.PlatformsV1Service
+
+var NewPlatformsV1Service = mdmv1.NewPlatformsV1Service
 
 // ProfilesV1Service service
 type ProfilesV1Service = mdmv1.ProfilesV1Service
 
 var NewProfilesV1Service = mdmv1.NewProfilesV1Service
 
+// ScriptAssignmentV1Service service
+type ScriptAssignmentV1Service = mdmv1.ScriptAssignmentV1Service
+
+var NewScriptAssignmentV1Service = mdmv1.NewScriptAssignmentV1Service
+
+// ScriptsV1Service service
+type ScriptsV1Service = mdmv1.ScriptsV1Service
+
+var NewScriptsV1Service = mdmv1.NewScriptsV1Service
+
 // SmartGroupsService service
 type SmartGroupsService = mdmv1.SmartGroupsService
 
 var NewSmartGroupsService = mdmv1.NewSmartGroupsService
 
+// TemplatesV1Service service
+type TemplatesV1Service = mdmv1.TemplatesV1Service
+
+var NewTemplatesV1Service = mdmv1.NewTemplatesV1Service
+
+// UpdatesV1Service service
+type UpdatesV1Service = mdmv1.UpdatesV1Service
+
+var NewUpdatesV1Service = mdmv1.NewUpdatesV1Service
+
+type BaseElementModelV1 = mdmv1.BaseElementModelV1
+
+type BaseModelV1 = mdmv1.BaseModelV1
+
+type BaseScriptAssignmentV1 = mdmv1.BaseScriptAssignmentV1
+
+type BaselineAssignmentRequestV1Model = mdmv1.BaselineAssignmentRequestV1Model
+
+type BaselineAssignmentsV1Model = mdmv1.BaselineAssignmentsV1Model
+
+type BaselineComplianceSummaryModelV1 = mdmv1.BaselineComplianceSummaryModelV1
+
+type BaselineDeviceComplianceV1Model = mdmv1.BaselineDeviceComplianceV1Model
+
+type BaselineDevicePoliciesV1Model = mdmv1.BaselineDevicePoliciesV1Model
+
+type BaselineDevicePolicyComplianceV1Model = mdmv1.BaselineDevicePolicyComplianceV1Model
+
+type BaselineDevicePolicyV1Model = mdmv1.BaselineDevicePolicyV1Model
+
+type BaselineDeviceStatusV1Model = mdmv1.BaselineDeviceStatusV1Model
+
+type BaselineDeviceV1Model = mdmv1.BaselineDeviceV1Model
+
+type BaselineInstallStatusReasonModelV1 = mdmv1.BaselineInstallStatusReasonModelV1
+
+type BaselineInstallStatusSummaryModelV1 = mdmv1.BaselineInstallStatusSummaryModelV1
+
+type BaselineStatusV1Model = mdmv1.BaselineStatusV1Model
+
+type BaselineSummaryModelV1 = mdmv1.BaselineSummaryModelV1
+
+type BaselineTemplateV1 = mdmv1.BaselineTemplateV1
+
+type BaselineV1Model = mdmv1.BaselineV1Model
+
+type BaselineVendorTemplateV1Model = mdmv1.BaselineVendorTemplateV1Model
+
+type BaselineVersionSummaryModelV1 = mdmv1.BaselineVersionSummaryModelV1
+
+type BulkUpdateScriptAssignmentV1 = mdmv1.BulkUpdateScriptAssignmentV1
+
+type CatalogDisplayV1 = mdmv1.CatalogDisplayV1
+
+type CategoryTreeItemV1 = mdmv1.CategoryTreeItemV1
+
 type CertificateV1 = mdmv1.CertificateV1
+
+type CreateBaselineRequestV1Model = mdmv1.CreateBaselineRequestV1Model
+
+type CreateScriptAssignmentV1 = mdmv1.CreateScriptAssignmentV1
+
+type CreateScriptV1 = mdmv1.CreateScriptV1
+
+type DeleteScriptResourceV1 = mdmv1.DeleteScriptResourceV1
+
+type DeploymentV1Model = mdmv1.DeploymentV1Model
 
 type DeviceSensorAssignedSmartGroupV1Model = mdmv1.DeviceSensorAssignedSmartGroupV1Model
 
 type DeviceSensorListResponseV1Model = mdmv1.DeviceSensorListResponseV1Model
 
+type DeviceSensorModelV1 = mdmv1.DeviceSensorModelV1
+
 type DeviceSensorRequestV1Model = mdmv1.DeviceSensorRequestV1Model
 
 type DeviceSensorResponseV1Model = mdmv1.DeviceSensorResponseV1Model
+
+type DeviceSensorSearchResponseModelV1 = mdmv1.DeviceSensorSearchResponseModelV1
+
+type DeviceSensorSmartGroupAssignmentFailedResponseV1Model = mdmv1.DeviceSensorSmartGroupAssignmentFailedResponseV1Model
+
+type DeviceSensorSmartGroupAssignmentResponseV1Model = mdmv1.DeviceSensorSmartGroupAssignmentResponseV1Model
+
+type DeviceSensorSmartGroupAssignmentV1Model = mdmv1.DeviceSensorSmartGroupAssignmentV1Model
 
 type DeviceSensorUpdateV1Model = mdmv1.DeviceSensorUpdateV1Model
 
 type DeviceSensorsBulkDeleteRequestV1Model = mdmv1.DeviceSensorsBulkDeleteRequestV1Model
 
-type EntityIdV1 = mdmv1.EntityIdV1
+type DeviceUpdateCountDeviceStatusV1Model = mdmv1.DeviceUpdateCountDeviceStatusV1Model
+
+type DeviceUpdateDeploymentBaseV1Model = mdmv1.DeviceUpdateDeploymentBaseV1Model
+
+type DeviceUpdateDeploymentRankingV1Model = mdmv1.DeviceUpdateDeploymentRankingV1Model
+
+type DeviceUpdateDeploymentUpdateV1Model = mdmv1.DeviceUpdateDeploymentUpdateV1Model
+
+type DeviceUpdateDeploymentUrlV1Model = mdmv1.DeviceUpdateDeploymentUrlV1Model
+
+type DeviceUpdateDeploymentV1Model = mdmv1.DeviceUpdateDeploymentV1Model
+
+type DeviceUpdateDetailsDeploymentsV1Model = mdmv1.DeviceUpdateDetailsDeploymentsV1Model
+
+type DeviceUpdateDetailsSupportedDevicesV1Model = mdmv1.DeviceUpdateDetailsSupportedDevicesV1Model
+
+type DeviceUpdateDeviceReadinessV1Model = mdmv1.DeviceUpdateDeviceReadinessV1Model
+
+type DeviceUpdatePagedSearchResultsV1Model = mdmv1.DeviceUpdatePagedSearchResultsV1Model
+
+type DeviceUpdateStatusDetailsV1Model = mdmv1.DeviceUpdateStatusDetailsV1Model
+
+type DeviceUpdateStatusPagedSearchResultsV1Model = mdmv1.DeviceUpdateStatusPagedSearchResultsV1Model
+
+type GetAllPoliciesResponseV1Model = mdmv1.GetAllPoliciesResponseV1Model
+
+type GetBaselineDeviceSummaryResponseV1Model = mdmv1.GetBaselineDeviceSummaryResponseV1Model
+
+type LinkV1 = mdmv1.LinkV1
+
+type NotificationV1Model = mdmv1.NotificationV1Model
+
+type OEMAndModelV1 = mdmv1.OEMAndModelV1
+
+type OEMV1 = mdmv1.OEMV1
+
+type OSVersionV1Model = mdmv1.OSVersionV1Model
+
+type OSVersionV2ModelV1 = mdmv1.OSVersionV2ModelV1
+
+type PlatformV2ModelV1 = mdmv1.PlatformV2ModelV1
+
+type PolicyCatalogModelV1 = mdmv1.PolicyCatalogModelV1
+
+type PolicyItemModelV1 = mdmv1.PolicyItemModelV1
+
+type PolicyModelV1 = mdmv1.PolicyModelV1
+
+type PolicyOptionModelV1 = mdmv1.PolicyOptionModelV1
+
+type PolicySearchItemV1Model = mdmv1.PolicySearchItemV1Model
+
+type PolicyTreeItemV1 = mdmv1.PolicyTreeItemV1
+
+type ScriptAssignmentResourceV1 = mdmv1.ScriptAssignmentResourceV1
+
+type ScriptAssignmentsSearchResultV1 = mdmv1.ScriptAssignmentsSearchResultV1
+
+type ScriptDeploymentV1 = mdmv1.ScriptDeploymentV1
+
+type ScriptResourceLiteV1 = mdmv1.ScriptResourceLiteV1
+
+type ScriptResourceV1 = mdmv1.ScriptResourceV1
+
+type ScriptSampleSearchRequestModelV1 = mdmv1.ScriptSampleSearchRequestModelV1
+
+type ScriptVariablesV1 = mdmv1.ScriptVariablesV1
+
+type ScriptsSearchResultV1 = mdmv1.ScriptsSearchResultV1
+
+type SecurityLevelV1Model = mdmv1.SecurityLevelV1Model
+
+type SecurityLevelV2ModelV1 = mdmv1.SecurityLevelV2ModelV1
+
+type SmartGroupCreateResponseV1 = mdmv1.SmartGroupCreateResponseV1
+
+type SmartGroupDataV1 = mdmv1.SmartGroupDataV1
+
+type SmartGroupDeviceV1 = mdmv1.SmartGroupDeviceV1
+
+type SmartGroupEditV1Model = mdmv1.SmartGroupEditV1Model
+
+type SmartGroupModelDetailV1 = mdmv1.SmartGroupModelDetailV1
+
+type SmartGroupOGV1 = mdmv1.SmartGroupOGV1
+
+type SmartGroupOperatingSystemV1 = mdmv1.SmartGroupOperatingSystemV1
 
 type SmartGroupSearchModelV1 = mdmv1.SmartGroupSearchModelV1
 
 type SmartGroupSearchResultV1 = mdmv1.SmartGroupSearchResultV1
 
+type SmartGroupTagV1 = mdmv1.SmartGroupTagV1
+
+type SmartGroupUserGroupV1 = mdmv1.SmartGroupUserGroupV1
+
+type SmartGroupUserV1 = mdmv1.SmartGroupUserV1
+
+type SmartGroupV1 = mdmv1.SmartGroupV1
+
+type UpdateBaselineRequestV1Model = mdmv1.UpdateBaselineRequestV1Model
+
+type UpdateScriptV1 = mdmv1.UpdateScriptV1
+
+type BaselinesV1CloneBaselineAsyncOptions = mdmv1.BaselinesV1CloneBaselineAsyncOptions
+
+type BaselinesV1GetBaselineDevicePoliciesAsyncOptions = mdmv1.BaselinesV1GetBaselineDevicePoliciesAsyncOptions
+
+type CatalogsV1GetAllPoliciesAsyncOptions = mdmv1.CatalogsV1GetAllPoliciesAsyncOptions
+
+type CatalogsV1GetPolicyAsyncOptions = mdmv1.CatalogsV1GetPolicyAsyncOptions
+
+type CatalogsV1GetPolicyCatalogAsyncOptions = mdmv1.CatalogsV1GetPolicyCatalogAsyncOptions
+
+type DeviceSensorsGetDeviceSensorsByDeviceUuidAsyncOptions = mdmv1.DeviceSensorsGetDeviceSensorsByDeviceUuidAsyncOptions
+
 type DeviceSensorsV1GetDeviceSensorsOptions = mdmv1.DeviceSensorsV1GetDeviceSensorsOptions
 
 type ProfilesV1SearchOptions = mdmv1.ProfilesV1SearchOptions
 
-type SmartGroupsSearchOptions = mdmv1.SmartGroupsSearchOptions
+type ScriptsV1GetScriptsByOrganizationGroupAsyncOptions = mdmv1.ScriptsV1GetScriptsByOrganizationGroupAsyncOptions
+
+type SmartGroupsSearchAsyncOptions = mdmv1.SmartGroupsSearchAsyncOptions
+
+type TemplatesV1GetPolicyAsyncOptions = mdmv1.TemplatesV1GetPolicyAsyncOptions
+
+type TemplatesV1SearchTemplateAsyncOptions = mdmv1.TemplatesV1SearchTemplateAsyncOptions
+
+type UpdatesV1BulkUpdateDeviceUpdateDeploymentOptions = mdmv1.UpdatesV1BulkUpdateDeviceUpdateDeploymentOptions
+
+type UpdatesV1DevicesUpdateActionOptions = mdmv1.UpdatesV1DevicesUpdateActionOptions
+
+type UpdatesV1GetDeploymentsByDeviceUpdateOptions = mdmv1.UpdatesV1GetDeploymentsByDeviceUpdateOptions
+
+type UpdatesV1GetDeviceUpdateStatusBySearchParametersOptions = mdmv1.UpdatesV1GetDeviceUpdateStatusBySearchParametersOptions
+
+type UpdatesV1GetDeviceUpdatesBySearchParametersOptions = mdmv1.UpdatesV1GetDeviceUpdatesBySearchParametersOptions
 
 // --- mdm/v2 (from internal-source/mdmv2.json) ---
+
+// DeviceSensorsV2Service service
+type DeviceSensorsV2Service = mdmv2.DeviceSensorsV2Service
+
+var NewDeviceSensorsV2Service = mdmv2.NewDeviceSensorsV2Service
 
 // ProfilesV2Service service
 type ProfilesV2Service = mdmv2.ProfilesV2Service
@@ -642,6 +1015,10 @@ type AppleWifiPayloadV2Entity = mdmv2.AppleWifiPayloadV2Entity
 
 type ApplicationListEntityV2 = mdmv2.ApplicationListEntityV2
 
+type BaseExceptionModelV2 = mdmv2.BaseExceptionModelV2
+
+type BaseModelV2 = mdmv2.BaseModelV2
+
 type CertificateMetadataModel1V2 = mdmv2.CertificateMetadataModel1V2
 
 type CertificateMetadataModelV2 = mdmv2.CertificateMetadataModelV2
@@ -653,6 +1030,26 @@ type CustomDataV2 = mdmv2.CustomDataV2
 type DenyRuleV2 = mdmv2.DenyRuleV2
 
 type DeviceProfileV2Entity = mdmv2.DeviceProfileV2Entity
+
+type DeviceSensorAssignedSmartGroupV1ModelV2 = mdmv2.DeviceSensorAssignedSmartGroupV1ModelV2
+
+type DeviceSensorAssignmentRankingV1ModelV2 = mdmv2.DeviceSensorAssignmentRankingV1ModelV2
+
+type DeviceSensorAssignmentRequestV1ModelV2 = mdmv2.DeviceSensorAssignmentRequestV1ModelV2
+
+type DeviceSensorAssignmentResponseV1ModelV2 = mdmv2.DeviceSensorAssignmentResponseV1ModelV2
+
+type DeviceSensorListResponseV2Model = mdmv2.DeviceSensorListResponseV2Model
+
+type DeviceSensorRequestV2Model = mdmv2.DeviceSensorRequestV2Model
+
+type DeviceSensorResponseLiteV2Model = mdmv2.DeviceSensorResponseLiteV2Model
+
+type DeviceSensorResponseV2Model = mdmv2.DeviceSensorResponseV2Model
+
+type DeviceSensorScriptEnvironmentVariableV1V2 = mdmv2.DeviceSensorScriptEnvironmentVariableV1V2
+
+type DeviceSensorUpdateV2Model = mdmv2.DeviceSensorUpdateV2Model
 
 type FirewallRuleV2 = mdmv2.FirewallRuleV2
 
@@ -788,6 +1185,10 @@ type WindowsDesktopWebClipsPayloadEntityV2 = mdmv2.WindowsDesktopWebClipsPayload
 
 type WindowsDesktopWifiPayloadEntityV2 = mdmv2.WindowsDesktopWifiPayloadEntityV2
 
+type DeviceSensorsV2BulkUpdateDeviceSensorAssignmentRankingsAsyncOptions = mdmv2.DeviceSensorsV2BulkUpdateDeviceSensorAssignmentRankingsAsyncOptions
+
+type DeviceSensorsV2GetDeviceSensorsAsyncOptions = mdmv2.DeviceSensorsV2GetDeviceSensorsAsyncOptions
+
 type ProfilesV2SearchProfilesOptions = mdmv2.ProfilesV2SearchProfilesOptions
 
 // --- mdm/v4 (from internal-source/mdmv4.json) ---
@@ -811,22 +1212,68 @@ type LinuxWifiPayloadEntityV4 = mdmv4.LinuxWifiPayloadEntityV4
 
 type SmartGroupEntity1V4 = mdmv4.SmartGroupEntity1V4
 
+// --- system/v1 (from internal-source/systemv1.json) ---
+
+// OrganizationGroupsService service
+type OrganizationGroupsService = systemv1.OrganizationGroupsService
+
+var NewOrganizationGroupsService = systemv1.NewOrganizationGroupsService
+
+type EntityReferenceV1 = systemv1.EntityReferenceV1
+
+type LocationGroupSearchResultV1 = systemv1.LocationGroupSearchResultV1
+
+type LocationGroupV1 = systemv1.LocationGroupV1
+
+type OrganizationGroupCollectionV1Model = systemv1.OrganizationGroupCollectionV1Model
+
+type OrganizationGroupsLocationGroupSearchOptions = systemv1.OrganizationGroupsLocationGroupSearchOptions
+
+// --- Hand-coded resource helpers (not codegen-driven) ---
+//
+// These re-exports surface hand-coded helpers in resources/ at the sdk
+// package level. The template does not auto-discover resources/; add new
+// entries here when a hand-coded helper is added (see docs/guides/
+// adding-resources.md §1.5 on when hand-coding is justified vs codegen).
+//
+// Constructor form: `func` rather than `var = resources.NewX`. The plan
+// Task 15 grep expected the `var` form, but the `func` form renders
+// cleaner godoc (the signature shows on pkg.go.dev) and matches the
+// pattern already established by NewProfileService below. Either form
+// satisfies the AC; the cycle-1 review accepted this divergence.
+
+type ChunkedUploader = resources.ChunkedUploader
+type ChunkSession = resources.ChunkSession
+type UploadOptions = resources.UploadOptions
+
+var DefaultChunkSize = resources.DefaultChunkSize
+
+// NewChunkedUploader constructs a ChunkedUploader backed by a fresh
+// InternalAppsV1Service for the given client. See
+// resources.NewChunkedUploader for behavior details.
+func NewChunkedUploader(c *Client) *ChunkedUploader {
+	return resources.NewChunkedUploader(c)
+}
+
 // --- Layer 2 service wrappers ---
 
 type ProfileService = services.ProfileService
 type ProfileResult = services.ProfileResult
 type ProfileEntry = services.ProfileEntry
+type ProfileServiceOption = services.ProfileServiceOption
+
+var WithProfileServiceOrganizationGroupID = services.WithProfileServiceOrganizationGroupID
 
 // NewProfileService creates a new ProfileService with eager discovery.
-func NewProfileService(ctx context.Context, c *Client) (*ProfileService, error) {
-	return services.NewProfileService(ctx, c)
+func NewProfileService(ctx context.Context, c *Client, opts ...ProfileServiceOption) (*ProfileService, error) {
+	return services.NewProfileService(ctx, c, opts...)
 }
 
 // NewProfileServiceWithoutDiscovery creates a ProfileService
 // with an empty registry, skipping the eager search call. Pair with
 // (ProfileService).RegisterEntry to seed known (id, platform) pairs.
-func NewProfileServiceWithoutDiscovery(c *Client) *ProfileService {
-	return services.NewProfileServiceWithoutDiscovery(c)
+func NewProfileServiceWithoutDiscovery(c *Client, opts ...ProfileServiceOption) *ProfileService {
+	return services.NewProfileServiceWithoutDiscovery(c, opts...)
 }
 
 // BoolPtr returns a pointer to the given bool value.

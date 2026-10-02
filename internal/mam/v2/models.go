@@ -2,7 +2,11 @@
 
 package mamv2
 
-import "github.com/euc-oss/terraform-sdk-uem/client"
+import (
+	"fmt"
+
+	"github.com/euc-oss/terraform-sdk-uem/client"
+)
 
 // AppAssignmentBspV1ModelV2 represents BSP app assignments with smart groups applicable for online and offline licenses.
 
@@ -25,7 +29,7 @@ type AppAssignmentDistributionV2Model struct {
 	// Auto update devices with previous versions is applicable for Android, iOS and Windows internal apps.
 	AutoUpdateDevicesWithPreviousVersions *bool `json:"auto_update_devices_with_previous_versions,omitempty"`
 	// Auto update priority. This is supposed to be only for Android and will default to null.
-	AutoUpdatePriority *int `json:"auto_update_priority,omitempty"`
+	AutoUpdatePriority string `json:"auto_update_priority,omitempty"`
 	// BSP app assignments with smart groups applicable for online and offline licenses.
 	BspAssignments *AppAssignmentBspV1ModelV2 `json:"bsp_assignments,omitempty"`
 	// Gets or sets the deferral message content for uem application deferral.
@@ -33,7 +37,7 @@ type AppAssignmentDistributionV2Model struct {
 	// Gets or sets the deferral message headline for uem application deferral.
 	DeferralMessageHeadline string `json:"deferral_message_headline,omitempty"`
 	// Gets or sets an application installation deferral notification type.
-	DeferralNotificationType *int `json:"deferral_notification_type,omitempty"`
+	DeferralNotificationType string `json:"deferral_notification_type,omitempty"`
 	// Description of the assignment group.
 	Description string `json:"description,omitempty"`
 	// Display in App Catalog flag is applicable for macOS and Windows SFD internal apps.
@@ -50,6 +54,10 @@ type AppAssignmentDistributionV2Model struct {
 	InstallerDeferralInterval *int `json:"installer_deferral_interval,omitempty"`
 	// Flag to check if the assignment is default.
 	IsDefaultAssignment *bool `json:"is_default_assignment,omitempty"`
+	// Flag to control on Enterprise Wipe app can be retained or removed.
+	KeepAppOnEnterpriseWipe string `json:"keep_app_on_enterprise_wipe,omitempty"`
+	// Flag to control on Unassignment app can be retained or removed.
+	KeepAppOnUnassignment string `json:"keep_app_on_unassignment,omitempty"`
 	// Keep app updated automatically (To push the application to the eligible devices). This is supposed to be only for macOS.
 	KeepAppUpdatedAutomatically *bool `json:"keep_app_updated_automatically,omitempty"`
 	// Gets or sets the maximum duration until the execution can be deferred (in days).
@@ -60,8 +68,10 @@ type AppAssignmentDistributionV2Model struct {
 	MsiDeploymentOverrideParams *MsiDeploymentOptionsV1ModelV2 `json:"msi_deployment_override_params,omitempty"`
 	// Name of the assignment group.
 	Name string `json:"name"`
-	// App pre release version applicable for Android For Work apps.
-	PreReleaseVersion *int `json:"pre_release_version,omitempty"`
+	// Model for phased deployment.
+	PhasedDeployment *PhasedDeploymentV1ModelV2 `json:"phased_deployment,omitempty"`
+	// x-override: pre_release_version is a QUIRK-11 polymorphic field — returns int 0 when unset, string (e.g. Production) when set. Uses client.IntOrString (Go) / int | str (Python). Retire when upstream declares a consistent wire type.
+	PreReleaseVersion *client.IntOrString `json:"pre_release_version,omitempty"`
 	// Flag to check the reboot override option.
 	RebootOverride *bool `json:"reboot_override,omitempty"`
 	// Requires approval flag is applicable only for Windows SFD apps.
@@ -70,6 +80,14 @@ type AppAssignmentDistributionV2Model struct {
 	SmartGroups []string `json:"smart_groups,omitempty"`
 	// Purchased application assignments with VPP licenses
 	VppAppDetails *AppAssignmentVppV1ModelV2 `json:"vpp_app_details,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *AppAssignmentDistributionV2Model) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for AppAssignmentDistributionV2Model")
+	}
+	return nil
 }
 
 // AppAssignmentRestrictionV1ModelV2 represents Restriction Model for assignments of an application.
@@ -153,7 +171,7 @@ type AppAssignmentV2Model struct {
 	// Flag to check if the assignment configuration is being saved through DDUI.
 	IsDynamicTemplateSaved *bool `json:"is_dynamic_template_saved,omitempty"`
 	// Priority of an assignment policy with 0 being the highest priority.
-	Priority *int `json:"priority"`
+	Priority int `json:"priority"`
 	// Restriction Model for assignments of an application.
 	Restriction *AppAssignmentRestrictionV1ModelV2 `json:"restriction,omitempty"`
 	// Tunnel Model for assignments of an application.
@@ -174,7 +192,7 @@ type AppConfigTemplateV2Model struct {
 	Key                  string                     `json:"key,omitempty"`
 	NestedConfigurations []AppConfigTemplateV2Model `json:"nested_configurations,omitempty"`
 	// Application configuration type
-	Type *int `json:"type,omitempty"`
+	Type string `json:"type,omitempty"`
 }
 
 // AppConfigurationV1ModelV2 represents Application configuration model
@@ -187,7 +205,7 @@ type AppConfigurationV1ModelV2 struct {
 	// Nested Configurations for app configs
 	NestedConfigurations []AppConfigurationV1ModelV2 `json:"nested_configurations,omitempty"`
 	// Application configuration type
-	Type *int `json:"type,omitempty"`
+	Type string `json:"type,omitempty"`
 	// Gets or sets current objects UUID.
 	UUID string `json:"uuid,omitempty"`
 	// Value of the application configuration
@@ -248,13 +266,13 @@ type AppFilesOptionsModelV2 struct {
 
 type AppListUsingProvisioningProfileModelV2 struct {
 	// Application UUIDs using this provisioning profile.
-	AppUUIDs []ApplicationUuidV2 `json:"appUuids,omitempty"`
+	AppUUIDs []string `json:"AppUuids,omitempty"`
 	// Date on which the provisioning profile was created.
-	CreationDate string `json:"creationDate,omitempty"`
+	CreationDate string `json:"CreationDate,omitempty"`
 	// Type of the device (e.g. Apple).
-	DeviceType string `json:"deviceType,omitempty"`
+	DeviceType string `json:"DeviceType,omitempty"`
 	// Date on which the provisioning profile will expire.
-	ExpirationDate string `json:"expirationDate,omitempty"`
+	ExpirationDate string `json:"ExpirationDate,omitempty"`
 	UUID           string `json:"uuid,omitempty"`
 }
 
@@ -298,7 +316,7 @@ type AppRemovalDeviceV2Model struct {
 	// Represent the unique identifier of the organization group.
 	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
 	// Represents the value of the threshold Status.
-	ThresholdStatus *int `json:"threshold_status,omitempty"`
+	ThresholdStatus string `json:"threshold_status,omitempty"`
 	// Represent the unique identifier of threshold.
 	ThresholdUUID string `json:"threshold_uuid,omitempty"`
 }
@@ -307,17 +325,17 @@ type AppRemovalDeviceV2Model struct {
 
 type AppRemovalDevicesReportRequestModelV2 struct {
 	// Represents report's export format.
-	ExportFormat *int `json:"export_format,omitempty"`
+	ExportFormat string `json:"export_format,omitempty"`
 	// The name of the column the results should be ordered by.
-	OrderBy *int `json:"order_by,omitempty"`
+	OrderBy string `json:"order_by,omitempty"`
 	// The unique identifier of the organization group.
 	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
 	// The search text for which the results will be filtered by.
 	SearchText string `json:"search_text,omitempty"`
 	// The sort order by direction.
-	SortDirection *int `json:"sort_direction,omitempty"`
+	SortDirection string `json:"sort_direction,omitempty"`
 	// The Threshold Status for which the results will be filtered by.
-	ThresholdStatus *int `json:"threshold_status,omitempty"`
+	ThresholdStatus string `json:"threshold_status,omitempty"`
 	// Represents the threshold uuid for which command is queued.
 	ThresholdUUID string `json:"threshold_uuid,omitempty"`
 }
@@ -330,19 +348,19 @@ type AppRemovalLogReportRequestModelV2 struct {
 	// The end of the application removal command date range in ISO 8601 format.
 	EndDate client.UEMTime `json:"end_date,omitempty"`
 	// Represents report's export format..
-	ExportFormat *int `json:"export_format,omitempty"`
+	ExportFormat string `json:"export_format,omitempty"`
 	// The name of the column the results should be ordered by.
-	OrderBy *int `json:"order_by,omitempty"`
+	OrderBy string `json:"order_by,omitempty"`
 	// The unique identifier of the organization group.
 	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
 	// The search text for which the results will be filtered by.
 	SearchText string `json:"search_text,omitempty"`
 	// The sort order by direction.
-	SortDirection *int `json:"sort_direction,omitempty"`
+	SortDirection string `json:"sort_direction,omitempty"`
 	// The start of the application removal command date range in ISO 8601 format.
 	StartDate client.UEMTime `json:"start_date,omitempty"`
 	// The Threshold Status for which the results will be filtered by.
-	ThresholdStatus []*int `json:"threshold_status,omitempty"`
+	ThresholdStatus []string `json:"threshold_status,omitempty"`
 }
 
 // AppRemovalLogRequestModelV2 represents Request model that encapsulates the data for ARP log load and search.
@@ -355,7 +373,7 @@ type AppRemovalLogRequestModelV2 struct {
 	// The end of the application removal command date range in UTC by which the results will be filtered. Format of the date is YYYY-MM-DD.
 	EndDate client.UEMTime `json:"end_date,omitempty"`
 	// The name of the column the results should be ordered by.
-	OrderBy *int `json:"order_by,omitempty"`
+	OrderBy string `json:"order_by,omitempty"`
 	// The unique identifier of the organization group.
 	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
 	// The result set page index.
@@ -365,11 +383,11 @@ type AppRemovalLogRequestModelV2 struct {
 	// The search text for which the results will be filtered by.
 	SearchText string `json:"search_text,omitempty"`
 	// The sort order by direction.
-	SortDirection *int `json:"sort_direction,omitempty"`
+	SortDirection string `json:"sort_direction,omitempty"`
 	// The start of the application removal command date range in UTC by which the results will be filtered. Format of the date is YYYY-MM-DD.
 	StartDate client.UEMTime `json:"start_date,omitempty"`
 	// The Threshold Status for which the results will be filtered by.
-	ThresholdStatus []*int `json:"threshold_status,omitempty"`
+	ThresholdStatus []string `json:"threshold_status,omitempty"`
 }
 
 // AppRemovalProtectionLogResponseV2Model represents Response model that returns a list of App removal protection logs based on the search criteria.
@@ -397,13 +415,13 @@ type AppRemovalProtectionLogV2Model struct {
 	// Date on which the App Removal command was last modified.
 	ModifiedOn client.UEMTime `json:"modified_on,omitempty"`
 	// Represents the source of command.
-	Source *int `json:"source,omitempty"`
+	Source string `json:"source,omitempty"`
 	// Count of devices for which command is queued.
 	ThresholdCount *int `json:"threshold_count,omitempty"`
 	// Indicate whether the threshold is created via the DSM flow for the ARP.
 	ThresholdCreatedViaDsmFlow *bool `json:"threshold_created_via_dsm_flow,omitempty"`
 	// Represents the value of the threshold Status.
-	ThresholdStatus *int `json:"threshold_status,omitempty"`
+	ThresholdStatus string `json:"threshold_status,omitempty"`
 	// Represents the the threshold uuid for which command is queued.
 	ThresholdUUID string `json:"threshold_uuid,omitempty"`
 }
@@ -412,7 +430,7 @@ type AppRemovalProtectionLogV2Model struct {
 
 type AppRemovalThresholdDetailV2Model struct {
 	// Action to be performed
-	Action *int `json:"action,omitempty"`
+	Action string `json:"action,omitempty"`
 	// The unique identifier of the organization group.
 	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
 	// Represents the the threshold uuid for which command is queued.
@@ -586,7 +604,7 @@ type ApplicationConfigurationV2Model struct {
 	// Configuration key.
 	Key string `json:"key,omitempty"`
 	// Type of the configuration value.
-	Type *int `json:"type,omitempty"`
+	Type string `json:"type,omitempty"`
 	// Configuration value.
 	Value string `json:"value,omitempty"`
 }
@@ -637,6 +655,8 @@ type ApplicationPolicyV1ModelV2 struct {
 	DefaultPermissionPolicy string `json:"default_permission_policy,omitempty"`
 	// The minimum version code for this application
 	MinimumVersionCode *int `json:"minimum_version_code,omitempty"`
+	// The network slice type for application policy.
+	NetworkSliceType string `json:"network_slice_type,omitempty"`
 	// List of permissions requested by this application, overriding the default permission policy. Titles and descriptions are localized to the user and organization group.
 	PermissionPolicyOverrides []RuntimeApplicationPermissionV2 `json:"permission_policy_overrides,omitempty"`
 	// The user control settings to apply for this application.
@@ -647,7 +667,7 @@ type ApplicationPolicyV1ModelV2 struct {
 
 type ApplicationRequestV2Model struct {
 	// Gets or sets the status of the application request.
-	ApprovalStatus *int `json:"approval_status"`
+	ApprovalStatus string `json:"approval_status"`
 	// Gets or sets the device UUID for the application.
 	DeviceUUID string `json:"device_uuid"`
 	// Gets or sets the notes from the Workspace ONE Intelligence about the approval status of the request.
@@ -656,6 +676,23 @@ type ApplicationRequestV2Model struct {
 	UpdatedAt client.UEMTime `json:"updated_at"`
 	// Gets or sets the User who processed the request.
 	UpdatedBy string `json:"updated_by"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *ApplicationRequestV2Model) Validate() error {
+	if r.ApprovalStatus == "" {
+		return fmt.Errorf("ApprovalStatus is required for ApplicationRequestV2Model")
+	}
+	if r.DeviceUUID == "" {
+		return fmt.Errorf("DeviceUUID is required for ApplicationRequestV2Model")
+	}
+	if r.Notes == "" {
+		return fmt.Errorf("Notes is required for ApplicationRequestV2Model")
+	}
+	if r.UpdatedBy == "" {
+		return fmt.Errorf("UpdatedBy is required for ApplicationRequestV2Model")
+	}
+	return nil
 }
 
 // ApplicationSearchV2Model represents The application search V2 model.
@@ -711,13 +748,6 @@ type ApplicationTransformV2Model struct {
 	TransformBlobUUID string `json:"transform_blob_uuid,omitempty"`
 	// The name of the uploaded transform file.
 	TransformFileName string `json:"transform_file_name,omitempty"`
-}
-
-// ApplicationUuidV2 represents UUID of an Application.
-
-type ApplicationUuidV2 struct {
-	// The UUID of the Application.
-	AppUUIDs string `json:"appUuids,omitempty"`
 }
 
 // ApplicationV2Model represents The application V2 model.
@@ -795,7 +825,7 @@ type ApplicationV2Model struct {
 	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
 	// The platform of the application.
 	Platform string `json:"platform,omitempty"`
-	// The push mode of the application.
+	// The push mode of the application. Values: 0=AUTO, 1=ON_DEMAND.
 	PushMode *int `json:"push_mode,omitempty"`
 	// The root organization group name.
 	RootOrganizationGroupName string `json:"root_organization_group_name,omitempty"`
@@ -885,8 +915,8 @@ type BookV2Model struct {
 	// The organization group identifier.
 	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
 	// The platform of the application.
-	Platform *int `json:"platform,omitempty"`
-	// The push mode of the application.
+	Platform string `json:"platform,omitempty"`
+	// The push mode of the book. Values: 0=AUTO, 1=ON_DEMAND.
 	PushMode *int `json:"push_mode,omitempty"`
 	// The root organization group name.
 	RootOrganizationGroupName string `json:"root_organization_group_name,omitempty"`
@@ -931,7 +961,15 @@ type BulkSearchRequestV2Model struct {
 	// List of unique package identifiers to search for in the enterprise repository. Each identifier should match the format used throughout the repository (e.g., 'Microsoft.VisualStudioCode').
 	PackageIdentifiers []string `json:"package_identifiers"`
 	// Primary operating system platform supported by this application package. Additional platform support may be available in specific versions.
-	Platform *int `json:"platform,omitempty"`
+	Platform string `json:"platform,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *BulkSearchRequestV2Model) Validate() error {
+	if r.PackageIdentifiers == nil {
+		return fmt.Errorf("PackageIdentifiers is required for BulkSearchRequestV2Model")
+	}
+	return nil
 }
 
 // BulkSearchResponseV2Model represents Response model for bulk search operations containing found applications and identifiers that were not found
@@ -1058,7 +1096,9 @@ type EnterpriseAppPackageResponseV2Model struct {
 	// Comprehensive dependency information specifying all prerequisites required for successful package installation and operation across different dependency categories
 	Dependencies *DependencyInfoV2Model `json:"dependencies,omitempty"`
 	// Specifies the privilege elevation requirements for installing this package. This helps determine the necessary user permissions and security context for installation.
-	ElevationRequirement *int `json:"elevation_requirement,omitempty"`
+	ElevationRequirement string `json:"elevation_requirement,omitempty"`
+	// Collection of expected return codes from the installer, mapping specific exit codes to known response types for installation outcome classification.
+	ExpectedReturnCodes []ExpectedReturnCodeV2Model `json:"expected_return_codes,omitempty"`
 	// Boolean indicator specifying whether additional related information is available beyond the current response, such as more version history entries.
 	HasMore *bool `json:"has_more,omitempty"`
 	// App icon hash generated with SHA256 algorithm.
@@ -1066,13 +1106,13 @@ type EnterpriseAppPackageResponseV2Model struct {
 	// App icon url.
 	IconURL string `json:"icon_url,omitempty"`
 	// List of supported installation modes that determine the level of user interaction during package installation. This allows for flexible deployment scenarios from fully automated to interactive installations.
-	InstallModes []*int `json:"install_modes,omitempty"`
+	InstallModes []string `json:"install_modes,omitempty"`
 	// Expected collection of exit codes from the installer indicating a successful installation. This is used to validate that the installation completed without errors.
 	InstallerSuccessCodes []string `json:"installer_success_codes,omitempty"`
 	// Command-line switches and parameters for customizing installer behavior during automated deployments and enterprise installation scenarios
 	InstallerSwitches *InstallerSwitchesV2Model `json:"installer_switches,omitempty"`
 	// Format type of the package installer, indicating the installation mechanism and expected behavior.
-	InstallerType *int `json:"installer_type,omitempty"`
+	InstallerType string `json:"installer_type,omitempty"`
 	// Collection of available installer packages for different architectures, platforms, or configurations. Each installer entry contains specific download and installation information.
 	Installers []InstallerInfoV2Model `json:"installers,omitempty"`
 	// Minimum operating system version required for successful installation and operation of the package. This helps prevent installation on incompatible systems.
@@ -1090,7 +1130,7 @@ type EnterpriseAppPackageResponseV2Model struct {
 	// Name of the organization or individual responsible for creating and maintaining the application package. This is typically the software vendor or developer.
 	PublisherName string `json:"publisher_name,omitempty"`
 	// Installation scope determining whether the package is installed for the current user only or system-wide for all users. This affects installation permissions and package visibility.
-	Scope *int `json:"scope,omitempty"`
+	Scope string `json:"scope,omitempty"`
 	// Concise description of the application's primary purpose and functionality, localized according to the requested locale preferences.
 	ShortDescription string `json:"short_description,omitempty"`
 	// ISO 8601 timestamp of the most recent modification to this package version's metadata or associated files. This helps identify when package information was last refreshed.
@@ -1143,6 +1183,15 @@ type EntityV1ModelV2 struct {
 	UUID string `json:"uuid,omitempty"`
 }
 
+// ExpectedReturnCodeV2Model represents Represents an expected return code from an installer, mapping a specific exit code to a known response type for installation outcome classification
+
+type ExpectedReturnCodeV2Model struct {
+	// Numeric exit code returned by the installer process upon completion.
+	InstallerReturnCode *int `json:"installer_return_code,omitempty"`
+	// Classification of the installer return code, describing the expected outcome or required action (e.g., rebootRequiredToFinish, systemNotSupported).
+	ReturnResponse string `json:"return_response,omitempty"`
+}
+
 // FileCriteriaApiModelV2 represents A model class for the file criteria.
 
 type FileCriteriaApiModelV2 struct {
@@ -1193,9 +1242,11 @@ type HowToInstallApiModelV2 struct {
 
 type ImportPackageRequestV2Model struct {
 	// Target system architecture for the application package.
-	Architecture *int `json:"architecture,omitempty"`
+	Architecture string `json:"architecture,omitempty"`
+	// Gets or sets a value indicating whether should Assignment Be Carried Over From Older Version Of App.
+	CarryoverAssignments *bool `json:"carryover_assignments,omitempty"`
 	// The type of installer used by the application package.
-	InstallerType *int `json:"installer_type,omitempty"`
+	InstallerType string `json:"installer_type,omitempty"`
 	// The installer meta-data locale.
 	Locale string `json:"locale,omitempty"`
 	// The organization group uuid.
@@ -1205,7 +1256,18 @@ type ImportPackageRequestV2Model struct {
 	// Version of the application package to search for. Supports semantic versioning (e.g., '1.2.3').
 	PackageVersion string `json:"package_version"`
 	// The scope of installer.
-	Scope *int `json:"scope,omitempty"`
+	Scope string `json:"scope,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *ImportPackageRequestV2Model) Validate() error {
+	if r.PackageIdentifier == "" {
+		return fmt.Errorf("PackageIdentifier is required for ImportPackageRequestV2Model")
+	}
+	if r.PackageVersion == "" {
+		return fmt.Errorf("PackageVersion is required for ImportPackageRequestV2Model")
+	}
+	return nil
 }
 
 // ImportPackageResponseV2Model represents Response model for blobIds returned after import.
@@ -1219,15 +1281,17 @@ type ImportPackageResponseV2Model struct {
 
 type InstallerInfoV2Model struct {
 	// Target processor architecture for installer package.
-	Architecture *int `json:"architecture,omitempty"`
+	Architecture string `json:"architecture,omitempty"`
 	// Comprehensive dependency information specifying all prerequisites required for successful package installation and operation across different dependency categories
 	Dependencies *DependencyInfoV2Model `json:"dependencies,omitempty"`
 	// Specifies the privilege elevation requirements for installing this package. This helps determine the necessary user permissions and security context for installation.
-	ElevationRequirement *int `json:"elevation_requirement,omitempty"`
+	ElevationRequirement string `json:"elevation_requirement,omitempty"`
+	// Collection of expected return codes from the installer, mapping specific exit codes to known response types for installation outcome classification.
+	ExpectedReturnCodes []ExpectedReturnCodeV2Model `json:"expected_return_codes,omitempty"`
 	// Gets or sets Install command for the installers.
 	InstallCommand string `json:"install_Command,omitempty"`
 	// List of installation modes supported by this installer, determining the level of user interaction and feedback during the installation process.
-	InstallModes []*int `json:"install_modes,omitempty"`
+	InstallModes []string `json:"install_modes,omitempty"`
 	// Extracted installer file name derived from the installer URL or response headers.
 	InstallerFileName string `json:"installer_file_name,omitempty"`
 	// Locale code indicating the primary language and regional settings for this specific installer. This may differ from the package's default locale for localized installer packages.
@@ -1239,7 +1303,7 @@ type InstallerInfoV2Model struct {
 	// Command-line switches and parameters for customizing installer behavior during automated deployments and enterprise installation scenarios
 	InstallerSwitches *InstallerSwitchesV2Model `json:"installer_switches,omitempty"`
 	// Specific installer format and technology used by this installer package. This determines the installation behavior, required tools, and supported installation options.
-	InstallerType *int `json:"installer_type,omitempty"`
+	InstallerType string `json:"installer_type,omitempty"`
 	// Direct download URL for the installer package.
 	InstallerURL string `json:"installer_url,omitempty"`
 	// Minimum operating system version required for this specific installer. This may be more restrictive than the general package requirements due to architecture or feature dependencies.
@@ -1247,7 +1311,7 @@ type InstallerInfoV2Model struct {
 	// List of specific platform variants supported by this installer, providing detailed compatibility information beyond the general platform classification.
 	Platform []*int `json:"platform,omitempty"`
 	// Installation scope determining whether the application will be installed for the current user only or system-wide for all users. This affects required permissions and application visibility.
-	Scope *int `json:"scope,omitempty"`
+	Scope string `json:"scope,omitempty"`
 }
 
 // InstallerSwitchesV2Model represents Command-line switches and parameters for customizing installer behavior during automated deployments and enterprise installation scenarios
@@ -1282,6 +1346,10 @@ type InternalAppModelV2 struct {
 	AppProvisioningProfileUUID string `json:"AppProvisioningProfileUuid,omitempty"`
 	// Gets or sets the size of the application in kilo bytes.
 	AppSizeInKB *int `json:"AppSizeInKB,omitempty"`
+	// Gets or sets the GUID for the application blob.
+	ApplicationFileBlobGUID string `json:"ApplicationFileBlobGUID,omitempty"`
+	// Gets or sets the file hash for the binary blob.
+	ApplicationFileHash string `json:"ApplicationFileHash,omitempty"`
 	// Gets or sets the name of the application.
 	ApplicationName string `json:"ApplicationName,omitempty"`
 	// Gets or sets the URL of the application.
@@ -1312,6 +1380,8 @@ type InternalAppModelV2 struct {
 	ExcludedSmartGroupIds []*int `json:"ExcludedSmartGroupIds,omitempty"`
 	// A model class for files options.
 	FilesOptions *AppFilesOptionsModelV2 `json:"FilesOptions,omitempty"`
+	// Gets or sets the GUID for the large icon blob.
+	LargeIconBlobGUID string `json:"LargeIconBlobGUID,omitempty"`
 	// Gets or sets the LaunchCommand./&gt;.
 	LaunchCommand string `json:"LaunchCommand,omitempty"`
 	// Gets or sets the LaunchType./&gt;.
@@ -1322,6 +1392,8 @@ type InternalAppModelV2 struct {
 	ManagedBy string `json:"ManagedBy,omitempty"`
 	// Gets or sets managed By Organization Group Uuid.
 	ManagedByUUID string `json:"ManagedByUuid,omitempty"`
+	// Gets or sets the GUID for the medium icon blob.
+	MediumIconBlobGUID string `json:"MediumIconBlobGUID,omitempty"`
 	// Gets or sets minimum Operating System Version of the application.
 	MinimumOperatingSystem string `json:"MinimumOperatingSystem,omitempty"`
 	// MSI deployment param model.
@@ -1338,6 +1410,8 @@ type InternalAppModelV2 struct {
 	SdkProfileID *int `json:"SdkProfileId,omitempty"`
 	// Gets or sets sdk Profile Uuid of the App if it uses SDK Profile.
 	SdkProfileUUID string `json:"SdkProfileUuid,omitempty"`
+	// Gets or sets the GUID for the small icon blob.
+	SmallIconBlobGUID string `json:"SmallIconBlobGUID,omitempty"`
 	// Gets or sets status of the App.
 	Status string `json:"Status,omitempty"`
 	// Gets or sets The supported models of the app.
@@ -1367,11 +1441,11 @@ type KioskBookmarkResponseV2Model struct {
 
 type LatestAppPackageInstallerInfoModelV2 struct {
 	// Target processor architecture for installer package.
-	Architecture *int `json:"architecture,omitempty"`
+	Architecture string `json:"architecture,omitempty"`
 	// Locale code indicating the primary language and regional settings for this specific installer. This may differ from the package's default locale for localized installer packages.
 	InstallerLocale string `json:"installer_locale,omitempty"`
 	// Specific installer format and technology used by this installer package. This determines the installation behavior, required tools, and supported installation options.
-	InstallerType *int `json:"installer_type,omitempty"`
+	InstallerType string `json:"installer_type,omitempty"`
 }
 
 // LatestVersionAppPackageModelV2 represents The application information for latest versioned package.
@@ -1438,7 +1512,7 @@ type MsiDeploymentParameterModelV2 struct {
 type MsiDeploymentParametersV2Model struct {
 	// The command line options to be used when calling MSIEXEC.exe.
 	CommandLineArguments string `json:"command_line_arguments,omitempty"`
-	// The windows msi install context.
+	// The Windows MSI install context. Values: 0=UNKNOWN, 1=DEVICE, 2=USER.
 	InstallContext *int `json:"install_context,omitempty"`
 	// The amount of time in minutes that the installation process can run before the installer considers the installation may have failed and no longer monitors the installation operation. Range 0-60.
 	InstallTimeoutInMinutes *int `json:"install_timeout_in_minutes,omitempty"`
@@ -1466,6 +1540,87 @@ type PackageDependencyV2Model struct {
 	PackageIdentifier string `json:"package_identifier,omitempty"`
 }
 
+// PhaseProgressionRuleV1ModelV2 represents Model for progression rules for the phase.
+
+type PhaseProgressionRuleV1ModelV2 struct {
+	// Condition for progression.
+	Condition string `json:"condition,omitempty"`
+	// Key for the rule. Example: "PHASE_DURATION" or "INSTALL_RATE".
+	Key string `json:"key,omitempty"`
+	// Operator for the rule.
+	Operator string `json:"operator,omitempty"`
+	// Type of the rule.
+	RuleType string `json:"rule_type,omitempty"`
+	// List of rules for progression.
+	Rules []PhaseProgressionRuleV1ModelV2 `json:"rules,omitempty"`
+	// Value for the rule.
+	Value string `json:"value,omitempty"`
+}
+
+// PhaseV1ModelV2 represents Model for phase.
+
+type PhaseV1ModelV2 struct {
+	// Gets or sets additional properties for the phase, which can include custom metadata or configuration settings.
+	AdditionalProperties map[string]interface{} `json:"additional_properties,omitempty"`
+	// Gets or sets the description of the phase.
+	Description string `json:"description,omitempty"`
+	// Gets or sets entitlement rule uuid for the phase.
+	EntitlementRuleUUID string `json:"entitlement_rule_uuid,omitempty"`
+	// Gets or sets the name of the phase.
+	Name string `json:"name,omitempty"`
+	// Model for rule.
+	PhaseRule *RuleV1ModelV2 `json:"phase_rule,omitempty"`
+	// Gets or sets the time of day (with time zone) when the phase was progressed.
+	ProgressedAt client.UEMTime `json:"progressed_at,omitempty"`
+	// Gets or sets the admin info phased deployment was progressed by.
+	ProgressedBy string `json:"progressed_by,omitempty"`
+	// Gets or sets the admin info phased deployment was progressed by.
+	ProgressedByUserName string `json:"progressed_by_user_name,omitempty"`
+	// Model for progression rules for the phase.
+	ProgressionRule *PhaseProgressionRuleV1ModelV2 `json:"progression_rule,omitempty"`
+	// Gets or sets the time at which the progression rule is evaluated for the phase.
+	ProgressionRuleEvalAt client.UEMTime `json:"progression_rule_eval_at,omitempty"`
+	// Gets or sets the progression type for a phase in a phased deployment.
+	ProgressionType string `json:"progression_type,omitempty"`
+	// Gets or sets sequence number of the phase.
+	Sequence *int `json:"sequence,omitempty"`
+	// Gets or sets the start date of the phase.
+	StartedAt client.UEMTime `json:"started_at,omitempty"`
+	// Gets or sets the status of the phased deployment.
+	Status string `json:"status,omitempty"`
+	// Gets or sets type of the phase.
+	Type string `json:"type,omitempty"`
+	// Gets or sets uUID of the phase.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// PhasedDeploymentV1ModelV2 represents Model for phased deployment.
+
+type PhasedDeploymentV1ModelV2 struct {
+	// Gets or sets the assignment published time.
+	AssignmentPublishedTime client.UEMTime `json:"assignment_published_time,omitempty"`
+	// Gets or sets the creation timestamp of the phased deployment.
+	CreatedAt client.UEMTime `json:"created_at,omitempty"`
+	// Gets or sets the UUID of the admin who created the deployment.
+	CreatedBy string `json:"created_by,omitempty"`
+	// Gets or sets the display name of status of the phased deployment.
+	DisplayStatus string `json:"display_status,omitempty"`
+	// Gets or sets list of phases in the phased deployment.
+	Phases []PhaseV1ModelV2 `json:"phases,omitempty"`
+	// Gets or sets the start date of the phased deployment.
+	StartDate client.UEMTime `json:"start_date,omitempty"`
+	// Gets or sets the status of the phased deployment.
+	Status string `json:"status,omitempty"`
+	// Gets or sets the tenant UUID.
+	TenantUUID string `json:"tenant_uuid,omitempty"`
+	// Gets or sets the update timestamp of the phased deployment.
+	UpdatedAt client.UEMTime `json:"updated_at,omitempty"`
+	// Gets or sets the UUID of the admin who last updated the deployment.
+	UpdatedBy string `json:"updated_by,omitempty"`
+	// Gets or sets UUID of the phased deployment.
+	UUID string `json:"uuid,omitempty"`
+}
+
 // PurchasedApplicationV2Model represents Contains information about a purchased application and its assignments.
 
 type PurchasedApplicationV2Model struct {
@@ -1484,11 +1639,11 @@ type PurchasedApplicationV2Model struct {
 	// Application's organization group UUID.
 	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
 	// Product type.
-	ProductType *int `json:"product_type,omitempty"`
+	ProductType string `json:"product_type,omitempty"`
 	// Application's UUID.
 	UUID string `json:"uuid,omitempty"`
 	// Type of licensing that the application is eligbile for.
-	VppAppEligibility *int `json:"vpp_app_eligibility,omitempty"`
+	VppAppEligibility string `json:"vpp_app_eligibility,omitempty"`
 }
 
 // RegistryCriteriaApiModelV2 represents A model class for the registry criteria.
@@ -1504,6 +1659,17 @@ type RegistryCriteriaApiModelV2 struct {
 	Path string `json:"Path,omitempty"`
 	// Gets or sets Criteria Operator. Supported values: Any, EqualTo, GreaterThan, LessThan NotEqualTo, GreaterThanOrEqualTo, LessThanOrEqualTo.
 	VersionCondition string `json:"VersionCondition,omitempty"`
+}
+
+// RuleV1ModelV2 represents Model for rule.
+
+type RuleV1ModelV2 struct {
+	// Gets or sets list of smart groups excluded the phase.
+	ExclusionSmartGroupUUIDs []string `json:"exclusion_smart_group_uuids,omitempty"`
+	// Gets or sets percentage contribution of the phase.
+	Percentage *int `json:"percentage,omitempty"`
+	// Gets or sets list of smart groups for the phase.
+	SmartGroupUUIDs []string `json:"smart_group_uuids,omitempty"`
 }
 
 // RuntimeApplicationPermissionV2 represents Object containing runtime permissions requested by an application.
@@ -1553,7 +1719,7 @@ type VppDeploymentParametersV2Model struct {
 	// Application's configurations.
 	ApplicationConfigurations []ApplicationConfigurationV2Model `json:"application_configurations,omitempty"`
 	// Type to deploy the application.
-	AssignmentType *int `json:"assignment_type,omitempty"`
+	AssignmentType string `json:"assignment_type,omitempty"`
 	// Indicates whether to prevent the application's backup.
 	PreventApplicationBackup *bool `json:"prevent_application_backup,omitempty"`
 	// Indicates whether to send the prevent removal application attributes.

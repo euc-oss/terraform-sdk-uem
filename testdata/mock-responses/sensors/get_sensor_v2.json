@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/{sensorUuid}",
+    "method": "GET",
+    "description": "V2 get device sensor by UUID (GET /devicesensors/{sensorUuid}), captured immediately after create. Real-wire finding: 'timeout' is returned as 0 even though the create request sent timeout=120 -- the anonymizer does not touch the 'timeout' field (verified in tools/mock-capture/anonymize.go), so this is a genuine server-side value, not an anonymization artifact.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "description": "Weekends reserve time for Rock Climbing and person.",
+      "execution_architecture": "EITHER64OR32BIT",
+      "execution_context": "SYSTEM",
+      "is_read_only": false,
+      "name": "Test LemonChiffonstairs",
+      "organization_group_uuid": "08e56864-baa2-84e7-71b7-54711284a42e",
+      "platform": "WIN_RT",
+      "query_response_type": "STRING",
+      "query_type": "POWERSHELL",
+      "script_data": "V3JpdGUtT3V0cHV0ICJoZWxsbyI=",
+      "script_environment_variables": [],
+      "timeout": 0,
+      "uuid": "0e44d914-4225-2276-b7cc-5cecb1ab3c4b"
+    }
+  }
+}

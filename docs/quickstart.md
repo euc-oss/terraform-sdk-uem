@@ -137,7 +137,12 @@ The `platform` argument must be one of the `wsone.Platform*` constants:
 API errors come back as `*wsone.APIError`. Use `errors.As` to inspect them:
 
 ```go
-import "errors"
+import (
+    "errors"
+    "log"
+
+    wsone "github.com/euc-oss/terraform-sdk-uem"
+)
 
 profiles, err := wsone.ListProfiles(ctx, client, nil)
 if err != nil {
@@ -155,6 +160,7 @@ if err != nil {
     }
     return
 }
+log.Printf("found %d profiles", len(profiles))
 ```
 
 ---
@@ -175,6 +181,9 @@ client, err := wsone.NewClient(wsone.Config{
     TenantCode: os.Getenv("WSONE_TENANT_CODE"),
     Auth:       auth,
 })
+if err != nil {
+    return err
+}
 ```
 
 `NewBasicAuth` never returns an error (credentials are only encoded, not

@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/68990",
+    "method": "GET",
+    "description": "Live-captured with tools/mock-capture --allow-error-status against UEM 26.2 on 2026-09-24, inside a disposable sdktestrun org group, on an object deleted moments earlier (the org group was deleted afterwards and a second DELETE on it returned 400, quirk 20). Status, errorCode and message are verbatim except that the real resource id (in the path and the message) is replaced by a fixed id chosen to be unique in this corpus; the activityId is the capture anonymizer's output. GET /api/mdm/profiles/{profileId} after the profile was deleted: 400, errorCode 400, 'Invalid Profile <id>.'. client.IsNotFound matches the message prefix, since errorCode is only the generic 400.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 400,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "activityId": "92e8608f-3ccd-80ff-7866-4fcdc54ef8a4",
+      "errorCode": 400,
+      "message": "Invalid Profile 68990."
+    }
+  }
+}

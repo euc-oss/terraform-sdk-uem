@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/{sensorUuid}",
+    "method": "PUT",
+    "description": "V2 update device sensor (PUT /devicesensors/{sensorUuid}), 204 no content. Body changed timeout 120->180 and other fields; confirmed genuinely applied via a follow-up GET (not captured separately -- see get_sensor_v2.json note re: timeout always reading back as 0 regardless).",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

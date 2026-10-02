@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/deployments/{uuid}",
+    "method": "DELETE",
+    "description": "Captured DELETE /api/mdm/updates/deployments/{uuid} — canonical docs say 204 No Content. Confirmed by re-GET: a subsequent GET on the same uuid returns 404 (see updates_get_details fixture family for the 404 error-body shape), not a stale 200.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

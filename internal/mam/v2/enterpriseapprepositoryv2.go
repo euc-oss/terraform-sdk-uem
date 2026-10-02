@@ -39,8 +39,8 @@ func (s *EnterpriseAppRepositoryV2Service) BulkSearchApplicationsAsync(
 
 // EnterpriseAppRepositoryV2GetApplicationsDetailsAsyncOptions holds optional query parameters for GetApplicationsDetailsAsync.
 type EnterpriseAppRepositoryV2GetApplicationsDetailsAsyncOptions struct {
-	PackageID string // Unique identifier for the application package in the enterprise repository.
-	Version   string // Version of the application package to retrieve.
+	PackageID string // Unique package identifier that distinguishes the application package within the enterprise repository. This is typically in reverse domain notation format (e.g., 'Microsoft.VisualStudioCode').(Required)
+	Version   string // Specific version string of the package to retrieve. The version must match exactly as stored in the repository.(Required)
 }
 
 // GetApplicationsDetailsAsync — New - Get applications details for the version

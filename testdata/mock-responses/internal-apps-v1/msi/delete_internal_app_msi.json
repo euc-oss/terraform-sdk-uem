@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/67002",
+    "method": "DELETE",
+    "description": "DELETE /api/mam/apps/internal/{applicationid} (note lowercase applicationid -- a separate internal codegen config path entry from the GET's {applicationId}), live-captured via mock-capture against the configured test org group on the 26.2.0.0 test tenant, 2026-07-30. 204, empty body. This call also served as teardown for the msi test app created for the capture. The real live-captured id was anonymized and baked in as a literal path (67002, matching the sibling GET fixture) rather than the {applicationid} template, for the same collision-avoidance reason documented on the apk fixtures. POST-DELETE FINDING: a follow-up GET on the same id returned a consistent HTTP 401 with body {\"errorCode\":7000,\"message\":\"Application not found or user does not have access to it.\"} -- reproduced identically on the apk platform's teardown (see delete_internal_app_apk.json), confirming this is the endpoint's genuine not-found signature on this tenant. Not the runbook's failsafe condition (still returns 200).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

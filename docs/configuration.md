@@ -17,6 +17,9 @@ c, err := wsone.NewClient(wsone.Config{
     TenantCode: "your-tenant-code",
     Auth:       auth, // wsone.AuthProvider
 })
+if err != nil {
+    return err
+}
 ```
 
 ## Required Fields
@@ -80,6 +83,9 @@ c, err := wsone.NewClient(wsone.Config{
     RateLimit:  500,
     Timeout:    60 * time.Second,
 })
+if err != nil {
+    return err
+}
 ```
 
 ## Custom HTTP Client
@@ -95,7 +101,10 @@ import (
     wsone "github.com/euc-oss/terraform-sdk-uem"
 )
 
-proxy, _ := url.Parse("http://proxy.corp.example.com:8080")
+proxy, err := url.Parse("http://proxy.corp.example.com:8080")
+if err != nil {
+    return err
+}
 
 transport := &http.Transport{
     Proxy: http.ProxyURL(proxy),
@@ -110,6 +119,9 @@ c, err := wsone.NewClient(wsone.Config{
     Auth:       auth,
     HTTPClient: &http.Client{Transport: transport},
 })
+if err != nil {
+    return err
+}
 ```
 
 **Important:** The SDK always applies its own request timeout to the supplied
@@ -140,6 +152,9 @@ c, err := wsone.NewClient(wsone.Config{
     Auth:       auth,
     MaxRetries: 5, // up to 6 total attempts
 })
+if err != nil {
+    return err
+}
 ```
 
 ## Rate Limiting
@@ -158,6 +173,9 @@ c, err := wsone.NewClient(wsone.Config{
     Auth:       auth,
     RateLimit:  200, // 200 requests per minute
 })
+if err != nil {
+    return err
+}
 ```
 
 ## Timeouts
@@ -174,6 +192,9 @@ c, err := wsone.NewClient(wsone.Config{
     Auth:       auth,
     Timeout:    60 * time.Second,
 })
+if err != nil {
+    return err
+}
 ```
 
 The timeout applies per attempt. A request that is retried three times can
@@ -193,6 +214,7 @@ contexts to enforce per-operation timeouts and to cancel in-flight requests.
 ```go
 import (
     "context"
+    "fmt"
     "time"
     wsone "github.com/euc-oss/terraform-sdk-uem"
 )
@@ -201,6 +223,10 @@ ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 defer cancel()
 
 profiles, err := wsone.ListProfiles(ctx, c, nil)
+if err != nil {
+    return err
+}
+fmt.Println(len(profiles))
 ```
 
 **Cancellation:**
@@ -217,7 +243,9 @@ go func() {
 profiles, err := wsone.ListProfiles(ctx, c, nil)
 if err != nil {
     // err wraps context.Canceled when the context was cancelled.
+    return err
 }
+fmt.Println(len(profiles))
 ```
 
 Context cancellation propagates through the retry loop: an in-progress retry
@@ -254,6 +282,9 @@ c, err := wsone.NewClient(wsone.Config{
         },
     },
 })
+if err != nil {
+    return err
+}
 ```
 
 ## Debug Logging
@@ -298,6 +329,9 @@ c, err := wsone.NewClient(wsone.Config{
     Auth:       auth,
     HTTPClient: &http.Client{Transport: &loggingTransport{base: http.DefaultTransport}},
 })
+if err != nil {
+    return err
+}
 ```
 
 **Note:** If `UEM_DEBUG` is set, the SDK wraps your custom transport with its

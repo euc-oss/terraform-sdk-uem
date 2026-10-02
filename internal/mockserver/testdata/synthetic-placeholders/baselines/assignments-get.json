@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments",
+    "method": "GET",
+    "description": "SYNTHETIC PLACEHOLDER -- NOT live-captured. Demoted 2026-08-04 (integrity audit): fabricated/schema-derived fixture, no live-capture evidence, never round-tripped against live UEM. Reachability unconfirmed on live (bead internal-task) -- resolve internal-task before re-capture. Relocated 2026-08-06 to internal/mockserver/testdata/synthetic-placeholders/ (Phase-3-surviving location -- see that directory's README.md) for use by TestGeneratedBaselinesV1Lifecycle via the bypass mechanism in tests/bypass_fixture_helper_test.go. The vendored corpus's own baselines/assignments-get.json is a separate, non-identical placeholder with no functional consumer in the Go suite (deletion-control, 2026-09-24: deleting it fails no test, while deleting this file fails TestGeneratedBaselinesV1Lifecycle). Bare array of BaselineAssignmentsV1Model; camelCase smartGroupUUID per D3. Dependent test assertions were weakened 2026-08-06 to check shape (non-empty list, UUID-shaped smartGroupUUID) rather than an exact record count/value, since this data was never real.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json;version=1; charset=utf-8"
+    },
+    "body": [
+      {
+        "id": 1,
+        "name": "Synthetic placeholder smart group",
+        "smartGroupUUID": "e4e943f0-78be-1134-8817-30659ab8d949"
+      }
+    ]
+  }
+}

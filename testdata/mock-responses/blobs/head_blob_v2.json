@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/blobs/{blobId}",
+    "method": "HEAD",
+    "description": "V2 head blob (HEAD /blobs/{blobId}), live-captured via mock-capture against the 26.2.0.0 test tenant, 2026-07-30, immediately after upload/get, before delete. 200, empty body, Content-Type application/octet-stream -- unlike GET, HEAD has no response body so the generated method's nil out-param avoids the json.Unmarshal-on-raw-bytes issue documented on the GET fixture; this op works cleanly as generated.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/octet-stream; charset=utf-8"
+    },
+    "body": null
+  }
+}

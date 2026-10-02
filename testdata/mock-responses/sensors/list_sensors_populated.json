@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/list/{organizationGroupUuid}",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/devicesensors/list/{organizationGroupUuid}",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "result_set": [
+        {
+          "assigned_smart_groups": [],
+          "description": "Visualize man for faster decisions.",
+          "event_trigger": [
+            "UNKNOWN"
+          ],
+          "execution_architecture": "EITHER64OR32BIT",
+          "execution_context": "SYSTEM",
+          "is_read_only": false,
+          "name": "Test Otterlaugh",
+          "organization_group_name": "Test Deskwas",
+          "organization_group_uuid": "d6b327d5-f3d1-9f75-d672-64d31f87d9cd",
+          "platform": "UNKNOWN",
+          "query_response_type": "STRING",
+          "query_type": 3,
+          "schedule_trigger": "UNKNOWN",
+          "timeout": 0,
+          "trigger_type": "SCHEDULE",
+          "uuid": "7fb7bef5-e109-4d05-10cb-93f0c7abdb37"
+        },
+        {
+          "assigned_smart_groups": [],
+          "description": "Visualize man for faster decisions.",
+          "event_trigger": [
+            "UNKNOWN"
+          ],
+          "execution_architecture": "EITHER64OR32BIT",
+          "execution_context": "SYSTEM",
+          "is_read_only": false,
+          "name": "Test Eelmust",
+          "organization_group_name": "Test Deskwas",
+          "organization_group_uuid": "d6b327d5-f3d1-9f75-d672-64d31f87d9cd",
+          "platform": "UNKNOWN",
+          "query_response_type": "STRING",
+          "query_type": 3,
+          "schedule_trigger": "UNKNOWN",
+          "timeout": 0,
+          "trigger_type": "SCHEDULE",
+          "uuid": "c72029e0-caa9-a12e-8d89-6fbf15f78b73"
+        }
+      ],
+      "total_results": 2
+    }
+  }
+}

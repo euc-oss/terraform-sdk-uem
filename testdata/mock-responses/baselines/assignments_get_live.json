@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments",
+    "method": "GET",
+    "description": "Genuine live capture against a persistent hand-created baseline (test_baseline_sdk in the readonly_fixtures organization group) before any assignment was made -- a real, empty result.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json;version=1; charset=utf-8"
+    },
+    "body": []
+  }
+}

@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors",
     "method": "POST",
-    "description": "Create a device sensor",
+    "description": "Create device sensor (V1). Empty 201 body; new sensor UUID only in Location header (quirk 6-style, not body-decoded). Live-captured against <internal-env>/26.2.0.0, org 138883 (sdktest). Sensor name required an undocumented ^[a-z][a-z0-9_]+$ pattern (swagger declares no pattern; its own canonical example 'Battery health' violates it -- same server-side constraint as V2's sibling fixture). Location header's path is /api/mdm/devicesensors?organizationGroupId=138883/{uuid} -- the query string from the create call's own URL is embedded ahead of the appended UUID segment, a real server quirk, not a capture artifact.",
     "version": "1"
   },
   "request": {
@@ -14,8 +14,7 @@
   "response": {
     "status_code": 201,
     "headers": {
-      "Content-Type": "application/json; charset=utf-8",
-      "Location": "/api/mdm/devicesensors/a447ee15-78a8-4992-cb7a-7ce115d8c83d"
+      "Location": "/api/mdm/devicesensors?organizationGroupId=138883/fa8b1c92-9433-81b2-032a-e031b97bff43"
     },
     "body": null
   }

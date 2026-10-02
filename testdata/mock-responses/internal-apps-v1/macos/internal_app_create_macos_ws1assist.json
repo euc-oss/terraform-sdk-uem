@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/groups/67004/macos/apps",
+    "method": "POST",
+    "description": "MacOsAppsV1Service.CreateMacOSApplication for the (now-placeholder) pkg-install asset (second macOS asset variant after the DMG asset's copy_from_dmg), live-captured via a hand-built direct-SDK-client call (not mock-capture -- needs a real 3-blob-upload precondition mock-capture cannot drive) against the configured test org group on the 26.2.0.0 test tenant, 2026-07-31. Endpoint path bakes in a literal, distinguishing org-group id (67004, matching this asset's own GET/DELETE app-id family) rather than the {id} template: both macOS lifecycle tests load the full ../testdata/mock-responses tree, and internal/mockserver's RequestMatcher scores an exact-literal path match above a template-path match (see matcher.go's pathMatchScore), so without its own literal id here this fixture would silently lose the match to the DMG asset's literal '/api/mam/groups/12345/macos/apps' fixture whenever both tests' create calls used the same org group id -- exactly what happened before this was fixed (review finding: the second asset's lifecycle test was observing the first asset's Location id, not its own). PRECONDITION: 3 blobs uploaded via BlobsV2Service.UploadBlobAsync (the .pkg installer, a small inline placeholder icon, and the vendored MacOSPkgStyleTestApp-1.0.plist as pkginfo). No ModuleType override needed for any of the three, confirmed again on this second payload. REAL-WIRE FINDING (reproduced a second time, independently, on a different binary+pkginfo pairing): the response body was again completely EMPTY (Content-Length: 0); the new application id was recoverable ONLY via the response's Location header, not the typed int return, which silently read 0. This confirms the defect is a property of the endpoint itself, not something specific to the first asset's response shape. CASCADE-DELETE FINDING: identical to the DMG asset -- deleting the created app auto-removed the pkg and icon blobs; only the pkginfo blob needed an explicit delete afterward. No signing/notarization check was hit at create time, consistent with the pre-capture assessment that this endpoint performs no code-signing validation. UPDATE (2026-08-01): the source asset for this fixture family was swapped from the real WS1 Assist .pkg + its shipped Munki plist to the fully placeholder vendored MacOSPkgTestApp-1.0.pkg + MacOSPkgStyleTestApp-1.0.plist (chore/vendored-sdk-test-apps), to remove real-vendor-name residue from committed fixtures. This call's own body is empty/null either way, so nothing in this specific fixture's content changed -- the finding below, re-verified live against <internal-env>/26.2.1614.12 with the placeholder asset, reproduced identically.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Location": "https://example.com/api/mam/apps/internal/67004"
+    },
+    "body": null
+  }
+}

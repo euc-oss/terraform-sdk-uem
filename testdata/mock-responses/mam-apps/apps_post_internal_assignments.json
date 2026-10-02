@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/{applicationId}/assignments",
+    "method": "POST",
+    "description": "Live-captured via bin/mock-capture against <internal-env>/26.2.0.0, org group 138883 (sdktest), the recapture epic's Workstream C. Body {\"SmartGroupIds\":[<real smart group id>],\"DeploymentParameters\":{}} against a real internal iOS app (id 66115) created via tools/internalapps-capture for the capture (deleted immediately after). EMPIRICAL FINDING: DeploymentParameters must be present as a non-null (even empty) object -- omitting it entirely crashes the server with an opaque 500 (errorCode 1000 'Internal Server Error') despite the field being declared omitempty client-side; this mirrors the same 'omitempty sub-object is not actually optional live' pattern already documented for msi's HowToInstall/DeploymentOptions. SEPARATE FINDING: the first (omitted-DeploymentParameters) attempt returned a 500 to the client, but the assignment was created server-side anyway -- a retry with the identical smart group then received a clean 400 'SmartGroup with Id : <id> is already assigned to the Application id : <id>', proving the mutation succeeded despite the client-visible 500 (consistent with the PushMode-int-vs-string client-deserialize-crash-after-real-success pattern documented elsewhere in this ledger for InternalApplicationEntityV1). This fixture captures the clean success path (fresh, previously-unassigned smart group id + non-null empty DeploymentParameters). 201, empty body, no anonymization needed (body is null).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {},
+    "body": null
+  }
+}

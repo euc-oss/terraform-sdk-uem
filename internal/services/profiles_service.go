@@ -8,6 +8,7 @@ import (
 	"sync"
 
 	"github.com/euc-oss/terraform-sdk-uem/client"
+	mdmv1 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v1"
 	mdmv2 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v2"
 	mdmv4 "github.com/euc-oss/terraform-sdk-uem/internal/mdm/v4"
 )
@@ -16,10 +17,12 @@ import (
 // with automatic platform routing and discovery.
 type ProfileService struct {
 	client      *client.Client
+	layer1mdmv1 *mdmv1.ProfilesV1Service
 	layer1mdmv2 *mdmv2.ProfilesV2Service
 	layer1mdmv4 *mdmv4.ProfilesV4Service
 	registry    map[int]ProfileEntry
 	mu          sync.RWMutex
+	orgGroupID  *int
 }
 
 // ProfileEntry holds discovery metadata for a single profiles resource.
@@ -31,10 +34,25 @@ type ProfileEntry struct {
 	Name     string
 }
 
+// ProfileServiceOption configures a ProfileService at construction time.
+type ProfileServiceOption func(*ProfileService)
+
+// WithProfileServiceOrganizationGroupID scopes Discover to the given
+// organization group's lineage: the API returns profiles managed at that
+// org group, at its descendants, and at its ancestors (inherited). Each raw
+// search result item carries its owning org group in OrganizationGroupId, so
+// callers of the search method can filter on it; the registry entries
+// Discover builds do not record the owner.
+func WithProfileServiceOrganizationGroupID(id int) ProfileServiceOption {
+	return func(s *ProfileService) {
+		s.orgGroupID = &id
+	}
+}
+
 // NewProfileService creates a ProfileService and runs eager
 // discovery to populate the registry.
-func NewProfileService(ctx context.Context, c *client.Client) (*ProfileService, error) {
-	svc := NewProfileServiceWithoutDiscovery(c)
+func NewProfileService(ctx context.Context, c *client.Client, opts ...ProfileServiceOption) (*ProfileService, error) {
+	svc := NewProfileServiceWithoutDiscovery(c, opts...)
 	if err := svc.Discover(ctx); err != nil {
 		return nil, fmt.Errorf("profiles discovery failed: %w", err)
 	}
@@ -46,27 +64,50 @@ func NewProfileService(ctx context.Context, c *client.Client) (*ProfileService, 
 // typically follow up with RegisterEntry to seed known (id, platform)
 // pairs. Preferred for unit tests and production paths where the
 // platform is already known.
-func NewProfileServiceWithoutDiscovery(c *client.Client) *ProfileService {
-	return &ProfileService{
+func NewProfileServiceWithoutDiscovery(c *client.Client, opts ...ProfileServiceOption) *ProfileService {
+	svc := &ProfileService{
 		client:      c,
+		layer1mdmv1: mdmv1.NewProfilesV1Service(c),
 		layer1mdmv2: mdmv2.NewProfilesV2Service(c),
 		layer1mdmv4: mdmv4.NewProfilesV4Service(c),
 		registry:    make(map[int]ProfileEntry),
 	}
+	for _, opt := range opts {
+		opt(svc)
+	}
+	return svc
 }
 
 // Discover calls the search API to populate the registry with all known
 // profiles resources. Safe to call multiple times (replaces registry).
+//
+// The search endpoint is 1-INDEXED: page=1 is the first page, and page=0
+// returns an empty 204 (see the api-doctrine quirk on search paging), so
+// the loop starts at 1 and never requests page 0. An empty page (a 204 or
+// zero items) is the normal stop -- including on page 1, where it simply
+// means an organization group with no resources. When the response
+// carries a total, the collected count must match it exactly; a mismatch
+// means pages were missed and Discover fails loud rather than returning a
+// silently incomplete registry.
+//
+// Discover must not pass a profiletype filter. Canonically,
+// profiletype=perappvpnprofile merges Per-App VPN profiles in AFTER the
+// paginated query, so a page can be a non-empty 200 while the underlying
+// DB page is empty. The empty-page stop would then never fire. If a
+// filter is ever added here, that stop cannot be relied on for it.
 func (s *ProfileService) Discover(ctx context.Context) error {
 	const pageSize = 500
 	newRegistry := make(map[int]ProfileEntry)
+	collected := 0
+	var total *int
 
-	for page := 0; ; page++ {
+	for page := 1; ; page++ {
 		pg := page
 		ps := pageSize
 		_, result, err := s.layer1mdmv2.SearchProfiles(ctx, &mdmv2.ProfilesV2SearchProfilesOptions{
-			Page:     &pg,
-			PageSize: &ps,
+			Page:                &pg,
+			PageSize:            &ps,
+			OrganizationGroupID: s.orgGroupID,
 		})
 		if err != nil {
 			return fmt.Errorf("profiles search page %d: %w", page, err)
@@ -74,6 +115,10 @@ func (s *ProfileService) Discover(ctx context.Context) error {
 		if result == nil || len(result.ProfileList) == 0 {
 			break
 		}
+		if result.TotalResults != nil {
+			total = result.TotalResults
+		}
+		collected += len(result.ProfileList)
 		for _, item := range result.ProfileList {
 			if item.ProfileID == nil {
 				continue
@@ -82,23 +127,59 @@ func (s *ProfileService) Discover(ctx context.Context) error {
 			newRegistry[id] = ProfileEntry{
 				ID:       id,
 				UUID:     item.ProfileUUID,
-				Platform: item.Platform,
+				Platform: normalizeProfileServiceSearchPlatform(item.Platform),
 				Type:     item.ProfileType,
 				Name:     "",
 			}
 		}
+		if total != nil {
+			if collected >= *total {
+				break
+			}
+			continue
+		}
 		if len(result.ProfileList) < pageSize {
 			break
 		}
-		if result.TotalResults != nil && (page+1)*pageSize >= *result.TotalResults {
-			break
-		}
+	}
+
+	if total != nil && collected != *total {
+		return fmt.Errorf("profiles discovery incomplete: collected %d items across pages but the search reported a total of %d", collected, *total)
 	}
 
 	s.mu.Lock()
 	s.registry = newRegistry
 	s.mu.Unlock()
 	return nil
+}
+
+// normalizeProfileServiceSearchPlatform maps the Platform string the
+// SEARCH endpoint reports to the key Get/Update/Delete switch on. The two
+// differ for some platforms (the search endpoint says "Apple", "WinRT",
+// "Linux" where the detail GET uses "Apple iOS", "Windows 10", "To do";
+// see the api-doctrine quirk on search-vs-detail platform naming). The
+// search value is the canonical DeviceType enum member name. A value with no
+// proven mapping (any other DeviceType name, a numeric string, or an empty
+// string) is returned unchanged, so Get rejects it with a typed
+// *client.UnsupportedPlatformError naming the raw value rather than
+// guessing. An empty Platform is canonically expected only on Per-App VPN
+// rows (profiletype=perappvpnprofile), which Discover never requests.
+func normalizeProfileServiceSearchPlatform(raw string) string {
+	switch raw {
+	case "Android":
+		return "Android"
+	case "AppleOsX":
+		return "AppleOsX"
+	case "Apple":
+		return "Apple iOS"
+	case "Linux":
+		return "To do"
+	case "WinRT":
+		return "Windows 10"
+	case "Qnx":
+		return "Windows_Rugged"
+	}
+	return raw
 }
 
 func (s *ProfileService) lookupEntry(id int) (ProfileEntry, bool) {
@@ -139,7 +220,7 @@ func (s *ProfileService) Get(ctx context.Context, id int) (*ProfileResult, error
 		}
 		entry, ok = s.lookupEntry(id)
 		if !ok {
-			return nil, fmt.Errorf("profiles %d not found after discovery refresh", id)
+			return nil, &client.NotFoundError{Resource: "profiles", ID: fmt.Sprintf("%d", id)}
 		}
 	}
 
@@ -205,7 +286,7 @@ func (s *ProfileService) Get(ctx context.Context, id int) (*ProfileResult, error
 		result.Headers = headers
 		result.WindowsRugged = &resp
 	default:
-		return nil, fmt.Errorf("unsupported platform %q for profiles %d", entry.Platform, id)
+		return nil, &client.UnsupportedPlatformError{Resource: "profiles", ID: fmt.Sprintf("%d", id), RawPlatform: entry.Platform}
 	}
 
 	return result, nil
@@ -254,17 +335,6 @@ func (s *ProfileService) Create(ctx context.Context, platform string, profile in
 			return 0, fmt.Errorf("expected *mdmv2.WinRTDeviceProfileV2Entity for platform %q", platform)
 		}
 		_, id, err := s.layer1mdmv2.CreateWinRTDeviceProfileAsync(ctx, p)
-		if err != nil {
-			return 0, err
-		}
-		s.registerEntry(id, platform)
-		return id, nil
-	case "Windows_Rugged":
-		p, ok := profile.(*mdmv2.QnxDeviceProfileEntityV2)
-		if !ok {
-			return 0, fmt.Errorf("expected *mdmv2.QnxDeviceProfileEntityV2 for platform %q", platform)
-		}
-		_, id, err := s.layer1mdmv2.CreateQnxDeviceProfileAsync(ctx, p)
 		if err != nil {
 			return 0, err
 		}
@@ -338,7 +408,7 @@ func (s *ProfileService) Update(ctx context.Context, id int, profile interface{}
 
 // Delete removes a profiles resource by ID.
 func (s *ProfileService) Delete(ctx context.Context, id int) error {
-	_, err := s.layer1mdmv2.DeleteProfileAsync(ctx, id)
+	_, err := s.layer1mdmv1.DeleteDeviceProfileAsync(ctx, id)
 	if err == nil {
 		s.removeEntry(id)
 	}

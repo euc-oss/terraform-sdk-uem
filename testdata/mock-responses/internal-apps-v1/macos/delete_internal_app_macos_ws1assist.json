@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/67004",
+    "method": "DELETE",
+    "description": "DELETE /api/mam/apps/internal/{applicationid} for the (now-placeholder) pkg-install macOS app, live-captured via mock-capture against the configured test org group on the 26.2.0.0 test tenant, 2026-07-31; this call also served as teardown for the app created during this capture. 204, empty body. CASCADE-DELETE FINDING (reproduces the DMG asset's exact pattern): deleting the app auto-removed the pkg (application) and icon blobs -- both returned the tenant's established not-found signature (500) immediately after with no explicit blob-delete call made. Only the pkginfo blob survived and required an explicit Delete (200), same as the DMG asset. Confirmed: app -> 401/errorCode 7000 and all 3 blobs -> 500 on final confirm-gone sweep; no FAILSAFE triggered. UPDATE (2026-08-01): the source asset for this fixture family was swapped from the real WS1 Assist .pkg + its shipped Munki plist to the fully placeholder vendored MacOSPkgTestApp-1.0.pkg + MacOSPkgStyleTestApp-1.0.plist (chore/vendored-sdk-test-apps), to remove real-vendor-name residue from committed fixtures. This call's own body is empty/null either way, so nothing in this specific fixture's content changed -- the finding below, re-verified live against <internal-env>/26.2.1614.12 with the placeholder asset, reproduced identically.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

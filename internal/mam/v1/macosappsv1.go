@@ -26,13 +26,12 @@ func (s *MacOsAppsV1Service) CreateMacOSApplication(
 	ctx context.Context,
 	ID int,
 	request *MacOsCreateApplicationRequestV1Model,
-) (http.Header, int, error) {
+) (http.Header, error) {
 	// Build endpoint path
 	endpoint := fmt.Sprintf("/api/mam/groups/%d/macos/apps", ID)
-	var response int
-	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, &response)
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, nil)
 	if err != nil {
-		return nil, 0, fmt.Errorf("MacOsAppsV1_CreateMacOSApplication: %w", err)
+		return nil, fmt.Errorf("MacOsAppsV1_CreateMacOSApplication: %w", err)
 	}
-	return headers, response, nil
+	return headers, nil
 }

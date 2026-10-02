@@ -25,7 +25,7 @@ configuration from environment variables — no hardcoded credentials.
 | [auth-basic/](auth-basic)                     | Basic auth flow                                        |
 | [profile-crud/](profile-crud)                 | Create / read / update / delete a macOS profile        |
 | [pagination/](pagination)                     | Iterating through paginated list responses             |
-| [smart-groups/](smart-groups)                 | List smart groups; assign a profile                    |
+| [smart-groups/](smart-groups)                 | List smart groups (read-only; full CRUD on roadmap)    |
 | [error-handling/](error-handling)             | Type-asserting errors; retryable detection             |
 | [custom-http-client/](custom-http-client)     | Inject your own `*http.Client` (proxy, custom TLS)     |
 
@@ -49,4 +49,3 @@ clear error message and a non-zero status.
 - **No hardcoded credentials.** Every example reads from the environment. Do not paste secrets into the source.
 - **Tenant code lives on `wsone.Config`,** not on the auth constructor — see the Authentication doc for details.
 - **All examples use a `context.Context` with an explicit timeout.** Adjust the timeout if your tenant has a slow API.
-- **Subdirectories not yet present** in this repo (`smart-groups/`, `error-handling/`, `custom-http-client/`) will be added in subsequent releases. The full set is listed above for completeness.

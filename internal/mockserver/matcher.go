@@ -19,11 +19,25 @@ func NewRequestMatcher(responses []*MockResponse) *RequestMatcher {
 // Match finds the best matching response for an HTTP request
 // Returns nil if no match is found.
 func (rm *RequestMatcher) Match(r *http.Request) *MockResponse {
+	return rm.MatchPreferring(r, "")
+}
+
+// preferredFixtureBonus is added to a matching fixture whose SourceFile is
+// the preferred one. It is below the 100 points an exact literal path earns
+// over a template, so a concrete-id fixture still wins.
+const preferredFixtureBonus = 99
+
+// MatchPreferring is Match, except that a matching fixture whose SourceFile
+// equals preferred gets preferredFixtureBonus. An empty preferred is Match.
+func (rm *RequestMatcher) MatchPreferring(r *http.Request, preferred string) *MockResponse {
 	var bestMatch *MockResponse
 	var bestScore int
 
 	for _, response := range rm.responses {
 		score := scoreMatch(r, response)
+		if score > 0 && preferred != "" && response.SourceFile == preferred {
+			score += preferredFixtureBonus
+		}
 		if score > bestScore {
 			bestScore = score
 			bestMatch = response
@@ -51,11 +65,15 @@ func scoreMatch(r *http.Request, response *MockResponse) int {
 	}
 	score += 100
 
-	// 2. Path must match (required)
-	if !matchPath(r.URL.Path, response.Metadata.Endpoint) {
+	// 2. Path must match (required). Exact literal match scores higher than
+	// template (regex) match so a fixture with endpoint "/api/mdm/profiles/12346"
+	// wins over a fixture with "/api/mdm/profiles/{id}" when the request is
+	// exactly /api/mdm/profiles/12346.
+	pathScore := pathMatchScore(r.URL.Path, response.Metadata.Endpoint)
+	if pathScore == 0 {
 		return 0
 	}
-	score += 100
+	score += pathScore
 
 	// 3. Query parameters (optional, but increase score if they match)
 	if response.Request.QueryParams != nil {
@@ -101,27 +119,35 @@ func extractVersionFromAccept(accept string) string {
 // matchPath checks if a request path matches an endpoint pattern
 // Supports path parameters like /api/mdm/profiles/{id}.
 func matchPath(requestPath, pattern string) bool {
-	// Exact match
+	return pathMatchScore(requestPath, pattern) > 0
+}
+
+// exactPathScore is pathMatchScore's result for an exact literal match.
+const exactPathScore = 200
+
+// pathMatchScore returns 200 when requestPath exactly equals pattern,
+// 100 when pattern is a template (contains {placeholder}) that matches,
+// and 0 when there is no match. Exact matches always beat template matches
+// so that a fixture whose endpoint bakes in a specific anonymized id wins
+// over a fixture with a generic {id} placeholder.
+func pathMatchScore(requestPath, pattern string) int {
 	if requestPath == pattern {
-		return true
+		return exactPathScore
 	}
 
-	// Convert pattern to regex
-	// Replace {param} with regex pattern
+	// Convert pattern to regex.
 	regexPattern := regexp.QuoteMeta(pattern)
 	regexPattern = strings.ReplaceAll(regexPattern, `\{id\}`, `\d+`)
 	regexPattern = strings.ReplaceAll(regexPattern, `\{uuid\}`, `[a-f0-9-]+`)
-	// Replace any remaining {paramName} placeholders with a generic segment matcher
 	catchAll := regexp.MustCompile(`\\\{[^}]+\\\}`)
 	regexPattern = catchAll.ReplaceAllString(regexPattern, `[^/]+`)
 	regexPattern = "^" + regexPattern + "$"
 
 	matched, err := regexp.MatchString(regexPattern, requestPath)
-	if err != nil {
-		return false
+	if err != nil || !matched {
+		return 0
 	}
-
-	return matched
+	return 100
 }
 
 // matchQueryParams checks if request query parameters match expected parameters

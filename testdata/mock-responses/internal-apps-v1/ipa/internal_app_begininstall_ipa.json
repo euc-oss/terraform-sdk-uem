@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/begininstall",
+    "method": "POST",
+    "platform": "ipa",
+    "description": "Live-captured via tools/internalapps-capture --use-begininstall (ChunkedUploader.BeginInstall, legacy InternalAppChunkTransactionV1 DTO) against <internal-env>/26.2.0.0, org group 138883 (sdktest), the recapture epic's Workstream C. Uploaded a real, valid HelloMDMTest.ipa (unexpired embedded.mobileprovision, Info.plist DTPlatformName=iphoneos present -- omitting DTPlatformName triggers a live server NRE surfaced as an opaque HTTP 500; the same NRE was reproduced live before switching to the DTPlatformName-bearing vendored .ipa). device_type=Apple, model_name=iPhone (live-confirmed valid picklist value via GET /api/mdm/picklists/platforms/APPLE/devicemodels: Any|iPad|iPhone|iPod Touch -- an earlier-documented claimed 'model_name Apple' default is NOT valid on this tenant, rejected with 400 'Device Model specified is invalid.'). 200, real app created (teardown-deleted immediately after capture; DELETE + post-delete GET both confirmed no orphan). Anonymized: BundleId, LocationGroupId, Id.Value, ApplicationName. DISCLOSURE: the body's OrganizationGroupUuid and Uuid fields (underscore-quoted here as \"aaaaaaaa_1111_2222_3333_444444444444\" and \"bbbbbbbb_2222_3333_4444_555555555555\" to avoid the public sync scrubber's dash-form-UUID rewrite; the field values on the wire use dashes, not underscores) are NOT anonymizer output -- both are hand-typed, repeated-hex-word placeholder values, not genuine server-issued or anonymizer-fingerprinted UUIDs. The rest of the body (real ids, real device/app metadata) is genuinely live-captured per the citation above.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "AppRank": 0,
+      "AppVersion": "1.3.0",
+      "ApplicationName": "Test Capture BeginInstall",
+      "ApplicationSource": "Unknown",
+      "AssignedDeviceCount": 0,
+      "AutoUpdateVersion": false,
+      "BundleId": "com.example.testapp",
+      "ContentGatewayId": 0,
+      "EnableProvisioning": false,
+      "Id": {
+        "Value": 68001
+      },
+      "InstalledDeviceCount": 0,
+      "IsDependencyFile": false,
+      "IsReimbursable": false,
+      "LocationGroupId": 12345,
+      "NotInstalledDeviceCount": 0,
+      "OrganizationGroupUuid": "61eef8f6-8895-bbdc-af49-da7015b113ba",
+      "Platform": 2,
+      "PushMode": 0,
+      "Uuid": "5f3729f2-befa-744f-ac91-b247b1a9e84e"
+    }
+  }
+}

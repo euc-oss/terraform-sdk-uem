@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/application",
+    "method": "POST",
+    "description": "SYNTHETIC / HAND-AUTHORED PLACEHOLDER -- NOT live-captured, and live capture is explicitly HELD pending org-group Software Distribution (SFD) feature-flag confirmation (maintainer instruction: 'HOLD the LIVE .zip capture... Do NOT attempt live .zip until I confirm the flag is on'). Do not treat any field value here as a verified real-wire capture. Shape is inferred from (a) the live-captured msi create fixture in this directory tree (field set, PushMode-as-JSON-number defect, Id.Value wrapper -- .zip shares the same WinRT/Software-Distribution device family as .msi) and (b) the canonical ParseZipAndExe/SFD-gate trace documented in vendored-test-apps/windows/SPEC.md section 9, which establishes that .zip create requires the org group's SFD flag ON plus three mandatory request-side fields (SupportedProcessorArchitecture, a full DeploymentOptions block, and FilesOptions.ApplicationUnInstallProcess.CustomScript -- the last one is NOT required for .msi, unlike the first two) but performs NO content inspection of the zip itself (ParseZipAndExe fabricates identity from the blob's own storage id or the caller-supplied BundleId, per SPEC.md). Platform 12 (WinRT) matches msi's own create fixture. Relocated 2026-08-06 to internal/mockserver/testdata/synthetic-placeholders/ (Phase-3-surviving location -- see that directory's README.md) for use by TestGeneratedInternalAppsV1Lifecycle_ZIP via a bypass-only mock server (no directory scan of a vendored tree that will never contain a .zip subdirectory). The original testdata/mock-responses/internal-apps-v1/zip/internal_app_create_zip.json copy is left in place, unmodified -- it is still the one read by internal/mockserver/chunk_handler.go's hardcoded chunkFixturePath lookup (used by TestChunkHandler_InternalApplication_ZipFileName_ServesZipFixture, which never respects MOCK_RESPONSES_DIR to begin with, so relocating that call site is out of scope here).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "AppRank": 0,
+      "AppVersion": "1.0.0.0",
+      "ApplicationName": "SDK Synthetic Zip Test",
+      "ApplicationSource": "Unknown",
+      "AssignedDeviceCount": 0,
+      "AutoUpdateVersion": false,
+      "BundleId": "{12b9377c-be7e-5c94-e8a7-0d9d23929523}",
+      "ContentGatewayId": 0,
+      "EnableProvisioning": false,
+      "Id": {
+        "Value": 12350
+      },
+      "InstalledDeviceCount": 0,
+      "IsDependencyFile": false,
+      "IsReimbursable": false,
+      "LocationGroupId": 12345,
+      "NotInstalledDeviceCount": 0,
+      "OrganizationGroupUuid": "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c",
+      "Platform": 12,
+      "PushMode": 0,
+      "Uuid": "3d8f7a58-bcbc-b3fb-9994-d82c4698e6c4"
+    }
+  }
+}

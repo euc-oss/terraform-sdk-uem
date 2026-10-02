@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "description": "Internal-app get (pkg), captured live via tools/internalapps-capture against <internal-env>/26.2.1614.12; anonymized via mock-capture's Anonymize() before commit. Confirms Platform is the literal string \"AppleOsX\" for this platform, and that device_type=\"AppleOsX\"/model_name=\"MacBook\" (live-queried via GET /api/mdm/picklists/platforms/AppleOsX/devicemodels after the initial guess \"Mac\" was rejected) is a valid combination for the plain InternalAppsV1 chunked-upload create path (distinct from the full-SLM MacOsAppsV1Service.CreateMacOSApplication path the .dmg/WS1-Assist .pkg mocks use).",
+    "endpoint": "/api/mam/apps/internal/65679",
+    "method": "GET",
+    "platform": "pkg",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "body": {
+      "ActualFileVersion": "1.0.0",
+      "AirwatchAppVersion": "1.0.0.0",
+      "AppId": "com.example.ulESXDnd",
+      "AppProvisioningProfileUuid": "1ea79f01-e34d-b09e-7e73-4c621db995f9",
+      "AppSizeInKB": 1,
+      "ApplicationFileBlobGUID": "8fe98ed4-4ad2-ac03-26a2-60eb985e3f18",
+      "ApplicationFileHash": "36200EB1D6FAB91BCE15AD9BA55680222B1EFD8547AF99CA93654A21A7F83395",
+      "ApplicationName": "Test Trouthave",
+      "ApplicationUrl": "https://example.com/fkFCpQIi",
+      "Assignments": [],
+      "AssumeManagementOfUserInstalledApp": "UptightPlant5",
+      "BuildVersion": "",
+      "CategoryList": [],
+      "ChangeLog": "",
+      "Comments": "",
+      "DevicesAssignedCount": 0,
+      "DevicesInstalledCount": 0,
+      "DevicesNotInstalledCount": 0,
+      "ExcludedSmartGroupGuids": [],
+      "ExcludedSmartGroupIds": [],
+      "ManagedBy": "Piper4522",
+      "ManagedByUuid": "562a7f01-33cf-c986-1515-a7ebb4326547",
+      "MinimumOperatingSystem": "",
+      "Platform": "AppleOsX",
+      "Rating": 0,
+      "Sdk": "Disabled",
+      "Status": "Active",
+      "SupportedModels": [
+        {
+          "Name": "Test Chinchillashould",
+          "id": 12346
+        }
+      ],
+      "SupportedModelsName": [
+        "Test FloralWhitetennis"
+      ],
+      "id": 12347,
+      "uuid": "8800ffb3-a42f-7769-a531-34a95e45b6c2"
+    },
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "status_code": 200
+  }
+}

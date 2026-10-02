@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployment",
+    "method": "POST",
+    "description": "Captured POST /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployment -- 409 conflict from a duplicate create against an already-existing deployment. The deployment uuid embedded in the server's free-text error message is not touched by the standard key-based anonymizer (it lives inside a message string, not a dedicated uuid-shaped field), so it was manually aligned here to the same anonymized deployment uuid (bc75eecb_bacf_4938_9c7d_6295ce0b5446) used consistently by the sibling updates_deployment_get.json/updates_deployment_create.json fixtures, in place of the real captured uuid.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 409,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "activityId": "76006911-0b52-64e6-4d52-14589585be25",
+      "errorCode": 5206,
+      "message": "Deployment with deployment uuid 1bc333e5-b6ed-b450-37c4-0007f627bd62 already exists."
+    }
+  }
+}

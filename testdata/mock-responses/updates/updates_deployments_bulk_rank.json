@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployments",
+    "method": "POST",
+    "description": "Captured POST /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployments?action=update-ranking (PLURAL path — distinct from the singular .../deployment create endpoint). Canonical docs say 204 No Content; confirmed on the wire and confirmed NOT a silent no-op: a readback GET on each deployment after the call showed ranking values actually swapped (1<->2) to match the request body. Precondition discovered empirically: two deployments cannot coexist under the same update+org group if they target the SAME smart group (POST .../deployment returns 409 errorCode 5206 DeploymentExists in that case, same family as the prior 409 capture); bulk-ranking is only reachable when the sibling deployments target DIFFERENT smart groups under the same update+org group. Request body is a JSON array of DeviceUpdateDeploymentRankingV1Model ({uuid, ranking}); action=update-ranking is confirmed the only accepted value for the action query parameter.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    },
+    "query_params": {
+      "action": "update-ranking"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

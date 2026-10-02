@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/68911",
+    "method": "DELETE",
+    "platform": "AppleOsX",
+    "description": "Live-captured DELETE /api/mdm/profiles/{profileId} against UEM 26.2.0.0, 2026-07-30. Real-wire finding: same as profiles_apple_delete.json -- the response carries X-Api-Version: v1 even though the request sent Accept version=2. Response body is empty (200, Content-Length 0). Note: mock-capture's default --swagger-dir (internal-source/internal-source, the raw vendored snapshot) resolves this path+method as ambiguous (v1/v3) due to naive placeholder matching that does not distinguish the {profileId} (int) swagger param from the differently-typed {profileUuid} param declared for the same literal path shape in other mdm swagger versions; the correct source actually used by codegen (internal-source/mdmv2.json) declares DELETE only in v2 -- see report for detail. --accept-version 2 was passed explicitly to route around this tool limitation, not because the route itself is ambiguous.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

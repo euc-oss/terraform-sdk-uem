@@ -20,6 +20,23 @@ func NewDeviceSensorsV1Service(c *client.Client) *DeviceSensorsV1Service {
 	return &DeviceSensorsV1Service{client: c}
 }
 
+// AssignDeviceSensor — New - Assign device sensors to smart groups.
+// Operation ID: DeviceSensorsV1_AssignDeviceSensor
+// HTTP: POST /api/mdm/devicesensors/assign
+func (s *DeviceSensorsV1Service) AssignDeviceSensor(
+	ctx context.Context,
+	request *DeviceSensorSmartGroupAssignmentV1Model,
+) (http.Header, *DeviceSensorSmartGroupAssignmentResponseV1Model, error) {
+	// Build endpoint path
+	endpoint := "/api/mdm/devicesensors/assign"
+	var response DeviceSensorSmartGroupAssignmentResponseV1Model
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("DeviceSensorsV1_AssignDeviceSensor: %w", err)
+	}
+	return headers, &response, nil
+}
+
 // BulkDeleteDeviceSensors — New - Deletes the list of device sensors based on the identifiers provided.
 // Operation ID: DeviceSensorsV1_BulkDeleteDeviceSensors
 // HTTP: POST /api/mdm/devicesensors/bulkdelete

@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/smartgroups/{id}",
+    "method": "PUT",
+    "description": "Live-captured PUT /api/mdm/smartgroups/{id} against UEM 26.2.0.0, 2026-07-30 -- body changed Name to a distinct value; persistence confirmed via a subsequent GET readback (see smartgroups_get_after_update.json).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

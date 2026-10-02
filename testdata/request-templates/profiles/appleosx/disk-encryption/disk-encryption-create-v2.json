@@ -1,0 +1,57 @@
+{
+  "api_validation": {
+    "console_url": "https://your-instance.awmdm.com",
+    "uem_version": "25.9.1134.9",
+    "api_version": "2",
+    "accept_header": "application/json;version=2",
+    "endpoint": "POST /api/mdm/profiles/platforms/appleosx/create",
+    "org_group_id": 12345,
+    "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+    "captured_at": "2026-04-23",
+    "result": "accepted",
+    "response_id_example": 68961,
+    "ticket": "internal-ticket",
+    "notes": "Validates PR #21 int→string fix on the wire: EncryptionActionAfterLastNotification, FileVaultUser, PromptToEnableFileVaultAt all round-trip as string. Update endpoint returns 200 but silently no-ops."
+  },
+  "General": {
+    "Name": "mocktest-disk-encryption",
+    "Description": "SDK CRUD validation — FileVault2 + AirWatch recovery key flow",
+    "DeviceType": "AppleOsX",
+    "ProfileType": "Device",
+    "ManagedLocationGroupID": 12345,
+    "AssignmentType": "Auto",
+    "ProfileContext": "Device"
+  },
+  "DiskEncryption": {
+    "DiskEncryptionFileVault2": {
+      "Enable": true,
+      "FileVaultUser": "CurrentOrNextLoginUser",
+      "PromptToEnableFileVaultAt": "BothLoginAndLogout",
+      "NumberOfTimesUserCanBypass": 3,
+      "ShowRecoveryKey": true,
+      "RecoveryType": 1
+    },
+    "DiskEncryptionAirWatch": {
+      "StoreKey": true,
+      "UseIntelligentHub": true,
+      "NotifyUserForEncryption": true,
+      "EnableRecoveryKey": true,
+      "EncryptionActionAfterLastNotification": "ForceLogout",
+      "EncryptionMaxNotifyAttempts": 3,
+      "EncryptionNotificationTitle": "FileVault Required",
+      "EncryptionNotificationMessage": "Please enable FileVault to continue.",
+      "EncryptionNotificationRetryIntervalInHours": 24,
+      "RotateKeyAfter": 90,
+      "RecoveryKeyMaxFailureCount": 3,
+      "RecoveryKeyNotificationRetryIntervalInHours": 24,
+      "RecoveryKeyNotificationTitle": "Recovery key rotation",
+      "RecoveryKeyNotificationMessage": "Your recovery key will be rotated.",
+      "RecoveryKeyPromptTitle": "Enter password to rotate recovery key",
+      "RecoveryKeyPromptMessage": "Please enter your macOS login password.",
+      "RecoveryKeySuccessTitle": "Recovery key rotated",
+      "RecoveryKeySuccessMessage": "Your recovery key has been rotated successfully.",
+      "RecoveryKeyErrorTitle": "Recovery key rotation failed",
+      "RecoveryKeyErrorMessage": "Please try again later."
+    }
+  }
+}

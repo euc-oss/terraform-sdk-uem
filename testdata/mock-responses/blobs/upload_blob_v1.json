@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/blobs/uploadblob",
+    "method": "POST",
+    "description": "V1 blob upload (POST /blobs/uploadblob), live-captured via bin/mock-capture against the 26.2 test tenant (org group 138883) under the mocktest safety gate, 2026-08-10, as part of the recapture. NEAR-MISS CONFIRMATION vs the existing V2 fixture (upload_blob_v2.json / BlobsV2Service.UploadBlobAsync): this is a genuinely distinct operation, not a duplicate. V1 uses Accept: application/json;version=1 (BlobsV1Service.UploadBlobAsync, query params fileName/organizationGroupId/moduleType/etc.) vs V2's version=2 header and different query-param shape; per project doctrine, the Accept-header version is load-bearing -- a trailing semicolon or wrong version number on this exact path silently falls back to a different route rather than erroring. The response BODY shape happens to be structurally identical to V2's (bare {Value, uuid}, with 'id' absent on both) -- the near-miss is in the route/version, not the payload. CLEANUP FINDING: BlobsV1Service has no generated Delete method (codegen omitted BlobsV1_DeleteBlobAsync even though it exists in internal-source/mamv1.json as DELETE /blobs/blob/{blobId}), so cleanup was done with a direct mock-capture call against that raw swagger route. That route rejects the response's 'uuid' as blobId (400 'The request is invalid') and requires the numeric 'Value' id instead -- the inverse of V2's Delete/Get/Head, which are documented (see delete_blob_v2.json/get_blob_v2.json) to require the uuid, not Value. Confirmed live: DELETE /api/mam/blobs/blob/{Value} returned 200 with an empty body for the blob created here; the test blob was deleted and no resource was left on the tenant.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/octet-stream"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Value": 12346,
+      "uuid": "ab657c78-11d2-1bd3-a97a-9a3e36718258"
+    }
+  }
+}

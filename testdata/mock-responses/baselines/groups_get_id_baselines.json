@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines",
+    "method": "GET",
+    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. GET /api/mdm/groups/{organizationGroupUuid}/baselines (v1) for a disposable org group holding one Windows 10 baseline created for this capture (template Windows Security Baseline, OS version 1709). Replaces the earlier empty-array body.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": [
+      {
+        "assignmentCount": 0,
+        "baselineTemplateUUID": "90794f82-c864-1a36-48c2-183d302e1aa6",
+        "baselineUUID": "18bdbfc6-ff8c-057c-f302-63d34a4f8ff7",
+        "customizations": [],
+        "description": "However the prior approach, this group have clearer.",
+        "name": "Test Buffalokiss",
+        "platformName": "Windows 10",
+        "platformUUID": "a80ea502-3c05-9987-b114-b674f8f44f09",
+        "policies": [],
+        "rootLocationGroupID": 12346,
+        "rootLocationGroupName": "Test Jackalwin",
+        "rootLocationGroupUUID": "0aed748c-7d18-59aa-3e70-2f4ab3c1ca21",
+        "templateName": "Test GoldenRodsugar",
+        "version": 1
+      }
+    ]
+  }
+}

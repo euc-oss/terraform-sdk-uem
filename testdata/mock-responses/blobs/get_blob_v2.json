@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/blobs/{blobId}",
+    "method": "GET",
+    "description": "V2 get blob content by uuid (GET /blobs/{blobId}), live-captured against the 26.2.0.0 test tenant, 2026-07-30, immediately after upload. REAL-WIRE FINDING (confirmed SDK/client defect): the real response is a genuine 200 with Content-Type application/octet-stream and a raw, completely unwrapped byte body (no JSON envelope at all, confirmed via a raw transport-level capture bypassing the generated method's decode step). The generated BlobsV2Service.Get() method decodes into 'var response []byte' via client.DoRequest, which unconditionally calls json.Unmarshal(bodyBytes, out) regardless of content type; against the real raw body this fails with 'invalid character ... looking for beginning of value' because there is no JSON to parse, and even a JSON-string-wrapped body would still fail because json.Unmarshal into a []byte target requires base64 content, which arbitrary file bytes are not. This means BlobsV2Service.Get() currently returns an error on every real call, live or mocked -- it is not usable as implemented. This fixture's body is a best-effort JSON-string stand-in (the mock server always JSON-encodes response bodies, so it cannot literally reproduce the real wire's totally-unwrapped-raw-bytes shape); the accompanying test pins the resulting decode error as documented, expected behavior rather than silently working around it.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/octet-stream; charset=UTF-8",
+      "Content-Disposition": "attachment; filename=test_upload.xml"
+    },
+    "body": "sample blob content"
+  }
+}

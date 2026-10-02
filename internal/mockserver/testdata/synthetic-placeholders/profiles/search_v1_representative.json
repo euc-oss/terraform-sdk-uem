@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/search",
+    "method": "GET",
+    "description": "SYNTHETIC REPRESENTATIVE PICK, NOT A COLLISION RESOLUTION: a hand-authored 200 response with an empty Profiles list (Page 0, PageSize 10, Total 0) for GET /api/mdm/profiles/search at version=1, not captured from any tenant. It is NOT identical to either vendored v1 search fixture: both are genuine captures from 2026-09-24 (vendored 4f0dd5fe5), search_android_success.json a populated org group and search_empty.json an empty org group, which the server answers with 204 and no body, not with this 200. It exists for a dated historical reason: it was added 2026-08-06 (commit 9c4137ff9) shortly after commit 0a142b6c9 (2026-08-06) had pruned both v1 search fixtures from the vendored tree, so the staged suite had no v1 fixture for this endpoint at all; both were re-added on 2026-08-17 (commit e31771f45). TestIntegration_BasicAuth_ProfileSearch loads it via the bypass mechanism and asserts only shape (err == nil, optional field logs); those assertions must never assert a specific Total/Profiles value, since this body is synthetic.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "Page": 0,
+      "PageSize": 10,
+      "Total": 0,
+      "Profiles": []
+    }
+  }
+}

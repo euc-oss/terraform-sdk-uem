@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/scripts/{scriptUuid}",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/scripts/{scriptUuid}",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "allowed_in_catalog": false,
+      "assignment_count": 0,
+      "description": "Visualize man for faster decisions.",
+      "execution_context": "SYSTEM",
+      "is_idempotent": false,
+      "name": "Test Hamsterbuy",
+      "organization_group_name": "Test Clevernesscan",
+      "organization_group_uuid": "65bd7e3c-9e73-85dd-5598-6d7078ec1915",
+      "platform": "APPLE_OSX",
+      "platform_architecture": "UNKNOWN",
+      "script_data": "eGZneGc=",
+      "script_type": "BASH",
+      "script_uuid": "64c7d5c5-ac02-505f-9131-99ed7bf4b7f7",
+      "script_variables": [
+        {
+          "is_lookup": false,
+          "name": "Test Parthad",
+          "value": "xgxgx"
+        }
+      ],
+      "timeout": 30,
+      "user_interaction": false,
+      "version": "6077ea5e-0010-5924-f9ac-9ec15306e6b9"
+    }
+  }
+}

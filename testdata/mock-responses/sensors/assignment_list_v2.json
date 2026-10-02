@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/{sensorUuid}/assignments",
+    "method": "GET",
+    "description": "V2 list assignments for a device sensor (GET /devicesensors/{sensorUuid}/assignments), 200, array body. Captured after the ranking-update op; ranking:1 reflects that update.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": [
+      {
+        "assigned_smart_groups": [
+          {
+            "name": "Test Rabbitthrow",
+            "smart_group_uuid": "eaa54c29-851f-fe01-320e-bce278850dab"
+          }
+        ],
+        "event_triggers": [],
+        "name": "Test Manateewill",
+        "ranking": 1,
+        "smart_group_count": 1,
+        "trigger_type": "SCHEDULE",
+        "uuid": "8fe98ed4-4ad2-ac03-26a2-60eb985e3f18"
+      }
+    ]
+  }
+}

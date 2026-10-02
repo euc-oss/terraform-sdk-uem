@@ -67,7 +67,7 @@ type GeneralPayloadV4Entity struct {
 	// Gets or sets profileId.
 	ProfileID *int `json:"ProfileId,omitempty"`
 	// Gets or sets device Profile Scope.
-	ProfileScope string `json:"ProfileScope,omitempty"`
+	ProfileScope *int `json:"ProfileScope,omitempty"`
 	// Gets or sets the Profile Unique Identifier.
 	ProfileUUID string `json:"ProfileUuid,omitempty"`
 	// Gets or sets version.

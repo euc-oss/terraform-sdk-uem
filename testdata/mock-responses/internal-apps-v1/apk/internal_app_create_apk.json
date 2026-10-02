@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/application",
+    "method": "POST",
+    "description": "Android (APK) internal-app create, live-captured via the real ChunkedUploader (chunked upload + CreateInternalApplication) against the configured test org group on the 26.2.0.0 test tenant, 2026-07-30. WIRED IN: internal/mockserver's ChunkHandler.handleInternalApplication now selects this fixture when the create request's file_name ends in .apk (selectInternalApplicationFixture in chunk_handler.go), instead of always serving the shared internal-application-response.json fixture regardless of request content. See TestChunkHandler_InternalApplication_ApkFileName_ServesApkFixture; generated_internalappsv1_lifecycle_test.go's own create step still uses the shared fixture deliberately (see that test's doc comment) rather than this one. EMPIRICAL REQUIRED-FIELD FINDINGS for this create call (each 400 below was hit in sequence against the real tenant until resolved): (1) 'Supported model list cannot be empty' -- fixed by supplying supported_models with at least one entry. (2) 'File name with valid extension is required when Transaction Id is passed' -- fixed by supplying file_name (the uploaded file's base name). (3) 'Device Model specified is invalid' when supported_models[0].model_name was the generic picklist value 'Any' -- the real API validates against the platform-specific picklist returned by GET /api/mdm/picklists/platforms/{platform}/devicemodels; 'Android' (the platform-named entry from that picklist) was accepted. REAL-WIRE FINDING (confirmed SDK defect candidate, same root-cause family as the MAM V2 platform-field defect documented in AppsV2Notes.md): InternalApplicationEntityV1.PushMode is typed string (matching swagger's declared enum ['Auto','OnDemand']), but the live create response returns PushMode as a JSON number (0), which fails client.Client.handleResponse's strict json.Unmarshal into the typed struct even though the HTTP status is a clean 200 -- CreateInternalApplication (the typed path) therefore always errors on a real successful create. This fixture and its accompanying test decode the response into a generic map (bypassing the typed struct) to demonstrate the real wire shape and pin this as a documented defect rather than silently working around it. SEPARATE REAL-WIRE FINDING: the server silently overrode the caller-supplied bundle_id ('com.example.justsayhello') with a bundle_id derived from the uploaded APK's own manifest ('com.airwatch.JustSayHello') -- reproduced identically across two independent create calls, so not a fluke.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "AppRank": 0,
+      "AppVersion": "2.1.0.0",
+      "ApplicationName": "JustSayHello",
+      "ApplicationSource": "Unknown",
+      "AssignedDeviceCount": 0,
+      "AutoUpdateVersion": false,
+      "BundleId": "com.airwatch.JustSayHello",
+      "ContentGatewayId": 0,
+      "EnableProvisioning": false,
+      "Id": {
+        "Value": 12345
+      },
+      "InstalledDeviceCount": 0,
+      "IsDependencyFile": false,
+      "IsReimbursable": false,
+      "LocationGroupId": 12345,
+      "NotInstalledDeviceCount": 0,
+      "OrganizationGroupUuid": "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c",
+      "Platform": 5,
+      "PushMode": 0,
+      "Uuid": "9af645a8-fef3-3e6d-3408-5cc69e0937d4"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/device-readiness",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/device-readiness",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "already_on_this_version": 0,
+      "eligible": 0,
+      "not_eligible": 0,
+      "on_higher_version": 0
+    }
+  }
+}

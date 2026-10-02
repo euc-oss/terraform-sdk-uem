@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/smartgroups/{id}",
+    "method": "GET",
+    "description": "Live-captured GET /api/mdm/smartgroups/{id} against UEM 26.2.0.0, 2026-07-30 -- readback after UpdateSmartGroupAsync, confirming the Name change actually persisted (not a silent no-op PUT). Same SmartGroupID/org group as smartgroups_get_after_create.json; Name differs to reflect the real update.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Assignments": 0,
+      "CpuArchitectures": [],
+      "CriteriaType": "All",
+      "DeviceAdditions": [],
+      "DeviceExclusions": [],
+      "Devices": 0,
+      "EnrollmentCategories": [],
+      "Exclusions": 0,
+      "ManagedByOrganizationGroupId": "12346",
+      "ManagedByOrganizationGroupName": "Test Wombatclose",
+      "ManagedByOrganizationGroupUuid": "3ea820da-ec54-ff68-7158-358f3684912e",
+      "ManagementTypes": [],
+      "Models": [],
+      "Name": "Test BlueVioletpride",
+      "OEMAndModels": [],
+      "OperatingSystems": [],
+      "OrganizationGroups": [],
+      "Ownerships": [
+        "allownerships"
+      ],
+      "Platforms": [],
+      "SmartGroupID": 12347,
+      "SmartGroupUuid": "65435db3-4244-7de7-be14-d5871a3cdae5",
+      "Tags": [],
+      "UserAdditions": [],
+      "UserExclusions": [],
+      "UserGroupExclusions": [],
+      "UserGroups": []
+    }
+  }
+}

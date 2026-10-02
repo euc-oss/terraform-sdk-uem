@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/68912",
+    "method": "GET",
+    "platform": "WinRT",
+    "description": "Live-captured GET /api/mdm/profiles/{profileId} immediately after CreateWinRTDeviceProfileAsync, UEM 26.2.0.0, 2026-07-30. Only General and Firewall are populated (all other WinRTDeviceProfileV2Entity payload fields are nil/omitted, matching the minimal create body used).",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Firewall": {
+        "blockAllConnectionsToAllAppsForPrivateNetwork": false,
+        "blockAllConnectionsToAllAppsForPublicNetwork": false,
+        "enableFirewallForPrivateNetwork": true,
+        "enableFirewallForPublicNetwork": false,
+        "notifyUserWhenFirewallBlocksNewAppForPublicNetwork": false,
+        "notifyWhenFirewallBlocksNewAppForPrivateNetwork": false,
+        "useWindowsRecommendedSettings": false
+      },
+      "General": {
+        "AllowRemoval": "Always",
+        "AssignedSchedule": [],
+        "AssignedSmartGroups": [],
+        "AssignmentType": "Auto",
+        "Description": "Otherwise, keep the day simple.",
+        "EnableProvisioning": false,
+        "ExcludedSmartGroups": [],
+        "IsActive": true,
+        "IsManaged": true,
+        "IsProvisionedForOobe": false,
+        "ManagedLocationGroupID": 12346,
+        "Name": "Test Crowdwill",
+        "Password": "",
+        "ProfileContext": "Device",
+        "ProfileId": 12347,
+        "ProfileUuid": "a60fd465-5d13-4c9c-5275-852c0da239a6",
+        "Version": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/search",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/profiles/search",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "AdditionalInfo": {
+        "Links": [
+          {
+            "Href": "https://example.com/OptOAPsb",
+            "Rel": "self"
+          }
+        ]
+      },
+      "ProfileList": [
+        {
+          "AssignmentSmartGroups": [
+            {
+              "Id": 12346,
+              "Name": "Test Turtlebe"
+            }
+          ],
+          "AssignmentType": "Compliance",
+          "Context": "Device",
+          "ExcludedSmartGroups": [],
+          "ManagedBy": "msCollins",
+          "OrganizationGroupId": 12347,
+          "OrganizationGroupUuid": "9b437e1d-b73f-29ff-a657-8e79dfb4b7d8",
+          "Platform": "Apple",
+          "ProfileId": 12348,
+          "ProfileName": "Test Triphad",
+          "ProfileStatus": "Active",
+          "ProfileType": "Device",
+          "ProfileUuid": "e19b6846-689e-9ef7-ef06-c55c82aa6470"
+        },
+        {
+          "AssignmentSmartGroups": [],
+          "AssignmentType": "Auto",
+          "Context": "Device",
+          "ExcludedSmartGroups": [],
+          "ManagedBy": "Oakland73",
+          "OrganizationGroupId": 12349,
+          "OrganizationGroupUuid": "3a1c0b8a-5f7d-8bce-e1c8-1b47dcefda98",
+          "Platform": "Apple",
+          "ProfileId": 12350,
+          "ProfileName": "Test DeepPinkgang",
+          "ProfileStatus": "Active",
+          "ProfileType": "Device",
+          "ProfileUuid": "c8cc7322-f573-4c1c-0d55-622c57b7ae27"
+        },
+        {
+          "AssignmentSmartGroups": [],
+          "AssignmentType": "Auto",
+          "Context": "Device",
+          "ExcludedSmartGroups": [],
+          "ManagedBy": "msCollins",
+          "OrganizationGroupId": 12351,
+          "OrganizationGroupUuid": "9b437e1d-b73f-29ff-a657-8e79dfb4b7d8",
+          "Platform": "WinRT",
+          "ProfileId": 12352,
+          "ProfileName": "Test DarkMagentacouch",
+          "ProfileStatus": "Active",
+          "ProfileType": "Device",
+          "ProfileUuid": "e1bc9cfd-88e6-21c5-6dd9-2ef7a1204b37"
+        }
+      ],
+      "TotalResults": 3
+    }
+  }
+}

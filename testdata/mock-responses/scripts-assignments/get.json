@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/scriptassignments/{assignmentUuid}",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/scriptassignments/{assignmentUuid}",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "assigned_smart_groups": [
+        {
+          "smart_group_name": "Test Rabbitthrow",
+          "smart_group_uuid": "eaa54c29-851f-fe01-320e-bce278850dab"
+        }
+      ],
+      "assignment_uuid": "b782404b-a750-be40-971c-dd462b7a941e",
+      "deployment_mode": "AUTO",
+      "name": "Test Koaladid",
+      "priority": 1,
+      "show_in_catalog": false,
+      "smart_group_count": 1
+    }
+  }
+}

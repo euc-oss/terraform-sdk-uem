@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "description": "Internal-app create (pkg), captured live via tools/internalapps-capture against <internal-env>/26.2.1614.12 (app id 65679); anonymized via mock-capture's Anonymize() before commit. DOCUMENTATION-ONLY in TestGeneratedInternalAppsV1Lifecycle_PKG specifically -- NOT because platform-specific create routing is unavailable (internal/mockserver's selectInternalApplicationFixture DOES route by file_name, and does select this exact file for a .pkg-suffixed file_name -- see TestChunkHandler_InternalApplication_PkgFileName_ServesPkgFixture), but because that lifecycle test's own CreateInternalApplication call deliberately omits FileName (same design choice already made for the apk/msi/ipa siblings -- see generated_internalappsv1_lifecycle_test.go's ARCHITECTURE NOTE doc comment), so it falls through to the pre-existing shared internal-application-response.json fixture instead of this one. This fixture is real, correctly wired into the router, and used when a caller's create request DOES set a file_name ending in .pkg -- just not by this particular lifecycle test's create step.",
+    "endpoint": "/api/mam/apps/internal/application",
+    "method": "POST",
+    "platform": "pkg",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "body": {
+      "AppRank": 0,
+      "AppVersion": "1.0.0.0",
+      "ApplicationName": "Test Rabbitthrow",
+      "ApplicationSource": "Unknown",
+      "AssignedDeviceCount": 0,
+      "AutoUpdateVersion": false,
+      "BundleId": "com.example.XDndwZhe",
+      "ContentGatewayId": 12346,
+      "EnableProvisioning": false,
+      "Id": {
+        "Value": 12347
+      },
+      "InstalledDeviceCount": 0,
+      "IsDependencyFile": false,
+      "IsReimbursable": false,
+      "LocationGroupId": 12348,
+      "NotInstalledDeviceCount": 0,
+      "OrganizationGroupUuid": "c64784b5-7327-97e3-9758-f05e2603e6a2",
+      "Platform": 10,
+      "PushMode": 0,
+      "Uuid": "b96eee9b-edb2-02b3-f245-7a823b349da9"
+    },
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "status_code": 200
+  }
+}

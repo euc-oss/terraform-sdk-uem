@@ -1,11 +1,9 @@
 // smart-groups lists smart groups available in the tenant.
 //
-// Note: at this SDK version, Smart Groups support is read-only via Search.
-// Full CRUD is on the roadmap.
-//
-// The SmartGroupsService.Search method returns a SmartGroupSearchResultV1 with
-// a SmartGroups []SmartGroupSearchModelV1 field. Each entry carries SmartGroupID,
-// Name, ManagedByOrganizationGroupName, Devices, Assignments, and Exclusions.
+// The SmartGroupsService.SearchAsync method returns a SmartGroupSearchResultV1
+// with a SmartGroups []SmartGroupSearchModelV1 field. Each entry carries
+// SmartGroupID, Name, ManagedByOrganizationGroupName, Devices, Assignments,
+// and Exclusions.
 //
 // Required environment variables:
 //
@@ -60,7 +58,7 @@ func main() {
 
 	pageSize := 25
 	svc := wsone.NewSmartGroupsService(client)
-	_, resp, err := svc.Search(ctx, &wsone.SmartGroupsSearchOptions{
+	_, resp, err := svc.SearchAsync(ctx, &wsone.SmartGroupsSearchAsyncOptions{
 		PageSize: &pageSize,
 	})
 	if err != nil {

@@ -70,6 +70,10 @@ longer, or the timeout was set too low.
   ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
   defer cancel()
   profile, err := wsone.GetProfile(ctx, c, id, platform)
+  if err != nil {
+      return err
+  }
+  fmt.Println(profile.GetProfileID())
   ```
 
 - Or raise the client-wide default by setting `wsone.Config.Timeout` when

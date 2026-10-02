@@ -38,6 +38,7 @@ func TestNewProfileService(t *testing.T) {
 	svc := NewProfileService(c)
 	if svc == nil {
 		t.Fatal("NewProfileService returned nil")
+		return
 	}
 	if svc.client != c {
 		t.Error("ProfileService client not set correctly")

@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/67007",
+    "method": "DELETE",
+    "description": "SYNTHETIC / HAND-AUTHORED PLACEHOLDER -- NOT live-captured; live .zip capture is explicitly HELD pending SFD feature-flag confirmation (see internal_app_create_zip.json's description). DELETE /api/mam/apps/internal/{applicationid} for the same placeholder zip app. Modeled on the real 204/empty-body shape confirmed live for apk/msi/macos/ipa on this same endpoint -- reused here as a well-established real-wire behavior for this endpoint, even though this fixture's own create/get siblings are synthetic placeholders.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

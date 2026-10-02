@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments",
+    "method": "POST",
+    "description": "Genuine live capture: assigning a freshly-created smart group to a disposable clone of test_baseline_sdk, both scoped to the same disposable organization group -- never the source baseline or its OG (Pattern D: 204 empty).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "body": null
+  }
+}

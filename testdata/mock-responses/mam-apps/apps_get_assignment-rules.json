@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/apps/{applicationUuid}/assignment-rules",
     "method": "GET",
-    "description": "Captured GET /api/mam/apps/{applicationUuid}/assignment-rules",
+    "description": "Live-captured via bin/mock-capture against <internal-env>/26.2.0.0, org group 138883 (sdktest), the recapture epic's Group A retry. Resolves AppsV2Service.GetAssignmentRuleAsync. HYPOTHESIS CONFIRMED: {applicationUuid} is the SAME identifier space as the internal-apps endpoints' own app UUID -- a real internal iOS app was created via tools/internalapps-capture (device_type=Apple, model_name=iPhone) for this call, and its own Uuid field (from the app's GET response) worked directly as the {applicationUuid} path param, no separate discovery needed. This corroborates the X-API-Warning seen on the deprecated PUT /api/mam/apps/internal/{applicationId}/assignments endpoint (a sibling capture), which pointed at this exact replacement route. 200, real success -- a freshly created app has no assignment rule configured yet, so assignments/excluded_smart_groups are empty and application_msi_deployment_params is an empty object. App deleted at session end; deletion confirmed via post-delete GET (401/errorCode 7000).",
     "version": "2"
   },
   "request": {
@@ -17,58 +17,8 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
-      "application_msi_deployment_params": {
-        "device_restart": 1,
-        "installer_reboot_exit_code": "",
-        "installer_success_exit_code": "",
-        "restart_deadline_in_days": 0
-      },
-      "assignments": [
-        {
-          "app_profiles_mapping": [],
-          "application_attributes": [],
-          "application_configuration": [],
-          "distribution": {
-            "app_delivery_method": "ON_DEMAND",
-            "application_transforms": [],
-            "auto_update_devices_with_previous_versions": false,
-            "bsp_assignments": {
-              "smart_groups_offline_licenses": [],
-              "smart_groups_online_licenses": []
-            },
-            "description": "Weekends reserve time for Rock Climbing and person.",
-            "display_in_app_catalog": true,
-            "effective_date": "2024-01-15T00:00:00Z",
-            "hide_notifications": false,
-            "installer_deferral_allowed": false,
-            "installer_deferral_exit_code": "",
-            "installer_deferral_interval": 0,
-            "is_default_assignment": true,
-            "keep_app_updated_automatically": false,
-            "msi_deployment_override_params": {},
-            "name": "Test LemonChiffonstairs",
-            "pre_release_version": 0,
-            "reboot_override": false,
-            "requires_approval": false,
-            "smart_groups": [
-              "3d57a859-709e-b7ca-5344-896b6465e75f"
-            ]
-          },
-          "is_android_enterprise_config_template": false,
-          "is_apple_education_assignment": false,
-          "is_dynamic_template_saved": false,
-          "priority": 0,
-          "restriction": {
-            "desired_state_management": false,
-            "make_app_mdm_managed": false,
-            "managed_access": true,
-            "prevent_application_backup": false,
-            "prevent_removal": false,
-            "remove_on_unenroll": false
-          },
-          "tunnel": {}
-        }
-      ],
+      "application_msi_deployment_params": {},
+      "assignments": [],
       "excluded_smart_groups": []
     }
   }

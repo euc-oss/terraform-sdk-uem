@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/application",
+    "method": "POST",
+    "description": "Captured POST /api/mam/apps/internal/application (V1Model body, 4-decimal version supported, server hydrates Uuid + OrganizationGroupUuid)",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Id": {"Value": 12345},
+      "Uuid": "9af645a8-fef3-3e6d-3408-5cc69e0937d4",
+      "OrganizationGroupUuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+      "BundleId": "com.example.forklift",
+      "LocationGroupId": 12345,
+      "ApplicationName": "Forklift V1Model Test App",
+      "ActualFileVersion": "1.0.0.42"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/application",
+    "method": "POST",
+    "description": "SYNTHETIC / HAND-AUTHORED PLACEHOLDER -- NOT live-captured, despite this fixture's original description claiming \"Captured POST /api/mam/apps/internal/application\" (V1Model body, 4-decimal version supported, server hydrates Uuid + OrganizationGroupUuid). That claim has no date or tenant backing it, and several field values are self-evidently fabricated rather than real captured data: Uuid \"9af645a8-fef3-3e6d-3408-5cc69e0937d4\" is an alphabet-sequence placeholder, not gofakeit.UUID()-style random output; it shares the same non-random BundleId \"com.example.forklift\" as its begininstall-response.json sibling. Serves as internal/mockserver/chunk_handler.go's default/unrecognized-extension fallback fixture for CreateInternalApplicationFromBlob (selectInternalApplicationFixture), a distinct routing path from the genuinely live-captured apk/msi/ipa/pkg create fixtures. See tests/verified-endpoints.json's unverified[] entry for InternalAppsV1Service.CreateInternalApplicationFromBlob (default/unrecognized-extension path) (fixture: internal-apps-v1/internal-application-response.json) for the full fabrication writeup. Relocated 2026-08-06 to internal/mockserver/testdata/synthetic-placeholders/ (Phase-3-surviving location -- see that directory's README.md) so TestChunkHandler_InternalApplication_KnownTransactionId_Returns200WithDistinctUuid, TestChunkHandler_InternalApplication_NoFileName_ServesSharedDefaultFixture, and TestChunkHandler_InternalApplication_UnrecognizedExtension_ServesSharedDefaultFixture keep passing once repo-root testdata/ is removed; resolved via internal/mockserver/chunk_handler.go's chunkFixtureSyntheticPlaceholderOverrides table, unconditionally (regardless of MOCK_RESPONSES_DIR). The original testdata/mock-responses/internal-apps-v1/internal-application-response.json copy is left in place, unmodified, but is no longer read by chunkFixturePath.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Id": {"Value": 12345},
+      "Uuid": "9af645a8-fef3-3e6d-3408-5cc69e0937d4",
+      "OrganizationGroupUuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+      "BundleId": "com.example.forklift",
+      "LocationGroupId": 12345,
+      "ApplicationName": "Forklift V1Model Test App",
+      "ActualFileVersion": "1.0.0.42"
+    }
+  }
+}

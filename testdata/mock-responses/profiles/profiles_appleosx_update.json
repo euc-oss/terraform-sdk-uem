@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/appleosx/update",
+    "method": "POST",
+    "platform": "AppleOsX",
+    "description": "Live-captured POST /api/mdm/profiles/platforms/appleosx/update against UEM 26.2.0.0, 2026-07-30 -- re-verified with clean v2 header post-fix. Note on how this was captured: mock-capture's CLI unconditionally runs a discovery pre-step for any path ending in '/update' (tools/mock-capture/discover.go, `needsDiscovery := strings.Contains(path, \"{\") || strings.HasSuffix(cleanPath, \"/update\")`), even when --body is supplied explicitly. For this endpoint family the profile id lives in the request body (General.ProfileId), not the URL, so that pre-step's own unfiltered GET /api/mdm/profiles/search call found zero profiles on this tenant and aborted before the real (unambiguous) update call ever ran -- a reusable tool defect, not a defect in this route. Captured instead via a direct SDK-client probe using the same auth/client code, bypassing only the broken discovery step. The real target endpoint itself resolves to v2 automatically and unambiguously (Api-Supported-Versions: 2, X-Api-Version: v2 on the live response), matching the create route. Real-wire finding: without General.CreateNewVersion=true in the body, this returns 200 but is a SILENT NO-OP (matches the previously-flagged silent-no-op-update risk) -- confirmed by a follow-up GET showing no change. With CreateNewVersion=true, the change persists for real (Version incremented 1->2, see profiles_appleosx_get_after_update.json).",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

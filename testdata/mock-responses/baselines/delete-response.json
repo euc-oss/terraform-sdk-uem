@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}",
+    "method": "DELETE",
+    "description": "Captured DELETE single baseline (canonical impl returns 200 empty body, NOT 204 per .Generated.cs; D6)",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

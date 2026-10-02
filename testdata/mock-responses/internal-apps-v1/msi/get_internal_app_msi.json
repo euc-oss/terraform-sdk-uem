@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/67002",
+    "method": "GET",
+    "description": "GET /api/mam/apps/internal/{applicationId}, live-captured via mock-capture against the configured test org group on the 26.2.0.0 test tenant, 2026-07-30, immediately after the msi create captured in internal_app_create_msi.json (same app instance, before delete). Shows the DeploymentOptions/FilesOptions shape the API hydrates back for a real .msi with Software Distribution fields populated at create time. The real live-captured id was anonymized to 67002 AND baked in as a literal path (not the {applicationId} template) for the same collision-avoidance reason documented on the sibling apk fixture -- see get_internal_app_apk.json for the full explanation (this fixture would otherwise silently shadow testdata/mock-responses/mam-apps/apps_get_internal_ios_renewaldate.json in every full-tree test).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "ActualFileVersion": "24.09.00.0",
+      "AirwatchAppVersion": "24.9.0.0",
+      "AppId": "{485c3a2c-5ddc-ffb2-d8cc-4071a32e6836}",
+      "AppProvisioningProfileUuid": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c",
+      "AppSizeInKB": 1941,
+      "ApplicationFileBlobGUID": "f9e174ca-9ee2-9354-2762-b0bf409a123b",
+      "ApplicationFileHash": "EC6AF1EA0367D16DDE6639A89A080A524CEBC4D4BEDFE00ED0CAC4B865A918D8",
+      "ApplicationName": "Test BlanchedAlmondstand",
+      "ApplicationUrl": "https://example.com/wZhenuXT",
+      "Assignments": [],
+      "AssumeManagementOfUserInstalledApp": "BagStander",
+      "BuildVersion": "{fb29a062-f13a-2bfb-bf17-c5e1804a1c15}",
+      "CategoryList": [],
+      "ChangeLog": "",
+      "Comments": "",
+      "DeploymentOptions": {
+        "HowToInstall": {
+          "AdminPrivileges": false,
+          "DeviceRestart": "DoNotRestart",
+          "InstallCommand": "/quiet",
+          "InstallContext": "Device",
+          "InstallTimeoutInMinutes": 0,
+          "InstallerRebootExitCode": "",
+          "InstallerSuccessExitCode": "",
+          "RestartDeadlineInDays": 0,
+          "RetryCount": 0,
+          "RetryIntervalInMinutes": 0,
+          "UninstallDeviceRestart": "Unknown"
+        },
+        "WhenToCallInstallComplete": {
+          "UseAdditionalCriteria": false
+        },
+        "WhenToInstall": {
+          "DataContingencies": [],
+          "DevicePowerRequired": 0,
+          "DiskSpaceRequiredInKb": 0,
+          "RamRequiredInMb": 0
+        }
+      },
+      "DevicesAssignedCount": 0,
+      "DevicesInstalledCount": 0,
+      "DevicesNotInstalledCount": 0,
+      "ExcludedSmartGroupGuids": [],
+      "ExcludedSmartGroupIds": [],
+      "FilesOptions": {
+        "AppDependenciesList": [],
+        "AppPatchesList": [],
+        "AppTransformsList": [],
+        "ApplicationUnInstallProcess": {
+          "UseCustomScript": false
+        }
+      },
+      "LaunchCommand": "",
+      "LaunchType": "LaunchPath",
+      "ManagedBy": "mrDaniels",
+      "ManagedByUuid": "dddd934f-17c4-f23d-d024-d33251834d3e",
+      "MinimumOperatingSystem": "",
+      "Platform": "WinRT",
+      "Rating": 0,
+      "Sdk": "Disabled",
+      "Status": "Active",
+      "SupportedModels": [
+        {
+          "Name": "Test Tanline",
+          "id": 12346
+        }
+      ],
+      "SupportedModelsName": [
+        "Test Speedwould"
+      ],
+      "id": 12347,
+      "uuid": "c7b9a8d8-9ef9-0589-2712-8f9c3798f707"
+    }
+  }
+}

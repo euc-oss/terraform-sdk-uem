@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/scripts/{scriptUuid}/assignments",
+    "method": "POST",
+    "description": "Captured POST /api/mdm/scripts/{scriptUuid}/assignments",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Location": "/api/mdm/scriptassignments/8f3407e5-0974-7602-74b5-22ba5532d1ad"
+    },
+    "body": null
+  }
+}

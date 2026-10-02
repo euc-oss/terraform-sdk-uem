@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/blobs/{blobId}",
+    "method": "DELETE",
+    "description": "V2 delete blob (DELETE /blobs/{blobId}), live-captured via mock-capture against the 26.2.0.0 test tenant, 2026-07-30. 200, empty body -- this call also served as teardown for the test blob created for the capture. POST-DELETE FINDING: a follow-up GET and HEAD on the same uuid both returned a consistent 500 'Internal Server Error' (errorCode 1000, generic message) rather than the canonical doc's documented 403 or an expected 404 -- repeated across multiple attempts a few seconds apart, so not a transient blip. Treated as an acceptable (if undocumented) 'confirmed gone' signal since it is clearly NOT a 200 (the blob is not readable), but flagged here as worth a closer look since 500 is not one of the response codes BlobsV2Controller.cs documents for Get/Head.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

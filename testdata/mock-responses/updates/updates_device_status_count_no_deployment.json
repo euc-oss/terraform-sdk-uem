@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/device-status",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/device-status \u2014 real 404 error response. Hand-authored from a raw curl capture (not via bin/mock-capture, which log.Fatal-exits on non-2xx status before writing a fixture) because the test org group has zero device-update deployments across all updates in scope, so this endpoint cannot return a 200 in this environment; the 404 status and errorCode 5223 message shape are genuine, unmutated live-server content for every update UUID tried, not a fabricated shape -- DISCLOSURE: the update_uuid embedded in the message text (aaaaaaaa_bbbb_cccc_dddd_eeeeeeeeeeee) and activityId (99999999_8888_7777_6666_555544443333) are hand-typed sequential-hex placeholders substituted into the real curl capture, not genuine server-issued values.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 404,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "errorCode": 5223,
+      "message": "No deployment found for device update 9af645a8-fef3-3e6d-3408-5cc69e0937d4 under organization group 12345-2222-3333-4444-555555555555.",
+      "activityId": "ec4a352b-6409-c5a7-84b0-6c192258c3ba"
+    }
+  }
+}

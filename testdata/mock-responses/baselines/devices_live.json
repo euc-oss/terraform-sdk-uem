@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/devices",
+    "method": "GET",
+    "description": "Genuine live capture against a persistent hand-created baseline (test_baseline_sdk in the readonly_fixtures organization group). The tenant has no enrolled devices, so a real, empty paged result is the honest shape.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json;version=1; charset=utf-8"
+    },
+    "body": {
+      "page": 0,
+      "pageSize": 0,
+      "total": 0
+    }
+  }
+}

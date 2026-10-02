@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/{applicationId}/assignments",
+    "method": "PUT",
+    "description": "Live-captured via bin/mock-capture against <internal-env>/26.2.0.0, org group 138883 (sdktest), the recapture epic's Workstream C. Body {\"SmartGroupIds\":[<2 real smart group ids>],\"DeploymentParameters\":{}} against the same real internal iOS app (id 66115) as the sibling POST assignments fixture, immediately after it (deleted at session end). Response includes X-API-Warning header (not preserved in this fixture body -- header capture out of scope): 'Deprecated GET-apps-internal-applicationid-assignments. Use new API (/apps/{applicationUuid}/assignment-rules) instead.' -- endpoint is live and functional but flagged deprecated by the server itself. Same DeploymentParameters-must-be-non-null finding as the sibling POST fixture applies here too. 204, empty body, no anonymization needed.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

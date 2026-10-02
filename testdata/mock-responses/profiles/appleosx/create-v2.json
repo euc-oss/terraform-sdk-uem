@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/appleosx/create",
+    "method": "POST",
+    "description": "macOS profile create — any payload type (V2). Response is the new int profile id.",
+    "version": "2",
+    "platform": "AppleOsX",
+    "api_validation": {
+      "console_url": "https://cn0000.example.com",
+      "uem_version": "25.9.1134.9",
+      "api_version": "2",
+      "accept_header": "application/json;version=2",
+      "org_group_id": 12345,
+      "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+      "captured_at": "2026-04-23",
+      "result": "accepted",
+      "ticket": "regression-repro",
+      "endpoint": "POST /api/mdm/profiles/platforms/appleosx/create",
+      "response_id_example": 68961,
+      "notes": "Captured via disk-encryption CRUD run; shape is identical for every macOS payload type (bare int new profile id in response body). Validated on the wire for disk-encryption (id 68961), custom-settings (68963), network-wifi (68964), restrictions (68965).",
+      "request_templates": [
+        "testdata/request-templates/profiles/appleosx/disk-encryption/disk-encryption-create-v2.json",
+        "testdata/request-templates/profiles/appleosx/custom-settings/custom-settings-create-v2.json",
+        "testdata/request-templates/profiles/appleosx/network-wifi/network-wifi-create-v2.json",
+        "testdata/request-templates/profiles/appleosx/restrictions/restrictions-create-v2.json"
+      ]
+    }
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": 12346
+  }
+}

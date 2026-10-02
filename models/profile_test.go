@@ -261,6 +261,47 @@ func TestProfile_GetStatus(t *testing.T) {
 	}
 }
 
+func TestProfile_UnmarshalJSON_ManagedLocationGroupIDFromGeneral(t *testing.T) {
+	tests := []struct {
+		name     string
+		json     string
+		expected string
+	}{
+		{
+			name: "v2 shape: numeric General.ManagedLocationGroupID populates the field",
+			json: `{
+				"General": {"ManagedLocationGroupID": 12347}
+			}`,
+			expected: "12347",
+		},
+		{
+			name: "top-level ManagedLocationGroupId wins even when General differs",
+			json: `{
+				"ManagedLocationGroupId": "999",
+				"General": {"ManagedLocationGroupID": 12347}
+			}`,
+			expected: "999",
+		},
+		{
+			name:     "neither present yields empty string",
+			json:     `{"General": {"Name": "no location group here"}}`,
+			expected: "",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			var p Profile
+			if err := json.Unmarshal([]byte(tt.json), &p); err != nil {
+				t.Fatalf("failed to unmarshal: %v", err)
+			}
+			if p.ManagedLocationGroupID != tt.expected {
+				t.Errorf("ManagedLocationGroupID = %q, want %q", p.ManagedLocationGroupID, tt.expected)
+			}
+		})
+	}
+}
+
 func TestProfileSearchResponse(t *testing.T) {
 	jsonData := `{
 		"Profiles": [

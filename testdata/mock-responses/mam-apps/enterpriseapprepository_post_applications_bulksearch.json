@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/enterpriseapprepository/applications/bulksearch",
+    "method": "POST",
+    "description": "Captured POST /api/mam/enterpriseapprepository/applications/bulksearch. Read-oriented search operation (POST used to carry a package_identifiers list in the body, not a resource-creating mutation) -- no create/delete cleanup required. Live-captured against <internal-env> (26.2), org group 138883 (sdktest), 2026-08-10. EMPIRICAL FINDING: a request body containing only package_identifiers (no platform/locale) returned HTTP 500 on this tenant/build; adding platform:\"WIN_RT\" and locale:\"en-US\" (both declared optional in swagger's BulkSearchRequestV2Model) made the call succeed with 200. Swagger does not mark platform/locale as required, but the live server appears to need at least platform populated for this operation to succeed -- treat as required in practice until confirmed against another environment.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "applications": [
+        {
+          "all_versions": [
+            "1.5.12",
+            "1.5.8",
+            "1.6.12",
+            "1.6.19",
+            "1.6.20",
+            "1.6.22",
+            "1.6.23",
+            "1.6.24",
+            "1.6.25",
+            "1.6.26",
+            "1.6.30",
+            "1.6.33",
+            "1.7.1"
+          ],
+          "default_locale": "en-US",
+          "icon_url": "https://example.com/ulESXDnd",
+          "latest_version": {
+            "installers": [
+              {
+                "architecture": "X64",
+                "installer_locale": "en-US",
+                "installer_type": "NULLSOFT"
+              }
+            ],
+            "version": "1.7.1"
+          },
+          "package_identifier": "com.example.wZhenuXT",
+          "package_name": "Test Olivepurse",
+          "platform": "WIN_RT",
+          "publisher": "Test Publisher Corp",
+          "short_description": "Draw a diagram for the world deliberately.",
+          "tags": [
+            "Test tag one",
+            "Test tag two",
+            "Test tag three",
+            "Test tag four"
+          ]
+        }
+      ],
+      "not_found": [],
+      "total_apps_count": 9812
+    }
+  }
+}

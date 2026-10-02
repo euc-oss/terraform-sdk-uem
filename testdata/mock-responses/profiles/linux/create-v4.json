@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/linux/create",
+    "method": "POST",
+    "platform": "Linux",
+    "description": "Live-captured POST /api/mdm/profiles/platforms/linux/create against UEM 26.2.0.0 (host <internal-env>), 2026-08-10, the recapture epic's Workstream C. This route is absent from the vendored upstream swagger (no internal-source/*.json declares it, including all 4 mdm versions) despite being live and functional; internal-source/mdmv4.overlay.yaml gap-fills it, so internal-source/mdmv4.json declares /profiles/platforms/linux/create. Capture proceeded directly against the endpoint per doctrine (linux profiles use API v4 at /api/mdm/profiles/linux/, per CLAUDE.md quirk #3/api-doctrine.md quirk 3). General.ProfileScope required an integer (1) despite swagger declaring it type:string -- same root-cause pattern as api-doctrine.md quirks 9/11/12/13 (swagger-declared type does not match wire reality); ProfileScope=0 or omitted fails with 'ProfileScope cannot be null'. Top-level payload key is WifiList->Wifis (plural, per LinuxDeviceProfileEntity1 schema), not the appleosx-style singular payload name. Response is a bare int (created ProfileId), consistent with apple/appleosx/winrt create shape. Real captured id hand-replaced with 12346 for anonymization (mock-capture's anonymizer does not touch top-level scalar bodies).",
+    "version": "4"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=4",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": 12346
+  }
+}

@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"strconv"
 	"time"
 )
 
@@ -83,7 +84,33 @@ func (p *Profile) UnmarshalJSON(data []byte) error {
 	}{
 		Alias: (*Alias)(p),
 	}
-	return json.Unmarshal(data, aux)
+	if err := json.Unmarshal(data, aux); err != nil {
+		return err
+	}
+
+	// v2 GET /api/mdm/profiles/{id} nests ManagedLocationGroupID under
+	// General (as an integer on the wire) instead of carrying it at the
+	// top level. The top-level ManagedLocationGroupId field (populated
+	// above, if present) always wins; only fall back to General when the
+	// top level didn't supply it.
+	if p.ManagedLocationGroupID == "" {
+		if generalMap, ok := p.General.(map[string]interface{}); ok {
+			v, found := generalMap["ManagedLocationGroupID"]
+			if !found {
+				v, found = generalMap["ManagedLocationGroupId"]
+			}
+			if found {
+				switch val := v.(type) {
+				case float64:
+					p.ManagedLocationGroupID = strconv.FormatInt(int64(val), 10)
+				case string:
+					p.ManagedLocationGroupID = val
+				}
+			}
+		}
+	}
+
+	return nil
 }
 
 // GetProfileID returns the profile ID, checking multiple possible locations.

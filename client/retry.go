@@ -2,7 +2,10 @@ package client
 
 import (
 	"context"
+	"fmt"
+	"io"
 	"net/http"
+	"strconv"
 
 	"github.com/hashicorp/go-retryablehttp"
 )
@@ -40,3 +43,30 @@ func workspaceOneRetryPolicy(ctx context.Context, resp *http.Response, err error
 
 // DefaultRetryPolicy is an alias for workspaceOneRetryPolicy for external use.
 var DefaultRetryPolicy = retryablehttp.CheckRetry(workspaceOneRetryPolicy)
+
+// attemptsHeader carries the retry attempt count from exhaustedRetryHandler
+// to handleResponse. It is set only on the SDK's own copy of the response
+// and removed before the headers are returned to the caller.
+const attemptsHeader = "X-Uem-Sdk-Attempts"
+
+// exhaustedRetryHandler runs when the retry policy gives up. When the last
+// attempt produced an HTTP response (e.g. a persistent 500), that response
+// is passed through so handleResponse turns it into an *APIError carrying
+// the server's status, errorCode and message; the attempt count travels
+// with it. Without a response (a network error) or when the retry check
+// itself failed (e.g. a canceled context), it returns an error as the
+// library's default handler does.
+func exhaustedRetryHandler(resp *http.Response, err error, numTries int) (*http.Response, error) {
+	if err == nil && resp != nil {
+		resp.Header.Set(attemptsHeader, strconv.Itoa(numTries))
+		return resp, nil
+	}
+	if resp != nil {
+		_, _ = io.Copy(io.Discard, resp.Body)
+		_ = resp.Body.Close()
+	}
+	if err == nil {
+		return nil, fmt.Errorf("giving up after %d attempt(s)", numTries)
+	}
+	return nil, fmt.Errorf("giving up after %d attempt(s): %w", numTries, err)
+}

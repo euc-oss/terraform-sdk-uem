@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "endpoint": "/api/mdm/profiles/{id}",
+    "endpoint": "/api/mdm/profiles/68748",
     "method": "GET",
     "platform": "Android",
-    "description": "Android profile GET response with Passcode payload",
+    "description": "Android profile GET response with Passcode payload. Literal (not {id}-template) endpoint by design (collision sweep, 2026-08-05): this fixture is a field-decode-shape test double for tests/generated_deviceprofilev2_response_fields_test.go's direct-file-read decode check, not a live-captured canonical answer for GET /api/mdm/profiles/{id} -- profiles_get_apple_id.json is that canonical fixture. A literal endpoint removes this from the {id}-template matching pool entirely (exact-literal-path scoring beats template match per internal/mockserver/matcher.go), same pattern already used for the profiles/appleosx/winrt lifecycle-stage fixtures in this directory.",
     "version": "2"
   },
   "request": {
@@ -25,7 +25,7 @@
         "Description": "Test profile for mock",
         "Platform": "Android",
         "ProfileType": "Device",
-        "OrganizationGroupId": 14165
+        "OrganizationGroupId": 12345
       },
       "Passcode": {
         "MinimumPasscodeLength": 6,

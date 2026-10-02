@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/linux/update",
+    "method": "POST",
+    "platform": "Linux",
+    "description": "Live-captured POST /api/mdm/profiles/platforms/linux/update against UEM 26.2.0.0 (host <internal-env>), 2026-08-10, the recapture epic's Workstream C. Route absent from the vendored upstream swagger (no internal-source/*.json declares it) and gap-filled by internal-source/mdmv4.overlay.yaml, so internal-source/mdmv4.json declares /profiles/platforms/linux/update, captured directly against a profile created for the capture (see create-v4.json in this same directory) then deleted immediately after capture -- no leftovers on the tenant (confirmed via a follow-up search returning 204/empty for platform=Linux, org group 138883). Accept header application/json;version=4 per doctrine quirk 3 (Linux uses v4, all other platforms use v2). Request included General.CreateNewVersion=true and General.ProfileScope=1 (int; see create-v4.json note on the string-declared/int-actual swagger mismatch). Response is a 200 with a null/empty body, same shape as the appleosx/winrt update responses.",
+    "version": "4"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=4",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

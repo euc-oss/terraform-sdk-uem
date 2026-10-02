@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}",
+    "method": "POST",
+    "description": "Captured POST /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}?action=Stop (SINGULAR path — distinct from both the singular .../deployment create endpoint and the plural .../deployments bulk-rank endpoint). Canonical docs say 202 Accepted with an empty body; confirmed on the wire — Content-Type and Content-Length both came back empty/zero, no body bytes at all. Captured with one live deployment already present under the update+org group (the endpoint targets the update+org-group pair's rollout state, not a specific deployment).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    },
+    "query_params": {
+      "action": "Stop"
+    }
+  },
+  "response": {
+    "status_code": 202,
+    "headers": {},
+    "body": null
+  }
+}

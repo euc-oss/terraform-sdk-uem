@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/blobs/blob/{blobId}",
+    "method": "DELETE",
+    "description": "Captured DELETE /api/mam/blobs/blob/{blobId}",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

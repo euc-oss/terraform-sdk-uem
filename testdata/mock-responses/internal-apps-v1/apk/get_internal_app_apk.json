@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/67001",
+    "method": "GET",
+    "description": "GET /api/mam/apps/internal/{applicationId}, live-captured via mock-capture against the configured test org group on the 26.2.0.0 test tenant, 2026-07-30, immediately after the apk create captured in internal_app_create_apk.json (same app instance, before delete). The real live-captured id was anonymized here to 67001 AND baked in as a literal path (not the {applicationId} template) deliberately: internal/mockserver's RequestMatcher.pathMatchScore scores an exact literal path higher than a template match (matcher.go), which is the established pattern this codebase already uses for id-shaped collision avoidance (see testdata/mock-responses/profiles/profiles_apple_get_after_create.json's literal '/api/mdm/profiles/68910'). Without this, this fixture would silently shadow the pre-existing testdata/mock-responses/mam-apps/apps_get_internal_ios_renewaldate.json fixture (same method+endpoint+version, matched by score-tie-goes-to-first-loaded) in every test that loads the full ../testdata/mock-responses tree -- confirmed by hitting exactly that regression during this work before switching to a literal id. Casing note: this GET path uses {applicationId} (capital I) in the real API; the DELETE path is a separate internal codegen config path entry using lowercase {applicationid} -- see delete_internal_app_apk.json.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "ActualFileVersion": "2.1",
+      "AirwatchAppVersion": "2.1.0.0",
+      "AppId": "com.airwatch.JustSayHello",
+      "AppProvisioningProfileUuid": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c",
+      "AppSizeInKB": 12,
+      "ApplicationFileBlobGUID": "f9e174ca-9ee2-9354-2762-b0bf409a123b",
+      "ApplicationFileHash": "0065F9F0D7C573C5663FC76F025365BF0C22BA6ACB148BD17D03020289F46EB1",
+      "ApplicationName": "Test BlanchedAlmondstand",
+      "ApplicationUrl": "https://example.com/wZhenuXT",
+      "Assignments": [],
+      "AssumeManagementOfUserInstalledApp": "BagStander",
+      "BuildVersion": "",
+      "CategoryList": [],
+      "ChangeLog": "",
+      "Comments": "",
+      "DevicesAssignedCount": 0,
+      "DevicesInstalledCount": 0,
+      "DevicesNotInstalledCount": 0,
+      "ExcludedSmartGroupGuids": [],
+      "ExcludedSmartGroupIds": [],
+      "ManagedBy": "mrDaniels",
+      "ManagedByUuid": "dddd934f-17c4-f23d-d024-d33251834d3e",
+      "MinimumOperatingSystem": "",
+      "Platform": "Android",
+      "Rating": 0,
+      "Sdk": "Disabled",
+      "SmallIconBlobGUID": "28166e95-4337-9571-0879-972abda8b465",
+      "Status": "Active",
+      "SupportedModels": [
+        {
+          "Name": "Test Ravenride",
+          "id": 12346
+        }
+      ],
+      "SupportedModelsName": [
+        "Test Houndcould"
+      ],
+      "id": 12347,
+      "uuid": "65a9758a-c774-df11-572d-9c9595e2f0b5"
+    }
+  }
+}

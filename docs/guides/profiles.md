@@ -60,12 +60,20 @@ to paginate:
 ```go
 // Default: page 0, up to 500 results
 profiles, err := wsone.ListProfiles(ctx, client, nil)
+if err != nil {
+    return err
+}
+fmt.Println(len(profiles))
 
 // Explicit page and page size
 batch, err := wsone.ListProfiles(ctx, client, &wsone.ListOptions{
     Page:     2,
     PageSize: 100,
 })
+if err != nil {
+    return err
+}
+fmt.Println(len(batch))
 ```
 
 Each `*models.Profile` in the result carries at minimum:
@@ -107,11 +115,11 @@ req := &models.ProfileCreateRequest{
         "Name":                   "Corporate Email",
         "AssignmentType":         "Auto",
         "IsActive":               true,
-        "ManagedLocationGroupId": 14165,
+        "ManagedLocationGroupId": 12345,
     },
     "Passcode": map[string]interface{}{
         "MinimumPasscodeLength": 6,
-        "RequireAlphanumeric":   false,
+        "RequirePasscode":       false,
     },
 }
 
@@ -125,10 +133,17 @@ fmt.Printf("Created profile ID: %d\n", profile.GetProfileID())
 The API returns only the new profile ID on a successful create. The SDK wraps
 that value into a `*models.Profile` with `GetProfileID()` populated.
 
-> **Linux has no create endpoint.** The Workspace ONE UEM API does not expose
-> a create endpoint for Linux profiles; they are seeded outside the API.
-> `wsone.CreateProfile` called with `wsone.PlatformLinux` will return an API
-> error.
+> **Linux profiles are created and updated through API v4.** The Workspace
+> ONE UEM API serves Linux create and update at
+> `/api/mdm/profiles/platforms/linux/{create,update}` with
+> `Accept: application/json;version=4`; the v2 routes of the same name reject
+> the Linux body. `wsone.CreateProfile` and `wsone.UpdateProfile` select v4
+> for `wsone.PlatformLinux` automatically.
+>
+> **Windows Rugged has no create endpoint.** The API exposes no create route
+> for Windows Rugged (QNX) profiles; only update, via POST. `wsone.CreateProfile`
+> called with `wsone.PlatformWindowsRugged` returns a
+> `*client.UnsupportedOperationError` without sending a request.
 
 ### Update a profile
 
@@ -155,8 +170,8 @@ fmt.Printf("Updated profile id=%d\n", updated.GetProfileID())
 ```
 
 The SDK picks the correct HTTP verb for the platform automatically. Windows 10
-and Windows Rugged updates use HTTP PUT; all other platforms use POST. You do
-not need to know this at the call site.
+updates use HTTP PUT; all other platforms, Windows Rugged included, use POST.
+You do not need to know this at the call site.
 
 ### Delete a profile
 
@@ -180,7 +195,7 @@ several non-obvious values:
 | `wsone.PlatformAppleiOS`      | `"Apple iOS"`      | `apple`     | v2          | POST        |
 | `wsone.PlatformAppleOsX`      | `"AppleOsX"`       | `appleosx`  | v2          | POST        |
 | `wsone.PlatformWindows10`     | `"Windows 10"`     | `winrt`     | v2          | PUT         |
-| `wsone.PlatformWindowsRugged` | `"Windows_Rugged"` | `qnx`       | v2          | PUT         |
+| `wsone.PlatformWindowsRugged` | `"Windows_Rugged"` | `qnx`       | v2          | POST        |
 | `wsone.PlatformLinux`         | `"To do"`          | `linux`     | v4          | POST        |
 
 Several of these are surprising:
@@ -198,9 +213,10 @@ Several of these are surprising:
 - **Windows 10 and Windows Rugged** platform strings are `"Windows 10"` and
   `"Windows_Rugged"` respectively. The URL segments they map to are `winrt` and
   `qnx`. This naming mismatch is an API convention, not an SDK choice.
-- **Windows uses PUT for updates.** Windows 10 (`winrt`) and Windows Rugged
-  (`qnx`) use HTTP PUT for profile updates; all other platforms use POST.
-  `wsone.UpdateProfile` picks the correct verb based on the platform argument.
+- **Only Windows 10 uses PUT for updates.** Windows 10 (`winrt`) uses HTTP PUT
+  for profile updates; all other platforms, Windows Rugged (`qnx`) included,
+  use POST. `wsone.UpdateProfile` picks the correct verb based on the platform
+  argument.
 
 ## Profile ID Normalization
 
@@ -217,6 +233,9 @@ accessing `ProfileID` directly to handle all response shapes correctly:
 
 ```go
 profile, err := wsone.GetProfile(ctx, client, 42, wsone.PlatformAppleiOS)
+if err != nil {
+    return err
+}
 // Use GetProfileID(), not profile.ProfileID
 fmt.Println(profile.GetProfileID())
 ```
@@ -230,7 +249,12 @@ All SDK functions return `(result, error)`. API errors come back as
 `*wsone.APIError`:
 
 ```go
-import "errors"
+import (
+    "errors"
+    "fmt"
+
+    wsone "github.com/euc-oss/terraform-sdk-uem"
+)
 
 profile, err := wsone.GetProfile(ctx, client, profileID, wsone.PlatformAndroid)
 if err != nil {
@@ -255,6 +279,7 @@ if err != nil {
     }
     return err
 }
+fmt.Println(profile.GetProfileID())
 ```
 
 The SDK retries transient errors automatically with exponential backoff before

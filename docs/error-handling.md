@@ -85,23 +85,29 @@ support the new layout; do not work around it in the calling code.
 ## 404 Detection for Terraform
 
 Terraform resource `Read` functions must remove the resource from state when it
-no longer exists in the remote system. Check for a 404 using a direct type
-assertion:
+no longer exists in the remote system. Check for a 404 with `errors.As`:
 
 ```go
 import (
     "context"
+    "errors"
 
     wsone "github.com/euc-oss/terraform-sdk-uem"
     "github.com/hashicorp/terraform-plugin-framework/resource"
 )
 
 func (r *profileResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+    var (
+        id       int
+        platform string
+    )
     // ... retrieve id and platform from state ...
 
-    profile, err := wsone.GetProfile(ctx, c, id, platform)
+    // r.client is the provider's *wsone.Client.
+    profile, err := wsone.GetProfile(ctx, r.client, id, platform)
     if err != nil {
-        if apiErr, ok := err.(*wsone.APIError); ok && apiErr.StatusCode == 404 {
+        var apiErr *wsone.APIError
+        if errors.As(err, &apiErr) && apiErr.StatusCode == 404 {
             resp.State.RemoveResource(ctx)
             return
         }
@@ -114,9 +120,9 @@ func (r *profileResource) Read(ctx context.Context, req resource.ReadRequest, re
 }
 ```
 
-This pattern is intentionally direct — when you already know you're handling
-one specific status code, the type assertion plus nil check is clear and concise.
-Reserve `errors.As` for situations where the error may be wrapped.
+Use `errors.As`, not a direct type assertion. The SDK wraps the error
+(`fmt.Errorf("failed to get profile %d: %w", profileID, err)`), so
+`err.(*wsone.APIError)` does not match a wrapped `*wsone.APIError`.
 
 ## Retry Behavior
 
@@ -173,6 +179,9 @@ c, err := wsone.NewClient(wsone.Config{
     // ...
     RateLimit: 600, // maximum requests per minute (default: 1000)
 })
+if err != nil {
+    return err
+}
 ```
 
 When the token bucket is exhausted, the SDK blocks until a token becomes

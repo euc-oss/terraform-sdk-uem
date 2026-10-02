@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/provisionings/{uuid}",
+    "method": "GET",
+    "description": "Live-captured via bin/mock-capture against <internal-env>/26.2.0.0, org group 138883 (sdktest), the recapture epic's Workstream C. Resolves InternalAppsV2Service.GetApplicationList (operation InternalAppsV2_GetApplicationList) using the real AppProvisioningProfileUuid attached to internal iOS app id 66115 (created via tools/internalapps-capture with a valid, unexpired embedded.mobileprovision -- see the sibling begininstall fixture's description for the DTPlatformName precondition). Previously blocked (see this endpoint's now-superseded unverified ledger entry): 'mock-capture discovers application UUID from apps/search; this route requires provisioning profile UUID. First discovered internal app had no provisioning profile' -- resolved by reading AppProvisioningProfileUuid off the GET /api/mam/apps/internal/{applicationId} response for the freshly-created app instead of discovering via apps/search. GENUINE SDK MODEL/WIRE MISMATCH FOUND (not fixed here, out of scope for a capture task -- flagging for a follow-up): internal/mam/v2/models.go's AppListUsingProvisioningProfileModelV2.AppUUIDs is typed []ApplicationUuidV2 (an array of {\"appUuids\": string} objects), but the live wire response returns \"AppUuids\" as a plain array of UUID strings (confirmed live, this exact capture) -- json.Unmarshal will fail per-element (a JSON string cannot decode into the ApplicationUuidV2 struct). This fixture preserves the true wire shape (plain string array) rather than the model's declared shape. 200, real success.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "AppUuids": [
+        "5f3729f2-befa-744f-ac91-b247b1a9e84e"
+      ],
+      "CreationDate": "1/15/2024 12:00:00 AM",
+      "DeviceType": "Apple",
+      "ExpirationDate": "1/15/2027 12:00:00 AM",
+      "uuid": "4c33598b-e696-3ece-97f6-3681188a93f1"
+    }
+  }
+}

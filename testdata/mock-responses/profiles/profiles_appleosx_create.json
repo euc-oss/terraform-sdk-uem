@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/appleosx/create",
+    "method": "POST",
+    "platform": "AppleOsX",
+    "description": "Live-captured POST /api/mdm/profiles/platforms/appleosx/create against UEM 26.2.0.0, 2026-07-30 -- re-verified with clean v2 header post-fix. Response is a bare int (created ProfileId); the real captured id was hand-replaced with 68911 (see profiles_apple_create.json for the anonymizer gap this works around).",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": 68911
+  }
+}

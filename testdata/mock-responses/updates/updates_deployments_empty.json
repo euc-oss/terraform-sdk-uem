@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/{uuid}/deployments",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/updates/{uuid}/deployments?organization_group_uuid={organizationGroupUuid} — real response is HTTP 204 No Content (no deployments exist for this update/org group), not 200 with an empty array. Query param moved to request.query_params per mockserver matcher convention.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    },
+    "query_params": {
+      "organization_group_uuid": "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

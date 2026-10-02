@@ -110,17 +110,23 @@ not through the auth constructor. This applies to both OAuth2 and Basic auth.
 **OAuth2:**
 
 ```go
-auth, _ := wsone.NewOAuth2Auth(wsone.OAuth2Config{
+auth, err := wsone.NewOAuth2Auth(wsone.OAuth2Config{
     ClientID:     id,
     ClientSecret: secret,
     TokenURL:     "https://na.uemauth.workspaceone.com/connect/token",
 })
+if err != nil {
+    return err
+}
 
-client, _ := wsone.NewClient(wsone.Config{
+client, err := wsone.NewClient(wsone.Config{
     BaseURL:    apiURL,
     Auth:       auth,
     TenantCode: tenantCode, // ← tenant code goes here for both auth methods
 })
+if err != nil {
+    return err
+}
 ```
 
 **Basic auth:**
@@ -128,11 +134,14 @@ client, _ := wsone.NewClient(wsone.Config{
 ```go
 auth := wsone.NewBasicAuth(user, pass)
 
-client, _ := wsone.NewClient(wsone.Config{
+client, err := wsone.NewClient(wsone.Config{
     BaseURL:    apiURL,
     Auth:       auth,
     TenantCode: tenantCode,
 })
+if err != nil {
+    return err
+}
 ```
 
 See [docs/authentication.md](docs/authentication.md) for the full guide.
@@ -143,7 +152,7 @@ See [docs/authentication.md](docs/authentication.md) for the full guide.
 
 | Resource     | Operations            | Platforms / notes                                          |
 | ------------ | --------------------- | ---------------------------------------------------------- |
-| Profiles     | CRUD                  | iOS, macOS, Android, Windows 10, Windows Rugged, Linux     |
+| Profiles     | CRUD                  | iOS, macOS, Android, Windows 10, Windows Rugged (no create), Linux |
 | Smart Groups | Search                | All platforms                                              |
 | Sensors      | Read                  | Read-only at v0                                            |
 | Apps (MAM)   | Read                  | Internal apps; categories                                  |
@@ -189,6 +198,7 @@ if err != nil {
     }
     return err
 }
+log.Printf("found %d profiles", len(profiles))
 ```
 
 See [docs/error-handling.md](docs/error-handling.md) for full details.
@@ -253,10 +263,10 @@ v0.x, breaking changes can occur in any minor release; pin a specific minor
 version in your `go.mod` to avoid surprises. Once v1.0 ships, the public
 API will be stable per semver guarantees.
 
-**v0.0.2** is the next coordinated release and introduces a cleaner public API
-surface: `wsone.Config{BaseURL, Auth, TenantCode, HTTPClient}`, `wsone.NewClient`,
+**v0.0.2** introduced a cleaner public API surface:
+`wsone.Config{BaseURL, Auth, TenantCode, HTTPClient}`, `wsone.NewClient`,
 `wsone.NewOAuth2Auth`, `wsone.ListProfiles`, and `apiErr.IsRetryable()`. v0.0.1
-had a different, lower-level surface; v0.0.2 is a coordinated breaking change
+had a different, lower-level surface; v0.0.2 was a coordinated breaking change
 while still pre-1.0.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history.

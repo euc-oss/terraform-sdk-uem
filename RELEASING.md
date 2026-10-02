@@ -18,7 +18,10 @@ fixed cadence at v0.
    - **Minor** (`v0.X.0` → `v0.X+1.0`): new functionality, additive API
      changes. While at v0, minor versions MAY include breaking changes.
    - **Major** (`v0.X.Y` → `v1.0.0`): API stability commitment.
-3. Bump the `Version` constant in `version.go` to match.
+3. The `Version` constant in `version.go` needs no manual bump: the sync renders it
+   from its `--version` flag (the 3-part form, e.g. `26.2.0`) each time it assembles
+   the tree, so it carries the internal release version of the build, which is not
+   necessarily the `vX.Y.Z` tag chosen in step 2.
 4. Move CHANGELOG `[Unreleased]` content into a new `[vX.Y.Z] - YYYY-MM-DD`
    section. Leave a fresh empty `[Unreleased]` above it.
 5. Open a release PR titled `Release vX.Y.Z`. The PR body should be a copy

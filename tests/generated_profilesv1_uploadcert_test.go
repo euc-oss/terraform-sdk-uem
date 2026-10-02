@@ -16,7 +16,9 @@ import (
 
 // TestGeneratedUploadCertificateV1 verifies UploadCertificate produces the
 // correct HTTP request against a fixture-backed mock server.
-// Fixture: testdata/mock-responses/profiles/upload_certificate_success.json
+// Fixture: testdata/mock-responses/profiles/profiles_upload_certificate.json
+// (live-captured 2026-08-05, replacing a stray untracked fixture that
+// collided on the same endpoint+method+version and was never in the ledger).
 func TestGeneratedUploadCertificateV1(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping integration test")
@@ -40,8 +42,8 @@ func TestGeneratedUploadCertificateV1(t *testing.T) {
 	if resp == nil {
 		t.Fatal("UploadCertificate returned nil response")
 	}
-	if resp.Value == nil || *resp.Value != 12345 {
-		t.Errorf("response Value: got %v, want *int64 = 12345", resp.Value)
+	if resp.Value == nil || *resp.Value != 12346 {
+		t.Errorf("response Value: got %v, want *int64 = 12346", resp.Value)
 	}
 }
 

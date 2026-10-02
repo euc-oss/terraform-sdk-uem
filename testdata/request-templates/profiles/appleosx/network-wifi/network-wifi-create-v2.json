@@ -1,0 +1,36 @@
+{
+  "api_validation": {
+    "console_url": "https://your-instance.awmdm.com",
+    "uem_version": "25.9.1134.9",
+    "api_version": "2",
+    "accept_header": "application/json;version=2",
+    "endpoint": "POST /api/mdm/profiles/platforms/appleosx/create",
+    "org_group_id": 12345,
+    "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+    "captured_at": "2026-04-23",
+    "result": "accepted",
+    "response_id_example": 68964,
+    "ticket": "internal-ticket",
+    "notes": "SecurityType enum values: server rejected \"WPA2 Personal\"; \"WPA\" accepted. Enum not declared in swagger — canonical C# EncryptionType drives values."
+  },
+  "General": {
+    "Name": "mocktest-network-wifi",
+    "Description": "SDK CRUD validation — minimal WPA2 Wi-Fi",
+    "DeviceType": "AppleOsX",
+    "ProfileType": "Device",
+    "ManagedLocationGroupID": 12345,
+    "AssignmentType": "Auto",
+    "ProfileContext": "Device"
+  },
+  "NetworkList": [
+    {
+      "NetworkInterface": "BuiltInWireless",
+      "ServiceSetIdentifier": "MocktestWiFi",
+      "HiddenNetwork": false,
+      "AutoJoin": true,
+      "SecurityType": "WPA",
+      "Password": "mocktest-passphrase",
+      "ProxyType": "None"
+    }
+  ]
+}

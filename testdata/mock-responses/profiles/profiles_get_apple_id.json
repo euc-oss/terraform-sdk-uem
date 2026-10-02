@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/{id}",
+    "method": "GET",
+    "platform": "Apple",
+    "description": "Captured GET /api/mdm/profiles/{id} for Apple",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "AWMailCredentialList": [],
+      "CredentialsList": [],
+      "CustomSettingsList": [],
+      "EASNativeMailClientList": [],
+      "EmailList": [],
+      "General": {
+        "AllowRemoval": "Never",
+        "AssignedSchedule": [],
+        "AssignedSmartGroups": [
+          {
+            "Name": "Test Rabbitthrow",
+            "SmartGroupId": 12346
+          }
+        ],
+        "AssignmentType": "Compliance",
+        "Description": "Reduce cognitive load in the person.",
+        "EnableProvisioning": false,
+        "ExcludedSmartGroups": [],
+        "IsActive": true,
+        "IsManaged": true,
+        "IsProvisionedForOobe": false,
+        "ManagedLocationGroupID": 12347,
+        "Name": "Test Manateewill",
+        "Password": "",
+        "ProfileContext": "Device",
+        "ProfileId": 12348,
+        "ProfileUuid": "8fe98ed4-4ad2-ac03-26a2-60eb985e3f18",
+        "Version": 1
+      },
+      "GoogleAccount": [],
+      "Passcode": {
+        "AllowSimpleValue": true,
+        "GracePeriodForDeviceLock": 0,
+        "MaximumNumberOfFailedAttempts": "None",
+        "MinimumNumberOfComplexCharacters": 0,
+        "MinimumPasscodeLength": 0,
+        "RequireAlphanumericValue": false,
+        "RequirePasscodeOnDevice": false
+      },
+      "ScepList": [],
+      "SsoExtensionList": [],
+      "VpnList": [],
+      "WifiList": []
+    }
+  }
+}

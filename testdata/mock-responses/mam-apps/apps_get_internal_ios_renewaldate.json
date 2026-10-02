@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/apps/internal/{applicationId}",
     "method": "GET",
-    "description": "Synthetic fixture: iOS app with RenewalDate in no-timezone format (bug repro for internal-ticket). The UEM API returns timestamps like \"2024-01-15T00:00:00.000\" (no Z, no offset) for RenewalDate, which fails RFC3339 parsing in Go.",
+    "description": "Synthetic fixture: iOS app with RenewalDate in no-timezone format (bug repro for a known parsing defect). The UEM API returns timestamps like \"2024-01-15T00:00:00.000\" (no Z, no offset) for RenewalDate, which fails RFC3339 parsing in Go.",
     "version": "1",
     "synthetic": true,
     "bug": "RenewalDate format is \"2006-01-02T15:04:05.000\" (no timezone) — not RFC3339"

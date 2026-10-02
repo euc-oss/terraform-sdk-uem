@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/68910",
+    "method": "DELETE",
+    "platform": "Apple",
+    "description": "Live-captured DELETE /api/mdm/profiles/{profileId} against UEM 26.2.0.0, 2026-07-30. Real-wire finding: the response carries X-Api-Version: v1 even though the request Accept header sent version=2 (Api-Supported-Versions echoed only \"2\" on the create/update calls for this platform, so this looks like DELETE's response labeling is version-invariant rather than a real functional v1/v2 split). Response body is empty (200, Content-Length 0) regardless.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors",
+    "method": "POST",
+    "description": "V2 create device sensor (POST /devicesensors). Live-captured; response body's uuid was independently re-verified as reliable via a separate raw (non-anonymized) create+list scratch check -- an earlier working assumption that the create response's uuid did not match the real resource was WRONG and has been retracted: it compared this fixture's own anonymized uuid value (anonymize.go unconditionally fakes any '*uuid'-suffixed key) against a real value, which will never match by construction. The real create response uuid does correctly identify the created resource.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "uuid": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c"
+    }
+  }
+}

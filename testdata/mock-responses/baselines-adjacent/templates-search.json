@@ -1,0 +1,3579 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/baselines/templates/search/{vendorTemplateUUID}",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/baselines/templates/search/{vendorTemplateUUID}?osVersionUUID=6628b6e3_3db5_4225_91b7_0308c25e09df&policyTree=true",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    },
+    "query_params": {
+      "osVersionUUID": "964426e5-7f69-e9e5-5641-b8b169107927",
+      "policyTree": "true"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "id": 12346,
+      "osVersion": {
+        "id": 12347,
+        "levels": [],
+        "name": "Test Rabbitthrow",
+        "uuid": "eaa54c29-851f-fe01-320e-bce278850dab",
+        "version": "1709"
+      },
+      "policyTree": [
+        {
+          "categories": [
+            {
+              "categories": [
+                {
+                  "categories": [
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12348,
+                          "name": "Test Manateewill",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test MediumAquaMarinehail",
+                              "id": 12349,
+                              "name": "Test Greenrice",
+                              "status": "Enabled",
+                              "uuid": "8e1b2805-313c-42d3-5ad1-c49a1657e355"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Flydream",
+                              "id": 12350,
+                              "name": "Test LightSteelBlueweek",
+                              "status": "Enabled",
+                              "uuid": "eb875a11-4acb-0447-932c-47319863e180"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Crowdcould",
+                              "id": 12351,
+                              "name": "Test Chinchillashould",
+                              "status": "Enabled",
+                              "uuid": "17854d04-8236-e03f-86ea-a8aa56466270"
+                            }
+                          ],
+                          "uuid": "3d5a19b4-fa12-c3c1-3017-5ebd4fda2f11"
+                        },
+                        {
+                          "categories": [],
+                          "id": 12352,
+                          "name": "Test LightSkyBluering",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Cheekseat",
+                              "id": 12353,
+                              "name": "Test Airportwill",
+                              "status": "Enabled",
+                              "uuid": "32222200-21bb-0922-479f-b6a79f2fb435"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Regimentbe",
+                              "id": 12354,
+                              "name": "Test LightSteelBlueimportance",
+                              "status": "Enabled",
+                              "uuid": "915c13b7-6f23-a54b-8656-3b206b746653"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Mobshall",
+                              "id": 12355,
+                              "name": "Test Workwould",
+                              "status": "Enabled",
+                              "uuid": "0bc0ae11-9150-c868-1a05-91a4b842bb04"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test DarkSlateGraymuster",
+                              "id": 12356,
+                              "name": "Test Tortoiseplay",
+                              "status": "Enabled",
+                              "uuid": "9efa0644-4f4b-234d-5711-c793d8053076"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Wildebeestam",
+                              "id": 12357,
+                              "name": "Test Spideram",
+                              "status": "Enabled",
+                              "uuid": "0fe5c02f-bb9d-cd21-06ef-e5eb5b27de27"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Cattlewrite",
+                              "id": 12358,
+                              "name": "Test Juicerkiss",
+                              "status": "Disabled",
+                              "uuid": "ae337448-a7e2-846b-e8ad-2f628c788ad0"
+                            }
+                          ],
+                          "uuid": "0d07848e-0421-3d23-b805-43953e11a5ec"
+                        }
+                      ],
+                      "id": 12359,
+                      "name": "Test LightCyaninnocence",
+                      "policies": [],
+                      "uuid": "4f6beafa-41d2-26a1-5491-eb2e9c318a73"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [
+                            {
+                              "categories": [],
+                              "id": 12360,
+                              "name": "Test Servalwash",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test DimGrayyear",
+                                  "id": 12361,
+                                  "name": "Test Codwere",
+                                  "status": "Enabled",
+                                  "uuid": "6fd776a1-6ba9-0c87-1011-a21997eaab19"
+                                }
+                              ],
+                              "uuid": "b91d476b-04a5-2607-0dcc-6485cc90b6e1"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12362,
+                              "name": "Test Sedgedream",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Caseeat",
+                                  "id": 12363,
+                                  "name": "Test Archipelagodive",
+                                  "status": "Enabled",
+                                  "uuid": "20f9c203-be48-b302-015f-552a72b5d308"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Termitewould",
+                                  "id": 12364,
+                                  "name": "Test Wadwill",
+                                  "status": "Enabled",
+                                  "uuid": "7753d3d3-4a4f-8a11-750e-bc32313d5036"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Navyschool",
+                                  "id": 12365,
+                                  "name": "Test Limeparty",
+                                  "status": "Enabled",
+                                  "uuid": "c1316387-7d3f-50a8-35e3-73c378c465b4"
+                                }
+                              ],
+                              "uuid": "8dc2596d-c52f-f082-396a-53074cd9167b"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12366,
+                              "name": "Test Oysterbeen",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Funcould",
+                                  "id": 12367,
+                                  "name": "Test Bodythink",
+                                  "status": "Enabled",
+                                  "uuid": "f1e62482-9640-a8a3-ca6b-63fe140774cb"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test DarkTurquoiseday",
+                                  "id": 12368,
+                                  "name": "Test Truckstand",
+                                  "status": "Enabled",
+                                  "uuid": "3b95ad05-093a-5974-5945-57e92c77d86f"
+                                }
+                              ],
+                              "uuid": "eae22ddf-539e-9e44-3d0e-cd17bde87961"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12369,
+                              "name": "Test Tolerancemay",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Clusterthink",
+                                  "id": 12370,
+                                  "name": "Test PaleVioletRedproduct",
+                                  "status": "Enabled",
+                                  "uuid": "b9ceadd2-4a50-dff5-4157-a6042e38baac"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Blackschool",
+                                  "id": 12371,
+                                  "name": "Test Cityhave",
+                                  "status": "Enabled",
+                                  "uuid": "e02423d8-a5b1-bef8-4508-30ae3178bfc0"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Apedoes",
+                                  "id": 12372,
+                                  "name": "Test Gnuthrow",
+                                  "status": "Enabled",
+                                  "uuid": "e55b6612-a17c-a92e-a3e3-88f2b2418c5c"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Sheepam",
+                                  "id": 12373,
+                                  "name": "Test Flocksleep",
+                                  "status": "Enabled",
+                                  "uuid": "e2ee3ed6-c4f4-92ea-6fcc-3f6cb2e876e0"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Scorpionbathe",
+                                  "id": 12374,
+                                  "name": "Test Tripfly",
+                                  "status": "Enabled",
+                                  "uuid": "17acd10f-723e-1302-e736-8d6dbbfefaee"
+                                }
+                              ],
+                              "uuid": "e81bf16f-f6e9-aebc-bb67-00e5207aa3e6"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12375,
+                              "name": "Test DarkKhakiwoman",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Slaveryeat",
+                                  "id": 12376,
+                                  "name": "Test Companygive",
+                                  "status": "Enabled",
+                                  "uuid": "7cd3decb-884f-b65d-090a-329a5e524d0e"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Tigerwere",
+                                  "id": 12377,
+                                  "name": "Test DarkMagentacountry",
+                                  "status": "Enabled",
+                                  "uuid": "ab6c4eae-a540-662d-e24e-3ad0a7c22851"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test SaddleBrownwork",
+                                  "id": 12378,
+                                  "name": "Test Llamamight",
+                                  "status": "Enabled",
+                                  "uuid": "35a25af1-29b1-4562-2259-4c1dcc3e6d06"
+                                }
+                              ],
+                              "uuid": "94cc5852-3b7e-2aa0-0d71-f16adfb25e7f"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12379,
+                              "name": "Test Linenperson",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Manwas",
+                                  "id": 12380,
+                                  "name": "Test Anthologyfly",
+                                  "status": "Enabled",
+                                  "uuid": "2e5c2bfc-e40a-cb12-73be-a087c44c21d0"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test SeaGreengroup",
+                                  "id": 12381,
+                                  "name": "Test Eyeare",
+                                  "status": "Enabled",
+                                  "uuid": "fe1afaf9-aed7-d760-8069-ef5caf3eb3b2"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Friendshipbeing",
+                                  "id": 12382,
+                                  "name": "Test BlueVioleteconomics",
+                                  "status": "Enabled",
+                                  "uuid": "87a86518-6cba-dd7c-51d4-eeca2055273b"
+                                }
+                              ],
+                              "uuid": "2e198a5a-3b0a-04de-25d6-215161f6a370"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12383,
+                              "name": "Test Bookmay",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test DarkTurquoiseday",
+                                  "id": 12384,
+                                  "name": "Test Sharkhug",
+                                  "status": "Enabled",
+                                  "uuid": "f276832a-070a-49d9-ac93-3bebea1796a0"
+                                }
+                              ],
+                              "uuid": "a74e337f-3040-de10-ef28-488c70c51a84"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12385,
+                              "name": "Test Khakipod",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test DarkSeaGreencare",
+                                  "id": 12386,
+                                  "name": "Test Eagleshall",
+                                  "status": "Enabled",
+                                  "uuid": "e624c667-0999-40c9-6972-9304ec462311"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Chartreusegroup",
+                                  "id": 12387,
+                                  "name": "Test LightPinkbattery",
+                                  "status": "Enabled",
+                                  "uuid": "54df0aa0-a25a-728f-4b14-c7ea19fa5069"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Tomatocaptain",
+                                  "id": 12388,
+                                  "name": "Test Groupdo",
+                                  "status": "Enabled",
+                                  "uuid": "f13244e1-3d57-440b-316e-62fa5a5d9307"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Workwould",
+                                  "id": 12389,
+                                  "name": "Test Darkorangecase",
+                                  "status": "Enabled",
+                                  "uuid": "43789196-aeeb-05c3-a5ec-053c77415306"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test MidnightBluetribe",
+                                  "id": 12390,
+                                  "name": "Test Pyramidcould",
+                                  "status": "Enabled",
+                                  "uuid": "b45c1c40-425c-917b-5e3b-49117bf5258a"
+                                }
+                              ],
+                              "uuid": "ac0191d9-8ce6-dc4b-b391-6466ec5515a9"
+                            }
+                          ],
+                          "id": 12391,
+                          "name": "Test Accommodationshould",
+                          "policies": [],
+                          "uuid": "14557827-5350-c1c3-0747-5f72393e7e4d"
+                        }
+                      ],
+                      "id": 12392,
+                      "name": "Test Hyenabeen",
+                      "policies": [],
+                      "uuid": "3afed268-8145-d024-9e06-6c672e07c1ad"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12393,
+                          "name": "Test Pigcan",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Martenshould",
+                              "id": 12394,
+                              "name": "Test Bundleplay",
+                              "status": "Disabled",
+                              "uuid": "8adec12f-84b4-2904-dfc7-016ce5e3cb9a"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Minkcan",
+                              "id": 12395,
+                              "name": "Test Thrillcut",
+                              "status": "Disabled",
+                              "uuid": "ccc5dd52-fa70-6817-0200-a49540ec19cd"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Noodlesdrink",
+                              "id": 12396,
+                              "name": "Test Kingmay",
+                              "status": "Enabled",
+                              "uuid": "2fddd29d-8340-9526-37e8-323929f69eee"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Camelhad",
+                              "id": 12397,
+                              "name": "Test Servalbe",
+                              "status": "Enabled",
+                              "uuid": "c38ec495-2615-9b6d-152b-d2b5e4c0496e"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Cashshould",
+                              "id": 12398,
+                              "name": "Test Daydrink",
+                              "status": "Enabled",
+                              "uuid": "44d9f558-15b1-a218-61dc-26beb54bc776"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Kindnessam",
+                              "id": 12399,
+                              "name": "Test Naturewas",
+                              "status": "Enabled",
+                              "uuid": "c029b3f2-3ee8-c2c3-3551-ac37dbaa6a57"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Elephantshould",
+                              "id": 12400,
+                              "name": "Test Codpaint",
+                              "status": "Enabled",
+                              "uuid": "5cc28253-f56c-a894-7335-35e03cef95be"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Siennasandwich",
+                              "id": 12401,
+                              "name": "Test Salmoncrowd",
+                              "status": "Disabled",
+                              "uuid": "c00ed0c6-758d-8d0e-c8bc-a1efaa86ed91"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Porpoisedoes",
+                              "id": 12402,
+                              "name": "Test Minnowsew",
+                              "status": "Enabled",
+                              "uuid": "0f9095b9-eaca-0823-6cb3-f3daa9b6f6f6"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test LightGoldenRodYellowjaw",
+                              "id": 12403,
+                              "name": "Test Baboondo",
+                              "status": "Enabled",
+                              "uuid": "228c8007-dc5b-987e-2361-8e6af23fb6cb"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Limedisregard",
+                              "id": 12404,
+                              "name": "Test Schoolis",
+                              "status": "Enabled",
+                              "uuid": "0d337ba2-c799-02a5-b90e-f751834fcae9"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Wormdid",
+                              "id": 12405,
+                              "name": "Test Beigeregiment",
+                              "status": "Enabled",
+                              "uuid": "efa6e0b3-5da9-c62d-5b8b-2ec91ffc59a0"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Apedid",
+                              "id": 12406,
+                              "name": "Test Sedgebeing",
+                              "status": "Enabled",
+                              "uuid": "3ce46323-ed32-4cad-3f79-1a51b96da37c"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Kangaroodid",
+                              "id": 12407,
+                              "name": "Test DarkVioletbox",
+                              "status": "Enabled",
+                              "uuid": "11f30dca-69d2-e073-818f-5acf3b76d9f3"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Water Buffalostand",
+                              "id": 12408,
+                              "name": "Test Fingerread",
+                              "status": "Disabled",
+                              "uuid": "f271823a-d154-0b55-93e9-3585f2acdda5"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Clustersit",
+                              "id": 12409,
+                              "name": "Test Disregardcould",
+                              "status": "Enabled",
+                              "uuid": "4aa74931-1803-fd1c-e7d7-12b25bb34c5c"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Lavenderheap",
+                              "id": 12410,
+                              "name": "Test Frogcan",
+                              "status": "Enabled",
+                              "uuid": "d5b2ca6d-0076-abf5-1efe-2a96da7ccc58"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Alligatorbeing",
+                              "id": 12411,
+                              "name": "Test Streamride",
+                              "status": "Enabled",
+                              "uuid": "c0d400ef-42ea-c03e-fdbb-38d1a0a38fa2"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test SeaGreentaxi",
+                              "id": 12412,
+                              "name": "Test Wombatcan",
+                              "status": "Disabled",
+                              "uuid": "87b6cd99-5d44-0173-53f7-a5f8d2350374"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Chestdo",
+                              "id": 12413,
+                              "name": "Test Blackharm",
+                              "status": "Enabled",
+                              "uuid": "f5f9150f-9cd2-cd8f-3be7-c6feb22fab05"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Setbe",
+                              "id": 12414,
+                              "name": "Test Sariwould",
+                              "status": "Enabled",
+                              "uuid": "9e7cfbe8-3b94-2844-4523-513c55392b5b"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test MediumAquaMarinehost",
+                              "id": 12415,
+                              "name": "Test Wolfdoes",
+                              "status": "NotConfigured",
+                              "uuid": "2f915857-0007-6f47-9da4-6fd7cc968568"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Blackarmy",
+                              "id": 12416,
+                              "name": "Test Leisurebeen",
+                              "status": "Disabled",
+                              "uuid": "ed84405f-ece9-ba9d-ec3e-06ae22536e30"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test WhiteSmokecatalog",
+                              "id": 12417,
+                              "name": "Test Giraffecould",
+                              "status": "Enabled",
+                              "uuid": "0c9e5054-7796-8592-d6fd-2e41dcf58dc4"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Womando",
+                              "id": 12418,
+                              "name": "Test Cricketwait",
+                              "status": "Enabled",
+                              "uuid": "1d741e29-2c27-4fe9-3f20-36df921d7aad"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Standwere",
+                              "id": 12419,
+                              "name": "Test Baledid",
+                              "status": "Disabled",
+                              "uuid": "e5eac4ec-8674-8eaa-05bf-31b004a1829a"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Alligatoris",
+                              "id": 12420,
+                              "name": "Test Cupmust",
+                              "status": "Disabled",
+                              "uuid": "dcca9cbf-2b4e-e5ef-8544-4462be8ee163"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Beetlewin",
+                              "id": 12421,
+                              "name": "Test Peruwork",
+                              "status": "Enabled",
+                              "uuid": "64a248b9-74e3-683f-f06d-802a31e677d3"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Minnowpaint",
+                              "id": 12422,
+                              "name": "Test SaddleBrownhost",
+                              "status": "Enabled",
+                              "uuid": "ee1d724f-e610-a557-1272-e189caa6f29b"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Geneticswas",
+                              "id": 12423,
+                              "name": "Test Handsit",
+                              "status": "Enabled",
+                              "uuid": "ed67c301-1a10-18f1-fde6-4ee47384703f"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test MistyRoseboard",
+                              "id": 12424,
+                              "name": "Test Alligatorshould",
+                              "status": "Enabled",
+                              "uuid": "35e8fbeb-f661-afe0-69f8-f704bbc829c9"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test OldLacefear",
+                              "id": 12425,
+                              "name": "Test Goatwere",
+                              "status": "Enabled",
+                              "uuid": "7ec5fd62-f951-4043-393d-7c9b6b0e0c8d"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Ivorysink",
+                              "id": 12426,
+                              "name": "Test Alpacabeing",
+                              "status": "Enabled",
+                              "uuid": "1545656c-979f-859d-f7d5-2c499e09101f"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test MediumSlateBlueway",
+                              "id": 12427,
+                              "name": "Test Duckcould",
+                              "status": "Enabled",
+                              "uuid": "e337fa12-912e-4fdc-caad-3e2953b52e4c"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Bracecan",
+                              "id": 12428,
+                              "name": "Test Salmonadvertising",
+                              "status": "Enabled",
+                              "uuid": "ec3831a4-40a5-f2f5-bd12-0f6a4dbda571"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Bodysmell",
+                              "id": 12429,
+                              "name": "Test Mobam",
+                              "status": "Enabled",
+                              "uuid": "4e6ebe20-0d2e-b4a1-b113-824f5d01d10e"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Maroontruth",
+                              "id": 12430,
+                              "name": "Test LemonChiffonwit",
+                              "status": "NotConfigured",
+                              "uuid": "51811b35-4f67-8686-8d32-75f7770cbbb7"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Flymay",
+                              "id": 12431,
+                              "name": "Test MidnightBluemodel",
+                              "status": "Enabled",
+                              "uuid": "8b489c0b-15b8-d2ad-764f-f2d857c55724"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Prairie Dogsit",
+                              "id": 12432,
+                              "name": "Test Oliveminute",
+                              "status": "Enabled",
+                              "uuid": "a15c69b0-1f5f-f78b-3b5a-c9c6c8d85093"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Wallabyis",
+                              "id": 12433,
+                              "name": "Test Porpoisedream",
+                              "status": "Enabled",
+                              "uuid": "b94e8d3f-3724-2418-13b9-1b19c0644ab9"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Stacksit",
+                              "id": 12434,
+                              "name": "Test LightSalmonpark",
+                              "status": "Enabled",
+                              "uuid": "cc4c5b5e-c994-85b3-61ad-e9eaaf2eb0a4"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Setmust",
+                              "id": 12435,
+                              "name": "Test Minkshould",
+                              "status": "Enabled",
+                              "uuid": "94f863c0-6650-802b-306b-be7fc2f7dbf6"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Water Buffalosit",
+                              "id": 12436,
+                              "name": "Test Dogam",
+                              "status": "Enabled",
+                              "uuid": "49799ed7-b3c4-0f3d-c72e-61b2d5e0dd58"
+                            }
+                          ],
+                          "uuid": "23939b43-bec4-1e85-7bde-0f0af2792bfd"
+                        },
+                        {
+                          "categories": [],
+                          "id": 12437,
+                          "name": "Test Aquamarinebrilliance",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Aquamarinehorse",
+                              "id": 12438,
+                              "name": "Test Troopbeen",
+                              "status": "Enabled",
+                              "uuid": "dc888d03-5dec-9be9-6781-725c075c8ffa"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Wallabybeen",
+                              "id": 12439,
+                              "name": "Test Snakewash",
+                              "status": "Enabled",
+                              "uuid": "de982ce1-a909-3483-c619-d0d982ce3ce7"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Mammotham",
+                              "id": 12440,
+                              "name": "Test Woodchuckdid",
+                              "status": "Enabled",
+                              "uuid": "0486c438-d969-340a-670f-e08dc5b90251"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test GhostWhitecompany",
+                              "id": 12441,
+                              "name": "Test Eardo",
+                              "status": "Enabled",
+                              "uuid": "4fc7941a-13f1-58bf-65c1-bdada3c62c7e"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Buffaloshould",
+                              "id": 12442,
+                              "name": "Test Cigarettesew",
+                              "status": "Enabled",
+                              "uuid": "7164b2d1-8f36-65f3-06c9-b8ac1becf239"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Wormclose",
+                              "id": 12443,
+                              "name": "Test Justicedid",
+                              "status": "Enabled",
+                              "uuid": "402fe252-4196-2699-9a6e-81358097a432"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Harebeing",
+                              "id": 12444,
+                              "name": "Test Camelsleep",
+                              "status": "Enabled",
+                              "uuid": "d3da9d71-10ce-eb56-5c53-88f0d8428c5e"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test SlateGraybody",
+                              "id": 12445,
+                              "name": "Test Gnatwill",
+                              "status": "Enabled",
+                              "uuid": "b1e1db1f-8659-a3d3-b893-d551357ff164"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Hamstercould",
+                              "id": 12446,
+                              "name": "Test Wallabyhad",
+                              "status": "Enabled",
+                              "uuid": "eddbd06a-b8ce-f63e-0da8-db824d614dfe"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Groupcan",
+                              "id": 12447,
+                              "name": "Test Hippopotamussing",
+                              "status": "Enabled",
+                              "uuid": "19c16457-413e-49d4-1fc8-9ce73646a00d"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Cloudbeen",
+                              "id": 12448,
+                              "name": "Test SlateGrayarchipelago",
+                              "status": "Enabled",
+                              "uuid": "a59ad424-2645-91a8-e45e-866017bd4615"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Hedgemight",
+                              "id": 12449,
+                              "name": "Test Crimsonlamp",
+                              "status": "Enabled",
+                              "uuid": "8a954606-1074-815c-9164-aa763beb4dd0"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test MediumSlateBlueream",
+                              "id": 12450,
+                              "name": "Test Cacklecan",
+                              "status": "Enabled",
+                              "uuid": "5e2a0604-baeb-3751-6c9d-f1195412477d"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Mustermay",
+                              "id": 12451,
+                              "name": "Test LightBluegarlic",
+                              "status": "Enabled",
+                              "uuid": "f52e98fd-0d3b-1ce6-8630-a1d8ba9c0386"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test DarkGraykitchen",
+                              "id": 12452,
+                              "name": "Test Ravenwill",
+                              "status": "Enabled",
+                              "uuid": "d0f8b03e-1556-ffc5-c20d-4a9cb3cbfcd0"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Bodybe",
+                              "id": 12453,
+                              "name": "Test Pugwas",
+                              "status": "Enabled",
+                              "uuid": "b7c8a264-6545-10d5-3ba7-52cf6ac3fcc1"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Donkeysnore",
+                              "id": 12454,
+                              "name": "Test Congregationbeing",
+                              "status": "Enabled",
+                              "uuid": "5a46076e-5d24-f4de-e81d-f71dbf742ec5"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Grasshoppershall",
+                              "id": 12455,
+                              "name": "Test Tomatohill",
+                              "status": "Enabled",
+                              "uuid": "366e6b71-4f0e-19cc-e268-7bdd42a7660e"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Bearbeen",
+                              "id": 12456,
+                              "name": "Test PaleGoldenRodbrass",
+                              "status": "Enabled",
+                              "uuid": "f083f859-b805-4b51-80a3-ef9d7bda1920"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Hordedo",
+                              "id": 12457,
+                              "name": "Test BlanchedAlmondleap",
+                              "status": "Enabled",
+                              "uuid": "b5800c5a-bfec-7a1a-8222-69c04a1a7d6a"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Rhinoceroshad",
+                              "id": 12458,
+                              "name": "Test Redcrime",
+                              "status": "Enabled",
+                              "uuid": "927bc3a0-0a09-32eb-fdd3-78840d4b2fd0"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Bearare",
+                              "id": 12459,
+                              "name": "Test Friendshipshould",
+                              "status": "Enabled",
+                              "uuid": "579adab3-06a3-e8b1-d464-e01848d64012"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Armydid",
+                              "id": 12460,
+                              "name": "Test NavajoWhitesmoke",
+                              "status": "Enabled",
+                              "uuid": "aabe3bad-33d3-a4b5-d932-68ecaeab8218"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Servalsmell",
+                              "id": 12461,
+                              "name": "Test Violetbundle",
+                              "status": "Enabled",
+                              "uuid": "59b0732a-eaec-0438-1f58-3d150ee17d40"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Heapsnore",
+                              "id": 12462,
+                              "name": "Test Navyleap",
+                              "status": "Enabled",
+                              "uuid": "ba4cd5cc-b684-7f05-edf3-5e842b13912d"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Fuchsiahost",
+                              "id": 12463,
+                              "name": "Test SpringGreenluxuty",
+                              "status": "Enabled",
+                              "uuid": "275f0699-0858-b768-fc61-db0258b97cd8"
+                            }
+                          ],
+                          "uuid": "de7900a3-4856-f093-decb-adcabadb3045"
+                        }
+                      ],
+                      "id": 12464,
+                      "name": "Test LightGoldenRodYellowparty",
+                      "policies": [],
+                      "uuid": "29cbd7e9-f72d-1e6c-7bb1-52a0b2d90699"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12465,
+                      "name": "Test DarkGoldenRodset",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test GhostWhitetroop",
+                          "id": 12466,
+                          "name": "Test Tealstack",
+                          "status": "Enabled",
+                          "uuid": "0c72d310-5146-2a59-78ca-76ae4ace48bc"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Koalamight",
+                          "id": 12467,
+                          "name": "Test Platypushas",
+                          "status": "Enabled",
+                          "uuid": "e254657d-f4ac-746a-81cf-5611cae45c4c"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Squirrelam",
+                          "id": 12468,
+                          "name": "Test Roomare",
+                          "status": "Enabled",
+                          "uuid": "7f8779a3-e9f3-75d5-bcf1-44d0d81a54a4"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Giraffeshake",
+                          "id": 12469,
+                          "name": "Test SteelBluegroup",
+                          "status": "Enabled",
+                          "uuid": "e933da1a-ce9a-7600-fd9e-c02184e7c952"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test DarkSlateGraymuster",
+                          "id": 12470,
+                          "name": "Test Muleshall",
+                          "status": "Enabled",
+                          "uuid": "9dcdaa3f-ce6f-8257-3557-a77a81bd7197"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Bodycry",
+                          "id": 12471,
+                          "name": "Test Liondream",
+                          "status": "Enabled",
+                          "uuid": "a6df0cbc-7c8c-19bf-d323-2352d36fc91d"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Rhinocerossew",
+                          "id": 12472,
+                          "name": "Test Braveryhad",
+                          "status": "Enabled",
+                          "uuid": "89303681-0226-1317-4571-75f219c52a3c"
+                        }
+                      ],
+                      "uuid": "658e4830-5dfe-8070-5131-e0919375603a"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12473,
+                      "name": "Test Cornsilkliterature",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test DarkBlueannoyance",
+                          "id": 12474,
+                          "name": "Test Dogbathe",
+                          "status": "Enabled",
+                          "uuid": "3f988486-0eb7-4a73-468a-a99fdfdac696"
+                        }
+                      ],
+                      "uuid": "28e06ef2-847c-2b94-271d-ac07c065d9a9"
+                    }
+                  ],
+                  "id": 12475,
+                  "name": "Test Aquamarinesoup",
+                  "policies": [],
+                  "uuid": "11df311c-f121-ebf6-e2f0-4844ddd4f5be"
+                }
+              ],
+              "id": 12476,
+              "name": "Test Hamsterwas",
+              "policies": [],
+              "uuid": "3436f6af-828f-221d-1876-8693c6b3d41a"
+            },
+            {
+              "categories": [
+                {
+                  "categories": [
+                    {
+                      "categories": [],
+                      "id": 12477,
+                      "name": "Test Herringwill",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Boardshould",
+                          "id": 12478,
+                          "name": "Test Termitecould",
+                          "status": "Enabled",
+                          "uuid": "23a9b2a1-936e-2bb9-5878-e43deb04b5eb"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test OliveDrabcat",
+                          "id": 12479,
+                          "name": "Test Crocodilewas",
+                          "status": "Enabled",
+                          "uuid": "82c50129-5622-4345-f2f5-d1fdc537369d"
+                        }
+                      ],
+                      "uuid": "84446e46-8b89-76d6-8891-1d51627e1f17"
+                    }
+                  ],
+                  "id": 12480,
+                  "name": "Test Tanwisp",
+                  "policies": [],
+                  "uuid": "8f09b25d-70dd-af13-ffa8-38027ccdd7dc"
+                },
+                {
+                  "categories": [],
+                  "id": 12481,
+                  "name": "Test Cricketdo",
+                  "policies": [
+                    {
+                      "class": "Machine",
+                      "className": "Test Patrolwas",
+                      "id": 12482,
+                      "name": "Test Softwaream",
+                      "status": "Enabled",
+                      "uuid": "f23c123b-b0f1-c234-67a0-0f84099e11b2"
+                    }
+                  ],
+                  "uuid": "d58ea670-471c-5674-b474-3a60357e0f3f"
+                },
+                {
+                  "categories": [],
+                  "id": 12483,
+                  "name": "Test Holidayclap",
+                  "policies": [
+                    {
+                      "class": "Machine",
+                      "className": "Test Woodchuckwatch",
+                      "id": 12484,
+                      "name": "Test Hedgehogsit",
+                      "status": "Enabled",
+                      "uuid": "c2293fbe-5b1e-2f5e-187d-991b1c78e086"
+                    },
+                    {
+                      "class": "Machine",
+                      "className": "Test YellowGreenleap",
+                      "id": 12485,
+                      "name": "Test Violetthought",
+                      "status": "Enabled",
+                      "uuid": "360d3ba9-09cf-f9d8-c41f-12647163b793"
+                    },
+                    {
+                      "class": "Machine",
+                      "className": "Test Numberis",
+                      "id": 12486,
+                      "name": "Test Apewould",
+                      "status": "Disabled",
+                      "uuid": "8e4c2d4c-bafd-e186-15a0-066329d829f1"
+                    },
+                    {
+                      "class": "Machine",
+                      "className": "Test PeachPuffstack",
+                      "id": 12487,
+                      "name": "Test Woodchuckknit",
+                      "status": "Enabled",
+                      "uuid": "59d5d9ae-6f80-b04d-7e5e-825e47fecf70"
+                    },
+                    {
+                      "class": "Machine",
+                      "className": "Test Sea Lionshall",
+                      "id": 12488,
+                      "name": "Test Mosquitoclimb",
+                      "status": "Enabled",
+                      "uuid": "97509cb6-ae38-84e2-4003-1bb702787957"
+                    },
+                    {
+                      "class": "Machine",
+                      "className": "Test WhiteSmokecare",
+                      "id": 12489,
+                      "name": "Test Snowperson",
+                      "status": "Disabled",
+                      "uuid": "9dd827b3-7040-18bd-b611-c3922493e574"
+                    }
+                  ],
+                  "uuid": "2ee08f0c-b2bb-399a-3116-c9dd9b176062"
+                },
+                {
+                  "categories": [],
+                  "id": 12490,
+                  "name": "Test Gerbilwatch",
+                  "policies": [
+                    {
+                      "class": "Machine",
+                      "className": "Test Harmsing",
+                      "id": 12491,
+                      "name": "Test Crabshall",
+                      "status": "Enabled",
+                      "uuid": "9dd0dacf-6d50-208c-fc6c-c327876b4a21"
+                    },
+                    {
+                      "class": "Machine",
+                      "className": "Test Parfumedance",
+                      "id": 12492,
+                      "name": "Test Logicbeing",
+                      "status": "Enabled",
+                      "uuid": "4263e24a-12bf-2380-7f09-57cd730c8d66"
+                    },
+                    {
+                      "class": "Machine",
+                      "className": "Test Rangeare",
+                      "id": 12493,
+                      "name": "Test Companydo",
+                      "status": "Disabled",
+                      "uuid": "1d60a3b7-a99e-3a7a-e03e-cd13d68c176e"
+                    },
+                    {
+                      "class": "Machine",
+                      "className": "Test Greenquiver",
+                      "id": 12494,
+                      "name": "Test LightSalmonarchipelago",
+                      "status": "Enabled",
+                      "uuid": "5d24a25d-c503-ce16-b264-c34f6e02524c"
+                    }
+                  ],
+                  "uuid": "2cd76909-20e6-e2c7-c6db-8811f7891c59"
+                },
+                {
+                  "categories": [
+                    {
+                      "categories": [],
+                      "id": 12495,
+                      "name": "Test Manateedid",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Dolphindoes",
+                          "id": 12496,
+                          "name": "Test NavajoWhitetroupe",
+                          "status": "Disabled",
+                          "uuid": "972ac82b-0a3e-2122-4ac0-531656aa3f40"
+                        }
+                      ],
+                      "uuid": "964cba4f-8060-3ba0-8125-843f8a7bd268"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12497,
+                      "name": "Test Stacksleep",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Muskratdoes",
+                          "id": 12498,
+                          "name": "Test Houndwould",
+                          "status": "Enabled",
+                          "uuid": "bae712e6-c74f-87d3-afe7-18fac6c5c8aa"
+                        }
+                      ],
+                      "uuid": "ee898824-4d35-bbef-e229-a623f612f58a"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12499,
+                      "name": "Test DarkGoldenRodway",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test SpringGreencookware",
+                          "id": 12500,
+                          "name": "Test Lemonlaugh",
+                          "status": "Enabled",
+                          "uuid": "c18d0993-d15d-8bce-0ee6-19ef5cec766e"
+                        }
+                      ],
+                      "uuid": "a8f1031d-0e00-8f08-bde7-399194b45ed1"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12501,
+                      "name": "Test Foxshall",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Handwin",
+                          "id": 12502,
+                          "name": "Test Wealthpaint",
+                          "status": "Enabled",
+                          "uuid": "05b011ff-59cc-ccbd-217c-e8d453851e81"
+                        }
+                      ],
+                      "uuid": "f07db1f3-962a-6315-ec7d-1a204db946ec"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12503,
+                          "name": "Test Doctorshall",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Cricketcould",
+                              "id": 12504,
+                              "name": "Test Dinosaurmight",
+                              "status": "Disabled",
+                              "uuid": "40a9ccd6-d204-aafe-00ae-d01a7a4aad1b"
+                            }
+                          ],
+                          "uuid": "fbf0ecd3-94a1-0a54-5808-19faccafddca"
+                        }
+                      ],
+                      "id": 12505,
+                      "name": "Test Catalogcould",
+                      "policies": [],
+                      "uuid": "fb67e925-d7d2-6ad6-9976-42a5791d350f"
+                    }
+                  ],
+                  "id": 12506,
+                  "name": "Test Leaphave",
+                  "policies": [],
+                  "uuid": "ca112e1e-1e2f-90f6-9d89-6ac11744825b"
+                },
+                {
+                  "categories": [
+                    {
+                      "categories": [],
+                      "id": 12507,
+                      "name": "Test DarkGoldenRodcongregation",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Wombatdid",
+                          "id": 12508,
+                          "name": "Test Dolphinbow",
+                          "status": "Enabled",
+                          "uuid": "3f836b4d-e12a-b6b6-344a-5ec8967d8b85"
+                        }
+                      ],
+                      "uuid": "51972d73-4426-62f9-569b-608911f69a67"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12509,
+                      "name": "Test Lavenderpacket",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test SaddleBrownfreezer",
+                          "id": 12510,
+                          "name": "Test SeaShellpart",
+                          "status": "Enabled",
+                          "uuid": "e19715da-59df-1972-7a55-d9cca5271ae8"
+                        }
+                      ],
+                      "uuid": "fa1a4f48-78a7-7e69-3db1-b0e22424ec0e"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12511,
+                          "name": "Test DimGraystupidity",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Blackclarity",
+                              "id": 12512,
+                              "name": "Test Magentadelay",
+                              "status": "Enabled",
+                              "uuid": "5f448cf3-1f88-7389-e8bd-566361e3d62c"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Purpleflock",
+                              "id": 12513,
+                              "name": "Test Problemcut",
+                              "status": "Enabled",
+                              "uuid": "4d1cb602-9fcc-c7a0-bdda-3b94662d5d05"
+                            }
+                          ],
+                          "uuid": "6876eb21-da0d-fd2e-ebb5-bea859aa132a"
+                        }
+                      ],
+                      "id": 12514,
+                      "name": "Test Molewill",
+                      "policies": [],
+                      "uuid": "557c0052-c853-6a01-6d4a-602d4eca7831"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12515,
+                      "name": "Test Kangaroowatch",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Lifewould",
+                          "id": 12516,
+                          "name": "Test LightPinktrip",
+                          "status": "Enabled",
+                          "uuid": "a3ad64df-386d-206a-47f9-a4b8dd08c06a"
+                        }
+                      ],
+                      "uuid": "8225e093-4de8-f247-bbd4-2c0760876faa"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12517,
+                      "name": "Test Armybeing",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test SkyBluefoot",
+                          "id": 12518,
+                          "name": "Test Whaleam",
+                          "status": "Enabled",
+                          "uuid": "42c98d91-fa71-9ed0-cff3-66e246a81609"
+                        }
+                      ],
+                      "uuid": "4cc33c88-0ff4-3551-bcef-d5966beea048"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12519,
+                          "name": "Test IndianRedtime",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Old Ageare",
+                              "id": 12520,
+                              "name": "Test Harmgive",
+                              "status": "Enabled",
+                              "uuid": "09fc8c28-1666-41f6-eb6e-db69aa819cc7"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Sunshinebe",
+                              "id": 12521,
+                              "name": "Test LightYellowalbum",
+                              "status": "Enabled",
+                              "uuid": "243a53a1-2325-987d-0b59-1f616a38d0b9"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test PaleTurquoisecrime",
+                              "id": 12522,
+                              "name": "Test Martenshould",
+                              "status": "Enabled",
+                              "uuid": "5b313f56-8079-5317-872a-70c35031e3c6"
+                            }
+                          ],
+                          "uuid": "a87e9b4c-3015-452a-a611-9dcc05a5990e"
+                        }
+                      ],
+                      "id": 12523,
+                      "name": "Test Cockroacham",
+                      "policies": [],
+                      "uuid": "7af9cfac-b174-da74-805e-227aa5e256cd"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12524,
+                      "name": "Test Coveylaugh",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Castlewas",
+                          "id": 12525,
+                          "name": "Test Yearam",
+                          "status": "Enabled",
+                          "uuid": "bba1ed31-c7a0-40f7-bcb6-79677a3765de"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Companydo",
+                          "id": 12526,
+                          "name": "Test Harmbeing",
+                          "status": "Disabled",
+                          "uuid": "8b40b142-4836-b623-abe4-a3b6b83493fe"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Catmight",
+                          "id": 12527,
+                          "name": "Test Wombatbeing",
+                          "status": "Disabled",
+                          "uuid": "6be04e98-dd2a-727b-96d0-053a94061878"
+                        }
+                      ],
+                      "uuid": "d92f07cc-f98c-0d78-d776-500bc76da1b5"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12528,
+                          "name": "Test Pandashould",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Oilwrite",
+                              "id": 12529,
+                              "name": "Test Donkeyhas",
+                              "status": "Disabled",
+                              "uuid": "a1c92134-6a19-f18e-28b8-382103a387e3"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Seafoodbe",
+                              "id": 12530,
+                              "name": "Test Toiletsmell",
+                              "status": "Disabled",
+                              "uuid": "48d01700-5077-2f86-d007-96a2812564c2"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test LightBluebrace",
+                              "id": 12531,
+                              "name": "Test LemonChiffonweather",
+                              "status": "Enabled",
+                              "uuid": "18c65c81-9c71-9204-9dc1-fea4a0fa8714"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Wingsshould",
+                              "id": 12532,
+                              "name": "Test Kindnesspaint",
+                              "status": "Enabled",
+                              "uuid": "bed166b9-5b6b-956f-a442-a14e472fd4c0"
+                            }
+                          ],
+                          "uuid": "6b42c8bf-01d2-ce88-68b2-66ba892eeb75"
+                        }
+                      ],
+                      "id": 12533,
+                      "name": "Test Bridgeare",
+                      "policies": [],
+                      "uuid": "504359da-75fd-f752-ca74-b001e6bfe2f9"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12534,
+                      "name": "Test Ravencould",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Governmentcan",
+                          "id": 12535,
+                          "name": "Test Luxutydo",
+                          "status": "Disabled",
+                          "uuid": "1e65821c-837e-d76f-636b-208daa83115f"
+                        }
+                      ],
+                      "uuid": "02158a58-93f7-e668-c995-e22db2c7da95"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12536,
+                      "name": "Test Harelaugh",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Partyhave",
+                          "id": 12537,
+                          "name": "Test Leopardshall",
+                          "status": "Enabled",
+                          "uuid": "73f3c2d3-bf2a-b6ae-3a5a-dba4cb2fb0d0"
+                        }
+                      ],
+                      "uuid": "8e79e514-b0b5-6a8a-f6e3-af822abacf65"
+                    }
+                  ],
+                  "id": 12538,
+                  "name": "Test Problemshould",
+                  "policies": [],
+                  "uuid": "4528ffd3-092c-4775-ed2c-d8c2fe88f19a"
+                },
+                {
+                  "categories": [
+                    {
+                      "categories": [],
+                      "id": 12539,
+                      "name": "Test Kangaroobeing",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Bunchcould",
+                          "id": 12540,
+                          "name": "Test Snailshake",
+                          "status": "Enabled",
+                          "uuid": "166535da-a5bf-ecd1-697c-eb1b797090d4"
+                        }
+                      ],
+                      "uuid": "d0d9f28e-181e-71bd-c6e1-7cd64def9188"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12541,
+                      "name": "Test Lifewill",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test LightSlateGrayman",
+                          "id": 12542,
+                          "name": "Test LavenderBlushcaravan",
+                          "status": "Enabled",
+                          "uuid": "34a62033-3c37-d9d9-bdbc-5928476b8a48"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Pointbeing",
+                          "id": 12543,
+                          "name": "Test Catalogbeen",
+                          "status": "Enabled",
+                          "uuid": "e39ac95a-3934-3570-a982-f99d6d5611a6"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test DodgerBluething",
+                          "id": 12544,
+                          "name": "Test Porpoiseare",
+                          "status": "Enabled",
+                          "uuid": "86a453ad-f910-ab69-07e1-17d69630e2b0"
+                        }
+                      ],
+                      "uuid": "d9185932-323c-63d5-e227-f21e8a32a3f4"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12545,
+                          "name": "Test Lavendermirror",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Purplecast",
+                              "id": 12546,
+                              "name": "Test WhiteSmokebook",
+                              "status": "Enabled",
+                              "uuid": "1a92d6b4-d012-ba99-d732-54af1ac3b77a"
+                            }
+                          ],
+                          "uuid": "52c406c4-d3c0-7455-1378-148903dc2083"
+                        }
+                      ],
+                      "id": 12547,
+                      "name": "Test Butterflybeing",
+                      "policies": [],
+                      "uuid": "21f7be94-a9ff-052e-2f83-5e22a3779748"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12548,
+                          "name": "Test Congregationcould",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Businessdo",
+                              "id": 12549,
+                              "name": "Test CadetBluejuice",
+                              "status": "Enabled",
+                              "uuid": "8065e601-d424-9089-28c6-807ceac01b9c"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Horsejump",
+                              "id": 12550,
+                              "name": "Test HotPinkproblem",
+                              "status": "Enabled",
+                              "uuid": "9d6c7727-b0a0-2fd2-b127-509ebdf536b8"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Handmust",
+                              "id": 12551,
+                              "name": "Test Sedgewin",
+                              "status": "Enabled",
+                              "uuid": "4cf8ab75-36d0-c6d3-a13a-8b11d289541d"
+                            }
+                          ],
+                          "uuid": "bd301b6a-32cd-4912-757f-ebaf34965bed"
+                        },
+                        {
+                          "categories": [],
+                          "id": 12552,
+                          "name": "Test MidnightBluesofa",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Mallardcry",
+                              "id": 12553,
+                              "name": "Test DarkRedclass",
+                              "status": "Enabled",
+                              "uuid": "1c7ee490-0c7b-ce5b-0af7-b74accf03bfd"
+                            }
+                          ],
+                          "uuid": "7c517ac3-2876-efe7-7e8b-0ffd25e29e32"
+                        }
+                      ],
+                      "id": 12554,
+                      "name": "Test Navythought",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Wheatcongregation",
+                          "id": 12555,
+                          "name": "Test Workmust",
+                          "status": "Enabled",
+                          "uuid": "df53fc12-ae77-bb0c-bb56-1a962007d4e2"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Elephantdid",
+                          "id": 12556,
+                          "name": "Test Crewdid",
+                          "status": "Enabled",
+                          "uuid": "875a0f23-001b-b31c-2ae1-e34ff6f2472d"
+                        }
+                      ],
+                      "uuid": "16ebbb6e-bcbc-5b68-03b8-89124bf4b571"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12557,
+                      "name": "Test Chinchillaclimb",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test DarkCyanpark",
+                          "id": 12558,
+                          "name": "Test Eeleat",
+                          "status": "Enabled",
+                          "uuid": "4a98f7e2-4187-e2de-446c-d18d3b8ee9eb"
+                        }
+                      ],
+                      "uuid": "afe6a37d-6408-45a3-362a-7f3df54e29a6"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12559,
+                      "name": "Test Goatdid",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Pleasureare",
+                          "id": 12560,
+                          "name": "Test Hedgehogcan",
+                          "status": "Disabled",
+                          "uuid": "ad4d584e-baca-fd93-2d13-9e91b78c41e8"
+                        }
+                      ],
+                      "uuid": "82b1c745-9e02-988f-9650-21b331aa2435"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12561,
+                          "name": "Test LightSteelBlueaddress",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test SeaGreensleep",
+                              "id": 12562,
+                              "name": "Test ForestGreenkoala",
+                              "status": "Enabled",
+                              "uuid": "2fe1027b-3558-ac50-88ea-fbe0bf072945"
+                            }
+                          ],
+                          "uuid": "73cdad60-88b1-a4e8-c2e6-4282faef850d"
+                        },
+                        {
+                          "categories": [],
+                          "id": 12563,
+                          "name": "Test BlanchedAlmondharvest",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Thistlecow",
+                              "id": 12564,
+                              "name": "Test MediumSeaGreenpair",
+                              "status": "Enabled",
+                              "uuid": "d6eedd84-5dd5-179b-f5f3-6e8d29fd1af4"
+                            }
+                          ],
+                          "uuid": "9f3819cd-0209-de9b-f41a-02d65dfe0064"
+                        },
+                        {
+                          "categories": [],
+                          "id": 12565,
+                          "name": "Test Apartmentstack",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Louselaugh",
+                              "id": 12566,
+                              "name": "Test Coffeedoes",
+                              "status": "Enabled",
+                              "uuid": "1e2419d8-7a97-7170-d36a-4449d8b36782"
+                            }
+                          ],
+                          "uuid": "d7d6c27a-376a-b345-77cc-e485e157b415"
+                        }
+                      ],
+                      "id": 12567,
+                      "name": "Test Macawtalk",
+                      "policies": [],
+                      "uuid": "3cf34df3-161e-0ccb-9be2-360881a5709b"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12568,
+                      "name": "Test Smokethrow",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Cupclose",
+                          "id": 12569,
+                          "name": "Test WhiteSmokeexaltation",
+                          "status": "Enabled",
+                          "uuid": "34f632cb-1f7d-059e-7467-649c9dd35820"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Gainsbororeel",
+                          "id": 12570,
+                          "name": "Test Regimentdo",
+                          "status": "Disabled",
+                          "uuid": "e68e6552-5e79-11c9-0ded-759db1170645"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test SkyBluewalk",
+                          "id": 12571,
+                          "name": "Test Pigcry",
+                          "status": "Disabled",
+                          "uuid": "1e1f2b37-92fe-fd30-961e-9886a0d08e50"
+                        }
+                      ],
+                      "uuid": "47934180-4176-121c-e18f-48b71451c4e0"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [
+                            {
+                              "categories": [],
+                              "id": 12572,
+                              "name": "Test DarkBluetime",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Antwere",
+                                  "id": 12573,
+                                  "name": "Test Musteris",
+                                  "status": "Disabled",
+                                  "uuid": "68581825-65ff-8ec5-613c-6375aced62fa"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Troupesmell",
+                                  "id": 12574,
+                                  "name": "Test Tribeclimb",
+                                  "status": "Enabled",
+                                  "uuid": "f678ad0a-fea4-2412-a2d6-8b38d66ef4a4"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Regimentwill",
+                                  "id": 12575,
+                                  "name": "Test Showerhas",
+                                  "status": "Enabled",
+                                  "uuid": "b2930a9a-3e23-dc4f-c538-31bfc0dc077b"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Yakdance",
+                                  "id": 12576,
+                                  "name": "Test Eelturn",
+                                  "status": "Enabled",
+                                  "uuid": "36f5982a-ff69-1901-7ff6-14067fafca75"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Gooseopen",
+                                  "id": 12577,
+                                  "name": "Test Standbeen",
+                                  "status": "Enabled",
+                                  "uuid": "8a46947b-3242-afc1-dcbb-dee82d2294bd"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test LavenderBlushwater",
+                                  "id": 12578,
+                                  "name": "Test Projectcan",
+                                  "status": "Enabled",
+                                  "uuid": "e7abb599-fda4-691e-b435-f89717ce0101"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Fireare",
+                                  "id": 12579,
+                                  "name": "Test DarkBluefork",
+                                  "status": "Enabled",
+                                  "uuid": "f770bd84-4e2a-218e-a637-552e4bc77776"
+                                }
+                              ],
+                              "uuid": "8faaf738-3f1a-32a8-804b-202762a622ad"
+                            },
+                            {
+                              "categories": [
+                                {
+                                  "categories": [],
+                                  "id": 12580,
+                                  "name": "Test Magentalove",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Sedgeeat",
+                                      "id": 12581,
+                                      "name": "Test Sedgecook",
+                                      "status": "Enabled",
+                                      "uuid": "5f58178b-168f-a517-859a-8314f1f7bcb9"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Clamhas",
+                                      "id": 12582,
+                                      "name": "Test Yellowjacketbeing",
+                                      "status": "Enabled",
+                                      "uuid": "4e77b31b-fcd7-2fec-5717-2d3f34de0442"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Moledid",
+                                      "id": 12583,
+                                      "name": "Test Perupart",
+                                      "status": "Enabled",
+                                      "uuid": "71a6529c-5fe9-cdc2-658a-ddf7fa0788c6"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Elegancehave",
+                                      "id": 12584,
+                                      "name": "Test Badgerthrow",
+                                      "status": "Enabled",
+                                      "uuid": "00289e09-97a1-f37d-0ca5-37d261917f16"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Butterflymight",
+                                      "id": 12585,
+                                      "name": "Test MidnightBlueoutfit",
+                                      "status": "Enabled",
+                                      "uuid": "21cd5de6-35f5-e977-3cb8-59fb14b91c8d"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Lousemight",
+                                      "id": 12586,
+                                      "name": "Test LightYellowseafood",
+                                      "status": "Enabled",
+                                      "uuid": "b1a47497-9c30-d2a9-79de-baa3f6141be7"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test DarkBluesedge",
+                                      "id": 12587,
+                                      "name": "Test Murderdo",
+                                      "status": "Enabled",
+                                      "uuid": "0756bb70-f6bf-99ad-f5a1-eb29c1605028"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Dogcan",
+                                      "id": 12588,
+                                      "name": "Test Sparroware",
+                                      "status": "Enabled",
+                                      "uuid": "4dd76964-e7bf-9ff9-1f95-22674e594790"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Musterdoes",
+                                      "id": 12589,
+                                      "name": "Test Orangehost",
+                                      "status": "Enabled",
+                                      "uuid": "a7a2fa2a-ac80-bab6-d3f4-8ca05dfae3d3"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Balldoes",
+                                      "id": 12590,
+                                      "name": "Test LightPinkteam",
+                                      "status": "Enabled",
+                                      "uuid": "eeb0ee2b-8981-a6e6-f90c-c5c63368a947"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Troupelisten",
+                                      "id": 12591,
+                                      "name": "Test Goatlaugh",
+                                      "status": "Enabled",
+                                      "uuid": "4c3833c1-1293-eb7a-65e0-8f6c8392f51d"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Pandahas",
+                                      "id": 12592,
+                                      "name": "Test Wallabywatch",
+                                      "status": "Enabled",
+                                      "uuid": "9d1e10b6-6ff7-7f21-d8f7-00572cb90ed3"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Enthusiasmopen",
+                                      "id": 12593,
+                                      "name": "Test PeachPuffclass",
+                                      "status": "Enabled",
+                                      "uuid": "2cff08dc-e746-5251-8b3c-d0250b6238f2"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Orchidgun",
+                                      "id": 12594,
+                                      "name": "Test Spiderhas",
+                                      "status": "Enabled",
+                                      "uuid": "3a4090d7-6301-ebf0-3bdd-1dcb0311deee"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Pencilwrite",
+                                      "id": 12595,
+                                      "name": "Test Porpoiseclimb",
+                                      "status": "Enabled",
+                                      "uuid": "b85a2816-2544-07e6-6638-584b18d395fe"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Mouseis",
+                                      "id": 12596,
+                                      "name": "Test Platypushave",
+                                      "status": "Enabled",
+                                      "uuid": "b47b015c-de00-3b45-8160-f9247b705359"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Eelbathe",
+                                      "id": 12597,
+                                      "name": "Test Nutritionare",
+                                      "status": "Enabled",
+                                      "uuid": "0360595b-4c5b-5b89-1db6-694cbee51e9e"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Catwait",
+                                      "id": 12598,
+                                      "name": "Test Thoughtwas",
+                                      "status": "Enabled",
+                                      "uuid": "14169377-fc87-cf99-f333-be6bc796dfa5"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Grasshopperhave",
+                                      "id": 12599,
+                                      "name": "Test LightYellowyear",
+                                      "status": "Enabled",
+                                      "uuid": "8fde545b-fb26-98d3-bab1-db35b7f88d13"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Philosophyare",
+                                      "id": 12600,
+                                      "name": "Test DimGreywoman",
+                                      "status": "Enabled",
+                                      "uuid": "7b62e7d1-4632-f0f0-78af-ea93dcd187be"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Deerhas",
+                                      "id": 12601,
+                                      "name": "Test Tealtribe",
+                                      "status": "Enabled",
+                                      "uuid": "9136e09b-9570-0fdc-d0cd-cdc7ea4adcfd"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Cockroachcook",
+                                      "id": 12602,
+                                      "name": "Test Navyriches",
+                                      "status": "Enabled",
+                                      "uuid": "788d8b21-e5f9-6d55-d320-c75b85b50fdc"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Squirreldid",
+                                      "id": 12603,
+                                      "name": "Test Wayare",
+                                      "status": "Enabled",
+                                      "uuid": "74481c9a-5aa6-6c96-c95e-605cc90c630f"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Pighave",
+                                      "id": 12604,
+                                      "name": "Test Importanceclose",
+                                      "status": "Enabled",
+                                      "uuid": "d4d5a7b2-5899-8a9c-1810-baccca33ae0f"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Gerbildid",
+                                      "id": 12605,
+                                      "name": "Test Alpacais",
+                                      "status": "Enabled",
+                                      "uuid": "dcaffff3-1578-8ae3-4e6f-b2f84ecd6f68"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Houndshould",
+                                      "id": 12606,
+                                      "name": "Test PaleGoldenRodcompany",
+                                      "status": "Enabled",
+                                      "uuid": "5a824931-08d8-4b2c-6df2-786135c4a3f9"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Castkiss",
+                                      "id": 12607,
+                                      "name": "Test Sedgebuy",
+                                      "status": "Enabled",
+                                      "uuid": "e17f2121-9f49-c55b-ef5a-da9afcc017c3"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Potatobe",
+                                      "id": 12608,
+                                      "name": "Test Hareplay",
+                                      "status": "Enabled",
+                                      "uuid": "e2df9618-5ec6-cfda-1e28-3a708568a742"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Dogwere",
+                                      "id": 12609,
+                                      "name": "Test PaleTurquoisebunch",
+                                      "status": "Enabled",
+                                      "uuid": "3abc2e0d-efa6-94fb-43dc-56701551c26b"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Witski",
+                                      "id": 12610,
+                                      "name": "Test DarkMagentagroup",
+                                      "status": "Enabled",
+                                      "uuid": "93d57c9b-1670-ff42-2ade-0629a5b99df1"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Failureplay",
+                                      "id": 12611,
+                                      "name": "Test Codbeen",
+                                      "status": "Enabled",
+                                      "uuid": "54acce3b-152a-d678-35d0-f7498864dec6"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Sea Lionmight",
+                                      "id": 12612,
+                                      "name": "Test Eaglewould",
+                                      "status": "Enabled",
+                                      "uuid": "0be0c92a-5e37-8e63-4ce8-322bd082200d"
+                                    }
+                                  ],
+                                  "uuid": "933b778e-eec1-0ebc-5619-339979c4c7a1"
+                                },
+                                {
+                                  "categories": [],
+                                  "id": 12613,
+                                  "name": "Test DeepPinkpacket",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Pugam",
+                                      "id": 12614,
+                                      "name": "Test Clamdrink",
+                                      "status": "Enabled",
+                                      "uuid": "382384c8-2ead-133a-9cfb-e806ff31a1b7"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Yearhas",
+                                      "id": 12615,
+                                      "name": "Test Cacklewould",
+                                      "status": "Enabled",
+                                      "uuid": "db4c3980-8191-d51a-c490-55bae7d9a87e"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Locustwas",
+                                      "id": 12616,
+                                      "name": "Test Cicadacan",
+                                      "status": "Enabled",
+                                      "uuid": "b2c8cedb-c85f-2679-5fa4-140f360b17d5"
+                                    }
+                                  ],
+                                  "uuid": "fd30c165-6143-ce9f-e6b0-c0d653941c32"
+                                },
+                                {
+                                  "categories": [],
+                                  "id": 12617,
+                                  "name": "Test Antelopedoes",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Hailsmell",
+                                      "id": 12618,
+                                      "name": "Test Childhoodhad",
+                                      "status": "Enabled",
+                                      "uuid": "6f7dc250-ec66-5911-fa2a-c96137ce8745"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Beetlecan",
+                                      "id": 12619,
+                                      "name": "Test Hippopotamusturn",
+                                      "status": "Enabled",
+                                      "uuid": "7530c46b-6714-73ac-dc5b-e6b0de865563"
+                                    }
+                                  ],
+                                  "uuid": "0112a72f-f1e4-a439-cdc8-297609f1c08d"
+                                },
+                                {
+                                  "categories": [],
+                                  "id": 12620,
+                                  "name": "Test MintCreamright",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Wisdomdo",
+                                      "id": 12621,
+                                      "name": "Test Toadstand",
+                                      "status": "Enabled",
+                                      "uuid": "9261b0ae-ec9e-44e8-c2a8-1d0b842975a8"
+                                    }
+                                  ],
+                                  "uuid": "3356c4a4-f3b6-52e6-cf6e-3736179ea9a7"
+                                },
+                                {
+                                  "categories": [],
+                                  "id": 12622,
+                                  "name": "Test Rhinocerosstand",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Ivoryhost",
+                                      "id": 12623,
+                                      "name": "Test Horseare",
+                                      "status": "Enabled",
+                                      "uuid": "80bcc531-fe78-3b61-485f-c65510e077e9"
+                                    }
+                                  ],
+                                  "uuid": "a16c0bca-a803-0964-e72b-dbe1800571bf"
+                                },
+                                {
+                                  "categories": [],
+                                  "id": 12624,
+                                  "name": "Test Turtlesit",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Calmbeing",
+                                      "id": 12625,
+                                      "name": "Test Apefly",
+                                      "status": "Enabled",
+                                      "uuid": "f7eb7247-6631-c159-a33f-831098d81797"
+                                    }
+                                  ],
+                                  "uuid": "1c78f508-9124-329a-4eb0-8edda4f0e267"
+                                },
+                                {
+                                  "categories": [],
+                                  "id": 12626,
+                                  "name": "Test Snailshould",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Hyenado",
+                                      "id": 12627,
+                                      "name": "Test DarkMagentacigarette",
+                                      "status": "Enabled",
+                                      "uuid": "23e7577d-a981-cee2-054c-323e111f80db"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Troutwill",
+                                      "id": 12628,
+                                      "name": "Test Spoonwas",
+                                      "status": "Enabled",
+                                      "uuid": "1d4feecc-21ca-1b2d-dcd7-801553442441"
+                                    }
+                                  ],
+                                  "uuid": "39b9613e-0c25-620c-ab7c-df095a344624"
+                                },
+                                {
+                                  "categories": [],
+                                  "id": 12629,
+                                  "name": "Test Chocolategold",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Giraffehad",
+                                      "id": 12630,
+                                      "name": "Test Muskrathave",
+                                      "status": "Enabled",
+                                      "uuid": "62a3775b-6da3-fc18-6844-124a5c487535"
+                                    }
+                                  ],
+                                  "uuid": "2768cee5-f4fc-370b-f53f-590f4040cec6"
+                                },
+                                {
+                                  "categories": [],
+                                  "id": 12631,
+                                  "name": "Test Exaltationmay",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Coveybe",
+                                      "id": 12632,
+                                      "name": "Test Yellowjackethas",
+                                      "status": "Enabled",
+                                      "uuid": "41c55251-a805-3a76-ecd5-58804b1059eb"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Teallake",
+                                      "id": 12633,
+                                      "name": "Test Boardbeing",
+                                      "status": "Enabled",
+                                      "uuid": "cc56acb5-0b86-1b82-5d65-3a20dbd8725a"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test DarkSalmonbunch",
+                                      "id": 12634,
+                                      "name": "Test Alpacawin",
+                                      "status": "Enabled",
+                                      "uuid": "f3c37aff-10b8-1df3-630d-62a65b1344de"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Villadream",
+                                      "id": 12635,
+                                      "name": "Test CadetBlueharvest",
+                                      "status": "Enabled",
+                                      "uuid": "08b143bc-f57b-2144-d2c5-1e1b33af1355"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Impalashake",
+                                      "id": 12636,
+                                      "name": "Test MediumTurquoisecovey",
+                                      "status": "Enabled",
+                                      "uuid": "230b3f59-5e40-61d7-f0bf-d70d423748a5"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Giraffehave",
+                                      "id": 12637,
+                                      "name": "Test OrangeRedfact",
+                                      "status": "Enabled",
+                                      "uuid": "5545b5fb-81eb-20de-a308-e3d39b36e679"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Fameis",
+                                      "id": 12638,
+                                      "name": "Test Greennoodles",
+                                      "status": "Enabled",
+                                      "uuid": "a33aff52-e927-3b13-59c2-1ad186ac4e4f"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Horseam",
+                                      "id": 12639,
+                                      "name": "Test Stadiumdoes",
+                                      "status": "Enabled",
+                                      "uuid": "8d9e91ff-eab3-6b3a-7ac2-47cc43b9ded7"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Jackalhave",
+                                      "id": 12640,
+                                      "name": "Test Baleread",
+                                      "status": "Enabled",
+                                      "uuid": "78cfa22a-7b9e-935f-163a-9edfd6834131"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Armadillodoes",
+                                      "id": 12641,
+                                      "name": "Test DarkMagentachair",
+                                      "status": "Enabled",
+                                      "uuid": "32c0c7c6-10a1-f50e-d932-97f4f43af088"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Scoldhad",
+                                      "id": 12642,
+                                      "name": "Test Perudynasty",
+                                      "status": "Enabled",
+                                      "uuid": "03203db9-76d4-f33b-99f6-0fcddf13934f"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Waybeen",
+                                      "id": 12643,
+                                      "name": "Test Weekmight",
+                                      "status": "Enabled",
+                                      "uuid": "86eea86a-5742-ecb9-d528-fb4457bcc11b"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test DarkSalmonhail",
+                                      "id": 12644,
+                                      "name": "Test Purplecongregation",
+                                      "status": "Enabled",
+                                      "uuid": "8aeb7913-2b43-648b-2a8d-2fe5871f4206"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test LightGoldenRodYellowcatalog",
+                                      "id": 12645,
+                                      "name": "Test Crabhas",
+                                      "status": "Enabled",
+                                      "uuid": "69938e01-81c2-fa8c-080e-a1a8affe5f4b"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Fingerpaint",
+                                      "id": 12646,
+                                      "name": "Test LavenderBlusharchitect",
+                                      "status": "Enabled",
+                                      "uuid": "bf9099a4-6daa-bd11-dd67-f5a29cfafbbd"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Antelopebe",
+                                      "id": 12647,
+                                      "name": "Test DarkGreenmustering",
+                                      "status": "Enabled",
+                                      "uuid": "196c2e3c-42ca-38ba-5b85-e7428b418c3d"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Troutcrawl",
+                                      "id": 12648,
+                                      "name": "Test AliceBluecloud",
+                                      "status": "Enabled",
+                                      "uuid": "240afa68-884e-78cf-f557-8ad1dd446c6d"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Dinosaurwill",
+                                      "id": 12649,
+                                      "name": "Test Jackalhas",
+                                      "status": "Enabled",
+                                      "uuid": "a36cafd2-8d11-0c00-0776-fe17a70b71a4"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test DarkSlateBluecomb",
+                                      "id": 12650,
+                                      "name": "Test Hordedig",
+                                      "status": "Enabled",
+                                      "uuid": "46459419-c79d-f2f7-5628-34db2a8fe729"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test LightSkyBlueteam",
+                                      "id": 12651,
+                                      "name": "Test Maroonpaper",
+                                      "status": "Enabled",
+                                      "uuid": "ed2753b8-5549-c6ea-702c-4bdcdd14f471"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Mulewould",
+                                      "id": 12652,
+                                      "name": "Test LightSkyBlueblock",
+                                      "status": "Enabled",
+                                      "uuid": "21845e3e-4eec-5b4c-2155-69d056b79c7e"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Funshall",
+                                      "id": 12653,
+                                      "name": "Test Yakdoes",
+                                      "status": "Enabled",
+                                      "uuid": "f0e5e000-56b6-04db-45ea-c2590b85a153"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Supermarketbeing",
+                                      "id": 12654,
+                                      "name": "Test LightSteelBluejuicer",
+                                      "status": "Enabled",
+                                      "uuid": "1bc1013b-280c-c38f-d8b2-f3d5aedf7dad"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Enginedid",
+                                      "id": 12655,
+                                      "name": "Test Pandasing",
+                                      "status": "Enabled",
+                                      "uuid": "d5d5d3e1-d3a7-2bb3-98b7-5480555db4b5"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Snailbeing",
+                                      "id": 12656,
+                                      "name": "Test Chaise Longuedoes",
+                                      "status": "Enabled",
+                                      "uuid": "e8c2d4d0-ff20-00c6-3062-1752228222b2"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test LightSteelBluelibrary",
+                                      "id": 12657,
+                                      "name": "Test Muskratare",
+                                      "status": "Enabled",
+                                      "uuid": "5de3d232-f75f-a36e-e013-b9dbbcf6bc34"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Congregationdance",
+                                      "id": 12658,
+                                      "name": "Test Ferretshould",
+                                      "status": "Enabled",
+                                      "uuid": "0dc70a4d-0a72-8aa2-f39d-651479df0b12"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Chimpanzeehave",
+                                      "id": 12659,
+                                      "name": "Test Hospitalgive",
+                                      "status": "Enabled",
+                                      "uuid": "667e5d65-5bd0-eb5c-6d04-18a35df0e856"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Pugcan",
+                                      "id": 12660,
+                                      "name": "Test Cornsilkgoal",
+                                      "status": "Enabled",
+                                      "uuid": "39b7c8c6-5ef5-461c-8787-083dc00f22bb"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Swanwere",
+                                      "id": 12661,
+                                      "name": "Test BlanchedAlmondaddress",
+                                      "status": "Enabled",
+                                      "uuid": "0fc3c6ae-35ab-4ba5-1204-5acd48a4324a"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Yellowlamp",
+                                      "id": 12662,
+                                      "name": "Test LightCoralclass",
+                                      "status": "Enabled",
+                                      "uuid": "2debed3e-22a7-935e-d967-8e47cea46e5b"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Skyam",
+                                      "id": 12663,
+                                      "name": "Test Musteringski",
+                                      "status": "Enabled",
+                                      "uuid": "c4e749cd-d289-7b90-86ee-65355816e0b6"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test SeaShellchoir",
+                                      "id": 12664,
+                                      "name": "Test OldLaceslavery",
+                                      "status": "Enabled",
+                                      "uuid": "1efc0651-8fb3-e244-4bd1-e352ee283e98"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Cricketcan",
+                                      "id": 12665,
+                                      "name": "Test LightSlateGrayarchitect",
+                                      "status": "Enabled",
+                                      "uuid": "c76ae579-5f2d-5f31-fa0f-df5f09e05bd2"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Punctuationdid",
+                                      "id": 12666,
+                                      "name": "Test Clamsew",
+                                      "status": "Enabled",
+                                      "uuid": "a381ae6a-f899-ffe7-b16b-7cc021a08fcc"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Eelfight",
+                                      "id": 12667,
+                                      "name": "Test Bunchcould",
+                                      "status": "Enabled",
+                                      "uuid": "f358b8ee-08c4-33ac-08ec-ac6440c92c75"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test ForestGreenalbum",
+                                      "id": 12668,
+                                      "name": "Test Donkeyhug",
+                                      "status": "Enabled",
+                                      "uuid": "a37fd485-27df-0067-9e73-e901fef1633e"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test DarkOliveGreencompany",
+                                      "id": 12669,
+                                      "name": "Test Greenplace",
+                                      "status": "Enabled",
+                                      "uuid": "60aa3cb4-5b4e-25b1-c839-dd557a91f6b0"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Bracewere",
+                                      "id": 12670,
+                                      "name": "Test Sea Lionwill",
+                                      "status": "Enabled",
+                                      "uuid": "9c94bdc3-e5d4-bf0f-1d51-19e36c1093b5"
+                                    }
+                                  ],
+                                  "uuid": "09dafecc-7e7a-93c5-de23-1757f674600b"
+                                },
+                                {
+                                  "categories": [],
+                                  "id": 12671,
+                                  "name": "Test MediumOrchidmotivation",
+                                  "policies": [
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Locusthave",
+                                      "id": 12672,
+                                      "name": "Test MediumTurquoisehost",
+                                      "status": "Enabled",
+                                      "uuid": "3df6c358-9f07-6bec-bebc-507681603ba5"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test Gangis",
+                                      "id": 12673,
+                                      "name": "Test Skunkshall",
+                                      "status": "Enabled",
+                                      "uuid": "41900ce8-9813-8a81-075c-fc25db1034ab"
+                                    },
+                                    {
+                                      "class": "Machine",
+                                      "className": "Test BlueVioletcinema",
+                                      "id": 12674,
+                                      "name": "Test ForestGreenpoverty",
+                                      "status": "Enabled",
+                                      "uuid": "f1726568-5a9c-9bd6-f747-97ed021e21c1"
+                                    }
+                                  ],
+                                  "uuid": "d8e22602-56bb-3326-d505-0976b62132d1"
+                                }
+                              ],
+                              "id": 12675,
+                              "name": "Test Filmwere",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Porcupinehave",
+                                  "id": 12676,
+                                  "name": "Test Sedgesmell",
+                                  "status": "Disabled",
+                                  "uuid": "1474bd40-3ddb-ff6e-37c5-030b7a04536e"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test LightYellowtrench Coat",
+                                  "id": 12677,
+                                  "name": "Test Rainbeen",
+                                  "status": "Enabled",
+                                  "uuid": "39407b83-b39f-40f8-6eb3-5476728c5cfc"
+                                }
+                              ],
+                              "uuid": "cce2649d-3074-a731-6f9d-1278a74a37ef"
+                            }
+                          ],
+                          "id": 12678,
+                          "name": "Test Regimentsew",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Blackgroup",
+                              "id": 12679,
+                              "name": "Test FloralWhitedaughter",
+                              "status": "Enabled",
+                              "uuid": "175d82ba-427f-2044-ed14-c6574cd0ff61"
+                            }
+                          ],
+                          "uuid": "bb97ba67-47ea-df1c-b103-a98ce454f7de"
+                        },
+                        {
+                          "categories": [
+                            {
+                              "categories": [],
+                              "id": 12680,
+                              "name": "Test Handmight",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test MediumSlateBluemotherhood",
+                                  "id": 12681,
+                                  "name": "Test Woodchuckmight",
+                                  "status": "Enabled",
+                                  "uuid": "ca57570d-314e-f4c5-a772-c74939bc58d4"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Casemay",
+                                  "id": 12682,
+                                  "name": "Test LightSkyBluehappiness",
+                                  "status": "Disabled",
+                                  "uuid": "98b8de70-8d82-1d1c-390b-0045153b2f5a"
+                                }
+                              ],
+                              "uuid": "647670fc-2e28-0d19-cd71-c875a4e71e15"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12683,
+                              "name": "Test Spidersleep",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Schooldid",
+                                  "id": 12684,
+                                  "name": "Test Bisquestand",
+                                  "status": "Enabled",
+                                  "uuid": "9c4351f6-c245-86e5-a567-cea69fb5c8ca"
+                                }
+                              ],
+                              "uuid": "0f521df1-4f82-1492-3ae4-0d4b05b036a7"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12685,
+                              "name": "Test NavajoWhiteteam",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Teamis",
+                                  "id": 12686,
+                                  "name": "Test Troopfly",
+                                  "status": "Enabled",
+                                  "uuid": "888518ea-c94a-5ece-d430-c79e97db6057"
+                                }
+                              ],
+                              "uuid": "f2fd52c8-8bcb-9691-875f-c67aa3073a4e"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12687,
+                              "name": "Test Yellowjacketwas",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test SlateBluebrother",
+                                  "id": 12688,
+                                  "name": "Test Beavermust",
+                                  "status": "Enabled",
+                                  "uuid": "df082d9e-2336-4401-6a0e-c636426577e5"
+                                }
+                              ],
+                              "uuid": "b7ca1890-98a0-1e83-1f9d-19629f8b381d"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12689,
+                              "name": "Test CornflowerBlueleap",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Fishstand",
+                                  "id": 12690,
+                                  "name": "Test Gerbilshall",
+                                  "status": "Enabled",
+                                  "uuid": "e06ac898-3cc7-1c2e-5322-e2524da53170"
+                                }
+                              ],
+                              "uuid": "fb982805-0f64-3412-f783-1cd2a06cf0f4"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12691,
+                              "name": "Test Frogdoes",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Giraffeis",
+                                  "id": 12692,
+                                  "name": "Test Antmight",
+                                  "status": "Enabled",
+                                  "uuid": "8fa90b88-5c4a-0fb7-78a6-d41ac9a29aac"
+                                }
+                              ],
+                              "uuid": "3550907c-f312-d045-68c1-89db53b52768"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12693,
+                              "name": "Test Fictionwould",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test LightSlateGrayhand",
+                                  "id": 12694,
+                                  "name": "Test Crowdfight",
+                                  "status": "Enabled",
+                                  "uuid": "a45e8f65-cc01-72f4-3a8d-aacd5d8b1427"
+                                }
+                              ],
+                              "uuid": "47e7aaba-280f-a7f1-6326-ed278335b0b2"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12695,
+                              "name": "Test Mulemust",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Chartreuserelaxation",
+                                  "id": 12696,
+                                  "name": "Test Nestbuy",
+                                  "status": "Enabled",
+                                  "uuid": "2fd2620d-11fa-f5ef-929f-855c410d042b"
+                                }
+                              ],
+                              "uuid": "2b4734db-4141-3fb4-873d-a1cc0105b735"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12697,
+                              "name": "Test HotPinkpart",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Hammersmell",
+                                  "id": 12698,
+                                  "name": "Test Mammothdive",
+                                  "status": "Enabled",
+                                  "uuid": "ede86e3f-5fb6-7816-7b80-b66e25fd04d3"
+                                }
+                              ],
+                              "uuid": "6f1e05d6-fb26-deea-c348-15a88ad05096"
+                            }
+                          ],
+                          "id": 12699,
+                          "name": "Test Blackfield",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Timemust",
+                              "id": 12700,
+                              "name": "Test Rhinocerosdid",
+                              "status": "Enabled",
+                              "uuid": "59bcb13c-29b0-50cd-ca05-61267b173b36"
+                            }
+                          ],
+                          "uuid": "567a141d-9509-4dbd-8c2f-912a70c764e0"
+                        }
+                      ],
+                      "id": 12701,
+                      "name": "Test Standwill",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test LightGrayfinger",
+                          "id": 12702,
+                          "name": "Test Yellowjacketdid",
+                          "status": "Enabled",
+                          "uuid": "f2e87869-1680-ed0b-cece-92b570bd94d5"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Galaxybe",
+                          "id": 12703,
+                          "name": "Test Teacherread",
+                          "status": "Enabled",
+                          "uuid": "f583adf0-cfab-f72c-d41d-1d3cf8367dcb"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test LightBluemob",
+                          "id": 12704,
+                          "name": "Test AliceBlueclump",
+                          "status": "Enabled",
+                          "uuid": "9496102e-b708-8905-7d19-d062c2ff0141"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Dinosaurmight",
+                          "id": 12705,
+                          "name": "Test Hatlisten",
+                          "status": "Enabled",
+                          "uuid": "43bf8d75-e8e3-b919-12cb-0996c32f07f0"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test AntiqueWhitecovey",
+                          "id": 12706,
+                          "name": "Test Murderwere",
+                          "status": "Enabled",
+                          "uuid": "c8ec850b-80a7-7b28-7bad-b58efc2e2a2f"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test MediumAquaMarinecrew",
+                          "id": 12707,
+                          "name": "Test DarkGrayfriend",
+                          "status": "Enabled",
+                          "uuid": "d482b8d9-04a8-43d7-53be-514632250977"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Heatbathe",
+                          "id": 12708,
+                          "name": "Test MidnightBluetea",
+                          "status": "Enabled",
+                          "uuid": "4219b75c-a22a-4f8a-8837-23f62bbf824d"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Movementdo",
+                          "id": 12709,
+                          "name": "Test DimGrayfear",
+                          "status": "Enabled",
+                          "uuid": "27acea97-a34c-e9b2-c278-c3c0815df903"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Troutdo",
+                          "id": 12710,
+                          "name": "Test Rabbitpaint",
+                          "status": "Enabled",
+                          "uuid": "a8f7b372-bb76-cc22-f0a6-a4c5f202b4a3"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Mooseski",
+                          "id": 12711,
+                          "name": "Test Chocolatehospitality",
+                          "status": "Disabled",
+                          "uuid": "9254eb05-fb3c-f9eb-66d1-a3ce089735be"
+                        }
+                      ],
+                      "uuid": "083d7798-6c42-9c64-86cb-60b82681f87d"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12712,
+                      "name": "Test Martendo",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Divorcedive",
+                          "id": 12713,
+                          "name": "Test Apebeen",
+                          "status": "Disabled",
+                          "uuid": "e644b27b-dd09-f099-23b7-3c00faeded5a"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Factdig",
+                          "id": 12714,
+                          "name": "Test DarkSeaGreennest",
+                          "status": "Enabled",
+                          "uuid": "57d7a24c-29d6-3592-0e20-c7cf6e4bb0b7"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test LightGrayhat",
+                          "id": 12715,
+                          "name": "Test Noisethink",
+                          "status": "Enabled",
+                          "uuid": "cea7a86c-f3eb-bcba-a35d-5da8dd6b3285"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test Anthologydo",
+                          "id": 12716,
+                          "name": "Test Caredo",
+                          "status": "Enabled",
+                          "uuid": "302d3d48-1ada-c0be-9b59-975112e367fb"
+                        }
+                      ],
+                      "uuid": "6687c1e0-76c8-19e9-26e5-057a6a55d590"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12717,
+                          "name": "Test Linenshock",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test NavajoWhitecollection",
+                              "id": 12718,
+                              "name": "Test Beartalk",
+                              "status": "Enabled",
+                              "uuid": "5b3105f8-b7d9-35a8-b385-ff82c3d733cf"
+                            }
+                          ],
+                          "uuid": "2b48781f-24fe-7a75-f3ba-e0871d307118"
+                        },
+                        {
+                          "categories": [
+                            {
+                              "categories": [],
+                              "id": 12719,
+                              "name": "Test Pointlisten",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Toaddid",
+                                  "id": 12720,
+                                  "name": "Test MidnightBlueteam",
+                                  "status": "Enabled",
+                                  "uuid": "a253285a-2c86-b3a0-b512-73dc93c7ba84"
+                                }
+                              ],
+                              "uuid": "742262bd-edab-a36c-1b85-2457a01ece83"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12721,
+                              "name": "Test Foxdo",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test OrangeRedgang",
+                                  "id": 12722,
+                                  "name": "Test Purplehand",
+                                  "status": "Enabled",
+                                  "uuid": "f160ecf5-6c3f-11f6-77cd-730a99b75d41"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Pandaeat",
+                                  "id": 12723,
+                                  "name": "Test Dynastyare",
+                                  "status": "Enabled",
+                                  "uuid": "c2d0f5b1-08dd-0d36-80e1-f778a81e4e4c"
+                                },
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Limenumber",
+                                  "id": 12724,
+                                  "name": "Test Goldwere",
+                                  "status": "Enabled",
+                                  "uuid": "793f51ea-3ea5-20cf-9c75-6fe3404cf1bd"
+                                }
+                              ],
+                              "uuid": "7cad1901-529b-083e-2e19-6ef4c333a1e6"
+                            }
+                          ],
+                          "id": 12725,
+                          "name": "Test Tigereat",
+                          "policies": [],
+                          "uuid": "359463ec-fc78-012a-69c8-10d7ce9b3d56"
+                        }
+                      ],
+                      "id": 12726,
+                      "name": "Test Martendig",
+                      "policies": [],
+                      "uuid": "d7d1b724-131d-467a-a9c6-303c48fdae29"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12727,
+                      "name": "Test Ballsnore",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Macawcook",
+                          "id": 12728,
+                          "name": "Test DarkBluepharmacy",
+                          "status": "Enabled",
+                          "uuid": "7a4b0268-e835-d730-e37d-b334d77edb4f"
+                        }
+                      ],
+                      "uuid": "40af616e-b72c-6144-0339-f3ee092cc69f"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12729,
+                      "name": "Test Coveyshould",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Teacheris",
+                          "id": 12730,
+                          "name": "Test Frockbeing",
+                          "status": "Disabled",
+                          "uuid": "08595609-e274-6cbc-1b26-2bd8bb138d2b"
+                        }
+                      ],
+                      "uuid": "f8e45a83-8b9f-b832-5f9a-3c27da42b787"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12731,
+                          "name": "Test Contentmay",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Elegancebuy",
+                              "id": 12732,
+                              "name": "Test Oxshould",
+                              "status": "Disabled",
+                              "uuid": "846ef8e8-336f-e7a7-603c-9c0e45d9012d"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Sealam",
+                              "id": 12733,
+                              "name": "Test Engineeat",
+                              "status": "Enabled",
+                              "uuid": "f1ff6e5b-ec20-5d7e-2c76-d94f7da3f179"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test DarkGoldenRodvillage",
+                              "id": 12734,
+                              "name": "Test DarkTurquoisetroop",
+                              "status": "Enabled",
+                              "uuid": "0147b89b-65af-9ee6-0368-797e812d8ace"
+                            }
+                          ],
+                          "uuid": "e8cbbb0e-b465-6fc9-c693-487dd705c203"
+                        },
+                        {
+                          "categories": [],
+                          "id": 12735,
+                          "name": "Test Sardinebeing",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Doorwas",
+                              "id": 12736,
+                              "name": "Test AliceBluehair",
+                              "status": "Enabled",
+                              "uuid": "76bcec8e-be3a-32f8-0015-99a880ac8d59"
+                            }
+                          ],
+                          "uuid": "724092ff-e678-8ec4-1ca2-4820872f3f1f"
+                        },
+                        {
+                          "categories": [],
+                          "id": 12737,
+                          "name": "Test Shirtwill",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Greenbouquet",
+                              "id": 12738,
+                              "name": "Test Childwill",
+                              "status": "Enabled",
+                              "uuid": "381bdca1-9c98-9502-a10d-ba3985473a86"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test DarkSlateGrayclass",
+                              "id": 12739,
+                              "name": "Test Harvesthas",
+                              "status": "Enabled",
+                              "uuid": "9666ed66-48de-7519-634a-b114b1fd5301"
+                            }
+                          ],
+                          "uuid": "47df8625-db7c-fc71-47f8-de4597aaea7e"
+                        },
+                        {
+                          "categories": [
+                            {
+                              "categories": [],
+                              "id": 12740,
+                              "name": "Test Mallardstand",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Pigmight",
+                                  "id": 12741,
+                                  "name": "Test Jackalhad",
+                                  "status": "Enabled",
+                                  "uuid": "d45e4245-2aa0-cb40-b614-0f768a78c9f2"
+                                }
+                              ],
+                              "uuid": "666c523d-8e7c-189f-b11b-2eb5e3c8b144"
+                            },
+                            {
+                              "categories": [],
+                              "id": 12742,
+                              "name": "Test Lifeturn",
+                              "policies": [
+                                {
+                                  "class": "Machine",
+                                  "className": "Test Cicadashould",
+                                  "id": 12743,
+                                  "name": "Test Sardinefly",
+                                  "status": "Enabled",
+                                  "uuid": "f59a52dd-4c05-9537-8552-72110e74a034"
+                                }
+                              ],
+                              "uuid": "8d495699-b223-fe8a-ef15-01f633091641"
+                            }
+                          ],
+                          "id": 12744,
+                          "name": "Test Turtlewin",
+                          "policies": [],
+                          "uuid": "04696f06-774e-8d64-2c50-b4c01b054a1b"
+                        }
+                      ],
+                      "id": 12745,
+                      "name": "Test Currencybe",
+                      "policies": [],
+                      "uuid": "ff025e2b-b9c4-d239-8234-766976dea3e5"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12746,
+                          "name": "Test Numberdoes",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Oceanclap",
+                              "id": 12747,
+                              "name": "Test DarkGoldenRodcast",
+                              "status": "Enabled",
+                              "uuid": "19921135-4cfe-5e71-5efc-be5050b310b3"
+                            }
+                          ],
+                          "uuid": "df073dd3-4764-ff46-da5e-337c37420de8"
+                        }
+                      ],
+                      "id": 12748,
+                      "name": "Test LightGraywater",
+                      "policies": [],
+                      "uuid": "66a345c2-e12d-46d5-5b70-462de0cb909b"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12749,
+                          "name": "Test Hostwill",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Alligatorsew",
+                              "id": 12750,
+                              "name": "Test Bearwill",
+                              "status": "Enabled",
+                              "uuid": "96c78b2c-3008-3a87-deb2-c97c2fa608c4"
+                            }
+                          ],
+                          "uuid": "10de2e97-7608-2d0e-c017-1193863bf9c0"
+                        }
+                      ],
+                      "id": 12751,
+                      "name": "Test Crabshall",
+                      "policies": [],
+                      "uuid": "68ba4616-ec8f-fbb3-f88a-e7981ef42ee4"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12752,
+                      "name": "Test SlateGraycat",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Gerbiljump",
+                          "id": 12753,
+                          "name": "Test DimGraycity",
+                          "status": "Disabled",
+                          "uuid": "2a932ad8-d50f-1294-8925-b4aa77594e59"
+                        }
+                      ],
+                      "uuid": "6a338a47-56ee-4e8f-0476-b34a9713b8a9"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12754,
+                      "name": "Test DarkSeaGreenwisp",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test LightSeaGreenjealousy",
+                          "id": 12755,
+                          "name": "Test LightGoldenRodYellowgroup",
+                          "status": "Enabled",
+                          "uuid": "cfedf405-98db-9157-72f7-ad8cf665d742"
+                        }
+                      ],
+                      "uuid": "83a9a7be-4673-cb5e-566c-4550e484eae2"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12756,
+                      "name": "Test Chocolateshorts",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test Mammothcan",
+                          "id": 12757,
+                          "name": "Test Raccoonbeing",
+                          "status": "Disabled",
+                          "uuid": "ee0b70d7-5d80-e58e-f2ca-d7eed07ed9c9"
+                        },
+                        {
+                          "class": "Machine",
+                          "className": "Test DarkMagentathing",
+                          "id": 12758,
+                          "name": "Test Companystand",
+                          "status": "Disabled",
+                          "uuid": "967bbd7f-fa55-82c9-4a5a-6b0914eee4fe"
+                        }
+                      ],
+                      "uuid": "66578da0-9d48-e27f-81ad-09de78f536a8"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12759,
+                      "name": "Test GreenYellowbox",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test PaleVioletRedbill",
+                          "id": 12760,
+                          "name": "Test Lizarddoes",
+                          "status": "Disabled",
+                          "uuid": "55b63d4a-f528-a09e-41e7-e54430c38b10"
+                        }
+                      ],
+                      "uuid": "d2854ff3-03fe-66f0-3fe9-d9436e129164"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12761,
+                      "name": "Test Sheepcrawl",
+                      "policies": [
+                        {
+                          "class": "Machine",
+                          "className": "Test MediumTurquoisevillage",
+                          "id": 12762,
+                          "name": "Test Codwere",
+                          "status": "Enabled",
+                          "uuid": "ec2a33b6-b619-714e-56e8-177e8ecf4499"
+                        }
+                      ],
+                      "uuid": "0d8e3c58-66e4-591f-1b16-fa319480a876"
+                    },
+                    {
+                      "categories": [
+                        {
+                          "categories": [],
+                          "id": 12763,
+                          "name": "Test Raccooncan",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test DarkSlateGrayreel",
+                              "id": 12764,
+                              "name": "Test Wheatdaughter",
+                              "status": "Disabled",
+                              "uuid": "f7db62d6-1275-03e0-ac14-647a73338c03"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Tomatonation",
+                              "id": 12765,
+                              "name": "Test Religionplay",
+                              "status": "Disabled",
+                              "uuid": "5d15b303-98e7-23c0-a149-cbd617a9b0f1"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Lifewill",
+                              "id": 12766,
+                              "name": "Test DarkSalmonschool",
+                              "status": "Enabled",
+                              "uuid": "6f96dabe-af23-9cbb-801a-ed7014a62113"
+                            }
+                          ],
+                          "uuid": "eeae8318-ce4f-861d-df21-890cc5e4aaa4"
+                        },
+                        {
+                          "categories": [],
+                          "id": 12767,
+                          "name": "Test IndianRedcrew",
+                          "policies": [
+                            {
+                              "class": "Machine",
+                              "className": "Test Servalread",
+                              "id": 12768,
+                              "name": "Test Troupebeen",
+                              "status": "Disabled",
+                              "uuid": "0294b72d-eb05-e569-1d14-6f042f6fe1ff"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Beliefthrow",
+                              "id": 12769,
+                              "name": "Test Jackalhave",
+                              "status": "Disabled",
+                              "uuid": "f241069c-48a6-a3b0-c7d2-15d02fa0584b"
+                            },
+                            {
+                              "class": "Machine",
+                              "className": "Test Hordeis",
+                              "id": 12770,
+                              "name": "Test Hyenawould",
+                              "status": "Enabled",
+                              "uuid": "b57910c0-d0d2-23ba-763d-ef6c985a96c5"
+                            }
+                          ],
+                          "uuid": "4a2066aa-558d-7fb8-d071-6a6b24ef94d5"
+                        }
+                      ],
+                      "id": 12771,
+                      "name": "Test Aquafarm",
+                      "policies": [],
+                      "uuid": "72f8c308-c562-aaa5-9473-e82b36703572"
+                    }
+                  ],
+                  "id": 12772,
+                  "name": "Test Scorpiongive",
+                  "policies": [],
+                  "uuid": "42aebb70-b2ad-ab2f-ad07-08738f4c8167"
+                }
+              ],
+              "id": 12773,
+              "name": "Test Problemshall",
+              "policies": [],
+              "uuid": "dee57889-b990-5f12-7691-5a97a6bbcdc3"
+            }
+          ],
+          "id": 12774,
+          "name": "Test Lavenderforest",
+          "policies": [],
+          "uuid": "e18e46d4-2dcb-7538-5534-6cb03227c1fa"
+        },
+        {
+          "categories": [
+            {
+              "categories": [
+                {
+                  "categories": [
+                    {
+                      "categories": [],
+                      "id": 12775,
+                      "name": "Test MediumAquaMarinesandals",
+                      "policies": [
+                        {
+                          "class": "User",
+                          "className": "Test Casinoshall",
+                          "id": 12776,
+                          "name": "Test DarkBluefriend",
+                          "status": "Enabled",
+                          "uuid": "5b056826-253d-f0e8-0beb-b62deae0c881"
+                        },
+                        {
+                          "class": "User",
+                          "className": "Test Boatshould",
+                          "id": 12777,
+                          "name": "Test Pugsnore",
+                          "status": "Enabled",
+                          "uuid": "68cc03d0-62c9-99b5-2a07-00611726387b"
+                        }
+                      ],
+                      "uuid": "970b5f6e-f604-abaa-b17b-d247657f0e22"
+                    }
+                  ],
+                  "id": 12778,
+                  "name": "Test Lonelinessdo",
+                  "policies": [],
+                  "uuid": "4e3b06c0-7bb9-beb1-4c8a-2008c8f0cae3"
+                },
+                {
+                  "categories": [
+                    {
+                      "categories": [],
+                      "id": 12779,
+                      "name": "Test Meetingcould",
+                      "policies": [
+                        {
+                          "class": "User",
+                          "className": "Test DarkGrayfleet",
+                          "id": 12780,
+                          "name": "Test Gnumust",
+                          "status": "Enabled",
+                          "uuid": "e9c30eae-dcac-f6fc-657b-50af62936b5b"
+                        }
+                      ],
+                      "uuid": "3531a55a-dba7-c1e1-34ee-237af380e98e"
+                    }
+                  ],
+                  "id": 12781,
+                  "name": "Test Flagdig",
+                  "policies": [],
+                  "uuid": "b9125ba5-e9d1-0569-0350-ff65b419dc1b"
+                },
+                {
+                  "categories": [
+                    {
+                      "categories": [],
+                      "id": 12782,
+                      "name": "Test Brownthing",
+                      "policies": [
+                        {
+                          "class": "User",
+                          "className": "Test Worldturn",
+                          "id": 12783,
+                          "name": "Test Horsedid",
+                          "status": "Enabled",
+                          "uuid": "11d55708-c33c-9608-1e27-21e60ba98177"
+                        }
+                      ],
+                      "uuid": "3de30ddb-1a69-73d7-ce90-d61b14713ae3"
+                    },
+                    {
+                      "categories": [],
+                      "id": 12784,
+                      "name": "Test Chimpanzeeis",
+                      "policies": [
+                        {
+                          "class": "User",
+                          "className": "Test PaleGreenring",
+                          "id": 12785,
+                          "name": "Test PaleGoldenRodcollection",
+                          "status": "Disabled",
+                          "uuid": "77fc01d3-954c-efad-3737-4eb1337b9b2e"
+                        }
+                      ],
+                      "uuid": "0b2867c1-6ba2-5b6e-4625-e031c480460a"
+                    }
+                  ],
+                  "id": 12786,
+                  "name": "Test Crabhad",
+                  "policies": [],
+                  "uuid": "3bdc2ac7-9030-d7f8-31dd-ba0d25ee2166"
+                }
+              ],
+              "id": 12787,
+              "name": "Test Otterdoes",
+              "policies": [],
+              "uuid": "c6462634-96c4-d47f-9cd1-aa12c78aba41"
+            }
+          ],
+          "id": 12788,
+          "name": "Test PaleTurquoiseplace",
+          "policies": [],
+          "uuid": "8b3cafc2-00f3-a37f-1926-4f8609fbbf8b"
+        }
+      ],
+      "type": "GpoSeeded",
+      "uuid": "ad71c57b-e094-216c-7ef3-391be3108261",
+      "vendorTemplate": {
+        "id": 12789,
+        "name": "Test Goldyear",
+        "shortName": "Test Antdo",
+        "uuid": "e2f1d4ee-452d-76f6-fc5b-25a246c2bac7",
+        "versions": []
+      },
+      "version": 3
+    }
+  }
+}

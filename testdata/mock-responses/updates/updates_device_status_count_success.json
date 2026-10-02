@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/device-status",
+    "method": "GET",
+    "description": "Live-captured GET /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/device-status against the same deployment used for the sibling Updates captures, before teardown. Named _success (not just \"count.json\") so this genuinely-different-scenario fixture sorts AFTER the pre-existing updates_device_status_count_no_deployment.json in a full-corpus directory scan -- the two fixtures share an identical generic-template endpoint with no distinguishing query params, so RequestMatcher keeps the first-loaded (alphabetically earlier) response on a tied score; this naming keeps the no-deployment 404 case winning that tie for the shared-corpus test (TestGeneratedUpdatesV1ReadOnly), while a dedicated isolated-mock-server test exercises this success fixture directly by path (TestGeneratedUpdatesV1GetCountOfDeviceStatusSuccess), same pattern as updates_deployment_create_conflict.json.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "download_complete": 0,
+      "download_failed": 0,
+      "download_insufficient_network": 0,
+      "download_insufficient_power": 0,
+      "download_insufficient_space": 0,
+      "download_requires_computer": 0,
+      "downloading": 0,
+      "idle": 0,
+      "install_complete": 0,
+      "install_failed": 0,
+      "install_insufficient_power": 0,
+      "install_insufficient_space": 0,
+      "install_phone_call_in_progress": 0,
+      "installing": 0,
+      "not_eligible": 0,
+      "not_started": 0
+    }
+  }
+}

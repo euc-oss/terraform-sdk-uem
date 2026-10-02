@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/application",
+    "method": "POST",
+    "description": "Windows (MSI) internal-app create, live-captured via the real ChunkedUploader (chunked upload + CreateInternalApplication) against the configured test org group on the 26.2.0.0 test tenant, 2026-07-30. WIRED IN: internal/mockserver's ChunkHandler.handleInternalApplication now selects this fixture when the create request's file_name ends in .msi (selectInternalApplicationFixture in chunk_handler.go), instead of always serving the shared internal-application-response.json fixture regardless of request content -- same mechanism documented on internal_app_create_apk.json's sibling fixture. See TestChunkHandler_InternalApplication_MsiFileName_ServesMsiFixture. EMPIRICAL REQUIRED-FIELD FINDINGS for .msi specifically (in addition to the file_name and supported_models findings shared with apk, documented on the apk fixture): (1) 'Deployment options WhenToInstall, HowToInstall, WhenToCallInstallComplete cannot be null or empty, if Software Distribution feature is enabled and application file types are .zip, .exe and .msi' -- fixed by supplying deployment_options with all three non-nil (their own inner fields could stay empty/default; only presence of the three sub-objects was required). (2) 'SupportedProcessorArchitecture cannot be null or empty when Software Distribution feature is enabled. Supported types: x86, x64, ARM64, ARM' -- fixed by supplying supported_processor_architecture ('x64' used here, matching the real 7z2409-x64.msi binary). REAL-WIRE FINDING: same PushMode string-vs-wire-number defect documented on the apk fixture reproduces identically here (Platform differs, 12=WinRT vs 5=Android, but PushMode is again a JSON number 0 against a string-typed field) -- confirms the defect is general to InternalApplicationEntityV1, not apk-specific. SEPARATE REAL-WIRE FINDING: bundle_id was not supplied by the caller for this platform (MSI create commonly omits BundleID per the runbook's own guidance) and the server returned a real installer GUID as the BundleId, not tenant- or environment-specific data (see the private ledger, tests/verified-endpoints.json, for provenance).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "AppRank": 0,
+      "AppVersion": "24.9.0.0",
+      "ApplicationName": "7z2409-x64-Test",
+      "ApplicationSource": "Unknown",
+      "AssignedDeviceCount": 0,
+      "AutoUpdateVersion": false,
+      "BundleId": "{485c3a2c-5ddc-ffb2-d8cc-4071a32e6836}",
+      "ContentGatewayId": 0,
+      "EnableProvisioning": false,
+      "Id": {
+        "Value": 12345
+      },
+      "InstalledDeviceCount": 0,
+      "IsDependencyFile": false,
+      "IsReimbursable": false,
+      "LocationGroupId": 12345,
+      "NotInstalledDeviceCount": 0,
+      "OrganizationGroupUuid": "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c",
+      "Platform": 12,
+      "PushMode": 0,
+      "Uuid": "39cc7060-44ce-ec5a-cc98-b537f961203e"
+    }
+  }
+}

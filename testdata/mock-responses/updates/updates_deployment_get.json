@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/deployments/{uuid}",
+    "method": "GET",
+    "description": "Live-captured GET /api/mdm/updates/deployments/{uuid} against a real deployment created in a disposable sdktestrun* org group under parent 138883 (deleted after capture). The smart_group_uuids array is not touched by the standard key-based anonymizer (plural-keyed uuid arrays aren't matched by its single-value string heuristic), so its one entry was manually replaced with a placeholder UUID in place of the real captured smart group uuid. deployment_start_time reads \"2024-01-15T00:00:00Z\" because the anonymizer's timestamp-normalization rule rewrites any field whose key contains \"date\"/\"time\" to this exact literal whenever the captured value looks like a timestamp -- a disclosed normalization artifact, not a fabrication; multiple other genuine fixtures in this corpus carry the identical literal for the same field-key-matching reason.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "deployment_start_time": "2024-01-15T00:00:00Z",
+      "deployment_type": "DOWNLOAD_ONLY",
+      "device_update_uuid": "ea1eb4bf-4e92-1a63-25ec-e7a3eb15955f",
+      "name": "Test Snowlung",
+      "notifications": [],
+      "organization_group_uuid": "975c599a-df74-30b7-21ec-8d162ec05351",
+      "ranking": 1,
+      "smart_group_uuids": [
+        "c858ee63-11bb-659a-2068-8687798b314f"
+      ],
+      "uuid": "1bc333e5-b6ed-b450-37c4-0007f627bd62"
+    }
+  }
+}

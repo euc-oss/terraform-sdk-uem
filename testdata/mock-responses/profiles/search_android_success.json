@@ -2,75 +2,60 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/search",
     "method": "GET",
-    "platform": "Android",
-    "description": "Successful profile search returning Android profiles",
+    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. A v1 search (GET /api/mdm/profiles/search, organizationgroupid = the disposable org group) of an org group holding one AppleOsX and one Linux profile created for this capture. No Android profile exists on the tenant (EMM is not registered, so Android create is blocked); the filename is historical. The live v1 item shape (Id.Value, ProfileName, Platform, ProfileStatus, Type, ManagedBy, OrganizationGroupId, OperatingSystem, Model, Ownership, AssignedOrganizationGroups) replaces the earlier unverified body. Platform is the search string: AppleOsX and Linux.",
     "version": "1"
   },
   "request": {
     "headers": {
       "Accept": "application/json;version=1",
       "Content-Type": "application/json"
-    },
-    "query_params": {}
+    }
   },
   "response": {
     "status_code": 200,
     "headers": {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
       "Page": 0,
-      "PageSize": 10,
-      "Total": 2,
+      "PageSize": 500,
       "Profiles": [
         {
-          "Id": {
-            "Value": 12345
+          "AssignedOrganizationGroups": {
+            "AssignedOg": []
           },
-          "ProfileId": 12345,
-          "ProfileName": "Test Android Profile 1",
-          "Platform": "Android",
-          "ProfileType": "Device",
-          "ProfileStatus": "Active",
-          "ProfileScope": "Production",
-          "OrganizationGroupId": "14165",
-          "ManagedLocationGroupId": "14165",
-          "Status": "Active",
-          "CreatedOn": "2024-01-01T00:00:00Z",
-          "ModifiedOn": "2024-01-02T00:00:00Z",
-          "Description": "Test Android profile for SDK testing",
-          "AssignedDeviceCount": 10,
-          "InstalledDeviceCount": 8,
-          "FailedDeviceCount": 1,
-          "NotInstalledDeviceCount": 1,
-          "ManagedBy": "Admin",
-          "Type": "Auto"
-        },
-        {
           "Id": {
             "Value": 12346
           },
-          "ProfileId": 12346,
-          "ProfileName": "Test Android Profile 2",
-          "Platform": "Android",
-          "ProfileType": "Device",
+          "ManagedBy": "Oakland73",
+          "Model": "",
+          "OperatingSystem": "",
+          "OrganizationGroupId": "12347",
+          "Ownership": "",
+          "Platform": "AppleOsX",
+          "ProfileName": "Test Thoughtshall",
           "ProfileStatus": "Active",
-          "ProfileScope": "Production",
-          "OrganizationGroupId": "14165",
-          "ManagedLocationGroupId": "14165",
-          "Status": "Active",
-          "CreatedOn": "2024-01-03T00:00:00Z",
-          "ModifiedOn": "2024-01-04T00:00:00Z",
-          "Description": "Another test Android profile",
-          "AssignedDeviceCount": 5,
-          "InstalledDeviceCount": 5,
-          "FailedDeviceCount": 0,
-          "NotInstalledDeviceCount": 0,
-          "ManagedBy": "Admin",
+          "Type": "Auto"
+        },
+        {
+          "AssignedOrganizationGroups": {
+            "AssignedOg": []
+          },
+          "Id": {
+            "Value": 12348
+          },
+          "ManagedBy": "Oakland73",
+          "Model": "",
+          "OperatingSystem": "",
+          "OrganizationGroupId": "12349",
+          "Ownership": "",
+          "Platform": "Linux",
+          "ProfileName": "Test LightCoralcollection",
+          "ProfileStatus": "Active",
           "Type": "Auto"
         }
-      ]
+      ],
+      "Total": 2
     }
   }
 }
-

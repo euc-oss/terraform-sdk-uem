@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments",
+    "method": "GET",
+    "description": "Schema-derived placeholder, not a live capture (bare array of BaselineAssignmentsV1Model; camelCase smartGroupUUID per D3): a genuine live capture was not possible when this was written -- the test tenant had no baseline available at that moment and no enrolled device -- NOT because the API lacks a create route: it does (resources/baseline_creator.go's BaselineCreator.Create, POST /api/mdm/groups/{organizationGroupUuid}/baselines, genuinely live-captured as baselines/create-response.json, ledger verified[12]). This file's own git history has no live-capture commit at any point (only refresh/prune/hydration/corpus-land commits), consistent with the 2026-08-04 integrity audit (commit dffd8b612), which found this class of BaselinesV1Service fixture lacked live-capture provenance.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json;version=1; charset=utf-8"
+    },
+    "body": [
+      {
+        "id": 1001,
+        "name": "All Windows 10 devices",
+        "smartGroupUUID": "b94a7a48-24c7-5ad1-8df6-4d6b4e7e105e"
+      },
+      {
+        "id": 1002,
+        "name": "Pilot group",
+        "smartGroupUUID": "b51cb3a2-b88d-c1a2-1627-42f2532cb451"
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "api_validation": {
+    "console_url": "https://your-instance.awmdm.com",
+    "uem_version": "26.2.0.0",
+    "api_version": "4",
+    "accept_header": "application/json;version=4",
+    "endpoint": "POST /api/mdm/profiles/platforms/linux/create",
+    "org_group_id": 12345,
+    "captured_at": "2026-08-10",
+    "result": "accepted",
+    "response_id_example": 12346,
+    "ticket": "internal-ticket",
+    "notes": "General.ProfileScope: canonical declares a string and rejects null/empty; this template sends the int 1, which the captured creates used. On 2026-09-24 a live create accepted int 1, \"1\" and \"Production\" alike; a 2026-08-10 note that string values were rejected with a 400 JSON-binding error was not reproduced (api-doctrine quirk 17). Top-level Wifi payload key is 'Wifis' (a list), matching LinuxDeviceProfileEntity1's 'Wifis' field, not a singular 'Wifi' key."
+  },
+  "General": {
+    "Name": "mocktest-linux-internal-task",
+    "Description": "SDK CRUD validation - minimal wifi payload",
+    "DeviceType": "Linux",
+    "ProfileType": "Device",
+    "ManagedLocationGroupID": 12345,
+    "AssignmentType": "Auto",
+    "ProfileContext": "Device",
+    "ProfileScope": 1
+  },
+  "Wifis": [
+    {
+      "ServiceSetIdentifier": "mocktest-ssid-internal-task",
+      "SecurityType": "None",
+      "HiddenNetwork": false
+    }
+  ]
+}

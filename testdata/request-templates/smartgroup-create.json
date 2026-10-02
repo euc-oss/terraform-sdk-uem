@@ -1,7 +1,7 @@
 {
   "Name": "mocktest-smartgroup-capture",
   "CriteriaType": "All",
-  "ManagedByOrganizationGroupId": "33182",
+  "ManagedByOrganizationGroupId": "12345",
   "OrganizationGroups": [],
   "UserGroups": [],
   "Tags": [],

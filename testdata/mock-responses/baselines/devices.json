@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/devices",
+    "method": "GET",
+    "description": "Schema-derived placeholder, not a live capture (paged GetBaselineDeviceSummaryResponseV1Model wrapper: page/pageSize/total/results -- NOT SearchResult): a genuine live capture was not possible when this was written -- the test tenant had no baseline available at that moment and no enrolled device -- NOT because the API lacks a create route: it does (resources/baseline_creator.go's BaselineCreator.Create, POST /api/mdm/groups/{organizationGroupUuid}/baselines, genuinely live-captured as baselines/create-response.json, ledger verified[12]). This file's own git history has no live-capture commit at any point (only refresh/prune/hydration/corpus-land commits), consistent with the 2026-08-04 integrity audit (commit dffd8b612), which found this class of BaselinesV1Service fixture lacked live-capture provenance.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json;version=1; charset=utf-8"
+    },
+    "body": {
+      "page": 0,
+      "pageSize": 10,
+      "total": 2,
+      "results": [
+        {
+          "deviceUUID": "2e121787-d028-941a-7fc9-0df5de7ad6f4",
+          "deviceID": 5001,
+          "friendlyName": "WIN10-DESK-01",
+          "userName": "alice",
+          "deviceType": "Windows Desktop",
+          "deviceModelID": 100,
+          "deviceModelName": "OptiPlex 7090",
+          "operatingSystem": "Windows 10 22H2"
+        },
+        {
+          "deviceUUID": "8c3f1b7b-4f8f-3275-ae0e-6941bbc77626",
+          "deviceID": 5002,
+          "friendlyName": "WIN10-DESK-02",
+          "userName": "bob",
+          "deviceType": "Windows Desktop",
+          "deviceModelID": 100,
+          "deviceModelName": "OptiPlex 7090",
+          "operatingSystem": "Windows 10 22H2"
+        }
+      ]
+    }
+  }
+}

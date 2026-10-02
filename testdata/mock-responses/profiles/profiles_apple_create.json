@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/apple/create",
+    "method": "POST",
+    "platform": "Apple",
+    "description": "Live-captured POST /api/mdm/profiles/platforms/apple/create against UEM 26.2.0.0, 2026-07-30 -- re-verified with clean v2 header post-fix. Response is a bare int (created ProfileId). Note: the mock-capture anonymizer does not touch top-level scalar bodies (the anonymize key is empty string for a bare int, so no substring rule matches) -- the real captured id was hand-replaced here with 68910 for anonymization.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": 68910
+  }
+}

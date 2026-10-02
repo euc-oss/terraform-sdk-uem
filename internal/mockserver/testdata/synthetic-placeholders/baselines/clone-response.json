@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}",
+    "method": "POST",
+    "description": "SYNTHETIC PLACEHOLDER -- NOT live-captured. Demoted 2026-08-04 (integrity audit): fabricated/schema-derived fixture, no live-capture evidence, never round-tripped against live UEM. Reachability unconfirmed on live (bead internal-task) -- resolve internal-task before re-capture. Relocated 2026-08-06 to internal/mockserver/testdata/synthetic-placeholders/ (Phase-3-surviving location -- see that directory's README.md) for use by TestGeneratedBaselinesV1Lifecycle via the bypass mechanism in tests/bypass_fixture_helper_test.go. The vendored corpus's own baselines/clone-response.json is a separate, non-identical placeholder with no functional consumer in the Go suite (deletion-control, 2026-09-24: deleting it fails no test, while deleting this file fails TestGeneratedBaselinesV1Lifecycle). Both files derive from the same hand-authored mock (commit 2984267f8, 2026-05-27), not a live capture; this copy was made at commit 9c4137ff9 (2026-08-06) with its baselineUUID and description values changed. Triggered via ?action=clone query parameter; the mock matcher does not inspect query params by default so this fixture matches the bare POST (the create fixture lives at the /baselines path without the {baselineUuid} segment, so no conflict). The body's Name deliberately echoes the test's own CreateBaselineRequestV1Model request value -- this is a static mock echo for asserting response-body parsing, not a claim about a real captured record.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json;version=1; charset=utf-8",
+      "Location": "/api/mdm/groups/7d0aef64-735e-853e-1695-fdb07ba63f5c/baselines/62cb60f4-5343-58a7-823e-d3cd55dc848f"
+    },
+    "body": {
+      "baselineUUID": "62cb60f4-5343-58a7-823e-d3cd55dc848f",
+      "name": "Win 10 baseline 1 (clone)",
+      "description": "Synthetic placeholder clone",
+      "version": 1,
+      "rootLocationGroupID": 12345,
+      "rootLocationGroupUUID": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+      "platformUUID": "fea1c595-91f0-e37b-aef6-6769865efad2"
+    }
+  }
+}

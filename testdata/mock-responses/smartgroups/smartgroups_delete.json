@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/smartgroups/{id}",
     "method": "DELETE",
-    "description": "Captured DELETE /api/mdm/smartgroups/{id}",
+    "description": "Live-captured DELETE /api/mdm/smartgroups/{id} against UEM 26.2.0.0, 2026-07-30 -- deletion confirmed via a subsequent GET readback that returned a not-found error (see smartgroups_get_after_delete.json).",
     "version": "1"
   },
   "request": {

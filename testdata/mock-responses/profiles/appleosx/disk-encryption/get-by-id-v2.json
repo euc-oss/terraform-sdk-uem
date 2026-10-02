@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/12346",
+    "method": "GET",
+    "description": "macOS disk-encryption profile — GET by int id (V2)",
+    "version": "2",
+    "platform": "AppleOsX",
+    "api_validation": {
+      "console_url": "https://cn0000.example.com",
+      "uem_version": "25.9.1134.9",
+      "api_version": "2",
+      "accept_header": "application/json;version=2",
+      "org_group_id": 12345,
+      "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+      "captured_at": "2026-04-23",
+      "result": "accepted",
+      "ticket": "regression-repro",
+      "endpoint": "GET /api/mdm/profiles/12346",
+      "response_id_example": 68961,
+      "notes": "Validates PR #21 int→string fix on the wire: EncryptionActionAfterLastNotification, FileVaultUser, PromptToEnableFileVaultAt all round-trip as string. Update endpoint returns 200 but silently no-ops.",
+      "request_templates": [
+        "testdata/request-templates/profiles/appleosx/disk-encryption/disk-encryption-create-v2.json"
+      ]
+    }
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "CredentialsList": [],
+      "CustomAttributes": [],
+      "CustomSettingsList": [],
+      "DiskEncryption": {
+        "DiskEncryptionAirWatch": {
+          "EnableRecoveryKey": true,
+          "EncryptionActionAfterLastNotification": "ForceLogout",
+          "EncryptionMaxNotifyAttempts": 3,
+          "EncryptionNotificationMessage": "Please enable FileVault to continue.",
+          "EncryptionNotificationRetryIntervalInHours": 24,
+          "EncryptionNotificationTitle": "FileVault Required",
+          "NotifyUserForEncryption": true,
+          "RecoveryKeyErrorMessage": "Please try again later.",
+          "RecoveryKeyErrorTitle": "Recovery key rotation failed",
+          "RecoveryKeyMaxFailureCount": 3,
+          "RecoveryKeyNotificationMessage": "Your recovery key will be rotated.",
+          "RecoveryKeyNotificationRetryIntervalInHours": 24,
+          "RecoveryKeyNotificationTitle": "Recovery key rotation",
+          "RecoveryKeyPromptMessage": "Please enter your macOS login password.",
+          "RecoveryKeyPromptTitle": "Enter password to rotate recovery key",
+          "RecoveryKeySuccessMessage": "Your recovery key has been rotated successfully.",
+          "RecoveryKeySuccessTitle": "Recovery key rotated",
+          "RotateKeyAfter": 90,
+          "StoreKey": true,
+          "UseIntelligentHub": true
+        },
+        "DiskEncryptionFileVault2": {
+          "Enable": true,
+          "FileVaultUser": "Enrique703",
+          "NumberOfTimesUserCanBypass": 3,
+          "PromptToEnableFileVaultAt": "BothLoginAndLogout",
+          "RecoveryType": 1,
+          "ShowRecoveryKey": true
+        },
+        "DiskEncryptionMCX": {
+          "DestroyFVKeyOnStandby": false
+        }
+      },
+      "EmailList": [],
+      "General": {
+        "AllowRemoval": "Always",
+        "AssignedSchedule": [],
+        "AssignedSmartGroups": [],
+        "AssignmentType": "Auto",
+        "Description": "Quietly harden the government later.",
+        "EnableProvisioning": false,
+        "ExcludedSmartGroups": [],
+        "IsActive": true,
+        "IsManaged": true,
+        "IsProvisionedForOobe": false,
+        "ManagedLocationGroupID": 12346,
+        "Name": "Test Koaladid",
+        "Password": "",
+        "ProfileContext": "Device",
+        "ProfileId": 12347,
+        "ProfileUuid": "c64784b5-7327-97e3-9758-f05e2603e6a2",
+        "Version": 1
+      },
+      "NetworkList": [],
+      "ScepList": [],
+      "SsoExtensionList": [],
+      "VpnList": [],
+      "WebClipsList": []
+    }
+  }
+}

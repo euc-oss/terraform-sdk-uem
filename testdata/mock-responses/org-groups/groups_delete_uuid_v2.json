@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/system/groups/037ac4dc-483c-a3cc-ac3e-4b729abb4178",
+    "method": "DELETE",
+    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. DELETE /api/system/groups/{uuid} (v2) of a disposable org group created for this capture: 200, empty body. The real org group uuid in the path is replaced by a fixed uuid chosen to be unique in this corpus.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "api_validation": {
+    "console_url": "https://your-instance.awmdm.com",
+    "uem_version": "25.9.1134.9",
+    "api_version": "2",
+    "accept_header": "application/json;version=2",
+    "endpoint": "POST /api/mdm/profiles/platforms/appleosx/create",
+    "org_group_id": 12345,
+    "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+    "captured_at": "2026-04-23",
+    "result": "accepted",
+    "response_id_example": 68965,
+    "ticket": "internal-ticket",
+    "notes": "Sharing sub-payload: when parent Sharing.RestrictWhichSharingServicesAreEnabled=false (default), the individual toggles (Mail, AirDrop, Facebook, etc.) all persist as false regardless of submitted value."
+  },
+  "General": {
+    "Name": "mocktest-restrictions",
+    "Description": "SDK CRUD validation — minimal sharing + spotlight restrictions",
+    "DeviceType": "AppleOsX",
+    "ProfileType": "Device",
+    "ManagedLocationGroupID": 12345,
+    "AssignmentType": "Auto",
+    "ProfileContext": "Device"
+  },
+  "Restrictions": {
+    "Functionality": {
+      "Spotlight": {
+        "AllowSpotlightSuggestions": false
+      }
+    },
+    "Sharing": {
+      "AirDrop": false,
+      "Facebook": false,
+      "Mail": true
+    }
+  }
+}

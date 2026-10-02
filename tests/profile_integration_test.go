@@ -2,6 +2,7 @@ package tests
 
 import (
 	"context"
+	"os"
 	"testing"
 	"time"
 
@@ -61,21 +62,40 @@ func TestIntegration_ProfileService_Search(t *testing.T) {
 
 	// Test 2: Search with filters
 	t.Run("Search with platform filter", func(t *testing.T) {
+		// AppleOsX: the test tenant has no Android profiles, and the v1
+		// search reports "AppleOsX" under the same string the detail GET
+		// uses (api-doctrine quirk 26).
 		response, err := profileService.Search(ctx, &resources.SearchOptions{
 			PageSize: 10,
-			Platform: models.PlatformAndroid,
+			Platform: models.PlatformAppleOSX,
 		})
 
 		if err != nil {
-			t.Fatalf("Failed to search Android profiles: %v", err)
+			t.Fatalf("Failed to search AppleOsX profiles: %v", err)
 		}
 
-		t.Logf("Found %d Android profiles", len(response.Profiles))
+		t.Logf("Found %d AppleOsX profiles", len(response.Profiles))
 
-		// Verify all returned profiles are Android
+		// The mock server does not apply query filters: it serves the
+		// captured v1 search fixture as-is, so only a live run can prove the
+		// filter. In mock mode, assert the fixture's actual content: exactly
+		// one AppleOsX and one Linux profile. The v1 search reports Linux as
+		// "Linux", not models.PlatformLinux ("To do"; api-doctrine quirk 26).
+		if os.Getenv("TEST_MODE") != "live" {
+			got := map[string]int{}
+			for _, profile := range response.Profiles {
+				got[profile.Platform]++
+			}
+			if len(response.Profiles) != 2 || got[models.PlatformAppleOSX] != 1 || got["Linux"] != 1 {
+				t.Errorf("mock: want exactly one AppleOsX and one Linux profile from the fixture, got %v", got)
+			}
+			return
+		}
+
+		// Live: every returned profile must match the filter.
 		for _, profile := range response.Profiles {
-			if profile.Platform != models.PlatformAndroid {
-				t.Errorf("Expected Android platform, got %s", profile.Platform)
+			if profile.Platform != models.PlatformAppleOSX {
+				t.Errorf("Expected AppleOsX platform, got %s", profile.Platform)
 			}
 		}
 	})

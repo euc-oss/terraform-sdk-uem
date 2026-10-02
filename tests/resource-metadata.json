@@ -1,0 +1,3035 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "39310c8d1d2a63b3654f6c93f464b9dfa513084e",
+  "resources": {
+    "mam/v1/BlobsV1": {
+      "exported": true,
+      "operations": [
+        "DeleteBlobAsync",
+        "UploadBlobAsync"
+      ],
+      "references": [
+        {
+          "field": "organizationGroupId",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "id",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "DeleteBlobAsync": [
+          {
+            "name": "DeleteBlobAsync",
+            "operation": "BlobsV1_DeleteBlobAsync",
+            "endpoint": "/api/mam/blobs/blob/{blobId}"
+          }
+        ],
+        "UploadBlobAsync": [
+          {
+            "name": "UploadBlobAsync",
+            "operation": "BlobsV1_UploadBlobAsync",
+            "endpoint": "/api/mam/blobs/uploadblob"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "DeleteBlobAsync": "both",
+        "UploadBlobAsync": "both"
+      }
+    },
+    "mam/v1/InternalAppsV1": {
+      "exported": true,
+      "operations": [
+        "AddAssignmentsWithFlexibleDeploymentParametersAsync",
+        "CreateInternalAppFromBlobAsync",
+        "CreateInternalApplicationFromBlob",
+        "DeleteInternalAppAsync",
+        "EditAssignmentsWithFlexibleDeploymentParametersAsync",
+        "GetInternalAppByIdAsync",
+        "InsertInternalApplicationChunkAsync"
+      ],
+      "references": [
+        {
+          "field": "ExcludedSmartGroupIdsForDeletion",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "SmartGroupIds",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "SmartGroupIdsForDeletion",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "SmartGroupIdsForExclusion",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "AddAssignmentsWithFlexibleDeploymentParametersAsync": [
+          {
+            "name": "AddAssignmentsWithFlexibleDeploymentParametersAsync",
+            "operation": "InternalAppsV1_AddAssignmentsWithFlexibleDeploymentParametersAsync",
+            "endpoint": "/api/mam/apps/internal/{applicationId}/assignments"
+          }
+        ],
+        "CreateInternalAppFromBlobAsync": [
+          {
+            "name": "CreateInternalAppFromBlobAsync",
+            "operation": "InternalAppsV1_CreateInternalAppFromBlobAsync",
+            "endpoint": "/api/mam/apps/internal/begininstall"
+          }
+        ],
+        "CreateInternalApplicationFromBlob": [
+          {
+            "name": "CreateInternalApplicationFromBlob",
+            "operation": "InternalAppsV1_CreateInternalApplicationFromBlob",
+            "endpoint": "/api/mam/apps/internal/application"
+          }
+        ],
+        "DeleteInternalAppAsync": [
+          {
+            "name": "DeleteInternalAppAsync",
+            "operation": "InternalAppsV1_DeleteInternalAppAsync",
+            "endpoint": "/api/mam/apps/internal/{applicationid}"
+          }
+        ],
+        "EditAssignmentsWithFlexibleDeploymentParametersAsync": [
+          {
+            "name": "EditAssignmentsWithFlexibleDeploymentParametersAsync",
+            "operation": "InternalAppsV1_EditAssignmentsWithFlexibleDeploymentParametersAsync",
+            "endpoint": "/api/mam/apps/internal/{applicationId}/assignments"
+          }
+        ],
+        "GetInternalAppByIdAsync": [
+          {
+            "name": "GetInternalAppByIdAsync",
+            "operation": "InternalAppsV1_GetInternalAppByIdAsync",
+            "endpoint": "/api/mam/apps/internal/{applicationId}"
+          }
+        ],
+        "InsertInternalApplicationChunkAsync": [
+          {
+            "name": "InsertInternalApplicationChunkAsync",
+            "operation": "InternalAppsV1_InsertInternalApplicationChunkAsync",
+            "endpoint": "/api/mam/apps/internal/uploadchunk"
+          }
+        ]
+      },
+      "fields": {
+        "ActualFileVersion": {
+          "presence": "optional"
+        },
+        "AppVersion": {
+          "presence": "optional"
+        },
+        "ApplicationName": {
+          "presence": "optional"
+        },
+        "ApplicationSource": {
+          "presence": "optional"
+        },
+        "AutoUpdateVersion": {
+          "presence": "optional"
+        },
+        "BlobId": {
+          "presence": "optional"
+        },
+        "BuildVersion": {
+          "presence": "optional"
+        },
+        "BundleId": {
+          "presence": "optional"
+        },
+        "CarryOverAssignments": {
+          "presence": "optional"
+        },
+        "CategoryList": {
+          "presence": "optional"
+        },
+        "ChunkData": {
+          "presence": "optional"
+        },
+        "ChunkSequenceNumber": {
+          "presence": "optional"
+        },
+        "ChunkSize": {
+          "presence": "optional"
+        },
+        "Criticality": {
+          "presence": "optional"
+        },
+        "DeploymentOptions": {
+          "presence": "optional"
+        },
+        "DeploymentParameters": {
+          "presence": "required"
+        },
+        "Description": {
+          "presence": "optional"
+        },
+        "Developer": {
+          "presence": "optional"
+        },
+        "DeveloperEmail": {
+          "presence": "optional"
+        },
+        "DeveloperPhone": {
+          "presence": "optional"
+        },
+        "DeviceType": {
+          "presence": "optional"
+        },
+        "EARAppUpdateMode": {
+          "presence": "optional"
+        },
+        "EARInstallerArchitecture": {
+          "presence": "optional"
+        },
+        "EARInstallerLocale": {
+          "presence": "optional"
+        },
+        "EARInstallerType": {
+          "presence": "optional"
+        },
+        "EARPackageId": {
+          "presence": "optional"
+        },
+        "EarAppAutoUpdateConfiguration": {
+          "presence": "optional"
+        },
+        "EnableEARAppAutomaticAssignment": {
+          "presence": "optional"
+        },
+        "EnableEARAppAutomaticUpdates": {
+          "presence": "optional"
+        },
+        "EnableProvisioning": {
+          "presence": "optional"
+        },
+        "ExcludedSmartGroupIdsForDeletion": {
+          "presence": "optional"
+        },
+        "FileName": {
+          "presence": "optional"
+        },
+        "FilesOptions": {
+          "presence": "optional"
+        },
+        "IconBlobUuId": {
+          "presence": "optional"
+        },
+        "IsDependencyFile": {
+          "presence": "optional"
+        },
+        "LaunchCommand": {
+          "presence": "optional"
+        },
+        "LaunchType": {
+          "presence": "optional"
+        },
+        "LocationGroupId": {
+          "presence": "optional"
+        },
+        "MsiDeploymentParamModel": {
+          "presence": "optional"
+        },
+        "PushMode": {
+          "presence": "optional"
+        },
+        "SmartGroupIds": {
+          "presence": "optional"
+        },
+        "SmartGroupIdsForDeletion": {
+          "presence": "optional"
+        },
+        "SmartGroupIdsForExclusion": {
+          "presence": "optional"
+        },
+        "SupportEmail": {
+          "presence": "optional"
+        },
+        "SupportPhone": {
+          "presence": "optional"
+        },
+        "SupportedModels": {
+          "presence": "optional"
+        },
+        "SupportedProcessorArchitecture": {
+          "presence": "optional"
+        },
+        "TotalApplicationSize": {
+          "presence": "optional"
+        },
+        "TransactionId": {
+          "presence": "optional"
+        },
+        "UploadViaLink": {
+          "presence": "optional"
+        },
+        "actual_file_version": {
+          "presence": "optional"
+        },
+        "app_uem_version": {
+          "presence": "optional"
+        },
+        "application_name": {
+          "presence": "optional"
+        },
+        "application_source": {
+          "presence": "optional"
+        },
+        "auto_update_version": {
+          "presence": "optional"
+        },
+        "blob_id": {
+          "presence": "optional"
+        },
+        "build_version": {
+          "presence": "optional"
+        },
+        "bundle_id": {
+          "presence": "optional"
+        },
+        "carryover_assignments": {
+          "presence": "optional"
+        },
+        "category_list": {
+          "presence": "optional"
+        },
+        "criticality": {
+          "presence": "optional"
+        },
+        "dependency_file": {
+          "presence": "optional"
+        },
+        "deployment_options": {
+          "presence": "optional"
+        },
+        "deployment_param": {
+          "presence": "optional"
+        },
+        "description": {
+          "presence": "optional"
+        },
+        "developer_email": {
+          "presence": "optional"
+        },
+        "developer_name": {
+          "presence": "optional"
+        },
+        "developer_phone": {
+          "presence": "optional"
+        },
+        "device_type": {
+          "presence": "optional"
+        },
+        "ear_app_auto_update_configuration": {
+          "presence": "optional"
+        },
+        "ear_app_update_mode": {
+          "presence": "optional"
+        },
+        "ear_installer_architecture": {
+          "presence": "optional"
+        },
+        "ear_installer_locale": {
+          "presence": "optional"
+        },
+        "ear_installer_type": {
+          "presence": "optional"
+        },
+        "ear_package_id": {
+          "presence": "optional"
+        },
+        "enable_ear_app_automatic_assignment": {
+          "presence": "optional"
+        },
+        "enable_ear_app_automatic_updates": {
+          "presence": "optional"
+        },
+        "enable_provisioning": {
+          "presence": "optional"
+        },
+        "file_name": {
+          "presence": "optional"
+        },
+        "files_options": {
+          "presence": "optional"
+        },
+        "iconblob_uuid": {
+          "presence": "optional"
+        },
+        "id": {
+          "presence": "optional"
+        },
+        "launch_command": {
+          "presence": "optional"
+        },
+        "launch_type": {
+          "presence": "optional"
+        },
+        "organization_group_uuid": {
+          "presence": "optional"
+        },
+        "push_mode": {
+          "presence": "optional"
+        },
+        "support_email": {
+          "presence": "optional"
+        },
+        "support_phone": {
+          "presence": "optional"
+        },
+        "supported_models": {
+          "presence": "optional"
+        },
+        "supported_processor_architecture": {
+          "presence": "optional"
+        },
+        "transaction_id": {
+          "presence": "optional"
+        },
+        "upload_via_link": {
+          "presence": "optional"
+        },
+        "uuid": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "AddAssignmentsWithFlexibleDeploymentParametersAsync": "both",
+        "CreateInternalAppFromBlobAsync": "both",
+        "CreateInternalApplicationFromBlob": "both",
+        "DeleteInternalAppAsync": "both",
+        "EditAssignmentsWithFlexibleDeploymentParametersAsync": "both",
+        "GetInternalAppByIdAsync": "both",
+        "InsertInternalApplicationChunkAsync": "both"
+      }
+    },
+    "mam/v1/MacOsAppsV1": {
+      "exported": true,
+      "operations": [
+        "CreateMacOSApplication"
+      ],
+      "references": [
+        {
+          "field": "id",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "id",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        },
+        {
+          "field": "applicationBlobId",
+          "target": "mam/v1/BlobsV1",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "pkgInfoBlobId",
+          "target": "mam/v1/BlobsV1",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "CreateMacOSApplication": [
+          {
+            "name": "CreateMacOSApplication",
+            "operation": "MacOsAppsV1_CreateMacOSApplication",
+            "endpoint": "/api/mam/groups/{id}/macos/apps"
+          }
+        ]
+      },
+      "fields": {
+        "applicationBlobId": {
+          "presence": "optional"
+        },
+        "applicationIconId": {
+          "presence": "optional"
+        },
+        "pkgInfoBlobId": {
+          "presence": "optional"
+        },
+        "version": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "CreateMacOSApplication": "both"
+      }
+    },
+    "mam/v1/PurchasedAppsV1": {
+      "exported": true,
+      "operations": [
+        "VppAppSearchAsync"
+      ],
+      "workflows": {
+        "VppAppSearchAsync": [
+          {
+            "name": "VppAppSearchAsync",
+            "operation": "PurchasedAppsV1_VppAppSearchAsync",
+            "endpoint": "/api/mam/apps/purchased/search"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "VppAppSearchAsync": "both"
+      }
+    },
+    "mam/v2/AppBookmarksV2": {
+      "exported": true,
+      "operations": [
+        "GetBookmarkList"
+      ],
+      "workflows": {
+        "GetBookmarkList": [
+          {
+            "name": "GetBookmarkList",
+            "operation": "AppBookmarksV2_GetBookmarkList",
+            "endpoint": "/api/mam/apps/kiosk-bookmarks/{platform}"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "GetBookmarkList": "both"
+      }
+    },
+    "mam/v2/AppRemovalProtectionLogsV2": {
+      "exported": true,
+      "operations": [
+        "AppRemovalDevices",
+        "GenerateAppRemovalDevicesReport",
+        "GenerateAppRemovalProtectionLogsReport",
+        "GetAppRemovalProtectionLogs",
+        "UpdateAppRemovalThreshold"
+      ],
+      "references": [
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": true
+        },
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "AppRemovalDevices": [
+          {
+            "name": "AppRemovalDevices",
+            "operation": "AppRemovalProtectionLogsV2_AppRemovalDevices",
+            "endpoint": "/api/mam/apps/removal-protection-logs/devices"
+          }
+        ],
+        "GenerateAppRemovalDevicesReport": [
+          {
+            "name": "GenerateAppRemovalDevicesReport",
+            "operation": "AppRemovalProtectionLogsV2_GenerateAppRemovalDevicesReport",
+            "endpoint": "/api/mam/apps/removal-protection-logs/devices/reports"
+          }
+        ],
+        "GenerateAppRemovalProtectionLogsReport": [
+          {
+            "name": "GenerateAppRemovalProtectionLogsReport",
+            "operation": "AppRemovalProtectionLogsV2_GenerateAppRemovalProtectionLogsReport",
+            "endpoint": "/api/mam/apps/removal-protection-logs/reports"
+          }
+        ],
+        "GetAppRemovalProtectionLogs": [
+          {
+            "name": "GetAppRemovalProtectionLogs",
+            "operation": "AppRemovalProtectionLogsV2_GetAppRemovalProtectionLogs",
+            "endpoint": "/api/mam/apps/removal-protection-logs"
+          }
+        ],
+        "UpdateAppRemovalThreshold": [
+          {
+            "name": "UpdateAppRemovalThreshold",
+            "operation": "AppRemovalProtectionLogsV2_UpdateAppRemovalThreshold",
+            "endpoint": "/api/mam/apps/removal-protection-logs"
+          }
+        ]
+      },
+      "fields": {
+        "action": {
+          "presence": "optional"
+        },
+        "application_name": {
+          "presence": "optional"
+        },
+        "bundle_identifier": {
+          "presence": "optional"
+        },
+        "bundle_identifiers": {
+          "presence": "optional"
+        },
+        "end_date": {
+          "presence": "optional"
+        },
+        "export_format": {
+          "presence": "optional"
+        },
+        "order_by": {
+          "presence": "optional"
+        },
+        "organization_group_uuid": {
+          "presence": "optional"
+        },
+        "page": {
+          "presence": "optional"
+        },
+        "page_size": {
+          "presence": "optional"
+        },
+        "search_text": {
+          "presence": "optional"
+        },
+        "sort_direction": {
+          "presence": "optional"
+        },
+        "start_date": {
+          "presence": "optional"
+        },
+        "threshold_status": {
+          "presence": "optional"
+        },
+        "threshold_uuid": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "AppRemovalDevices": "both",
+        "GenerateAppRemovalDevicesReport": "both",
+        "GenerateAppRemovalProtectionLogsReport": "both",
+        "GetAppRemovalProtectionLogs": "both",
+        "UpdateAppRemovalThreshold": "both"
+      }
+    },
+    "mam/v2/AppsV2": {
+      "exported": true,
+      "operations": [
+        "GetAndroidAppCustomTracks",
+        "GetAppConfigTemplateAsync",
+        "GetAppFilterValues",
+        "GetAssignmentRuleAsync",
+        "GetCategoriesForApplication",
+        "GetListOfDevices",
+        "GetOffice365MamApplicationPolicy",
+        "Search",
+        "UpdateAssignmentRuleAsync",
+        "UpdateRequest"
+      ],
+      "references": [
+        {
+          "field": "organizationGroupUuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        },
+        {
+          "field": "applicationUuid",
+          "target": "mam/v2/PurchasedAppsV2",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        },
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "assignments[].distribution.smart_groups",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "excluded_smart_groups",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "device_uuid",
+          "target": "mdm/v1/Devices",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "GetAndroidAppCustomTracks": [
+          {
+            "name": "GetAndroidAppCustomTracks",
+            "operation": "AppsV2_GetAndroidAppCustomTracks",
+            "endpoint": "/api/mam/apps/{organizationGroupUuid}/customtracks/{applicationUuid}"
+          }
+        ],
+        "GetAppConfigTemplateAsync": [
+          {
+            "name": "GetAppConfigTemplateAsync",
+            "operation": "AppsV2_GetAppConfigTemplateAsync",
+            "endpoint": "/api/mam/apps/{applicationUuid}/app-config-template"
+          }
+        ],
+        "GetAppFilterValues": [
+          {
+            "name": "GetAppFilterValues",
+            "operation": "AppsV2_GetAppFilterValues",
+            "endpoint": "/api/mam/apps/filters/{filterName}"
+          }
+        ],
+        "GetAssignmentRuleAsync": [
+          {
+            "name": "GetAssignmentRuleAsync",
+            "operation": "AppsV2_GetAssignmentRuleAsync",
+            "endpoint": "/api/mam/apps/{applicationUuid}/assignment-rules"
+          }
+        ],
+        "GetCategoriesForApplication": [
+          {
+            "name": "GetCategoriesForApplication",
+            "operation": "AppsV2_GetCategoriesForApplication",
+            "endpoint": "/api/mam/apps/categories"
+          }
+        ],
+        "GetListOfDevices": [
+          {
+            "name": "GetListOfDevices",
+            "operation": "AppsV2_GetListOfDevices",
+            "endpoint": "/api/mam/apps/{applicationUuid}/assignment-rules"
+          }
+        ],
+        "GetOffice365MamApplicationPolicy": [
+          {
+            "name": "GetOffice365MamApplicationPolicy",
+            "operation": "AppsV2_GetOffice365MamApplicationPolicy",
+            "endpoint": "/api/mam/apps/office365MamApplicationPolicies"
+          }
+        ],
+        "Search": [
+          {
+            "name": "Search",
+            "operation": "AppsV2_Search",
+            "endpoint": "/api/mam/apps/search"
+          }
+        ],
+        "UpdateAssignmentRuleAsync": [
+          {
+            "name": "UpdateAssignmentRuleAsync",
+            "operation": "AppsV2_UpdateAssignmentRuleAsync",
+            "endpoint": "/api/mam/apps/{applicationUuid}/assignment-rules"
+          }
+        ],
+        "UpdateRequest": [
+          {
+            "name": "UpdateRequest",
+            "operation": "AppsV2_UpdateRequest",
+            "endpoint": "/api/mam/apps/request/{requestUuid}"
+          }
+        ]
+      },
+      "fields": {
+        "application_msi_deployment_params": {
+          "presence": "optional"
+        },
+        "approval_status": {
+          "presence": "required"
+        },
+        "assignments": {
+          "presence": "optional"
+        },
+        "device_uuid": {
+          "presence": "required"
+        },
+        "excluded_smart_groups": {
+          "presence": "optional"
+        },
+        "id": {
+          "presence": "optional"
+        },
+        "notes": {
+          "presence": "required"
+        },
+        "updated_at": {
+          "presence": "required"
+        },
+        "updated_by": {
+          "presence": "required"
+        },
+        "uuid": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "GetAndroidAppCustomTracks": "both",
+        "GetAppConfigTemplateAsync": "both",
+        "GetAppFilterValues": "both",
+        "GetAssignmentRuleAsync": "both",
+        "GetCategoriesForApplication": "both",
+        "GetListOfDevices": "both",
+        "GetOffice365MamApplicationPolicy": "both",
+        "Search": "both",
+        "UpdateAssignmentRuleAsync": "both",
+        "UpdateRequest": "both"
+      }
+    },
+    "mam/v2/BlobsV2": {
+      "exported": true,
+      "operations": [
+        "Delete",
+        "Get",
+        "Head",
+        "UploadBlobAsync"
+      ],
+      "references": [
+        {
+          "field": "organizationGroupId",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "id",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "Delete": [
+          {
+            "name": "Delete",
+            "operation": "BlobsV2_Delete",
+            "endpoint": "/api/mam/blobs/{blobId}"
+          }
+        ],
+        "Get": [
+          {
+            "name": "Get",
+            "operation": "BlobsV2_Get",
+            "endpoint": "/api/mam/blobs/{blobId}"
+          }
+        ],
+        "Head": [
+          {
+            "name": "Head",
+            "operation": "BlobsV2_Head",
+            "endpoint": "/api/mam/blobs/{blobId}"
+          }
+        ],
+        "UploadBlobAsync": [
+          {
+            "name": "UploadBlobAsync",
+            "operation": "BlobsV2_UploadBlobAsync",
+            "endpoint": "/api/mam/blobs/uploadblob"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "Delete": "both",
+        "Get": "both",
+        "Head": "both",
+        "UploadBlobAsync": "both"
+      }
+    },
+    "mam/v2/EnterpriseAppRepositoryV2": {
+      "exported": true,
+      "operations": [
+        "BulkSearchApplicationsAsync",
+        "GetApplicationsDetailsAsync",
+        "ImportApplicationPackageAsync",
+        "SearchApplicationsAsync"
+      ],
+      "references": [
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "BulkSearchApplicationsAsync": [
+          {
+            "name": "BulkSearchApplicationsAsync",
+            "operation": "EnterpriseAppRepositoryV2_BulkSearchApplicationsAsync",
+            "endpoint": "/api/mam/enterpriseapprepository/applications/bulksearch"
+          }
+        ],
+        "GetApplicationsDetailsAsync": [
+          {
+            "name": "GetApplicationsDetailsAsync",
+            "operation": "EnterpriseAppRepositoryV2_GetApplicationsDetailsAsync",
+            "endpoint": "/api/mam/enterpriseapprepository/packages"
+          }
+        ],
+        "ImportApplicationPackageAsync": [
+          {
+            "name": "ImportApplicationPackageAsync",
+            "operation": "EnterpriseAppRepositoryV2_ImportApplicationPackageAsync",
+            "endpoint": "/api/mam/enterpriseapprepository/package/import"
+          }
+        ],
+        "SearchApplicationsAsync": [
+          {
+            "name": "SearchApplicationsAsync",
+            "operation": "EnterpriseAppRepositoryV2_SearchApplicationsAsync",
+            "endpoint": "/api/mam/enterpriseapprepository/applications/search"
+          }
+        ]
+      },
+      "fields": {
+        "architecture": {
+          "presence": "optional"
+        },
+        "carryover_assignments": {
+          "presence": "optional"
+        },
+        "installer_type": {
+          "presence": "optional"
+        },
+        "locale": {
+          "presence": "optional"
+        },
+        "organization_group_uuid": {
+          "presence": "optional"
+        },
+        "package_identifier": {
+          "presence": "required"
+        },
+        "package_identifiers": {
+          "presence": "required"
+        },
+        "package_version": {
+          "presence": "required"
+        },
+        "platform": {
+          "presence": "optional"
+        },
+        "scope": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "BulkSearchApplicationsAsync": "both",
+        "GetApplicationsDetailsAsync": "both",
+        "ImportApplicationPackageAsync": "both",
+        "SearchApplicationsAsync": "both"
+      }
+    },
+    "mam/v2/InternalAppsV2": {
+      "exported": true,
+      "operations": [
+        "GetApplicationBranchCacheStatisticsAsync",
+        "GetApplicationList",
+        "GetInternalAppByUuid",
+        "RenewProvisioningProfile"
+      ],
+      "references": [
+        {
+          "field": "device_uuids",
+          "target": "mdm/v1/Devices",
+          "target_identifier": "string",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "smart_group_uuids",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "string",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "GetApplicationBranchCacheStatisticsAsync": [
+          {
+            "name": "GetApplicationBranchCacheStatisticsAsync",
+            "operation": "InternalAppsV2_GetApplicationBranchCacheStatisticsAsync",
+            "endpoint": "/api/mam/apps/internal/peerdistribution/branchcache/{bundleid}"
+          }
+        ],
+        "GetApplicationList": [
+          {
+            "name": "GetApplicationList",
+            "operation": "InternalAppsV2_GetApplicationList",
+            "endpoint": "/api/mam/apps/internal/provisionings/{uuid}"
+          }
+        ],
+        "GetInternalAppByUuid": [
+          {
+            "name": "GetInternalAppByUuid",
+            "operation": "InternalAppsV2_GetInternalAppByUuid",
+            "endpoint": "/api/mam/apps/internal/{uuid}"
+          }
+        ],
+        "RenewProvisioningProfile": [
+          {
+            "name": "RenewProvisioningProfile",
+            "operation": "InternalAppsV2_RenewProvisioningProfile",
+            "endpoint": "/api/mam/apps/internal/provisionings/{uuid}"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "GetApplicationBranchCacheStatisticsAsync": "both",
+        "GetApplicationList": "both",
+        "GetInternalAppByUuid": "both",
+        "RenewProvisioningProfile": "both"
+      }
+    },
+    "mam/v2/PurchasedAppsV2": {
+      "exported": true,
+      "operations": [
+        "GetPurchasedApplicationAndAssignments",
+        "InstallVppAppForDeviceAsync",
+        "RemovePurchasedAppFromDeviceAsync"
+      ],
+      "references": [
+        {
+          "field": "device_uuid",
+          "target": "mdm/v1/Devices",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "GetPurchasedApplicationAndAssignments": [
+          {
+            "name": "GetPurchasedApplicationAndAssignments",
+            "operation": "PurchasedAppsV2_GetPurchasedApplicationAndAssignments",
+            "endpoint": "/api/mam/apps/purchased/{uuid}"
+          }
+        ],
+        "InstallVppAppForDeviceAsync": [
+          {
+            "name": "InstallVppAppForDeviceAsync",
+            "operation": "PurchasedAppsV2_InstallVppAppForDeviceAsync",
+            "endpoint": "/api/mam/apps/purchased/{applicationUuid}/install"
+          }
+        ],
+        "RemovePurchasedAppFromDeviceAsync": [
+          {
+            "name": "RemovePurchasedAppFromDeviceAsync",
+            "operation": "PurchasedAppsV2_RemovePurchasedAppFromDeviceAsync",
+            "endpoint": "/api/mam/apps/purchased/{applicationUuid}/uninstall"
+          }
+        ]
+      },
+      "fields": {
+        "device_udid": {
+          "presence": "optional"
+        },
+        "device_uuid": {
+          "presence": "optional"
+        },
+        "mac_address": {
+          "presence": "optional"
+        },
+        "serial_number": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "GetPurchasedApplicationAndAssignments": "both",
+        "InstallVppAppForDeviceAsync": "both",
+        "RemovePurchasedAppFromDeviceAsync": "both"
+      }
+    },
+    "mdm/v1/BaselinesV1": {
+      "exported": true,
+      "operations": [
+        "AssignBaselineAsync",
+        "CloneBaselineAsync",
+        "DeleteBaselineAsync",
+        "GetBaselineAssignmentsAsync",
+        "GetBaselineAsync",
+        "GetBaselineDevicePoliciesAsync",
+        "GetBaselineDevicesAsync",
+        "GetBaselineStatusAsync",
+        "GetBaselinesAsync",
+        "UpdateBaselineAsync"
+      ],
+      "references": [
+        {
+          "field": "organizationGroupUuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        },
+        {
+          "field": "smartGroups",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": true
+        },
+        {
+          "field": "customizations[].uuid",
+          "target": "mdm/v1/CatalogsV1",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": true
+        },
+        {
+          "field": "osVersionUUID",
+          "target": "mdm/v1/OSVersionsV1",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "platformUUID",
+          "target": "mdm/v1/PlatformsV1",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "policies[].uuid",
+          "target": "mdm/v1/CatalogsV1",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": true
+        },
+        {
+          "field": "rootLocationGroupID",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": true
+        },
+        {
+          "field": "vendorTemplateUUID",
+          "target": "mdm/v1/TemplatesV1",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "deviceUuid",
+          "target": "mdm/v1/Devices",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        },
+        {
+          "field": "organizationGroupUUID",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "AssignBaselineAsync": [
+          {
+            "name": "AssignBaselineAsync",
+            "operation": "BaselinesV1_AssignBaselineAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments"
+          }
+        ],
+        "CloneBaselineAsync": [
+          {
+            "name": "CloneBaselineAsync",
+            "operation": "BaselinesV1_CloneBaselineAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}"
+          }
+        ],
+        "DeleteBaselineAsync": [
+          {
+            "name": "DeleteBaselineAsync",
+            "operation": "BaselinesV1_DeleteBaselineAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}"
+          }
+        ],
+        "GetBaselineAssignmentsAsync": [
+          {
+            "name": "GetBaselineAssignmentsAsync",
+            "operation": "BaselinesV1_GetBaselineAssignmentsAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments"
+          }
+        ],
+        "GetBaselineAsync": [
+          {
+            "name": "GetBaselineAsync",
+            "operation": "BaselinesV1_GetBaselineAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}"
+          }
+        ],
+        "GetBaselineDevicePoliciesAsync": [
+          {
+            "name": "GetBaselineDevicePoliciesAsync",
+            "operation": "BaselinesV1_GetBaselineDevicePoliciesAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/devices/{deviceUuid}/policies"
+          }
+        ],
+        "GetBaselineDevicesAsync": [
+          {
+            "name": "GetBaselineDevicesAsync",
+            "operation": "BaselinesV1_GetBaselineDevicesAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/devices"
+          }
+        ],
+        "GetBaselineStatusAsync": [
+          {
+            "name": "GetBaselineStatusAsync",
+            "operation": "BaselinesV1_GetBaselineStatusAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/status"
+          }
+        ],
+        "GetBaselinesAsync": [
+          {
+            "name": "GetBaselinesAsync",
+            "operation": "BaselinesV1_GetBaselinesAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines"
+          }
+        ],
+        "UpdateBaselineAsync": [
+          {
+            "name": "UpdateBaselineAsync",
+            "operation": "BaselinesV1_UpdateBaselineAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}"
+          }
+        ]
+      },
+      "fields": {
+        "customizations": {
+          "presence": "optional"
+        },
+        "description": {
+          "presence": "optional"
+        },
+        "name": {
+          "presence": "required"
+        },
+        "organizationGroupUUID": {
+          "presence": "optional"
+        },
+        "osVersionUUID": {
+          "presence": "optional"
+        },
+        "platformUUID": {
+          "presence": "optional"
+        },
+        "policies": {
+          "presence": "optional"
+        },
+        "rootLocationGroupID": {
+          "presence": "required"
+        },
+        "securityLevelUUID": {
+          "presence": "optional"
+        },
+        "smartGroups": {
+          "presence": "required"
+        },
+        "vendorTemplateUUID": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "AssignBaselineAsync": "both",
+        "CloneBaselineAsync": "both",
+        "DeleteBaselineAsync": "both",
+        "GetBaselineAssignmentsAsync": "both",
+        "GetBaselineAsync": "both",
+        "GetBaselineDevicePoliciesAsync": "both",
+        "GetBaselineDevicesAsync": "both",
+        "GetBaselineStatusAsync": "both",
+        "GetBaselinesAsync": "both",
+        "UpdateBaselineAsync": "both"
+      }
+    },
+    "mdm/v1/CatalogsV1": {
+      "exported": true,
+      "operations": [
+        "GetAllPoliciesAsync",
+        "GetPolicyAsync",
+        "GetPolicyCatalogAsync"
+      ],
+      "references": [
+        {
+          "field": "osVersionUUID",
+          "target": "mdm/v1/OSVersionsV1",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "GetAllPoliciesAsync": [
+          {
+            "name": "GetAllPoliciesAsync",
+            "operation": "CatalogsV1_GetAllPoliciesAsync",
+            "endpoint": "/api/mdm/baselines/catalogs/{osVersionUUID}/policies"
+          }
+        ],
+        "GetPolicyAsync": [
+          {
+            "name": "GetPolicyAsync",
+            "operation": "CatalogsV1_GetPolicyAsync",
+            "endpoint": "/api/mdm/baselines/catalogs/policies/{policyUUID}"
+          }
+        ],
+        "GetPolicyCatalogAsync": [
+          {
+            "name": "GetPolicyCatalogAsync",
+            "operation": "CatalogsV1_GetPolicyCatalogAsync",
+            "endpoint": "/api/mdm/baselines/catalogs/{osVersionUUID}"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "GetAllPoliciesAsync": "both",
+        "GetPolicyAsync": "both",
+        "GetPolicyCatalogAsync": "both"
+      }
+    },
+    "mdm/v1/DeviceSensors": {
+      "exported": true,
+      "operations": [
+        "GetDeviceSensorsByDeviceUuidAsync"
+      ],
+      "references": [
+        {
+          "field": "deviceUuid",
+          "target": "mdm/v1/Devices",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "GetDeviceSensorsByDeviceUuidAsync": [
+          {
+            "name": "GetDeviceSensorsByDeviceUuidAsync",
+            "operation": "DeviceSensors_GetDeviceSensorsByDeviceUuidAsync",
+            "endpoint": "/api/mdm/devices/{deviceUuid}/sensors"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "GetDeviceSensorsByDeviceUuidAsync": "both"
+      }
+    },
+    "mdm/v1/DeviceSensorsV1": {
+      "exported": true,
+      "operations": [
+        "AssignDeviceSensor",
+        "BulkDeleteDeviceSensors",
+        "CreateDeviceSensor",
+        "GetDeviceSensor",
+        "GetDeviceSensors",
+        "UpdateDeviceSensor"
+      ],
+      "references": [
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": true
+        },
+        {
+          "field": "smart_groups",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "organizationGroupUuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "AssignDeviceSensor": [
+          {
+            "name": "AssignDeviceSensor",
+            "operation": "DeviceSensorsV1_AssignDeviceSensor",
+            "endpoint": "/api/mdm/devicesensors/assign"
+          }
+        ],
+        "BulkDeleteDeviceSensors": [
+          {
+            "name": "BulkDeleteDeviceSensors",
+            "operation": "DeviceSensorsV1_BulkDeleteDeviceSensors",
+            "endpoint": "/api/mdm/devicesensors/bulkdelete"
+          }
+        ],
+        "CreateDeviceSensor": [
+          {
+            "name": "CreateDeviceSensor",
+            "operation": "DeviceSensorsV1_CreateDeviceSensor",
+            "endpoint": "/api/mdm/devicesensors"
+          }
+        ],
+        "GetDeviceSensor": [
+          {
+            "name": "GetDeviceSensor",
+            "operation": "DeviceSensorsV1_GetDeviceSensor",
+            "endpoint": "/api/mdm/devicesensors/{sensorUuid}"
+          }
+        ],
+        "GetDeviceSensors": [
+          {
+            "name": "GetDeviceSensors",
+            "operation": "DeviceSensorsV1_GetDeviceSensors",
+            "endpoint": "/api/mdm/devicesensors/list/{organizationGroupUuid}"
+          }
+        ],
+        "UpdateDeviceSensor": [
+          {
+            "name": "UpdateDeviceSensor",
+            "operation": "DeviceSensorsV1_UpdateDeviceSensor",
+            "endpoint": "/api/mdm/devicesensors/{sensorUuid}"
+          }
+        ]
+      },
+      "fields": {
+        "description": {
+          "presence": "optional"
+        },
+        "device_sensors": {
+          "presence": "optional"
+        },
+        "event_trigger": {
+          "presence": "optional"
+        },
+        "execution_architecture": {
+          "presence": "optional"
+        },
+        "execution_context": {
+          "presence": "optional"
+        },
+        "id": {
+          "presence": "optional"
+        },
+        "name": {
+          "presence": "required"
+        },
+        "organization_group_uuid": {
+          "presence": "required"
+        },
+        "platform": {
+          "presence": "required"
+        },
+        "query_response_type": {
+          "presence": "optional"
+        },
+        "query_type": {
+          "presence": "required"
+        },
+        "schedule_trigger": {
+          "presence": "optional"
+        },
+        "script_data": {
+          "presence": "required"
+        },
+        "sensor_uuids": {
+          "presence": "required"
+        },
+        "smart_groups": {
+          "presence": "optional"
+        },
+        "timeout": {
+          "presence": "optional"
+        },
+        "trigger_type": {
+          "presence": "required"
+        },
+        "uuid": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "AssignDeviceSensor": "both",
+        "BulkDeleteDeviceSensors": "both",
+        "CreateDeviceSensor": "both",
+        "GetDeviceSensor": "both",
+        "GetDeviceSensors": "both",
+        "UpdateDeviceSensor": "both"
+      }
+    },
+    "mdm/v1/Devices": {
+      "exported": false,
+      "operations": null
+    },
+    "mdm/v1/OSVersionsV1": {
+      "exported": true,
+      "operations": [
+        "GetActiveOSVersionsAsync",
+        "GetActiveOSVersionsForPlatformAsync"
+      ],
+      "references": [
+        {
+          "field": "platformUUID",
+          "target": "mdm/v1/PlatformsV1",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "GetActiveOSVersionsAsync": [
+          {
+            "name": "GetActiveOSVersionsAsync",
+            "operation": "OSVersionsV1_GetActiveOSVersionsAsync",
+            "endpoint": "/api/mdm/baselines/osversions"
+          }
+        ],
+        "GetActiveOSVersionsForPlatformAsync": [
+          {
+            "name": "GetActiveOSVersionsForPlatformAsync",
+            "operation": "OSVersionsV1_GetActiveOSVersionsForPlatformAsync",
+            "endpoint": "/api/mdm/baselines/osversions/{platformUUID}"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "GetActiveOSVersionsAsync": "both",
+        "GetActiveOSVersionsForPlatformAsync": "both"
+      }
+    },
+    "mdm/v1/PlatformsV1": {
+      "exported": true,
+      "operations": [
+        "GetActivePlatformsAsync"
+      ],
+      "workflows": {
+        "GetActivePlatformsAsync": [
+          {
+            "name": "GetActivePlatformsAsync",
+            "operation": "PlatformsV1_GetActivePlatformsAsync",
+            "endpoint": "/api/mdm/baselines/platforms"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "GetActivePlatformsAsync": "both"
+      }
+    },
+    "mdm/v1/ProfilesV1": {
+      "exported": true,
+      "operations": [
+        "DeleteDeviceProfileAsync",
+        "Search",
+        "UploadCertificate"
+      ],
+      "references": [
+        {
+          "field": "organizationgroupid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "id",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "DeleteDeviceProfileAsync": [
+          {
+            "name": "DeleteDeviceProfileAsync",
+            "operation": "ProfilesV1_DeleteDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/{profileid}"
+          }
+        ],
+        "Search": [
+          {
+            "name": "Search",
+            "operation": "ProfilesV1_Search",
+            "endpoint": "/api/mdm/profiles/search"
+          }
+        ],
+        "UploadCertificate": [
+          {
+            "name": "UploadCertificate",
+            "operation": "ProfilesV1_UploadCertificate",
+            "endpoint": "/api/mdm/profiles/uploadcertificate"
+          }
+        ]
+      },
+      "fields": {
+        "CertificatePayload": {
+          "presence": "optional"
+        },
+        "Password": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "DeleteDeviceProfileAsync": "both",
+        "Search": "both",
+        "UploadCertificate": "both"
+      }
+    },
+    "mdm/v1/ScriptAssignmentV1": {
+      "exported": true,
+      "operations": [
+        "AddScriptAssignmentAsync",
+        "BulkUpdateScriptAssignmentsAsync",
+        "GetScriptAssignmentAsync",
+        "GetScriptAssignmentsAsync"
+      ],
+      "references": [
+        {
+          "field": "scriptUuid",
+          "target": "mdm/v1/ScriptsV1",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        },
+        {
+          "field": "memberships[].smart_group_uuid",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "assignments[].ScripUuid",
+          "target": "mdm/v1/ScriptsV1",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "assignments[].memberships[].smart_group_uuid",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "assignments[].organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "AddScriptAssignmentAsync": [
+          {
+            "name": "AddScriptAssignmentAsync",
+            "operation": "ScriptAssignmentV1_AddScriptAssignmentAsync",
+            "endpoint": "/api/mdm/scripts/{scriptUuid}/assignments"
+          }
+        ],
+        "BulkUpdateScriptAssignmentsAsync": [
+          {
+            "name": "BulkUpdateScriptAssignmentsAsync",
+            "operation": "ScriptAssignmentV1_BulkUpdateScriptAssignmentsAsync",
+            "endpoint": "/api/mdm/scripts/{scriptUuid}/updateassignments"
+          }
+        ],
+        "GetScriptAssignmentAsync": [
+          {
+            "name": "GetScriptAssignmentAsync",
+            "operation": "ScriptAssignmentV1_GetScriptAssignmentAsync",
+            "endpoint": "/api/mdm/scriptassignments/{assignmentUuid}"
+          }
+        ],
+        "GetScriptAssignmentsAsync": [
+          {
+            "name": "GetScriptAssignmentsAsync",
+            "operation": "ScriptAssignmentV1_GetScriptAssignmentsAsync",
+            "endpoint": "/api/mdm/scripts/{scriptUuid}/assignments"
+          }
+        ]
+      },
+      "fields": {
+        "assignment_uuid": {
+          "presence": "optional"
+        },
+        "assignments": {
+          "presence": "required"
+        },
+        "created_by": {
+          "presence": "optional"
+        },
+        "deployment_mode": {
+          "presence": "optional"
+        },
+        "memberships": {
+          "presence": "optional"
+        },
+        "name": {
+          "presence": "optional"
+        },
+        "organization_group_uuid": {
+          "presence": "optional"
+        },
+        "priority": {
+          "presence": "optional"
+        },
+        "script_deployment": {
+          "presence": "optional"
+        },
+        "show_in_catalog": {
+          "presence": "optional"
+        },
+        "version": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "AddScriptAssignmentAsync": "both",
+        "BulkUpdateScriptAssignmentsAsync": "both",
+        "GetScriptAssignmentAsync": "both",
+        "GetScriptAssignmentsAsync": "both"
+      }
+    },
+    "mdm/v1/ScriptsV1": {
+      "exported": true,
+      "operations": [
+        "CreateScriptAsync",
+        "GetScriptAsync",
+        "GetScriptSamplesAsync",
+        "GetScriptsByOrganizationGroupAsync",
+        "ReplaceScriptDefinitionAsync",
+        "ScriptBulkDeleteAsync"
+      ],
+      "references": [
+        {
+          "field": "organizationGroupUuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        },
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "device_uuid",
+          "target": "mdm/v1/Devices",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "CreateScriptAsync": [
+          {
+            "name": "CreateScriptAsync",
+            "operation": "ScriptsV1_CreateScriptAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/scripts"
+          }
+        ],
+        "GetScriptAsync": [
+          {
+            "name": "GetScriptAsync",
+            "operation": "ScriptsV1_GetScriptAsync",
+            "endpoint": "/api/mdm/scripts/{scriptUuid}"
+          }
+        ],
+        "GetScriptSamplesAsync": [
+          {
+            "name": "GetScriptSamplesAsync",
+            "operation": "ScriptsV1_GetScriptSamplesAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/scripts/samples"
+          }
+        ],
+        "GetScriptsByOrganizationGroupAsync": [
+          {
+            "name": "GetScriptsByOrganizationGroupAsync",
+            "operation": "ScriptsV1_GetScriptsByOrganizationGroupAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/scripts"
+          }
+        ],
+        "ReplaceScriptDefinitionAsync": [
+          {
+            "name": "ReplaceScriptDefinitionAsync",
+            "operation": "ScriptsV1_ReplaceScriptDefinitionAsync",
+            "endpoint": "/api/mdm/scripts/{scriptUuid}"
+          }
+        ],
+        "ScriptBulkDeleteAsync": [
+          {
+            "name": "ScriptBulkDeleteAsync",
+            "operation": "ScriptsV1_ScriptBulkDeleteAsync",
+            "endpoint": "/api/mdm/groups/{organizationGroupUuid}/scripts/bulkdelete"
+          }
+        ]
+      },
+      "fields": {
+        "allowed_in_catalog": {
+          "presence": "required"
+        },
+        "catalog_display": {
+          "presence": "optional"
+        },
+        "created_by": {
+          "presence": "optional"
+        },
+        "description": {
+          "presence": "optional"
+        },
+        "device_uuid": {
+          "presence": "optional"
+        },
+        "execution_context": {
+          "presence": "optional"
+        },
+        "is_idempotent": {
+          "presence": "optional"
+        },
+        "limit": {
+          "presence": "optional"
+        },
+        "name": {
+          "presence": "optional"
+        },
+        "offset": {
+          "presence": "optional"
+        },
+        "organization_group_uuid": {
+          "presence": "optional"
+        },
+        "platform": {
+          "presence": "optional"
+        },
+        "platform_architecture": {
+          "presence": "optional"
+        },
+        "script_data": {
+          "presence": "optional"
+        },
+        "script_type": {
+          "presence": "optional"
+        },
+        "script_uuid": {
+          "presence": "optional"
+        },
+        "script_variables": {
+          "presence": "optional"
+        },
+        "search_text": {
+          "presence": "optional"
+        },
+        "sort_by": {
+          "presence": "optional"
+        },
+        "sort_order": {
+          "presence": "optional"
+        },
+        "timeout": {
+          "presence": "optional"
+        },
+        "user_interaction": {
+          "presence": "optional"
+        },
+        "version": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "CreateScriptAsync": "both",
+        "GetScriptAsync": "both",
+        "GetScriptSamplesAsync": "both",
+        "GetScriptsByOrganizationGroupAsync": "both",
+        "ReplaceScriptDefinitionAsync": "both",
+        "ScriptBulkDeleteAsync": "both"
+      }
+    },
+    "mdm/v1/SmartGroups": {
+      "exported": true,
+      "operations": [
+        "CreateSmartGroupAsync",
+        "DeleteAsync",
+        "LoadSmartGroupAsync",
+        "SearchAsync",
+        "UpdateSmartGroupAsync"
+      ],
+      "references": [
+        {
+          "field": "DeviceAdditions[].Id",
+          "target": "mdm/v1/Devices",
+          "target_identifier": "string",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "DeviceExclusions[].Id",
+          "target": "mdm/v1/Devices",
+          "target_identifier": "string",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "ManagedByOrganizationGroupId",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "string",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "OrganizationGroups[].Uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "string",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "organizationgroupid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "id",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "managedbyorganizationgroupid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "id",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "CreateSmartGroupAsync": [
+          {
+            "name": "CreateSmartGroupAsync",
+            "operation": "SmartGroups_CreateSmartGroupAsync",
+            "endpoint": "/api/mdm/smartgroups"
+          }
+        ],
+        "DeleteAsync": [
+          {
+            "name": "DeleteAsync",
+            "operation": "SmartGroups_DeleteAsync",
+            "endpoint": "/api/mdm/smartgroups/{id}"
+          }
+        ],
+        "LoadSmartGroupAsync": [
+          {
+            "name": "LoadSmartGroupAsync",
+            "operation": "SmartGroups_LoadSmartGroupAsync",
+            "endpoint": "/api/mdm/smartgroups/{id}"
+          }
+        ],
+        "SearchAsync": [
+          {
+            "name": "SearchAsync",
+            "operation": "SmartGroups_SearchAsync",
+            "endpoint": "/api/mdm/smartgroups/search"
+          }
+        ],
+        "UpdateSmartGroupAsync": [
+          {
+            "name": "UpdateSmartGroupAsync",
+            "operation": "SmartGroups_UpdateSmartGroupAsync",
+            "endpoint": "/api/mdm/smartgroups/{id}"
+          }
+        ]
+      },
+      "fields": {
+        "CPUArchitectures": {
+          "presence": "optional"
+        },
+        "CriteriaType": {
+          "presence": "optional"
+        },
+        "DeviceAdditions": {
+          "presence": "optional"
+        },
+        "DeviceExclusions": {
+          "presence": "optional"
+        },
+        "EnrollmentCategories": {
+          "presence": "optional"
+        },
+        "ManagedByOrganizationGroupId": {
+          "presence": "optional"
+        },
+        "ManagementTypes": {
+          "presence": "optional"
+        },
+        "Models": {
+          "presence": "optional"
+        },
+        "Name": {
+          "presence": "optional"
+        },
+        "OEMAndModels": {
+          "presence": "optional"
+        },
+        "OperatingSystems": {
+          "presence": "optional"
+        },
+        "OrganizationGroups": {
+          "presence": "optional"
+        },
+        "Ownerships": {
+          "presence": "optional"
+        },
+        "Platforms": {
+          "presence": "optional"
+        },
+        "Tags": {
+          "presence": "optional"
+        },
+        "UserAdditions": {
+          "presence": "optional"
+        },
+        "UserExclusions": {
+          "presence": "optional"
+        },
+        "UserGroupExclusions": {
+          "presence": "optional"
+        },
+        "UserGroups": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "CreateSmartGroupAsync": "both",
+        "DeleteAsync": "both",
+        "LoadSmartGroupAsync": "both",
+        "SearchAsync": "both",
+        "UpdateSmartGroupAsync": "both"
+      }
+    },
+    "mdm/v1/TemplatesV1": {
+      "exported": true,
+      "operations": [
+        "GetAllAsync",
+        "GetPolicyAsync",
+        "SearchTemplateAsync"
+      ],
+      "references": [
+        {
+          "field": "policyUUID",
+          "target": "mdm/v1/CatalogsV1",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        },
+        {
+          "field": "osVersionUUID",
+          "target": "mdm/v1/OSVersionsV1",
+          "target_identifier": "uuid",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "GetAllAsync": [
+          {
+            "name": "GetAllAsync",
+            "operation": "TemplatesV1_GetAllAsync",
+            "endpoint": "/api/mdm/baselines/templates"
+          }
+        ],
+        "GetPolicyAsync": [
+          {
+            "name": "GetPolicyAsync",
+            "operation": "TemplatesV1_GetPolicyAsync",
+            "endpoint": "/api/mdm/baselines/templates/{baselineTemplateUUID}/policies/{policyUUID}"
+          }
+        ],
+        "SearchTemplateAsync": [
+          {
+            "name": "SearchTemplateAsync",
+            "operation": "TemplatesV1_SearchTemplateAsync",
+            "endpoint": "/api/mdm/baselines/templates/search/{vendorTemplateUUID}"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "GetAllAsync": "both",
+        "GetPolicyAsync": "both",
+        "SearchTemplateAsync": "both"
+      }
+    },
+    "mdm/v1/UpdatesV1": {
+      "exported": true,
+      "operations": [
+        "BulkUpdateDeviceUpdateDeployment",
+        "CreateUpdateDeployment",
+        "DeleteDeviceUpdateDeployment",
+        "DevicesUpdateAction",
+        "GetCountOfDeviceStatus",
+        "GetDeploymentsByDeviceUpdate",
+        "GetDeviceReadiness",
+        "GetDeviceUpdateDeploymentDetails",
+        "GetDeviceUpdateStatusBySearchParameters",
+        "GetDeviceUpdatesBySearchParameters",
+        "GetSpecificUpdateDetails",
+        "UpdateDeviceUpdateDeployment"
+      ],
+      "references": [
+        {
+          "field": "organizationGroupUuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        },
+        {
+          "field": "smart_group_uuids",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": true
+        },
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "query",
+          "kind": "fk-reference",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "BulkUpdateDeviceUpdateDeployment": [
+          {
+            "name": "BulkUpdateDeviceUpdateDeployment",
+            "operation": "UpdatesV1_BulkUpdateDeviceUpdateDeployment",
+            "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployments"
+          }
+        ],
+        "CreateUpdateDeployment": [
+          {
+            "name": "CreateUpdateDeployment",
+            "operation": "UpdatesV1_CreateUpdateDeployment",
+            "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployment"
+          }
+        ],
+        "DeleteDeviceUpdateDeployment": [
+          {
+            "name": "DeleteDeviceUpdateDeployment",
+            "operation": "UpdatesV1_DeleteDeviceUpdateDeployment",
+            "endpoint": "/api/mdm/updates/deployments/{uuid}"
+          }
+        ],
+        "DevicesUpdateAction": [
+          {
+            "name": "DevicesUpdateAction",
+            "operation": "UpdatesV1_DevicesUpdateAction",
+            "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}"
+          }
+        ],
+        "GetCountOfDeviceStatus": [
+          {
+            "name": "GetCountOfDeviceStatus",
+            "operation": "UpdatesV1_GetCountOfDeviceStatus",
+            "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/device-status"
+          }
+        ],
+        "GetDeploymentsByDeviceUpdate": [
+          {
+            "name": "GetDeploymentsByDeviceUpdate",
+            "operation": "UpdatesV1_GetDeploymentsByDeviceUpdate",
+            "endpoint": "/api/mdm/updates/{uuid}/deployments"
+          }
+        ],
+        "GetDeviceReadiness": [
+          {
+            "name": "GetDeviceReadiness",
+            "operation": "UpdatesV1_GetDeviceReadiness",
+            "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/device-readiness"
+          }
+        ],
+        "GetDeviceUpdateDeploymentDetails": [
+          {
+            "name": "GetDeviceUpdateDeploymentDetails",
+            "operation": "UpdatesV1_GetDeviceUpdateDeploymentDetails",
+            "endpoint": "/api/mdm/updates/deployments/{uuid}"
+          }
+        ],
+        "GetDeviceUpdateStatusBySearchParameters": [
+          {
+            "name": "GetDeviceUpdateStatusBySearchParameters",
+            "operation": "UpdatesV1_GetDeviceUpdateStatusBySearchParameters",
+            "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/update-status"
+          }
+        ],
+        "GetDeviceUpdatesBySearchParameters": [
+          {
+            "name": "GetDeviceUpdatesBySearchParameters",
+            "operation": "UpdatesV1_GetDeviceUpdatesBySearchParameters",
+            "endpoint": "/api/mdm/updates"
+          }
+        ],
+        "GetSpecificUpdateDetails": [
+          {
+            "name": "GetSpecificUpdateDetails",
+            "operation": "UpdatesV1_GetSpecificUpdateDetails",
+            "endpoint": "/api/mdm/updates/{uuid}"
+          }
+        ],
+        "UpdateDeviceUpdateDeployment": [
+          {
+            "name": "UpdateDeviceUpdateDeployment",
+            "operation": "UpdatesV1_UpdateDeviceUpdateDeployment",
+            "endpoint": "/api/mdm/updates/deployments/{uuid}"
+          }
+        ]
+      },
+      "fields": {
+        "deployment_start_time": {
+          "presence": "required"
+        },
+        "deployment_type": {
+          "presence": "required"
+        },
+        "name": {
+          "presence": "required"
+        },
+        "notifications": {
+          "presence": "optional"
+        },
+        "smart_group_uuids": {
+          "presence": "required"
+        }
+      },
+      "endpoints_auth": {
+        "BulkUpdateDeviceUpdateDeployment": "both",
+        "CreateUpdateDeployment": "both",
+        "DeleteDeviceUpdateDeployment": "both",
+        "DevicesUpdateAction": "both",
+        "GetCountOfDeviceStatus": "both",
+        "GetDeploymentsByDeviceUpdate": "both",
+        "GetDeviceReadiness": "both",
+        "GetDeviceUpdateDeploymentDetails": "both",
+        "GetDeviceUpdateStatusBySearchParameters": "both",
+        "GetDeviceUpdatesBySearchParameters": "both",
+        "GetSpecificUpdateDetails": "both",
+        "UpdateDeviceUpdateDeployment": "both"
+      }
+    },
+    "mdm/v2/DeviceSensorsV2": {
+      "exported": true,
+      "operations": [
+        "AddDeviceSensorAssignmentAsync",
+        "BulkUpdateDeviceSensorAssignmentRankingsAsync",
+        "CreateDeviceSensorAsync",
+        "DeleteDeviceSensorAssignmentAsync",
+        "GetDeviceSensorAssignmentAsync",
+        "GetDeviceSensorAssignmentsAsync",
+        "GetDeviceSensorAsync",
+        "GetDeviceSensorsAsync",
+        "UpdateDeviceSensorAssignmentAsync",
+        "UpdateDeviceSensorAsync"
+      ],
+      "references": [
+        {
+          "field": "smart_group_uuids",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "organization_group_uuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": true
+        },
+        {
+          "field": "organizationGroupUuid",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "uuid",
+          "via": "path",
+          "kind": "path-scope",
+          "required": true
+        }
+      ],
+      "workflows": {
+        "AddDeviceSensorAssignmentAsync": [
+          {
+            "name": "AddDeviceSensorAssignmentAsync",
+            "operation": "DeviceSensorsV2_AddDeviceSensorAssignmentAsync",
+            "endpoint": "/api/mdm/devicesensors/{sensorUuid}/assignment"
+          }
+        ],
+        "BulkUpdateDeviceSensorAssignmentRankingsAsync": [
+          {
+            "name": "BulkUpdateDeviceSensorAssignmentRankingsAsync",
+            "operation": "DeviceSensorsV2_BulkUpdateDeviceSensorAssignmentRankingsAsync",
+            "endpoint": "/api/mdm/devicesensors/{sensorUuid}/assignments"
+          }
+        ],
+        "CreateDeviceSensorAsync": [
+          {
+            "name": "CreateDeviceSensorAsync",
+            "operation": "DeviceSensorsV2_CreateDeviceSensorAsync",
+            "endpoint": "/api/mdm/devicesensors"
+          }
+        ],
+        "DeleteDeviceSensorAssignmentAsync": [
+          {
+            "name": "DeleteDeviceSensorAssignmentAsync",
+            "operation": "DeviceSensorsV2_DeleteDeviceSensorAssignmentAsync",
+            "endpoint": "/api/mdm/devicesensors/assignments/{assignmentUuid}"
+          }
+        ],
+        "GetDeviceSensorAssignmentAsync": [
+          {
+            "name": "GetDeviceSensorAssignmentAsync",
+            "operation": "DeviceSensorsV2_GetDeviceSensorAssignmentAsync",
+            "endpoint": "/api/mdm/devicesensors/assignments/{assignmentUuid}"
+          }
+        ],
+        "GetDeviceSensorAssignmentsAsync": [
+          {
+            "name": "GetDeviceSensorAssignmentsAsync",
+            "operation": "DeviceSensorsV2_GetDeviceSensorAssignmentsAsync",
+            "endpoint": "/api/mdm/devicesensors/{sensorUuid}/assignments"
+          }
+        ],
+        "GetDeviceSensorAsync": [
+          {
+            "name": "GetDeviceSensorAsync",
+            "operation": "DeviceSensorsV2_GetDeviceSensorAsync",
+            "endpoint": "/api/mdm/devicesensors/{sensorUuid}"
+          }
+        ],
+        "GetDeviceSensorsAsync": [
+          {
+            "name": "GetDeviceSensorsAsync",
+            "operation": "DeviceSensorsV2_GetDeviceSensorsAsync",
+            "endpoint": "/api/mdm/devicesensors/list/{organizationGroupUuid}"
+          }
+        ],
+        "UpdateDeviceSensorAssignmentAsync": [
+          {
+            "name": "UpdateDeviceSensorAssignmentAsync",
+            "operation": "DeviceSensorsV2_UpdateDeviceSensorAssignmentAsync",
+            "endpoint": "/api/mdm/devicesensors/assignments/{assignmentUuid}"
+          }
+        ],
+        "UpdateDeviceSensorAsync": [
+          {
+            "name": "UpdateDeviceSensorAsync",
+            "operation": "DeviceSensorsV2_UpdateDeviceSensorAsync",
+            "endpoint": "/api/mdm/devicesensors/{sensorUuid}"
+          }
+        ]
+      },
+      "fields": {
+        "description": {
+          "presence": "optional"
+        },
+        "event_triggers": {
+          "presence": "optional"
+        },
+        "execution_architecture": {
+          "presence": "optional"
+        },
+        "execution_context": {
+          "presence": "optional"
+        },
+        "id": {
+          "presence": "optional"
+        },
+        "name": {
+          "presence": "required"
+        },
+        "organization_group_uuid": {
+          "presence": "required"
+        },
+        "platform": {
+          "presence": "required"
+        },
+        "query_response_type": {
+          "presence": "optional"
+        },
+        "query_type": {
+          "presence": "required"
+        },
+        "script_data": {
+          "presence": "required"
+        },
+        "script_environment_variables": {
+          "presence": "optional"
+        },
+        "smart_group_uuids": {
+          "presence": "optional"
+        },
+        "timeout": {
+          "presence": "optional"
+        },
+        "trigger_type": {
+          "presence": "optional"
+        },
+        "uuid": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "AddDeviceSensorAssignmentAsync": "both",
+        "BulkUpdateDeviceSensorAssignmentRankingsAsync": "both",
+        "CreateDeviceSensorAsync": "both",
+        "DeleteDeviceSensorAssignmentAsync": "both",
+        "GetDeviceSensorAssignmentAsync": "both",
+        "GetDeviceSensorAssignmentsAsync": "both",
+        "GetDeviceSensorAsync": "both",
+        "GetDeviceSensorsAsync": "both",
+        "UpdateDeviceSensorAssignmentAsync": "both",
+        "UpdateDeviceSensorAsync": "both"
+      }
+    },
+    "mdm/v2/ProfilesV2": {
+      "exported": true,
+      "operations": [
+        "CreateAndroidDeviceProfileAsync",
+        "CreateAppleDeviceProfileAsync",
+        "CreateAppleOsXDeviceProfileAsync",
+        "CreateWinRTDeviceProfileAsync",
+        "GetDeviceProfileDetailsAsync",
+        "SearchProfiles",
+        "UpdateAndroidDeviceProfileAsync",
+        "UpdateAppleDeviceProfileAsync",
+        "UpdateAppleOsXDeviceProfileAsync",
+        "UpdateQnxDeviceProfileAsync",
+        "UpdateWinRTDeviceProfileAsync"
+      ],
+      "references": [
+        {
+          "field": "General.AssignedSmartGroups[].SmartGroupId",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "General.ExcludedSmartGroups[].SmartGroupId",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "General.ManagedLocationGroupID",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "CreateAndroidDeviceProfileAsync": [
+          {
+            "name": "CreateAndroidDeviceProfileAsync",
+            "operation": "ProfilesV2_CreateAndroidDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/android/create"
+          }
+        ],
+        "CreateAppleDeviceProfileAsync": [
+          {
+            "name": "CreateAppleDeviceProfileAsync",
+            "operation": "ProfilesV2_CreateAppleDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/apple/create"
+          }
+        ],
+        "CreateAppleOsXDeviceProfileAsync": [
+          {
+            "name": "CreateAppleOsXDeviceProfileAsync",
+            "operation": "ProfilesV2_CreateAppleOsXDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/appleosx/create"
+          }
+        ],
+        "CreateWinRTDeviceProfileAsync": [
+          {
+            "name": "CreateWinRTDeviceProfileAsync",
+            "operation": "ProfilesV2_CreateWinRTDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/winrt/create"
+          }
+        ],
+        "GetDeviceProfileDetailsAsync": [
+          {
+            "name": "GetDeviceProfileDetailsAsync",
+            "operation": "ProfilesV2_GetDeviceProfileDetailsAsync",
+            "endpoint": "/api/mdm/profiles/{profileId}"
+          }
+        ],
+        "SearchProfiles": [
+          {
+            "name": "SearchProfiles",
+            "operation": "ProfilesV2_SearchProfiles",
+            "endpoint": "/api/mdm/profiles/search"
+          }
+        ],
+        "UpdateAndroidDeviceProfileAsync": [
+          {
+            "name": "UpdateAndroidDeviceProfileAsync",
+            "operation": "ProfilesV2_UpdateAndroidDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/android/update"
+          }
+        ],
+        "UpdateAppleDeviceProfileAsync": [
+          {
+            "name": "UpdateAppleDeviceProfileAsync",
+            "operation": "ProfilesV2_UpdateAppleDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/apple/update"
+          }
+        ],
+        "UpdateAppleOsXDeviceProfileAsync": [
+          {
+            "name": "UpdateAppleOsXDeviceProfileAsync",
+            "operation": "ProfilesV2_UpdateAppleOsXDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/appleosx/update"
+          }
+        ],
+        "UpdateQnxDeviceProfileAsync": [
+          {
+            "name": "UpdateQnxDeviceProfileAsync",
+            "operation": "ProfilesV2_UpdateQnxDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/qnx/update"
+          }
+        ],
+        "UpdateWinRTDeviceProfileAsync": [
+          {
+            "name": "UpdateWinRTDeviceProfileAsync",
+            "operation": "ProfilesV2_UpdateWinRTDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/winrt/update"
+          }
+        ]
+      },
+      "fields": {
+        "AWMailCredentialList": {
+          "presence": "optional"
+        },
+        "AndroidApplicationControl": {
+          "presence": "optional"
+        },
+        "AndroidContainerAppControl": {
+          "presence": "optional"
+        },
+        "AndroidContainerBookMark": {
+          "presence": "optional"
+        },
+        "AndroidContainerBrowser": {
+          "presence": "optional"
+        },
+        "AndroidContainerCredentialsList": {
+          "presence": "optional"
+        },
+        "AndroidContainerEas": {
+          "presence": "optional"
+        },
+        "AndroidContainerEmail": {
+          "presence": "optional"
+        },
+        "AndroidContainerPasscode": {
+          "presence": "optional"
+        },
+        "AndroidContainerSingleSignOn": {
+          "presence": "optional"
+        },
+        "AndroidContainerSmartCard": {
+          "presence": "optional"
+        },
+        "AndroidContainerVpnList": {
+          "presence": "optional"
+        },
+        "AndroidForWorkApplicationControl": {
+          "presence": "optional"
+        },
+        "AndroidForWorkAutoUpdate": {
+          "presence": "optional"
+        },
+        "AndroidForWorkChromeBrowser": {
+          "presence": "optional"
+        },
+        "AndroidForWorkCopeApplicationControl": {
+          "presence": "optional"
+        },
+        "AndroidForWorkCredentialsList": {
+          "presence": "optional"
+        },
+        "AndroidForWorkCustomMessages": {
+          "presence": "optional"
+        },
+        "AndroidForWorkCustomSettingsList": {
+          "presence": "optional"
+        },
+        "AndroidForWorkExchangeActiveSync": {
+          "presence": "optional"
+        },
+        "AndroidForWorkFactoryResetProtection": {
+          "presence": "optional"
+        },
+        "AndroidForWorkKiosk": {
+          "presence": "optional"
+        },
+        "AndroidForWorkPasscode": {
+          "presence": "optional"
+        },
+        "AndroidForWorkPermissions": {
+          "presence": "optional"
+        },
+        "AndroidForWorkProxy": {
+          "presence": "optional"
+        },
+        "AndroidForWorkRestrictions": {
+          "presence": "optional"
+        },
+        "AndroidForWorkSamsungAPN": {
+          "presence": "optional"
+        },
+        "AndroidForWorkSamsungDateTime": {
+          "presence": "optional"
+        },
+        "AndroidForWorkSamsungFirewall": {
+          "presence": "optional"
+        },
+        "AndroidForWorkSingleAppMode": {
+          "presence": "optional"
+        },
+        "AndroidForWorkSystemUpdates": {
+          "presence": "optional"
+        },
+        "AndroidForWorkVpn": {
+          "presence": "optional"
+        },
+        "AndroidForWorkWifiList": {
+          "presence": "optional"
+        },
+        "AndroidForWorkZebraMx": {
+          "presence": "optional"
+        },
+        "AndroidKiosk": {
+          "presence": "optional"
+        },
+        "AntiVirus": {
+          "presence": "optional"
+        },
+        "AppControl": {
+          "presence": "optional"
+        },
+        "AssociatedDomains": {
+          "presence": "optional"
+        },
+        "Bios": {
+          "presence": "optional"
+        },
+        "BookmarkSettings": {
+          "presence": "optional"
+        },
+        "Credentials": {
+          "presence": "optional"
+        },
+        "CredentialsList": {
+          "presence": "optional"
+        },
+        "CustomAttributePayload": {
+          "presence": "optional"
+        },
+        "CustomAttributes": {
+          "presence": "optional"
+        },
+        "CustomSettings": {
+          "presence": "optional"
+        },
+        "CustomSettingsList": {
+          "presence": "optional"
+        },
+        "Customization": {
+          "presence": "optional"
+        },
+        "DateTime": {
+          "presence": "optional"
+        },
+        "DefenderExploitGuard": {
+          "presence": "optional"
+        },
+        "Dem": {
+          "presence": "optional"
+        },
+        "DiskEncryption": {
+          "presence": "optional"
+        },
+        "Domains": {
+          "presence": "optional"
+        },
+        "EASNativeMailClientList": {
+          "presence": "optional"
+        },
+        "EasAwMailClient": {
+          "presence": "optional"
+        },
+        "EasMicrosoftOutlook": {
+          "presence": "optional"
+        },
+        "EasNativeMailclient": {
+          "presence": "optional"
+        },
+        "Edp": {
+          "presence": "optional"
+        },
+        "EmailList": {
+          "presence": "optional"
+        },
+        "Encryption": {
+          "presence": "optional"
+        },
+        "ExchangeActiveSync": {
+          "presence": "optional"
+        },
+        "ExchangeWebServices": {
+          "presence": "optional"
+        },
+        "Firewall": {
+          "presence": "optional"
+        },
+        "FirewallV2": {
+          "presence": "optional"
+        },
+        "GateKeeper": {
+          "presence": "optional"
+        },
+        "General": {
+          "presence": "optional"
+        },
+        "GoogleAccount": {
+          "presence": "optional"
+        },
+        "HomeScreen": {
+          "presence": "optional"
+        },
+        "IntelCloud": {
+          "presence": "optional"
+        },
+        "KeepApps": {
+          "presence": "optional"
+        },
+        "KernelExtension": {
+          "presence": "optional"
+        },
+        "Kiosk": {
+          "presence": "optional"
+        },
+        "Licensing": {
+          "presence": "optional"
+        },
+        "NetworkList": {
+          "presence": "optional"
+        },
+        "Notifications": {
+          "presence": "optional"
+        },
+        "OemUpdate": {
+          "presence": "optional"
+        },
+        "P2PBranchCache": {
+          "presence": "optional"
+        },
+        "Passcode": {
+          "presence": "optional"
+        },
+        "Passport": {
+          "presence": "optional"
+        },
+        "Personalization": {
+          "presence": "optional"
+        },
+        "PrivacyPreferences": {
+          "presence": "optional"
+        },
+        "Proxy": {
+          "presence": "optional"
+        },
+        "Restrictions": {
+          "presence": "optional"
+        },
+        "Scep": {
+          "presence": "optional"
+        },
+        "ScepList": {
+          "presence": "optional"
+        },
+        "SharedDevice": {
+          "presence": "optional"
+        },
+        "SingleAppMode": {
+          "presence": "optional"
+        },
+        "SingleSignOn": {
+          "presence": "optional"
+        },
+        "SkipSetupAssistant": {
+          "presence": "optional"
+        },
+        "SmartCard": {
+          "presence": "optional"
+        },
+        "SsoExtensionList": {
+          "presence": "optional"
+        },
+        "SystemExtensions": {
+          "presence": "optional"
+        },
+        "UnifiedWriteFilter": {
+          "presence": "optional"
+        },
+        "Updates": {
+          "presence": "optional"
+        },
+        "UpdatesV2": {
+          "presence": "optional"
+        },
+        "Vpn": {
+          "presence": "optional"
+        },
+        "VpnList": {
+          "presence": "optional"
+        },
+        "WebClips": {
+          "presence": "optional"
+        },
+        "WebClipsList": {
+          "presence": "optional"
+        },
+        "Wifi": {
+          "presence": "optional"
+        },
+        "WifiList": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "CreateAndroidDeviceProfileAsync": "both",
+        "CreateAppleDeviceProfileAsync": "both",
+        "CreateAppleOsXDeviceProfileAsync": "both",
+        "CreateWinRTDeviceProfileAsync": "both",
+        "GetDeviceProfileDetailsAsync": "both",
+        "SearchProfiles": "both",
+        "UpdateAndroidDeviceProfileAsync": "both",
+        "UpdateAppleDeviceProfileAsync": "both",
+        "UpdateAppleOsXDeviceProfileAsync": "both",
+        "UpdateQnxDeviceProfileAsync": "both",
+        "UpdateWinRTDeviceProfileAsync": "both"
+      }
+    },
+    "mdm/v4/ProfilesV4": {
+      "exported": true,
+      "operations": [
+        "CreateLinuxDeviceProfileAsync",
+        "UpdateLinuxDeviceProfileAsync"
+      ],
+      "references": [
+        {
+          "field": "general.AssignedSmartGroups[].SmartGroupId",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "general.ExcludedSmartGroups[].SmartGroupId",
+          "target": "mdm/v1/SmartGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        },
+        {
+          "field": "general.ManagedLocationGroupID",
+          "target": "system/v1/OrganizationGroups",
+          "target_identifier": "id",
+          "via": "body",
+          "kind": "fk-reference",
+          "required": false
+        }
+      ],
+      "workflows": {
+        "CreateLinuxDeviceProfileAsync": [
+          {
+            "name": "CreateLinuxDeviceProfileAsync",
+            "operation": "ProfilesV4_CreateLinuxDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/linux/create"
+          }
+        ],
+        "UpdateLinuxDeviceProfileAsync": [
+          {
+            "name": "UpdateLinuxDeviceProfileAsync",
+            "operation": "ProfilesV4_UpdateLinuxDeviceProfileAsync",
+            "endpoint": "/api/mdm/profiles/platforms/linux/update"
+          }
+        ]
+      },
+      "fields": {
+        "Credentials": {
+          "presence": "optional"
+        },
+        "CustomConfigurations": {
+          "presence": "optional"
+        },
+        "Wifis": {
+          "presence": "optional"
+        },
+        "general": {
+          "presence": "optional"
+        }
+      },
+      "endpoints_auth": {
+        "CreateLinuxDeviceProfileAsync": "both",
+        "UpdateLinuxDeviceProfileAsync": "both"
+      }
+    },
+    "system/v1/OrganizationGroups": {
+      "exported": true,
+      "operations": [
+        "GetAsync",
+        "GetChildLocationGroups",
+        "GetParents",
+        "LocationGroupSearch"
+      ],
+      "workflows": {
+        "GetAsync": [
+          {
+            "name": "GetAsync",
+            "operation": "OrganizationGroups_GetAsync",
+            "endpoint": "/api/system/groups/{id}"
+          }
+        ],
+        "GetChildLocationGroups": [
+          {
+            "name": "GetChildLocationGroups",
+            "operation": "OrganizationGroups_GetChildLocationGroups",
+            "endpoint": "/api/system/groups/{id}/children"
+          }
+        ],
+        "GetParents": [
+          {
+            "name": "GetParents",
+            "operation": "OrganizationGroups_GetParents",
+            "endpoint": "/api/system/groups/{uuid}/parents"
+          }
+        ],
+        "LocationGroupSearch": [
+          {
+            "name": "LocationGroupSearch",
+            "operation": "OrganizationGroups_LocationGroupSearch",
+            "endpoint": "/api/system/groups/search"
+          }
+        ]
+      },
+      "endpoints_auth": {
+        "GetAsync": "both",
+        "GetChildLocationGroups": "both",
+        "GetParents": "both",
+        "LocationGroupSearch": "both"
+      }
+    }
+  }
+}

@@ -28,7 +28,11 @@ func NewProfileService(c *client.Client) *ProfileService {
 
 // SearchOptions contains options for searching profiles.
 type SearchOptions struct {
-	Page       int    // Page number (0-based)
+	// Page is 0-based: 0 (or unset) is the first page. That holds for this
+	// service's v1 search route only. The v2 search route used by the
+	// generated sdk.ProfileService is 1-based, and page=0 returns an empty
+	// 204 there. See api-doctrine's search-paging quirk.
+	Page       int
 	PageSize   int    // Number of results per page (default: 500)
 	SearchText string // Search text to filter profiles
 	Platform   string // Filter by platform
@@ -79,6 +83,15 @@ func (s *ProfileService) Search(ctx context.Context, opts *SearchOptions) (*mode
 
 // Get retrieves a profile by ID.
 // Platform is required to determine the correct API version (Linux requires v4, others use v2).
+// It must be a detail-GET platform value: models.PlatformAndroid ("Android"),
+// models.PlatformAppleIOS ("Apple iOS"), models.PlatformAppleOSX ("AppleOsX"),
+// models.PlatformWindows10 ("Windows 10"), models.PlatformWindowsRugged
+// ("Windows_Rugged") or models.PlatformLinux ("To do"). Only "To do" selects
+// the Linux v4 route. Do NOT pass the Platform string of a profile SEARCH
+// result unmapped: search reports "WinRT" and "Linux" (both observed live
+// on the v1 search on 2026-09-24) and, on v2, "Apple", where this method
+// expects "Windows 10", "To do" and "Apple iOS", so an unmapped Linux
+// profile would be read through the v2 route. See api-doctrine quirk 26.
 // Returns basic profile information without payloads. Use GetDetails() to get full profile with payloads.
 // Returns an error if the profile is not found or if the API request fails.
 func (s *ProfileService) Get(ctx context.Context, profileID int, platform string) (*models.Profile, error) {
@@ -123,12 +136,22 @@ func (s *ProfileService) GetDetails(ctx context.Context, profileUUID string) (*m
 // Platform determines the API endpoint and version
 // Returns a Profile with the ProfileID set (API returns just the ID as a number).
 func (s *ProfileService) Create(ctx context.Context, platform string, request *models.ProfileCreateRequest) (*models.Profile, error) {
+	// Windows Rugged (QNX) has no create route on the server; refuse before
+	// sending anything rather than let a request 404.
+	if platform == models.PlatformWindowsRugged {
+		return nil, &client.UnsupportedOperationError{
+			Resource:  "profile",
+			Operation: "create",
+			Platform:  platform,
+			Reason:    "Windows Rugged (QNX) has no profile create endpoint (api-doctrine quirk 4)",
+		}
+	}
 	// Determine endpoint based on platform
 	endpoint := buildProfileEndpoint(platform, "create")
 
 	// API returns just the profile ID as a number, not a full Profile object
 	var profileID int
-	_, err := s.client.DoRequest(ctx, "POST", endpoint, profileAcceptV2, profileContentType, request, &profileID)
+	_, err := s.client.DoRequest(ctx, "POST", endpoint, platformWriteAccept(platform), profileContentType, request, &profileID)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create profile: %w", err)
 	}
@@ -140,19 +163,20 @@ func (s *ProfileService) Create(ctx context.Context, platform string, request *m
 }
 
 // Update updates an existing profile
-// Platform determines the API endpoint and HTTP method (Windows uses PUT, others use POST).
+// Platform determines the API endpoint and HTTP method (Windows 10 uses PUT, all others POST).
 func (s *ProfileService) Update(ctx context.Context, platform string, profileID int, request *models.ProfileUpdateRequest) (*models.Profile, error) {
 	// Determine endpoint based on platform
 	endpoint := buildProfileEndpoint(platform, "update")
 
-	// Determine HTTP method (Windows uses PUT, others use POST)
+	// Only Windows 10 (WinRT) updates with PUT; every other platform,
+	// Windows Rugged (QNX) included, uses POST (api-doctrine quirk 4).
 	method := "POST"
-	if platform == models.PlatformWindows10 || platform == models.PlatformWindowsRugged {
+	if platform == models.PlatformWindows10 {
 		method = "PUT"
 	}
 
 	var profile models.Profile
-	_, err := s.client.DoRequest(ctx, method, endpoint, profileAcceptV2, profileContentType, request, &profile)
+	_, err := s.client.DoRequest(ctx, method, endpoint, platformWriteAccept(platform), profileContentType, request, &profile)
 	if err != nil {
 		return nil, fmt.Errorf("failed to update profile %d: %w", profileID, err)
 	}
@@ -160,18 +184,30 @@ func (s *ProfileService) Update(ctx context.Context, platform string, profileID 
 	return &profile, nil
 }
 
-// Delete deletes a profile by its ID
-// The API returns an empty response on success.
+// Delete deletes a profile by its ID, on every platform (Linux included).
+// The API returns an empty response on success. DELETE by int id is
+// registered only at API v1, so this sends version=1 (api-doctrine quirk 1).
 func (s *ProfileService) Delete(ctx context.Context, profileID int) error {
 	endpoint := fmt.Sprintf("/api/mdm/profiles/%d", profileID)
 
 	// API returns empty response on success, so pass nil for response
-	_, err := s.client.DoRequest(ctx, "DELETE", endpoint, profileAcceptV2, profileContentType, nil, nil)
+	_, err := s.client.DoRequest(ctx, "DELETE", endpoint, profileAcceptV1, profileContentType, nil, nil)
 	if err != nil {
 		return fmt.Errorf("failed to delete profile %d: %w", profileID, err)
 	}
 
 	return nil
+}
+
+// platformWriteAccept is the Accept header for a platform's create and update
+// routes. Linux profiles are written through API v4 (api-doctrine quirk 3):
+// the v2 Linux routes exist but reject the v4-shaped Linux body with
+// 422/errorCode 1012. Every other platform uses v2.
+func platformWriteAccept(platform string) string {
+	if platform == models.PlatformLinux {
+		return profileAcceptV4
+	}
+	return profileAcceptV2
 }
 
 // buildProfileEndpoint builds the appropriate API endpoint based on platform and operation.

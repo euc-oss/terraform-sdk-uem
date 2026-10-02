@@ -37,7 +37,7 @@ func NewMockClientWithOAuth2(t *testing.T, mockServer *MockServer) *client.Clien
 		AuthMethod:     "oauth2",
 		ClientID:       "test-client-id",
 		ClientSecret:   "test-client-secret",
-		OAuth2TokenURL: mockServer.URL() + "/api/v1/oauth/token",
+		OAuth2TokenURL: mockServer.URL() + "/oauth/token",
 	}
 
 	c, err := client.NewClient(config)
@@ -52,6 +52,10 @@ func NewMockClientWithOAuth2(t *testing.T, mockServer *MockServer) *client.Clien
 // and creates a mock server.
 func LoadMockResponses(t *testing.T, dir string) *MockServer {
 	t.Helper()
+
+	// Honor the MOCK_RESPONSES_DIR override so fixtures can live in a
+	// version-keyed location without editing every test call site.
+	dir = ResolveResponsesDir(dir)
 
 	responses, err := LoadResponsesFromDir(dir)
 	if err != nil {

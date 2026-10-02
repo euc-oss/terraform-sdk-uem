@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/scripts/{scriptUuid}",
+    "method": "GET",
+    "description": "SYNTHETIC: Hand-authored mock, not a live capture (organization_group_name \"MockTest\", created_or_modified_by \"Admin\", created_or_modified_on 2026-05-26 are all hand-authored mock values, not real anonymized wire content) -- DISCLOSURE: script_uuid (11111111_1111_1111_1111_111111111111) is also a hand-typed sequential-digit placeholder. GET /api/mdm/scripts/{scriptUuid}, response shape (ScriptResource with full payload; base64 script_data + StringEnumConverter string enums; platform_architecture integer 0=no-flags) independently confirmed against the live wire (UEM 2509) when this mock was authored, but the body content itself is hand-authored, not captured.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "script_uuid": "bafde89c-041e-1756-082b-933aaf16cad8",
+      "version": "7ac1b8d7-010b-b6cd-3a3e-84e7f90136b8",
+      "name": "Sample script 1",
+      "description": "Test script for SDK lifecycle",
+      "platform": "WIN_RT",
+      "script_type": "POWERSHELL",
+      "execution_context": "USER",
+      "platform_architecture": 0,
+      "allowed_in_catalog": false,
+      "is_idempotent": true,
+      "user_interaction": false,
+      "script_data": "R2V0LURhdGUgfCBPdXQtRmlsZSBDOlx0ZXN0LnR4dA==",
+      "timeout": 300,
+      "catalog_display": {
+        "name": "Sample Script",
+        "description": "Test"
+      },
+      "script_variables": [],
+      "organization_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
+      "organization_group_name": "MockTest",
+      "created_or_modified_by": "Admin",
+      "created_or_modified_on": "2026-05-26T00:00:00.000",
+      "assignment_count": 0
+    }
+  }
+}

@@ -20,8 +20,58 @@ func NewSmartGroupsService(c *client.Client) *SmartGroupsService {
 	return &SmartGroupsService{client: c}
 }
 
-// SmartGroupsSearchOptions holds optional query parameters for Search.
-type SmartGroupsSearchOptions struct {
+// CreateSmartGroupAsync — Creates a smart group in Airwatch.
+// Operation ID: SmartGroups_CreateSmartGroupAsync
+// HTTP: POST /api/mdm/smartgroups
+func (s *SmartGroupsService) CreateSmartGroupAsync(
+	ctx context.Context,
+	request *SmartGroupEditV1Model,
+) (http.Header, *SmartGroupCreateResponseV1, error) {
+	// Build endpoint path
+	endpoint := "/api/mdm/smartgroups"
+	var response SmartGroupCreateResponseV1
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("SmartGroups_CreateSmartGroupAsync: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// DeleteAsync — Deletes the Smart Group identified by the Smart Group Identifier.
+// Operation ID: SmartGroups_DeleteAsync
+// HTTP: DELETE /api/mdm/smartgroups/{id}
+func (s *SmartGroupsService) DeleteAsync(
+	ctx context.Context,
+	ID int,
+) (http.Header, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mdm/smartgroups/%d", ID)
+	headers, err := s.client.DoRequest(ctx, "DELETE", endpoint, AcceptHeader, "application/json", nil, nil)
+	if err != nil {
+		return nil, fmt.Errorf("SmartGroups_DeleteAsync: %w", err)
+	}
+	return headers, nil
+}
+
+// LoadSmartGroupAsync — Retrieves the Smart Group Details.
+// Operation ID: SmartGroups_LoadSmartGroupAsync
+// HTTP: GET /api/mdm/smartgroups/{id}
+func (s *SmartGroupsService) LoadSmartGroupAsync(
+	ctx context.Context,
+	ID int,
+) (http.Header, *SmartGroupV1, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mdm/smartgroups/%d", ID)
+	var response SmartGroupV1
+	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
+	if err != nil {
+		return nil, nil, fmt.Errorf("SmartGroups_LoadSmartGroupAsync: %w", err)
+	}
+	return headers, &response, nil
+}
+
+// SmartGroupsSearchAsyncOptions holds optional query parameters for SearchAsync.
+type SmartGroupsSearchAsyncOptions struct {
 	Name                         *string         // SmartGroup name.
 	OrganizationGroupID          *int            // Organization Group identifier.
 	ManagedByOrganizationGroupID *int            // Smart group managing organization group identifier.
@@ -33,12 +83,12 @@ type SmartGroupsSearchOptions struct {
 	PageSize                     *int            // Records per page.
 }
 
-// Search — Searches for smart groups using the query information provided.
-// Operation ID: SmartGroups_Search
+// SearchAsync — Searches for smart groups using the query information provided.
+// Operation ID: SmartGroups_SearchAsync
 // HTTP: GET /api/mdm/smartgroups/search
-func (s *SmartGroupsService) Search(
+func (s *SmartGroupsService) SearchAsync(
 	ctx context.Context,
-	opts *SmartGroupsSearchOptions,
+	opts *SmartGroupsSearchAsyncOptions,
 ) (http.Header, *SmartGroupSearchResultV1, error) {
 	// Build endpoint path
 	endpoint := "/api/mdm/smartgroups/search"
@@ -79,7 +129,24 @@ func (s *SmartGroupsService) Search(
 	var response SmartGroupSearchResultV1
 	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
 	if err != nil {
-		return nil, nil, fmt.Errorf("SmartGroups_Search: %w", err)
+		return nil, nil, fmt.Errorf("SmartGroups_SearchAsync: %w", err)
 	}
 	return headers, &response, nil
+}
+
+// UpdateSmartGroupAsync — Updates the details of the specified Smart Group.
+// Operation ID: SmartGroups_UpdateSmartGroupAsync
+// HTTP: PUT /api/mdm/smartgroups/{id}
+func (s *SmartGroupsService) UpdateSmartGroupAsync(
+	ctx context.Context,
+	ID int,
+	request *SmartGroupEditV1Model,
+) (http.Header, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mdm/smartgroups/%d", ID)
+	headers, err := s.client.DoRequest(ctx, "PUT", endpoint, AcceptHeader, "application/json", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("SmartGroups_UpdateSmartGroupAsync: %w", err)
+	}
+	return headers, nil
 }

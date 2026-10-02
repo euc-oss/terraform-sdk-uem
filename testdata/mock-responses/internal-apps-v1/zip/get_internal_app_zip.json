@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/67007",
+    "method": "GET",
+    "description": "SYNTHETIC / HAND-AUTHORED PLACEHOLDER -- NOT live-captured; live .zip capture is explicitly HELD pending SFD feature-flag confirmation (see internal_app_create_zip.json's description for the full rationale, which applies identically here). GET /api/mam/apps/internal/{applicationId} for the placeholder zip app in that sibling fixture. DeploymentOptions/FilesOptions ARE populated here (unlike the pkg sibling fixture) because .zip's mandatory-field set includes them per vendored-test-apps/windows/SPEC.md section 9 -- FilesOptions.ApplicationUnInstallProcess shows UseCustomScript=true with a populated CustomScript, which is the one field that distinguishes zip's required metadata from msi's (msi's own get fixture shows UseCustomScript=false). The literal id 67007 is baked into the path (not the {applicationId} template) for the same RequestMatcher collision-avoidance reason documented throughout this directory tree.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "ActualFileVersion": "1.0.0",
+      "AirwatchAppVersion": "1.0.0.0",
+      "AppId": "{12b9377c-be7e-5c94-e8a7-0d9d23929523}",
+      "AppSizeInKB": 1,
+      "ApplicationFileBlobGUID": "c2e73a8e-0b57-a56f-d3ae-45c0a3f9c220",
+      "ApplicationFileHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "ApplicationName": "SDK Synthetic Zip Test",
+      "ApplicationUrl": "https://example.com/synthetic-zip",
+      "Assignments": [],
+      "AssumeManagementOfUserInstalledApp": "Unknown",
+      "BuildVersion": "{12b9377c-be7e-5c94-e8a7-0d9d23929523}",
+      "CategoryList": [],
+      "ChangeLog": "",
+      "Comments": "",
+      "DeploymentOptions": {
+        "HowToInstall": {
+          "AdminPrivileges": false,
+          "DeviceRestart": "DoNotRestart",
+          "InstallCommand": "",
+          "InstallContext": "Device",
+          "InstallTimeoutInMinutes": 0,
+          "InstallerRebootExitCode": "",
+          "InstallerSuccessExitCode": "",
+          "RestartDeadlineInDays": 0,
+          "RetryCount": 0,
+          "RetryIntervalInMinutes": 0,
+          "UninstallDeviceRestart": "Unknown"
+        },
+        "WhenToCallInstallComplete": {
+          "UseAdditionalCriteria": false
+        },
+        "WhenToInstall": {
+          "DataContingencies": [],
+          "DevicePowerRequired": 0,
+          "DiskSpaceRequiredInKb": 0,
+          "RamRequiredInMb": 0
+        }
+      },
+      "DevicesAssignedCount": 0,
+      "DevicesInstalledCount": 0,
+      "DevicesNotInstalledCount": 0,
+      "ExcludedSmartGroupGuids": [],
+      "ExcludedSmartGroupIds": [],
+      "FilesOptions": {
+        "AppDependenciesList": [],
+        "AppPatchesList": [],
+        "AppTransformsList": [],
+        "ApplicationUnInstallProcess": {
+          "CustomScript": {
+            "CustomScriptType": "Input",
+            "UninstallCommand": ""
+          },
+          "UseCustomScript": true
+        }
+      },
+      "ManagedBy": "test_user",
+      "ManagedByUuid": "67db372a-914a-cd9d-d061-c6559a09649c",
+      "MinimumOperatingSystem": "",
+      "Platform": "WinRT",
+      "Rating": 0,
+      "Sdk": "Disabled",
+      "Status": "Active",
+      "SupportedModels": [
+        {
+          "Name": "Desktop",
+          "id": 12346
+        }
+      ],
+      "SupportedModelsName": [
+        "Desktop"
+      ],
+      "id": 67007,
+      "uuid": "8231a715-9bdc-e7bd-655b-2db50bf03be2"
+    }
+  }
+}

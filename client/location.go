@@ -12,7 +12,7 @@ import (
 // Examples:
 //
 //	"api/mam/apps/internal/12345"                                  → "12345", nil
-//	"/api/mdm/devicesensors/a447ee15-78a8-4992-cb7a-7ce115d8c83d" → "a1b2c3d4-...", nil
+//	"/api/mdm/devicesensors/a1b2c3d4_e5f6_7890_abcd_ef1234567890" → "a1b2c3d4_...", nil
 //	"/some/path/"                                                   → last non-empty segment
 //	""                                                              → "", error
 func ParseLocationID(location string) (string, error) {

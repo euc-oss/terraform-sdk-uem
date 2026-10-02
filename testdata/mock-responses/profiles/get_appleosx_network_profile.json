@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "endpoint": "/api/mdm/profiles/12345",
+    "endpoint": "/api/mdm/profiles/68964",
     "method": "GET",
     "platform": "AppleOsX",
-    "description": "Successful macOS network (Wi-Fi) profile retrieval by ID",
+    "description": "Successful macOS network (Wi-Fi) profile retrieval by ID. Literal id changed from a collision-prone 12345 to 68964 (collision sweep, 2026-08-05) -- 12345 was also used by get_profile_12345.json, which IS load-bearing (TestGeneratedGetProfile requests exactly that literal ID), unlike this fixture which is only ever read directly by decodeDeviceProfileFixtureBody (metadata.endpoint is inert for that path). 68964 matches this same profile's own id noted in appleosx/create-v2.json's api_validation.notes, not used as a literal endpoint anywhere else.",
     "version": "2"
   },
   "request": {
@@ -19,30 +19,30 @@
     },
     "body": {
       "General": {
-        "ProfileId": 12345,
-        "Name": "Test Android Profile 1",
-        "Description": "Wi-Fi profile for corporate network",
-        "Platform": "AppleOsX",
-        "ProfileType": "Device",
-        "ProfileScope": "Production",
         "AssignmentType": "Auto",
-        "ManagedLocationGroupID": 14165,
+        "Description": "Weekends reserve time for Rock Climbing and person.",
         "IsActive": true,
-        "ProfileUuid": "38c8f49e-6f0a-bbb4-6147-63e01723040b",
-        "ProfileContext": "Device"
+        "ManagedLocationGroupID": 12346,
+        "Name": "Test LemonChiffonstairs",
+        "Platform": "AppleOsX",
+        "ProfileContext": "Device",
+        "ProfileId": 12347,
+        "ProfileScope": "Production",
+        "ProfileType": "Device",
+        "ProfileUuid": "08e56864-baa2-84e7-71b7-54711284a42e"
       },
       "NetworkList": [
         {
-          "NetworkInterface": "BuiltInWireless",
-          "ServiceSetIdentifier": "CorpWiFi",
-          "HiddenNetwork": false,
           "AutoJoin": true,
-          "SecurityType": "WEP",
-          "Password": "12345",
-          "UseAsLoginWindowConfiguration": true,
-          "UseDirectoryAuthentication": false,
           "DisableAssociationMACRandomization": true,
-          "ProxyType": "None"
+          "HiddenNetwork": false,
+          "NetworkInterface": "BuiltInWireless",
+          "Password": "rr4F*@vMG0Z_D_@A",
+          "ProxyType": "None",
+          "SecurityType": "WEP",
+          "ServiceSetIdentifier": "CorpWiFi",
+          "UseAsLoginWindowConfiguration": true,
+          "UseDirectoryAuthentication": false
         }
       ]
     }

@@ -8,7 +8,7 @@ import (
 	"github.com/euc-oss/terraform-sdk-uem/internal/mockserver"
 )
 
-func newProfileService(t *testing.T) (*sdk.ProfileService, *mockserver.MockServer) {
+func newProfileService(t *testing.T) *sdk.ProfileService {
 	t.Helper()
 	ms := mockserver.LoadMockResponses(t, "../testdata/mock-responses")
 	t.Cleanup(ms.Close)
@@ -19,7 +19,7 @@ func newProfileService(t *testing.T) (*sdk.ProfileService, *mockserver.MockServe
 	if err != nil {
 		t.Fatalf("NewProfileService: %v", err)
 	}
-	return svc, ms
+	return svc
 }
 
 // TestLayer2ProfileServiceGet verifies typed GET deserialization through
@@ -29,7 +29,7 @@ func TestLayer2ProfileServiceGet(t *testing.T) {
 		t.Skip("skipping integration test")
 	}
 
-	svc, _ := newProfileService(t)
+	svc := newProfileService(t)
 	ctx := context.Background()
 
 	// Get Android profile (from search_v2.json discovery + get_android_68748.json)
@@ -67,7 +67,7 @@ func TestLayer2ProfileCRUDLifecycle(t *testing.T) {
 		t.Skip("skipping integration test")
 	}
 
-	svc, _ := newProfileService(t)
+	svc := newProfileService(t)
 	ctx := context.Background()
 
 	// Create Android profile
@@ -117,7 +117,7 @@ func TestLayer2CreateWrongType(t *testing.T) {
 		t.Skip("skipping integration test")
 	}
 
-	svc, _ := newProfileService(t)
+	svc := newProfileService(t)
 	ctx := context.Background()
 
 	_, err := svc.Create(ctx, "Android", &sdk.AppleDeviceProfileV2Entity{})
@@ -133,7 +133,7 @@ func TestLayer2CreateUnsupportedPlatform(t *testing.T) {
 		t.Skip("skipping integration test")
 	}
 
-	svc, _ := newProfileService(t)
+	svc := newProfileService(t)
 	ctx := context.Background()
 
 	_, err := svc.Create(ctx, "InvalidPlatform", nil)

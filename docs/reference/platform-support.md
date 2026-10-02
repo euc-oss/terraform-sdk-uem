@@ -15,7 +15,7 @@ API version, and update verb.
 | `"Apple iOS"`      | `apple`     | v2          | POST        |
 | `"AppleOsX"`       | `appleosx`  | v2          | POST        |
 | `"Windows 10"`     | `winrt`     | v2          | PUT         |
-| `"Windows_Rugged"` | `qnx`       | v2          | PUT         |
+| `"Windows_Rugged"` | `qnx`       | v2          | POST        |
 | `"To do"` (Linux)  | `linux`     | v4          | POST        |
 
 A few specifics that trip people up:
@@ -30,17 +30,26 @@ A few specifics that trip people up:
 - **Linux uses API v4** at a separate base path (`/api/mdm/profiles/linux/`).
   All other platforms use v2 at `/api/mdm/profiles/`. This routing is handled
   internally; callers do not need to choose.
-- **Windows 10 and Windows Rugged use PUT for updates.** Everything else uses
-  POST. `wsone.UpdateProfile` picks the correct verb automatically.
+- **Only Windows 10 uses PUT for updates.** Everything else, Windows Rugged
+  included, uses POST. `wsone.UpdateProfile` picks the correct verb
+  automatically.
 
 ## Platform Constants
 
 Use the constants from the root `wsone` package for type safety:
 
 ```go
-import wsone "github.com/euc-oss/terraform-sdk-uem"
+import (
+    "fmt"
+
+    wsone "github.com/euc-oss/terraform-sdk-uem"
+)
 
 profile, err := wsone.GetProfile(ctx, client, profileID, wsone.PlatformAndroid)
+if err != nil {
+    return err
+}
+fmt.Println(profile.GetProfileID())
 ```
 
 | Constant                      | API value          |
@@ -79,8 +88,8 @@ profile, err := wsone.GetProfile(ctx, client, profileID, wsone.PlatformAndroid)
 | Apple iOS              | Yes    | Yes | Yes       | Yes    |                                                                       |
 | macOS (`AppleOsX`)     | Yes    | Yes | Yes       | Yes    | Security & Privacy profiles may return HTTP 400 on GET (server-side)  |
 | Windows 10 (`winrt`)   | Yes    | Yes | Yes (PUT) | Yes    |                                                                       |
-| Windows Rugged (`qnx`) | Yes    | Yes | Yes (PUT) | Yes    |                                                                       |
-| Linux                  | No     | Yes | Yes       | Yes    | No create endpoint; profiles are seeded externally                    |
+| Windows Rugged (`qnx`) | No     | Yes | Yes (POST) | Yes    | No create endpoint; update only                                        |
+| Linux                  | Yes    | Yes | Yes       | Yes    | Create and update use API v4                                          |
 
 ### macOS and Android update persistence
 

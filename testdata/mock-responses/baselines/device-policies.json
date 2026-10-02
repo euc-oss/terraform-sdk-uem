@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/devices/{deviceUuid}/policies",
+    "method": "GET",
+    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 on 2026-09-23, for a real enrolled device under a real baseline (first landed as vendored commit 22d4e7c5e, 2026-09-23). The response is a results-wrapper OBJECT {results, total}, not a bare array, and each item is {uuid, name, className, path, status, compliance{status}}, which is not the device-level BaselineDeviceComplianceV1Model (quirk 36). total=343 with 10 results: total is the grand total and 10 is the default limit (canonical: offset/limit paging). Values are anonymized by the capture anonymizer: every *name* key is 'Test <word>' and uuids are regenerated; path, status and compliance.status are verbatim.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "results": [
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test Regimentshall",
+          "path": "Computer Configuration/Windows Settings/Security Settings/Local Policies/User Rights Assignment",
+          "status": "Enabled",
+          "uuid": "41e1a312-13a0-d547-3f48-7d4fcbf1e5b3"
+        },
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test Plantare",
+          "path": "Computer Configuration/Administrative Templates/Windows Components/Internet Explorer/Internet Control Panel/Security Page/Internet Zone",
+          "status": "Enabled",
+          "uuid": "bd023341-cbbb-57db-6d00-815736d47dd4"
+        },
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test Plantare",
+          "path": "Computer Configuration/Administrative Templates/Windows Components/Internet Explorer/Internet Control Panel/Security Page/Restricted Sites Zone",
+          "status": "Enabled",
+          "uuid": "c42c807b-4a16-e8d0-0cda-745cc316748d"
+        },
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test Minkdrink",
+          "path": "Computer Configuration/Windows Settings/Security Settings/Local Policies/User Rights Assignment",
+          "status": "Enabled",
+          "uuid": "d212469a-374f-042d-1d72-00ba31e7cc7f"
+        },
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test PaleGoldenRodgovernor",
+          "path": "Computer Configuration/Windows Settings/Security Settings/Account Policies/Account Lockout Policy",
+          "status": "Enabled",
+          "uuid": "eb63fef7-75aa-0de9-42ae-f33debf5e671"
+        },
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test Crimsonmustering",
+          "path": "Computer Configuration/Windows Settings/Security Settings/Account Policies/Account Lockout Policy",
+          "status": "Enabled",
+          "uuid": "929b8b89-8eb6-8d2e-4ffa-d18b50af17ef"
+        },
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test Scorpionwere",
+          "path": "Computer Configuration/Windows Settings/Security Settings/Local Policies/Security Options",
+          "status": "Enabled",
+          "uuid": "c87177b7-7166-7dde-ef8d-78ee99e89fa8"
+        },
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test LightSlateGraycompany",
+          "path": "Computer Configuration/Windows Settings/Security Settings/Local Policies/User Rights Assignment",
+          "status": "Enabled",
+          "uuid": "98bee822-4c6e-984c-f031-c82e4cc09098"
+        },
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test Girlbe",
+          "path": "Computer Configuration/Administrative Templates/Windows Components/Internet Explorer/Internet Control Panel/Security Page/Restricted Sites Zone",
+          "status": "Enabled",
+          "uuid": "3c87d817-465c-f183-544f-1674bbf5ba5a"
+        },
+        {
+          "className": "Test Packdo",
+          "compliance": {
+            "status": "Compliant"
+          },
+          "name": "Test Lavenderyear",
+          "path": "Computer Configuration/Windows Settings/Security Settings/Account Policies/Account Lockout Policy",
+          "status": "Enabled",
+          "uuid": "7fdeb5d6-bc07-2528-47ba-a0007083d841"
+        }
+      ],
+      "total": 343
+    }
+  }
+}

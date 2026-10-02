@@ -32,5 +32,5 @@ linters:
       - builtin
       - examples
       - output
-      - generated
+      - internal
     rules: []

@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/winrt/update",
+    "method": "PUT",
+    "platform": "WinRT",
+    "description": "Live-captured PUT /api/mdm/profiles/platforms/winrt/update against UEM 26.2.0.0, 2026-07-30 -- re-verified with clean v2 header post-fix. Confirms the internal codegen config verb override (PUT, not POST like every other platform's update) is correct on the wire -- a POST to this path would not be the same route. Captured via the same direct SDK-client-probe workaround as profiles_appleosx_update.json (mock-capture's discovery pre-step is unconditionally triggered for any '/update' path and fails first on this tenant regardless of platform). Real-wire finding: same silent-no-op-without-CreateNewVersion behavior as apple/appleosx -- confirmed via a follow-up GET (see profiles_winrt_get_after_update.json), Version incremented 1->2 only once CreateNewVersion=true was set.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {},
+    "body": null
+  }
+}

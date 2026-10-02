@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/search",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/profiles/search",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "AdditionalInfo": {
+        "Links": [
+          {
+            "Href": "https://example.com/ulESXDnd",
+            "Rel": "self"
+          }
+        ]
+      },
+      "ProfileList": [
+        {
+          "AssignmentSmartGroups": [
+            {
+              "Id": 12346,
+              "Name": "Test Koaladid"
+            }
+          ],
+          "AssignmentType": "Compliance",
+          "Context": "Device",
+          "ExcludedSmartGroups": [],
+          "ManagedBy": "PeteLemonChiffon",
+          "OrganizationGroupId": 12347,
+          "OrganizationGroupUuid": "4f3fd647-3b82-0193-16a7-4b247f4fe1ab",
+          "Platform": "Apple",
+          "ProfileId": 12348,
+          "ProfileName": "Test Butterflykiss",
+          "ProfileStatus": "Active",
+          "ProfileType": "Device",
+          "ProfileUuid": "003d68d0-f7ed-4d3f-fe04-2ebe7a4c652a"
+        },
+        {
+          "AssignmentSmartGroups": [],
+          "AssignmentType": "Auto",
+          "Context": "Device",
+          "ExcludedSmartGroups": [],
+          "ManagedBy": "LycheeUptight74",
+          "OrganizationGroupId": 12349,
+          "OrganizationGroupUuid": "9c1c3ffc-0f3c-6d86-b09d-b26ad0c7d28c",
+          "Platform": "WinRT",
+          "ProfileId": 12350,
+          "ProfileName": "Test Houndcould",
+          "ProfileStatus": "Active",
+          "ProfileType": "Device",
+          "ProfileUuid": "65a9758a-c774-df11-572d-9c9595e2f0b5"
+        }
+      ],
+      "TotalResults": 2
+    }
+  }
+}

@@ -20,6 +20,22 @@ func NewProfilesV1Service(c *client.Client) *ProfilesV1Service {
 	return &ProfilesV1Service{client: c}
 }
 
+// DeleteDeviceProfileAsync — Deletes the Device Profile by Profile Id.
+// Operation ID: ProfilesV1_DeleteDeviceProfileAsync
+// HTTP: DELETE /api/mdm/profiles/{profileid}
+func (s *ProfilesV1Service) DeleteDeviceProfileAsync(
+	ctx context.Context,
+	ProfileID int,
+) (http.Header, error) {
+	// Build endpoint path
+	endpoint := fmt.Sprintf("/api/mdm/profiles/%d", ProfileID)
+	headers, err := s.client.DoRequest(ctx, "DELETE", endpoint, AcceptHeader, "application/json", nil, nil)
+	if err != nil {
+		return nil, fmt.Errorf("ProfilesV1_DeleteDeviceProfileAsync: %w", err)
+	}
+	return headers, nil
+}
+
 // ProfilesV1SearchOptions holds optional query parameters for Search.
 type ProfilesV1SearchOptions struct {
 	Type                *string         // Assignment Type.

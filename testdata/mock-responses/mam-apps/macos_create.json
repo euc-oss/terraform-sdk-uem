@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/groups/{id}/macos/apps",
+    "method": "POST",
+    "description": "Captured POST /api/mam/groups/{id}/macos/apps (Pattern B: 201 + Location header pointing at new app's canonical URL; empty body per canonical CreateMacOSApplication — .WithLocationHeader only, no .WithModel).",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Location": "api/mam/apps/internal/424242"
+    },
+    "body": null
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/devicesensors/list/{organizationGroupUuid}",
+    "method": "GET",
+    "description": "V2 list device sensors for organization group. Live-captured against an org group with zero sensors configured -- this is the genuine empty-list response shape (result_set/total_results, not the V1 Page/PageSize/Result wrapper). Distinct from list_sensors.json (V1, itself also an empty-list response -- 204 with a null body, not a populated result -- kept as-is; see that file's own allowlist entry for its provenance).",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "result_set": [],
+      "total_results": 0
+    }
+  }
+}

@@ -15,6 +15,7 @@ type MockServer struct {
 	server  *httptest.Server
 	matcher *RequestMatcher
 	state   *ServerState
+	chunks  *ChunkHandler
 }
 
 // NewMockServer creates a new mock server with the given responses.
@@ -22,6 +23,7 @@ func NewMockServer(responses []*MockResponse) *MockServer {
 	ms := &MockServer{
 		matcher: NewRequestMatcher(responses),
 		state:   NewServerState(),
+		chunks:  NewChunkHandler(),
 	}
 
 	ms.server = httptest.NewServer(http.HandlerFunc(ms.handleRequest))
@@ -35,8 +37,13 @@ func (ms *MockServer) handleRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Chunked-upload routes have their own stateful handler.
+	if ms.chunks.Handle(w, r) {
+		return
+	}
+
 	// Find matching response
-	response := ms.matcher.Match(r)
+	response := ms.matcher.MatchPreferring(r, ms.preferredSmartGroupFixture(r))
 	if response == nil {
 		// No match found - return 404
 		w.Header().Set("Content-Type", "application/json")
@@ -61,6 +68,8 @@ func (ms *MockServer) handleRequest(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
+
+	ms.observeSmartGroup(r, response)
 
 	// Set response headers
 	for key, value := range response.Response.Headers {
@@ -114,6 +123,15 @@ func (ms *MockServer) handleStatefulRequest(w http.ResponseWriter, r *http.Reque
 		matches := re.FindStringSubmatch(r.URL.Path)
 		if len(matches) == 2 {
 			profileID, _ := strconv.Atoi(matches[1])
+			// A fixture captured for this exact id (not an {id} template)
+			// is served by the matcher instead, and marks the profile
+			// deleted only if it reports success.
+			if fx := ms.matcher.Match(r); fx != nil && pathMatchScore(r.URL.Path, fx.Metadata.Endpoint) == exactPathScore {
+				if is2xx(fx.Response.StatusCode) {
+					ms.state.DeleteProfile(profileID)
+				}
+				return false
+			}
 			return ms.handleProfileDelete(w, r, profileID)
 		}
 	}
@@ -156,7 +174,7 @@ func (ms *MockServer) handleProfileGet(w http.ResponseWriter, _ *http.Request, p
 		"Status":                 profile.Status,
 		"ProfileType":            "Device",
 		"ProfileScope":           "Production",
-		"ManagedLocationGroupId": "14165", // String to match Profile model
+		"ManagedLocationGroupId": "12345", // String to match Profile model
 		"General":                profile.General,
 	}
 
@@ -283,6 +301,55 @@ func (ms *MockServer) handleProfileDelete(w http.ResponseWriter, _ *http.Request
 	// Return 204 No Content (matching actual API behavior)
 	w.WriteHeader(http.StatusNoContent)
 	return true
+}
+
+var smartGroupIDPath = regexp.MustCompile(`^/api/mdm/smartgroups/(\d+)$`)
+
+// observeSmartGroup records a served smart group update or delete in state
+// without intercepting it: the fixture is still chosen by the matcher. Only
+// a 2xx response counts, so a captured not-found DELETE leaves no trace.
+func (ms *MockServer) observeSmartGroup(r *http.Request, response *MockResponse) {
+	if !is2xx(response.Response.StatusCode) {
+		return
+	}
+	matches := smartGroupIDPath.FindStringSubmatch(r.URL.Path)
+	if len(matches) != 2 {
+		return
+	}
+	id, _ := strconv.Atoi(matches[1])
+	switch r.Method {
+	case http.MethodPut:
+		ms.state.ObserveSmartGroup(id, smartGroupUpdated)
+	case http.MethodDelete:
+		ms.state.ObserveSmartGroup(id, smartGroupDeleted)
+	}
+}
+
+// preferredSmartGroupFixture picks the lifecycle-stage fixture for
+// GET /api/mdm/smartgroups/{id}, which three fixtures share: after an
+// observed delete it is smartgroups_get_after_delete.json, after an observed
+// update smartgroups_get_after_update.json. With nothing observed it returns
+// "", leaving the matcher's default choice.
+func (ms *MockServer) preferredSmartGroupFixture(r *http.Request) string {
+	if r.Method != http.MethodGet {
+		return ""
+	}
+	matches := smartGroupIDPath.FindStringSubmatch(r.URL.Path)
+	if len(matches) != 2 {
+		return ""
+	}
+	id, _ := strconv.Atoi(matches[1])
+	switch ms.state.SmartGroupStage(id) {
+	case smartGroupDeleted:
+		return "smartgroups_get_after_delete.json"
+	case smartGroupUpdated:
+		return "smartgroups_get_after_update.json"
+	}
+	return ""
+}
+
+func is2xx(status int) bool {
+	return status >= 200 && status < 300
 }
 
 // URL returns the base URL of the mock server.

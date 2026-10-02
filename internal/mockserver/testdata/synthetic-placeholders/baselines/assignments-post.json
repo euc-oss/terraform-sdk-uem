@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments",
+    "method": "POST",
+    "description": "SYNTHETIC PLACEHOLDER -- NOT live-captured. Demoted 2026-08-04 (integrity audit): fabricated/schema-derived fixture, no live-capture evidence, never round-tripped against live UEM. Reachability unconfirmed on live (bead internal-task) -- resolve internal-task before re-capture. Relocated 2026-08-06 to internal/mockserver/testdata/synthetic-placeholders/ (Phase-3-surviving location -- see that directory's README.md) for use by TestGeneratedBaselinesV1Lifecycle via the bypass mechanism in tests/bypass_fixture_helper_test.go. The vendored corpus's own baselines/assignments-post.json is a separate, non-identical placeholder with no functional consumer in the Go suite (deletion-control, 2026-09-24: deleting it fails no test, while deleting this file fails TestGeneratedBaselinesV1Lifecycle). Pattern D: 204 empty -- the dependent test's assertion on this step is already structural (err == nil only), so no assertion weakening was needed here.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "body": null
+  }
+}

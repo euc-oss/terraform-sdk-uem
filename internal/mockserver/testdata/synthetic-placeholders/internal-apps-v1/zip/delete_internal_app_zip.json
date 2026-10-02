@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/67007",
+    "method": "DELETE",
+    "description": "SYNTHETIC / HAND-AUTHORED PLACEHOLDER -- NOT live-captured; live .zip capture is explicitly HELD pending SFD feature-flag confirmation (see internal_app_create_zip.json's description). DELETE /api/mam/apps/internal/{applicationid} for the same placeholder zip app. Modeled on the real 204/empty-body shape confirmed live for apk/msi/macos/ipa on this same endpoint -- reused here as a well-established real-wire behavior for this endpoint, even though this fixture's own create/get siblings are synthetic placeholders. Relocated 2026-08-06 to internal/mockserver/testdata/synthetic-placeholders/ (Phase-3-surviving location -- see that directory's README.md) for use by TestGeneratedInternalAppsV1Lifecycle_ZIP via a bypass-only mock server. The original testdata/mock-responses/internal-apps-v1/zip/delete_internal_app_zip.json copy is left in place, unmodified, for CI existence checks and any other still-passing consumer of the old testdata tree.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

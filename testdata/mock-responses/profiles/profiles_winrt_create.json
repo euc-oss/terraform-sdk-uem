@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/profiles/platforms/winrt/create",
+    "method": "POST",
+    "platform": "WinRT",
+    "description": "Live-captured POST /api/mdm/profiles/platforms/winrt/create against UEM 26.2.0.0, 2026-07-30 -- re-verified with clean v2 header post-fix. Response is a bare int (created ProfileId); the real captured id was hand-replaced with 68912. Real-wire finding: this create returns HTTP 201, unlike apple/appleosx create which both return 200 for the same bare-int response shape -- status code is not uniform across platforms for this operation family. Also note: mock-capture's default --swagger-dir (internal-source/internal-source, the raw vendored snapshot) does not declare this path at all in any of its 4 mdm swagger files -- it only exists in internal-source/mdmv2.json (the source actually used by codegen). --swagger-dir internal-source was passed explicitly to get a correct (still fully automatic, no --accept-version override) v2 resolution; see report for detail.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": 68912
+  }
+}

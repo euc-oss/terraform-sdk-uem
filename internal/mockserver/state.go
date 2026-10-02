@@ -12,13 +12,21 @@ type ServerState struct {
 	mu              sync.RWMutex
 	profiles        map[int]*ProfileState // Profile ID -> Profile data
 	deletedProfiles map[int]bool          // Track deleted profile IDs
+	smartGroups     map[int]string        // Smart group ID -> last observed mutation
 }
+
+// Smart group mutation stages recorded by ObserveSmartGroup.
+const (
+	smartGroupUpdated = "updated"
+	smartGroupDeleted = "deleted"
+)
 
 // NewServerState creates a new server state manager.
 func NewServerState() *ServerState {
 	return &ServerState{
 		profiles:        make(map[int]*ProfileState),
 		deletedProfiles: make(map[int]bool),
+		smartGroups:     make(map[int]string),
 	}
 }
 
@@ -109,4 +117,22 @@ func (s *ServerState) Clear() {
 
 	s.profiles = make(map[int]*ProfileState)
 	s.deletedProfiles = make(map[int]bool)
+	s.smartGroups = make(map[int]string)
+}
+
+// ObserveSmartGroup records the latest successful mutation of a smart group.
+func (s *ServerState) ObserveSmartGroup(id int, stage string) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	s.smartGroups[id] = stage
+}
+
+// SmartGroupStage returns the latest observed mutation of a smart group, or
+// "" if none was observed.
+func (s *ServerState) SmartGroupStage(id int) string {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	return s.smartGroups[id]
 }

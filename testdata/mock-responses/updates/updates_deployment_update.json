@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/deployments/{uuid}",
+    "method": "PUT",
+    "description": "Captured PUT /api/mdm/updates/deployments/{uuid} — canonical docs say 204 No Content. Confirmed by re-GET: the update actually persists (name and deployment_start_time both changed on the follow-up GET), unlike the family of silent-no-op update bugs seen on other resources.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

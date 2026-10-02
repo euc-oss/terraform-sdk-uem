@@ -19,6 +19,23 @@ func NewProfilesV4Service(c *client.Client) *ProfilesV4Service {
 	return &ProfilesV4Service{client: c}
 }
 
+// CreateLinuxDeviceProfileAsync — Creates a new Linux Device Profile.
+// Operation ID: ProfilesV4_CreateLinuxDeviceProfileAsync
+// HTTP: POST /api/mdm/profiles/platforms/linux/create
+func (s *ProfilesV4Service) CreateLinuxDeviceProfileAsync(
+	ctx context.Context,
+	request *LinuxDeviceProfileEntity1V4,
+) (http.Header, int, error) {
+	// Build endpoint path
+	endpoint := "/api/mdm/profiles/platforms/linux/create"
+	var response int
+	headers, err := s.client.DoRequest(ctx, "POST", endpoint, AcceptHeader, "application/json", request, &response)
+	if err != nil {
+		return nil, 0, fmt.Errorf("ProfilesV4_CreateLinuxDeviceProfileAsync: %w", err)
+	}
+	return headers, response, nil
+}
+
 // UpdateLinuxDeviceProfileAsync — Updates an existing Linux Device Profile.
 // Operation ID: ProfilesV4_UpdateLinuxDeviceProfileAsync
 // HTTP: POST /api/mdm/profiles/platforms/linux/update

@@ -73,12 +73,12 @@ func TestVersionAwareScoringNoVersionFieldNoBonus(t *testing.T) {
 
 	score := scoreMatch(req, fixture)
 
-	// Should still match (method + path = 200), just no version bonus
-	if score < 200 {
+	// Should still match (method 100 + exact path 200 = 300), just no version bonus.
+	if score < 300 {
 		t.Errorf("Fixture without version should still match: score=%d", score)
 	}
-	if score != 200 {
-		t.Errorf("Fixture without version should score exactly 200 (method+path only), got %d", score)
+	if score != 300 {
+		t.Errorf("Fixture without version should score exactly 300 (method 100 + exact path 200, no version bonus), got %d", score)
 	}
 }
 

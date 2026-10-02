@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/groups/12345/macos/apps",
+    "method": "POST",
+    "description": "MacOsAppsV1Service.CreateMacOSApplication (POST /api/mam/groups/{id}/macos/apps), live-captured via a hand-built direct-SDK-client call (not mock-capture -- this needs a real 3-blob-upload precondition mock-capture cannot drive) against the configured test org group on the 26.2.0.0 test tenant, 2026-07-31. NOT WIRED INTO A PASSING MOCK TEST AS A BLIND ROUND-TRIP -- kept primarily as a documentation-only provenance record of a confirmed SDK/codegen defect; see generated_macosappsv1_lifecycle_test.go for how the lifecycle test exercises this endpoint's create behavior against a fixture shaped like this one. PRECONDITION: 3 blobs were uploaded first via BlobsV2Service.UploadBlobAsync against the configured test org group (the DMG installer, a PNG icon extracted from the installer's own .app bundle, and the pkginfo plist content) -- no ModuleType override was needed for any of the three uploads; the doc-suggested 'ModuleType=Application' for the binary blob was NOT required empirically on this tenant. REAL-WIRE FINDING (confirmed SDK defect candidate, same defect family as the InternalAppsV1 PushMode/int-vs-string findings documented elsewhere in this batch): CreateMacOSApplication's generated method returns a bare int per this API family's usual 'create returns just an integer' convention (see api-doctrine.md quirk 6), but the REAL response for this specific endpoint has an EMPTY body (Content-Length: 0) -- the new application id is communicated ONLY via the response's Location header (e.g. '.../api/mam/apps/internal/<id>'), never in the body. client.Client.handleResponse's decode guard ('if out != nil && len(bodyBytes) > 0') means json.Unmarshal is skipped entirely on an empty body, so the typed call succeeds with a nil error but silently returns 0 as the app id -- NOT an error, a SILENT WRONG ANSWER. This was caught only because the real create was immediately followed by a live GET using the Location header's id, which round-tripped correctly; a caller relying solely on the typed int return value would believe app id 0 was created. The HTTP status code itself was not independently captured (the SDK's DoRequest does not surface it to callers, and no retry occurred to print it via the retryable-http logger) -- 201 is used below as a labeled assumption consistent with the empty-body-plus-Location-header pattern, not an independently confirmed value.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "applicationBlobId": 12354,
+      "applicationIconId": 12355,
+      "pkgInfoBlobId": 12356,
+      "version": "149.0.7827.201"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Location": "https://example.com/api/mam/apps/internal/12357"
+    },
+    "body": null
+  }
+}

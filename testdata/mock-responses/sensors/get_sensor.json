@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/{sensorUuid}",
     "method": "GET",
-    "description": "Get device sensor by UUID. The V1 API uses string enums for most fields (platform, query_type, etc.) but integer arrays for event_trigger, matching the swagger schema.",
+    "description": "Get device sensor by UUID (V1). Live-captured against <internal-env>/26.2.0.0, org 138883 (sdktest), for the sensor created in create_sensor.json. Confirms real server behavior: timeout always reads back 0 regardless of the value sent on create (same finding as V2's sibling fixture batch); event_trigger defaults to [\"UNKNOWN\"] when trigger_type=SCHEDULE and no event_trigger was supplied on create.",
     "version": "1"
   },
   "request": {
@@ -17,22 +17,24 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
-      "name": "Test Sensor Alpha",
-      "description": "A test device sensor for mock testing",
-      "is_read_only": false,
-      "organization_group_uuid": "804334cf-f067-4e0c-f8fa-1f95ac47b237",
-      "platform": "WIN_RT",
-      "query_type": "POWERSHELL",
-      "query_response_type": "STRING",
-      "trigger_type": "SCHEDULE",
-      "execution_context": "SYSTEM",
-      "execution_architecture": "EITHER64OR32BIT",
-      "script_data": "V3JpdGUtT3V0cHV0ICdIZWxsbyBXb3JsZCc=",
-      "timeout": 30,
-      "event_trigger": [1, 2],
-      "schedule_trigger": "FOUR_HOURS",
       "assigned_smart_groups": [],
-      "uuid": "a447ee15-78a8-4992-cb7a-7ce115d8c83d"
+      "description": "Weekends reserve time for Rock Climbing and person.",
+      "event_trigger": [
+        "UNKNOWN"
+      ],
+      "execution_architecture": "EITHER64OR32BIT",
+      "execution_context": "SYSTEM",
+      "is_read_only": false,
+      "name": "Test LemonChiffonstairs",
+      "organization_group_uuid": "08e56864-baa2-84e7-71b7-54711284a42e",
+      "platform": "WIN_RT",
+      "query_response_type": "STRING",
+      "query_type": "POWERSHELL",
+      "schedule_trigger": "UNKNOWN",
+      "script_data": "V3JpdGUtT3V0cHV0ICdTREsgY2FwdHVyZSB0ZXN0IHNlbnNvcic=",
+      "timeout": 0,
+      "trigger_type": "SCHEDULE",
+      "uuid": "0e44d914-4225-2276-b7cc-5cecb1ab3c4b"
     }
   }
 }

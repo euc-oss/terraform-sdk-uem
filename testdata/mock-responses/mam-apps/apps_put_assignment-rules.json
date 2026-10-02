@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/{applicationUuid}/assignment-rules",
+    "method": "PUT",
+    "description": "Live-captured via bin/mock-capture against <internal-env>/26.2.0.0, org group 138883 (sdktest), the recapture epic's Group A retry. Resolves AppsV2Service.UpdateAssignmentRuleAsync -- the endpoint the deprecated PUT /api/mam/apps/internal/{applicationId}/assignments call's X-API-Warning header (captured in a sibling session) pointed at as its replacement. HYPOTHESIS CONFIRMED: called against the same real internal iOS app used for the sibling GET/POST assignment-rules captures, using the app's own UUID directly as {applicationUuid} -- no separate applicationUuid namespace exists for this route. Body {} (an empty rule: no assignments, no excluded_smart_groups) is accepted -- swagger's validation error #7 ('Smart groups should not be empty for assignments') only triggers when the assignments array itself is non-empty; an empty/absent assignments list is a legal no-op update. 202 Accepted, empty body, no anonymization needed. App deleted at session end; deletion confirmed via post-delete GET (401/errorCode 7000).",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 202,
+    "headers": {},
+    "body": null
+  }
+}

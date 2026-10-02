@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/internal/67003",
+    "method": "DELETE",
+    "description": "DELETE /api/mam/apps/internal/{applicationid} (lowercase applicationid, a separate internal codegen config path entry from the GET's {applicationId}) for a macOS internal app, live-captured via mock-capture against the configured test org group on the 26.2.0.0 test tenant, 2026-07-31. 204, empty body. This call also served as live-tenant teardown for the macOS test app created for the capture. The real live-captured id was anonymized and baked in as a literal path (67003, matching the sibling GET fixture), for the same collision-avoidance reason documented on get_internal_app_macos.json. POST-DELETE FINDING: a follow-up GET on the same id returned a consistent HTTP 401 with body {\"errorCode\":7000,\"message\":\"Application not found or user does not have access to it.\"} -- the same not-found signature already established on the apk/msi platforms in this endpoint family, not the runbook's failsafe condition (still returns 200). SEPARATE REAL-WIRE FINDING discovered during this teardown: deleting this macOS app appears to CASCADE-DELETE its attached application-binary and icon blobs automatically -- a follow-up GET/HEAD on the DMG blob and the icon blob (both attached at create time) returned 500 (the confirmed not-found signature for this tenant's Blobs V2 endpoint, per blobs/delete_blob_v2.json's finding) immediately after this app delete, with NO separate explicit blob delete call made against them. The third blob (pkginfo) was NOT cascade-deleted -- a GET on it still returned 200 after the app was gone, and required its own explicit DELETE (see blobs/delete_blob_v2.json's sibling capture for that op; no macOS-specific blob fixture was needed since BlobsV2Service's fixtures are already platform-agnostic). This is a genuinely different lifecycle from apk/msi's chunked-upload apps, which do not go through Blobs V2 at all.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 204,
+    "headers": {},
+    "body": null
+  }
+}

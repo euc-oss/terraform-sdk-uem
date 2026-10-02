@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/groups/{organizationGroupUuid}/scripts",
+    "method": "POST",
+    "description": "Captured POST /api/mdm/groups/{organizationGroupUuid}/scripts",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 201,
+    "headers": {
+      "Location": "/api/mdm/scripts/b1bfacb4-9b81-bf73-9865-fa75378c42a5"
+    },
+    "body": null
+  }
+}

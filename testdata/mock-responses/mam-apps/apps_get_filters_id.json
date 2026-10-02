@@ -1,0 +1,162 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/filters/{filterName}",
+    "method": "GET",
+    "description": "Captured GET /api/mam/apps/filters/{filterName} with filterName=REASONS (the swagger overlay declares filterName as a fixed two-value enum: REASONS, ACTIONS -- no discovery endpoint exists or is needed). Genuine live 200 response: the ApplicationStatusReason enum's key/display_key/value tuples used for app removal filter criteria.",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": [
+      {
+        "display_key": "NEEDS_REDEMPTION",
+        "key": "NEEDS_REDEMPTION",
+        "value": "NeedsRedemption"
+      },
+      {
+        "display_key": "RedeemingCode",
+        "key": "REDEEMING",
+        "value": "Redeeming"
+      },
+      {
+        "display_key": "PROMPTING",
+        "key": "PROMPTING",
+        "value": "Prompting"
+      },
+      {
+        "display_key": "INSTALLING",
+        "key": "INSTALLING",
+        "value": "Installing"
+      },
+      {
+        "display_key": "MANAGED",
+        "key": "MANAGED",
+        "value": "Managed"
+      },
+      {
+        "display_key": "MDM_REMOVAL",
+        "key": "MDM_REMOVAL",
+        "value": "MDMRemoval"
+      },
+      {
+        "display_key": "RemovedByEmm",
+        "key": "MDM_REMOVED",
+        "value": "MDMRemoved"
+      },
+      {
+        "display_key": "RemovedByUser",
+        "key": "MANAGED_BUT_INSTALLED",
+        "value": "ManagedButUninstalled"
+      },
+      {
+        "display_key": "Rejected",
+        "key": "USER_REJECTED",
+        "value": "UserRejected"
+      },
+      {
+        "display_key": "FAILED",
+        "key": "FAILED",
+        "value": "Failed"
+      },
+      {
+        "display_key": "UNKNOWN",
+        "key": "UNKNOWN",
+        "value": "Unknown"
+      },
+      {
+        "display_key": "InstalledByUser",
+        "key": "USER_INSTALLED_APP",
+        "value": "UserInstalledApp"
+      },
+      {
+        "display_key": "QUEUED",
+        "key": "QUEUED",
+        "value": "Queued"
+      },
+      {
+        "display_key": "UPDATING",
+        "key": "UPDATING",
+        "value": "Updating"
+      },
+      {
+        "display_key": "MANAGEMENT_REJECTED",
+        "key": "MANAGEMENT_REJECTED",
+        "value": "ManagementRejected"
+      },
+      {
+        "display_key": "PROMPTING_FOR_MANAGEMENT",
+        "key": "PROMPTING_FOR_MANAGEMENT",
+        "value": "PromptingForManagement"
+      },
+      {
+        "display_key": "DOWNLOAD_IN_PROGRESS",
+        "key": "DOWNLOAD_IN_PROGRESS",
+        "value": "DownloadInProgress"
+      },
+      {
+        "display_key": "DOWNLOAD_FAILED",
+        "key": "DOWNLOAD_FAILED",
+        "value": "DownloadFailed"
+      },
+      {
+        "display_key": "REMOVE_APPLICATION_FAILED",
+        "key": "REMOVE_APPLICATION_FAILED",
+        "value": "RemoveApplicationFailed"
+      },
+      {
+        "display_key": "FINAL_DETECTION_FAILED",
+        "key": "FINAL_DETECTION_FAILED",
+        "value": "FinalDetectionFailed"
+      },
+      {
+        "display_key": "DEVICE_ELIGIBILITY_CHECK_FAILED",
+        "key": "DEVICE_ELIGIBILITY_CHECK_FAILED",
+        "value": "DeviceEligibilityCheckFailed"
+      },
+      {
+        "display_key": "EXECUTION_FAILED",
+        "key": "EXECUTION_FAILED",
+        "value": "ExecutionFailed"
+      },
+      {
+        "display_key": "DEPENDENT_APP_VALIDATION_FAILED",
+        "key": "DEPENDENT_APP_VALIDATION_FAILED",
+        "value": "DependentAppValidationFailed"
+      },
+      {
+        "display_key": "CHECKING_DEVICE_ELIGIBILTY",
+        "key": "CHECKING_DEVICE_ELIGIBILTY",
+        "value": "CheckingDeviceEligibility"
+      },
+      {
+        "display_key": "VALIDATING_DEPENDENT_APPS",
+        "key": "VALIDATING_DEPENDENT_APPS",
+        "value": "ValidatingDependentApps"
+      },
+      {
+        "display_key": "PENDING_REBOOT",
+        "key": "PENDING_REBOOT",
+        "value": "PendingReboot"
+      },
+      {
+        "display_key": "APP_INSTALL_DEFERRED",
+        "key": "APP_INSTALL_DEFERRED",
+        "value": "AppInstallDeferred"
+      },
+      {
+        "display_key": "DependencyMissing",
+        "key": "PARTIALLY_INSTALLED",
+        "value": "PartiallyInstalled"
+      }
+    ]
+  }
+}

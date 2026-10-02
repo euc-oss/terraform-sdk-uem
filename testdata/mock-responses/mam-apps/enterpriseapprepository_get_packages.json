@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/enterpriseapprepository/packages",
+    "method": "GET",
+    "description": "Captured GET /api/mam/enterpriseapprepository/packages",
+    "version": "2"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=2",
+      "Content-Type": "application/json"
+    },
+    "query_params": {
+      "packageId": "0-don.clippy",
+      "version": "1.7.3"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "created_at": "2024-01-15T00:00:00Z",
+      "default_locale": "en-US",
+      "expected_return_codes": [],
+      "icon_url": "https://example.com/ulESXDnd",
+      "install_modes": [],
+      "installer_success_codes": [],
+      "installer_type": "NULLSOFT",
+      "installers": [
+        {
+          "architecture": "X64",
+          "expected_return_codes": [],
+          "install_Command": "\"clippy_1.7.3_x64-setup.exe\" /S",
+          "install_modes": [],
+          "installer_file_name": "Test Koaladid",
+          "installer_sha256": "DC69D942BD5FFD499D5B15E01C0C268E3CD3408EB40A76211B6F07051779C94B",
+          "installer_success_codes": [],
+          "installer_type": "NULLSOFT",
+          "installer_url": "https://example.com/nuXTfkFC",
+          "platform": [
+            1
+          ]
+        }
+      ],
+      "package_identifier": "com.example.pQIihbwj",
+      "package_name": "Test Batpaint",
+      "package_version": "1.7.3",
+      "platform": [
+        1
+      ],
+      "publisher_name": "Test PaleTurquoisefrailty",
+      "scope": "USER",
+      "short_description": "Consistent life should the foundation of religion.",
+      "updated_at": "2024-01-15T00:00:00Z"
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/{sensorUuid}",
     "method": "PUT",
-    "description": "Update device sensor",
+    "description": "Update device sensor (V1). Live-captured against <internal-env>/26.2.0.0, org 138883 (sdktest), for the sensor created in create_sensor.json. Empty 204 response confirmed genuine (no body on success); follow-up GET confirms the update landed (description/schedule_trigger/timeout changed).",
     "version": "1"
   },
   "request": {

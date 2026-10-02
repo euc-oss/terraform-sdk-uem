@@ -17,7 +17,7 @@ import (
 
 // TestMamV2InternalAppGetByUuid verifies the generated InternalAppsV2.GetInternalAppByUuid
 // against a fixture-backed mock server.
-// Fixture: testdata/mock-responses/mam-apps/apps_get_internal.json
+// Fixture: testdata/mock-responses/mam-apps/apps_get_internal.json.
 func TestMamV2InternalAppGetByUuid(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping integration test")
@@ -89,7 +89,7 @@ func TestMamV2BlobsUploadBlobRequestShape(t *testing.T) {
 		payload,
 		&sdk.BlobsV2UploadBlobAsyncOptions{
 			FileName:            "installer.msi",
-			OrganizationGroupID: 570,
+			OrganizationGroupID: 12345,
 		},
 	)
 	if err != nil {
@@ -115,7 +115,7 @@ func TestMamV2BlobsUploadBlobRequestShape(t *testing.T) {
 	if !bytes.Contains([]byte(captured.rawQuery), []byte("fileName=installer.msi")) {
 		t.Errorf("query missing fileName: got %q", captured.rawQuery)
 	}
-	if !bytes.Contains([]byte(captured.rawQuery), []byte("organizationGroupId=570")) {
+	if !bytes.Contains([]byte(captured.rawQuery), []byte("organizationGroupId=12345")) {
 		t.Errorf("query missing organizationGroupId: got %q", captured.rawQuery)
 	}
 }
@@ -267,7 +267,7 @@ func TestMamV2PurchasedInstallRequestShape(t *testing.T) {
 	}
 }
 
-// TestMamV1InternalAppRenewalDateNoTimezone regresses internal-ticket:
+// TestMamV1InternalAppRenewalDateNoTimezone is a regression test:
 // InternalAppsV1_GetInternalAppByIdAsync used to fail with
 //
 //	parsing time "2026-04-27T16:00:00.000" as "2006-01-02T15:04:05Z07:00":
@@ -303,12 +303,23 @@ func TestMamV1InternalAppRenewalDateNoTimezone(t *testing.T) {
 // service.
 //
 // Fixture: testdata/mock-responses/mam-apps/apps_get_internal_ios_renewaldate.json
+//
+// Loaded via the bypass mechanism (newMockServerWithBypassFixtures, see
+// tests/bypass_fixture_helper_test.go) from its Phase-3-surviving synthetic-
+// placeholder location (internal/mockserver/testdata/synthetic-placeholders/
+// mam-apps/apps_get_internal_ios_renewaldate.json): this fixture was always a
+// deliberately-crafted regression fixture (never claimed to be a live
+// capture), but relocating it here also sidesteps a header-version collision
+// against a v2-only fixture present at the same GET /api/mam/apps/internal/
+// {applicationId} template in the vendored fixture tree.
 func TestMamV1InternalAppGetByIdRenewalDateFixture(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping integration test")
 	}
 
-	ms := mockserver.LoadMockResponses(t, "../testdata/mock-responses")
+	ms := newMockServerWithBypassFixtures(t, "../testdata/mock-responses", []string{
+		"../internal/mockserver/testdata/synthetic-placeholders/mam-apps/apps_get_internal_ios_renewaldate.json",
+	})
 	t.Cleanup(ms.Close)
 
 	c := mockserver.NewMockClient(t, ms)
@@ -332,13 +343,14 @@ func TestMamV1InternalAppGetByIdRenewalDateFixture(t *testing.T) {
 	}
 }
 
-// TestMamV2AppsSearchFixtureUnmarshal is a regression for internal-task.
-// It verifies that the apps_get_search.json fixture (real wire format with
-// string platform values like "WIN_RT", "APPLE") unmarshals cleanly into the
-// generated ApplicationSearchV2Model, which now declares Platform as string.
+// TestMamV2AppsSearchFixtureUnmarshal is a regression for the ApplicationV2Model.platform int-vs-string fix.
+// It verifies that the apps_get_search.json fixture (a live capture whose
+// three apps all report the string platform "APPLE_OS_X") unmarshals cleanly
+// into the generated ApplicationSearchV2Model, which now declares Platform
+// as string.
 func TestMamV2AppsSearchFixtureUnmarshal(t *testing.T) {
 	// Load the fixture captured from a live Workspace ONE instance.
-	raw, err := os.ReadFile("../testdata/mock-responses/mam-apps/apps_get_search.json")
+	raw, err := os.ReadFile(mockserver.ResolveResponsesDir("../testdata/mock-responses/mam-apps/apps_get_search.json"))
 	if err != nil {
 		t.Fatalf("read fixture: %v", err)
 	}
@@ -365,7 +377,7 @@ func TestMamV2AppsSearchFixtureUnmarshal(t *testing.T) {
 	// Every application in the fixture must have a non-empty string Platform.
 	for i, app := range result.Applications {
 		if app.Platform == "" {
-			t.Errorf("applications[%d]: Platform is empty string (want a string enum like WIN_RT, APPLE, etc.)", i)
+			t.Errorf("applications[%d]: Platform is empty string (want a string enum such as APPLE_OS_X)", i)
 		}
 	}
 }

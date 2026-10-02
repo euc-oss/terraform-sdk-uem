@@ -2,7 +2,11 @@
 
 package mdmv2
 
-import "github.com/euc-oss/terraform-sdk-uem/client"
+import (
+	"fmt"
+
+	"github.com/euc-oss/terraform-sdk-uem/client"
+)
 
 // AllowRuleV2 represents AllowRule field set.
 
@@ -485,11 +489,22 @@ type AndroidDateTimePayloadV2Entity struct {
 	// Gets or sets indicates the length of a sync interval.
 	SyncIntervalDays *int `json:"SyncIntervalDays,omitempty"`
 	// Gets or sets time format.
-	TimeFormat *int `json:"TimeFormat"`
+	TimeFormat int `json:"TimeFormat"`
 	// Gets or sets timezone.
 	TimeZone string `json:"TimeZone,omitempty"`
 	// Gets or sets url of server setting date time value.
 	URL string `json:"URL,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *AndroidDateTimePayloadV2Entity) Validate() error {
+	if r.DateFormat == "" {
+		return fmt.Errorf("DateFormat is required for AndroidDateTimePayloadV2Entity")
+	}
+	if r.DateTime == "" {
+		return fmt.Errorf("DateTime is required for AndroidDateTimePayloadV2Entity")
+	}
+	return nil
 }
 
 // AndroidDeviceProfileV2Entity represents Android device profile v2 entity.
@@ -954,6 +969,20 @@ type AndroidForWorkAutoUpdatePayloadV2Entity struct {
 	StartTime string `json:"StartTime"`
 }
 
+// Validate returns an error naming the first required field left unset.
+func (r *AndroidForWorkAutoUpdatePayloadV2Entity) Validate() error {
+	if r.AutoUpdateInstallPolicy == "" {
+		return fmt.Errorf("AutoUpdateInstallPolicy is required for AndroidForWorkAutoUpdatePayloadV2Entity")
+	}
+	if r.EndTime == "" {
+		return fmt.Errorf("EndTime is required for AndroidForWorkAutoUpdatePayloadV2Entity")
+	}
+	if r.StartTime == "" {
+		return fmt.Errorf("StartTime is required for AndroidForWorkAutoUpdatePayloadV2Entity")
+	}
+	return nil
+}
+
 // AndroidForWorkChromeBrowserPayloadV2Entity represents AndroidForWork Chrome Browser.
 
 type AndroidForWorkChromeBrowserPayloadV2Entity struct {
@@ -1302,6 +1331,14 @@ type AndroidForWorkEASPayloadV2Entity struct {
 	WorkManagedSettings *AndroidForWorkEASWorkManageSettingsV2 `json:"WorkManagedSettings,omitempty"`
 }
 
+// Validate returns an error naming the first required field left unset.
+func (r *AndroidForWorkEASPayloadV2Entity) Validate() error {
+	if r.Host == "" {
+		return fmt.Errorf("Host is required for AndroidForWorkEASPayloadV2Entity")
+	}
+	return nil
+}
+
 // AndroidForWorkEASWorkManageSettingsV2 represents Android For Work Eas payload Work Managed settings.
 
 type AndroidForWorkEASWorkManageSettingsV2 struct {
@@ -1327,18 +1364,32 @@ type AndroidForWorkFactoryResetProtectionPayloadV2Entity struct {
 // AndroidForWorkKioskPayloadV2Entity represents Android For Work Kiosk Payload.
 
 type AndroidForWorkKioskPayloadV2Entity struct {
+	// Gets or sets a value for AllowList ClassNameText.
+	AddCustomDeviceSettingActionText string `json:"AddCustomDeviceSettingActionText,omitempty"`
 	// Gets or sets adminPasscode.
 	AdminPasscode string `json:"AdminPasscode,omitempty"`
 	// Gets or sets a value indicating whether allowAirplaneMode.
 	AllowAirplaneMode *bool `json:"AllowAirplaneMode,omitempty"`
 	// Gets or sets a value indicating whether allowAllTethering.
 	AllowAllTethering *bool `json:"AllowAllTethering,omitempty"`
+	// Gets or sets a value indicating whether allow app pinning.
+	AllowAppPinning *bool `json:"AllowAppPinning,omitempty"`
 	// Gets or sets a value indicating whether allowBackKey.
 	AllowBackKey *bool `json:"AllowBackKey,omitempty"`
+	// Gets or sets a value indicating whether allow bookmarks.
+	AllowBookmarks *bool `json:"AllowBookmarks,omitempty"`
+	// Gets or sets a value indicating whether Selected Type.
+	AllowBranding *bool `json:"AllowBranding,omitempty"`
 	// Gets or sets a value indicating whether allowCellularData.
 	AllowCellularData *bool `json:"AllowCellularData,omitempty"`
 	// Gets or sets a value indicating whether allowCustomTray.
 	AllowCustomTray *bool `json:"AllowCustomTray,omitempty"`
+	// Gets or sets a value for AllowList ClassNameText.
+	AllowDynamicActivityClassNameText string `json:"AllowDynamicActivityClassNameText,omitempty"`
+	// Gets or sets a value for AllowList PackageNameText.
+	AllowDynamicActivityPackageNameText string `json:"AllowDynamicActivityPackageNameText,omitempty"`
+	// Gets or sets a value indicating whether Show flashlight.
+	AllowFlashlight *bool `json:"AllowFlashlight,omitempty"`
 	// Gets or sets a value indicating whether allowGpsLocationServices.
 	AllowGpsLocationServices *bool `json:"AllowGpsLocationServices,omitempty"`
 	// Gets or sets a value indicating whether allowHardwareKeys.
@@ -1351,10 +1402,18 @@ type AndroidForWorkKioskPayloadV2Entity struct {
 	AllowIcons *bool `json:"AllowIcons,omitempty"`
 	// Gets or sets a value indicating whether AllowKeyguard.
 	AllowKeyguard *bool `json:"AllowKeyguard,omitempty"`
+	// Gets or sets a value indicating whether Selected Type.
+	AllowLaunchOnReboot *bool `json:"AllowLaunchOnReboot,omitempty"`
 	// Gets or sets a value indicating whether allowLauncherSettings.
 	AllowLauncherSettings *bool `json:"AllowLauncherSettings,omitempty"`
+	// Gets or sets a value for AllowList ClassNameText.
+	AllowListClassNameText string `json:"AllowListClassNameText,omitempty"`
+	// Gets or sets a value for AllowList PackageNameText.
+	AllowListPackageNameText string `json:"AllowListPackageNameText,omitempty"`
 	// Gets or sets a value indicating whether allowMiniLaunchBar.
 	AllowMiniLaunchBar *bool `json:"AllowMiniLaunchBar,omitempty"`
+	// Gets or sets a value indicating whether allow multi window.
+	AllowMultiWindow *bool `json:"AllowMultiWindow,omitempty"`
 	// Gets or sets a value indicating whether allowNavigationBar.
 	AllowNavigationBar *bool `json:"AllowNavigationBar,omitempty"`
 	// Gets or sets a value indicating whether allowNotificationBar.
@@ -1367,6 +1426,8 @@ type AndroidForWorkKioskPayloadV2Entity struct {
 	AllowRecentTasks *bool `json:"AllowRecentTasks,omitempty"`
 	// Gets or sets a value indicating whether allowSettings.
 	AllowSettings *bool `json:"AllowSettings,omitempty"`
+	// Gets or sets a value indicating whether Comma separated list of package Ids.
+	AllowStagingActivities *bool `json:"AllowStagingActivities,omitempty"`
 	// Gets or sets a value indicating whether allowStatusBar.
 	AllowStatusBar *bool `json:"AllowStatusBar,omitempty"`
 	// Gets or sets a value indicating whether allowStayAwake.
@@ -1397,16 +1458,60 @@ type AndroidForWorkKioskPayloadV2Entity struct {
 	AppMode *int `json:"AppMode,omitempty"`
 	// Gets or sets a value indicating whether applicationSetting.
 	ApplicationSetting *bool `json:"ApplicationSetting,omitempty"`
+	// Gets or sets a value for Enabling an automatic timeout for admin mode. Once the timer expires, the device transitions to user mode, even if it's in use.
+	AutoExitAdminMode *int `json:"AutoExitAdminMode,omitempty"`
 	// Gets or sets a value indicating whether bluetoothSetting.
 	BluetoothSetting *bool `json:"BluetoothSetting,omitempty"`
+	// Gets or sets a value for caching of user profiles to speed up check-out and check-in cycles on shared devices.
+	CacheProfile string `json:"CacheProfile,omitempty"`
+	// Gets or sets a value indicating whether Enabling this feature allows Launcher to call initiates Hub's clear cache/application APIs between CICO sessions.
+	ClearAppData *bool `json:"ClearAppData,omitempty"`
+	// Gets or sets a value indicating whether Save toggle value for ClearAppData.
+	ClearAppDataSetting *bool `json:"ClearAppDataSetting,omitempty"`
 	// Gets or sets a value indicating whether contactsView.
 	ContactsView *bool `json:"ContactsView,omitempty"`
+	// Gets or sets a value indicating whether Allowlist specific dynamic activities that Launcher may otherwise block.
+	CustomActivities *bool `json:"CustomActivities,omitempty"`
+	// Gets or sets a value AllowList ClassNameText.
+	CustomDeviceSettingClassNameText string `json:"CustomDeviceSettingClassNameText,omitempty"`
+	// Gets or sets a value for AllowList ClassNameText.
+	CustomDeviceSettingDispSettingsText string `json:"CustomDeviceSettingDispSettingsText,omitempty"`
+	// Gets or sets a value for AllowList ClassNameText.
+	CustomDeviceSettingPackageNameText string `json:"CustomDeviceSettingPackageNameText,omitempty"`
+	// Gets or sets a value indicating whether Selected Type.
+	CustomDeviceSettingType *bool `json:"CustomDeviceSettingType,omitempty"`
+	// Gets or sets a value for AllowList ClassNameText.
+	CustomDeviceSettingsText string `json:"CustomDeviceSettingsText,omitempty"`
+	// Gets or sets a value indicating whether Comma separated list of package Ids and class.
+	CustomSettings *bool `json:"CustomSettings,omitempty"`
+	// Gets or sets a value for the device brightness level.
+	DeviceBrightnessLevel *int `json:"DeviceBrightnessLevel,omitempty"`
+	// Gets or sets a value indicating whether Selected Type.
+	DisableFocusMonitoring *bool `json:"DisableFocusMonitoring,omitempty"`
+	// Gets or sets a value indicating whether Disable search bar.
+	DisableSearch *bool `json:"DisableSearch,omitempty"`
+	// Gets or sets a value indicating whether Disable Sensor Orientation.
+	DisableSensorOrientation *bool `json:"DisableSensorOrientation,omitempty"`
 	// Gets or sets a value indicating whether displaySetting.
 	DisplaySetting *bool `json:"DisplaySetting,omitempty"`
 	// Gets or sets a value indicating whether dockSetting.
 	DockSetting *bool `json:"DockSetting,omitempty"`
+	// Gets or sets a value of Comma separated list of package Ids.
+	DonotClearAppDataSet string `json:"DonotClearAppDataSet,omitempty"`
+	// Gets or sets a value indicating whether Show dark mode.
+	EnableDarkTheme *bool `json:"EnableDarkTheme,omitempty"`
+	// Gets or sets a value indicating whether Show launcher widgets.
+	EnableLauncherWidget *bool `json:"EnableLauncherWidget,omitempty"`
+	// Gets or sets a value indicating whether User Theme Change takes the precedence on top of Enable Admin Dark Mode and it will be reset once device checks in.
+	EnableUserThemeChange *bool `json:"EnableUserThemeChange,omitempty"`
+	// Gets or sets a value indicating whether Position of app floating button.
+	FixPosition *bool `json:"FixPosition,omitempty"`
+	// Gets or sets a value for ForYouWidgets settings text.
+	ForYouWidgets string `json:"ForYouWidgets,omitempty"`
 	// Gets or sets a value indicating whether freezeIcons.
 	FreezeIcons *bool `json:"FreezeIcons,omitempty"`
+	// Gets or sets a value indicating whether Selected Type.
+	GhostAppFeature *bool `json:"GhostAppFeature,omitempty"`
 	// Gets or sets gridConfigGeneric.
 	GridConfigGeneric string `json:"GridConfigGeneric,omitempty"`
 	// Gets or sets gridConfigLarge.
@@ -1419,10 +1524,36 @@ type AndroidForWorkKioskPayloadV2Entity struct {
 	GridLayout string `json:"GridLayout,omitempty"`
 	// Gets or sets groupId.
 	GroupID string `json:"GroupId,omitempty"`
+	// Gets or sets a value indicating whether Disable/Enable Guest session Mode in Launcher.
+	GuestMode *bool `json:"GuestMode,omitempty"`
+	// Gets or sets a value for Passcode or Pin for accessing launcher Guest session Mode.
+	GuestPasscode string `json:"GuestPasscode,omitempty"`
+	// Gets or sets Authentication Type for Guest session Mode in Launcher.
+	GuestPasscodeType string `json:"GuestPasscodeType,omitempty"`
+	// Gets or sets a value indicating whether hide action bar.
+	HideActionBar *bool `json:"HideActionBar,omitempty"`
+	// Gets or sets hot seat bar settings.
+	HotSeatBarSettings string `json:"HotSeatBarSettings,omitempty"`
 	// Gets or sets iconSize.
 	IconSize *int `json:"IconSize,omitempty"`
 	// Gets or sets a value indicating whether languageSetting.
 	LanguageSetting *bool `json:"LanguageSetting,omitempty"`
+	// Gets or sets a value for Auto launch app package id.
+	LaunchAppOnStartup string `json:"LaunchAppOnStartup,omitempty"`
+	// Gets or sets a value indicating whether Enable this option to display a logout notification on the lock screen for shared devices. Users can tap this notification to log out directly.
+	LogoutSharedDeviceNotificationFeature *bool `json:"LogoutSharedDeviceNotificationFeature,omitempty"`
+	// Gets or sets a value for Setting the maximum number of user profiles Launcher should keep cached on the device. When this limit is exceeded, older profiles are removed to free up space. Default is 50.
+	MaxProfilesAllowed *int `json:"MaxProfilesAllowed,omitempty"`
+	// Gets or sets a value indicating whether Comma separated list of package Ids and class.
+	NotificationCustomSound *bool `json:"NotificationCustomSound,omitempty"`
+	// Gets or sets a value indicating whether offline mode is enabled.
+	Offline *bool `json:"Offline,omitempty"`
+	// Gets or sets offline passcode.
+	OfflinePasscode string `json:"OfflinePasscode,omitempty"`
+	// Gets or sets offline passcode type.
+	OfflinePasscodeType string `json:"OfflinePasscodeType,omitempty"`
+	// Gets or sets orientation.
+	Orientation *int `json:"Orientation,omitempty"`
 	// Gets or sets orientationType.
 	OrientationType *int `json:"OrientationType,omitempty"`
 	// Gets or sets a value indicating whether persistAdminPasscode.
@@ -1431,6 +1562,8 @@ type AndroidForWorkKioskPayloadV2Entity struct {
 	PhoneCall *bool `json:"PhoneCall,omitempty"`
 	// Gets or sets a value indicating whether powerSetting.
 	PowerSetting *bool `json:"PowerSetting,omitempty"`
+	// Gets or sets a value indicating whether Selected Type.
+	RemoveHomeFloatingButtonSetting *bool `json:"RemoveHomeFloatingButtonSetting,omitempty"`
 	// Gets or sets screenCount.
 	ScreenCount *int `json:"ScreenCount,omitempty"`
 	// Gets or sets a value indicating whether screenLock.
@@ -1441,32 +1574,106 @@ type AndroidForWorkKioskPayloadV2Entity struct {
 	SectionName string `json:"SectionName,omitempty"`
 	// Gets or sets a value indicating whether securitySetting.
 	SecuritySetting *bool `json:"SecuritySetting,omitempty"`
+	// Gets or sets a value indicating whether Allows the admin to configure display settings.
+	SetDeviceBrightness *bool `json:"SetDeviceBrightness,omitempty"`
 	// Gets or sets a value indicating whether showAgentIconOnHomeScreen.
 	ShowAgentIconOnHomeScreen *bool `json:"ShowAgentIconOnHomeScreen,omitempty"`
+	// Gets or sets a value indicating whether Selected Type to show logout button on home screen.
+	ShowLogoutButtonOnHomeScreen *bool `json:"ShowLogoutButtonOnHomeScreen,omitempty"`
+	// Gets or sets a value indicating whether Allowlist specific dynamic activities that Launcher may otherwise block.
+	ShowPopupNotification *bool `json:"ShowPopupNotification,omitempty"`
+	// Gets or sets a value indicating whether Selected Type.
+	SingleAppFloatingButtonSetting *bool `json:"SingleAppFloatingButtonSetting,omitempty"`
 	// Gets or sets a value indicating whether singleAppMode.
 	SingleAppMode *bool `json:"SingleAppMode,omitempty"`
+	// Gets or sets a value for Size of app floating button.
+	Size string `json:"Size,omitempty"`
+	// Gets or sets a value indicating whether Enabling this feature allows Launcher to use Workspace ONEs legacy API set in place of Androids default lock task APIs for device lockdown.
+	SkipCosuSetup *bool `json:"SkipCosuSetup,omitempty"`
 	// Gets or sets a value indicating whether soundSetting.
 	SoundSetting *bool `json:"SoundSetting,omitempty"`
+	// Gets or sets a value indicating whether Allowlist specific dynamic activities that Launcher may otherwise block.
+	SpeedLockdownSettings *bool `json:"SpeedLockdownSettings,omitempty"`
+	// Gets or sets a value for the admin mode button to the dropdown menu on the CICO screen.
+	StagingAdminPasscode string `json:"StagingAdminPasscode,omitempty"`
 	// Gets or sets statusBarFrequency.
 	StatusBarFrequency *int `json:"StatusBarFrequency,omitempty"`
 	// Gets or sets a value indicating whether storageSetting.
 	StorageSetting *bool `json:"StorageSetting,omitempty"`
 	// Gets or sets templateModeData.
 	TemplateModeData string `json:"TemplateModeData,omitempty"`
+	// Gets or sets a value for timeout setting from floating button.
+	TimeOut string `json:"TimeOut,omitempty"`
+	// Gets or sets a value for Title bar content description.
+	TitleBarContentDescription string `json:"TitleBarContentDescription,omitempty"`
 	// Gets or sets titleBarIcon.
 	TitleBarIcon *int `json:"TitleBarIcon,omitempty"`
+	// Gets or sets title bar icon URL.
+	TitleBarIconURL string `json:"TitleBarIconUrl,omitempty"`
 	// Gets or sets titleBarText.
 	TitleBarText string `json:"TitleBarText,omitempty"`
+	// Gets or sets a value indicating whether Unpairs the bluetooth peripherals.
+	UnpairBluetoothDevices *bool `json:"UnpairBluetoothDevices,omitempty"`
 	// Gets or sets userName.
 	UserName string `json:"UserName,omitempty"`
+	// Gets or sets a value indicating whether Selected Type to Require Tunnel before Launcher.
+	WaitForTunnelConfigurationCompletion *bool `json:"WaitForTunnelConfigurationCompletion,omitempty"`
 	// Gets or sets wallPaperUrl.
 	WallPaperURL string `json:"WallPaperUrl,omitempty"`
+	// Gets or sets wallpaper.
+	Wallpaper string `json:"Wallpaper,omitempty"`
 	// Gets or sets wallpaperId.
 	WallpaperID *int `json:"WallpaperId,omitempty"`
 	// Gets or sets wallpaperType.
 	WallpaperType *int `json:"WallpaperType,omitempty"`
 	// Gets or sets a value indicating whether wifiSetting.
 	WifiSetting *bool `json:"WifiSetting,omitempty"`
+	// Gets or sets a value indicating whether Selected Type.
+	WriteSecurePermissionSettings *bool `json:"WriteSecurePermissionSettings,omitempty"`
+	// Gets or sets a value for accentColor text of allow branding.
+	AccentColor string `json:"accentColor,omitempty"`
+	// Gets or sets a value for Body Text.
+	ContentText string `json:"contentText,omitempty"`
+	// Gets or sets a value for Duration to move to speed lock canvas.
+	DurationToMoveToSpeedLockCanvas *int `json:"durationToMoveToSpeedLockCanvas,omitempty"`
+	// Gets or sets a value indicating whether Enable Feature.
+	EnableFeature *bool `json:"enableFeature,omitempty"`
+	// Gets or sets a value for headerText.
+	HeaderText string `json:"headerText,omitempty"`
+	// Gets or sets a value for highlightColor of allow branding.
+	HighlightColor string `json:"highlightColor,omitempty"`
+	// Gets or sets a value for Comma separated list of package Ids.
+	ListOfApplications string `json:"listOfApplications,omitempty"`
+	// Gets or sets a value for BodyLogout Button Text.
+	LogoutText string `json:"logoutText,omitempty"`
+	// Gets or sets a value for messageText.
+	MessageText string `json:"messageText,omitempty"`
+	// Gets or sets a value for statusBarColor of allow branding.
+	NavigationBarColor string `json:"navigationBarColor,omitempty"`
+	// Gets or sets a value for Package Name.
+	PackageName string `json:"packageName,omitempty"`
+	// Gets or sets a value indicating whether Selected Type.
+	ShowSettingsMenuOption *bool `json:"showSettingsMenuOption,omitempty"`
+	// Gets or sets a value for Allow List of Sounds.
+	SoundTitle string `json:"soundTitle,omitempty"`
+	// Gets or sets a value for speed.
+	Speed string `json:"speed,omitempty"`
+	// Gets or sets a value for statusBarColor of allow branding.
+	StatusBarColor string `json:"statusBarColor,omitempty"`
+	// Gets or sets a value for timeout period before an unavailable app is removed.
+	TimeOutInSeconds *int `json:"timeOutInSeconds,omitempty"`
+	// Gets or sets a value for timeThreshold.
+	TimeThreshold string `json:"timeThreshold,omitempty"`
+	// Gets or sets a value for Title bar color of allow branding text.
+	TitleColor string `json:"titleColor,omitempty"`
+	// Gets or sets a value for Input Text.
+	TitleText string `json:"titleText,omitempty"`
+	// Gets or sets a value for Title text color of allow branding.
+	TitleTextColor string `json:"titleTextColor,omitempty"`
+	// Gets or sets a value for troubleshootPasscode.
+	TroubleshootPasscode string `json:"troubleshootPasscode,omitempty"`
+	// Gets or sets a value for unit.
+	Unit string `json:"unit,omitempty"`
 }
 
 // AndroidForWorkOemDateTimePayloadV2Entity represents DateTime payload entity.
@@ -1737,7 +1944,7 @@ type AndroidForWorkRestrictionsPayloadV2Entity struct {
 	// Gets or sets a value indicating whether [allow work to access personal].
 	AllowWorkToAccessPersonal *bool `json:"AllowWorkToAccessPersonal,omitempty"`
 	// Gets or sets the allowed accounts.
-	AllowedAccounts *int `json:"AllowedAccounts,omitempty"`
+	AllowedAccounts string `json:"AllowedAccounts,omitempty"`
 	// Gets or sets the allowed email address.
 	AllowedEmailAddress string `json:"AllowedEmailAddress,omitempty"`
 	// Android for work samsung specific restriction settings. All properties here should map to AndroidForWorkRestrictionsPayloadV2Entitiy.
@@ -1768,7 +1975,7 @@ type AndroidForWorkSamsungAPNPayloadV2Entity struct {
 	// Gets or sets Authentication Type.
 	AuthType *int `json:"AuthType,omitempty"`
 	// Gets or sets Mobile Country Code (MCC).
-	Mcc *int `json:"Mcc"`
+	Mcc int `json:"Mcc"`
 	// Gets or setsMMS Proxy Server Port.
 	MmsPort *int `json:"MmsPort,omitempty"`
 	// Gets or sets MMS Proxy Server.
@@ -1776,7 +1983,7 @@ type AndroidForWorkSamsungAPNPayloadV2Entity struct {
 	// Gets or sets MMS Server (MMSC).
 	Mmsc string `json:"Mmsc,omitempty"`
 	// Gets or sets Mobile Network Code (MNC).
-	Mnc *int `json:"Mnc"`
+	Mnc int `json:"Mnc"`
 	// Gets or sets the profile name.
 	Name string `json:"Name"`
 	// Gets or sets Access Point Password.
@@ -1793,6 +2000,23 @@ type AndroidForWorkSamsungAPNPayloadV2Entity struct {
 	Type string `json:"Type"`
 	// Gets or sets Access Point Username.
 	Username string `json:"Username,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *AndroidForWorkSamsungAPNPayloadV2Entity) Validate() error {
+	if r.Apn == "" {
+		return fmt.Errorf("Apn is required for AndroidForWorkSamsungAPNPayloadV2Entity")
+	}
+	if r.Mcc == 0 {
+		return fmt.Errorf("Mcc is required for AndroidForWorkSamsungAPNPayloadV2Entity")
+	}
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for AndroidForWorkSamsungAPNPayloadV2Entity")
+	}
+	if r.Type == "" {
+		return fmt.Errorf("Type is required for AndroidForWorkSamsungAPNPayloadV2Entity")
+	}
+	return nil
 }
 
 // AndroidForWorkSamsungDateTimePayloadV2Entity represents Samsung AFW DateTime payload entity.
@@ -1813,11 +2037,22 @@ type AndroidForWorkSamsungDateTimePayloadV2Entity struct {
 	// Gets or sets indicates the length of a sync interval.
 	SyncIntervalDays *int `json:"SyncIntervalDays,omitempty"`
 	// Gets or sets time format.
-	TimeFormat *int `json:"TimeFormat"`
+	TimeFormat int `json:"TimeFormat"`
 	// Gets or sets timezone.
 	TimeZone string `json:"TimeZone,omitempty"`
 	// Gets or sets url of server setting date time value.
 	URL string `json:"URL,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *AndroidForWorkSamsungDateTimePayloadV2Entity) Validate() error {
+	if r.DateFormat == "" {
+		return fmt.Errorf("DateFormat is required for AndroidForWorkSamsungDateTimePayloadV2Entity")
+	}
+	if r.DateTime == "" {
+		return fmt.Errorf("DateTime is required for AndroidForWorkSamsungDateTimePayloadV2Entity")
+	}
+	return nil
 }
 
 // AndroidForWorkSamsungFirewallPayloadV2Entity represents Android For Work Samsung Firewall Payload entity.
@@ -1867,7 +2102,7 @@ type AndroidForWorkSamsungPasscodePayloadV2Entity struct {
 	// Gets or sets maxRepeatingCharacters.
 	MaximumRepeatCharacters string `json:"MaximumRepeatCharacters,omitempty"`
 	// Gets or sets minLength.
-	MinLength *int `json:"MinLength"`
+	MinLength int `json:"MinLength"`
 	// Gets or sets overlayType.
 	OverlayType *int `json:"OverlayType,omitempty"`
 	// Gets or sets quality.
@@ -2230,7 +2465,7 @@ type AndroidForWorkWorkProfileRestrictionsPayloadV2Entity struct {
 	// Gets or sets a value indicating whether allow Work widgets to personal setting.
 	WorkAllowWorkWidgetsToPersonal *bool `json:"WorkAllowWorkWidgetsToPersonal,omitempty"`
 	// Gets or sets a value indicating which type of account is allowed.
-	WorkAllowedAccounts *int `json:"WorkAllowedAccounts,omitempty"`
+	WorkAllowedAccounts string `json:"WorkAllowedAccounts,omitempty"`
 	// Gets or sets the email addresses for the account type is allowed.
 	WorkAllowedEmailAddress string `json:"WorkAllowedEmailAddress,omitempty"`
 	// Gets or sets a value indicating whether pO mode skip user tutorial on first start-up for apps.
@@ -3544,7 +3779,7 @@ type AppleOsXMediaAccessEntityV2 struct {
 	Allow *bool `json:"Allow,omitempty"`
 	// Gets or sets a value indicating whether if set to true, the user will be authenticated before the media is mounted.
 	Authenticate *bool `json:"Authenticate,omitempty"`
-	// Gets or sets a value indicating whether if set to true, the media will be mounted as read-only.
+	// If true, the media is mounted read-only. Not supported for DiskMediaCDs or DiskMediaDVDs: the V2 API neither saves nor returns Read-Only for CDs and DVDs (it does for the hard-disk types).
 	ReadOnly *bool `json:"Read-Only,omitempty"`
 }
 
@@ -3731,7 +3966,7 @@ type AppleOsXRestrictionContentCachingPayloadEntityV2 struct {
 // AppleOsXRestrictionDesktopPayloadEntityV2 represents Apple macOS Restriction Desktop Payload Entity.
 
 type AppleOsXRestrictionDesktopPayloadEntityV2 struct {
-	// Gets or sets the path for the desktop picture. Leaving the path blank will lock the current desktop picture and prevent it from being changed.
+	// Path for the desktop picture. The server stores it regardless, but a GET returns it only when LockDesktopPicture is true.
 	DesktopPicturePath string `json:"DesktopPicturePath,omitempty"`
 	// Gets or sets a value indicating whether if set true, prevents changing the desktop picture.
 	LockDesktopPicture *bool `json:"LockDesktopPicture,omitempty"`
@@ -3845,6 +4080,8 @@ type AppleOsXRestrictionPasswordsPayloadEntityV2 struct {
 // AppleOsXRestrictionPreferencesPayloadEntityV2 represents Apple macOS Restriction Preferences Payload Entity.
 
 type AppleOsXRestrictionPreferencesPayloadEntityV2 struct {
+	// Gets or sets a value indicating whether whether to enable of the System Preference Panes.
+	EnabledPreferencePanes *bool `json:"EnabledPreferencePanes,omitempty"`
 	// Gets or sets a value indicating whether whether to enable of the Accessibility Preference Pane.
 	Accessibility *bool `json:"Accessibility,omitempty"`
 	// Gets or sets a value indicating whether whether to enable of the App Store.
@@ -3863,8 +4100,6 @@ type AppleOsXRestrictionPreferencesPayloadEntityV2 struct {
 	Displays *bool `json:"Displays,omitempty"`
 	// Gets or sets a value indicating whether whether to enable of the Dock.
 	Dock *bool `json:"Dock,omitempty"`
-	// Gets or sets a value indicating whether whether to enable of the System Preference Panes.
-	EnabledPreferencePanes *bool `json:"EnabledPreferencePanes,omitempty"`
 	// Gets or sets a value indicating whether whether to enable of the Energy Saver.
 	EnergySaver *bool `json:"EnergySaver,omitempty"`
 	// Gets or sets a value indicating whether whether to enable of the Extensions.
@@ -3937,6 +4172,8 @@ type AppleOsXRestrictionSafariPayloadEntityV2 struct {
 // AppleOsXRestrictionSharingPayloadEntityV2 represents Apple macOS Restriction Sharing Payload Entity.
 
 type AppleOsXRestrictionSharingPayloadEntityV2 struct {
+	// Gets or sets a value indicating whether whether to enable restrictions for sharing services.
+	RestrictWhichSharingServicesAreEnabled *bool `json:"RestrictWhichSharingServicesAreEnabled,omitempty"`
 	// Gets or sets a value indicating whether whether to enable the Add to Aperture.
 	AddtoAperture *bool `json:"AddtoAperture,omitempty"`
 	// Gets or sets a value indicating whether whether to enable the Add to Reading List.
@@ -3953,8 +4190,6 @@ type AppleOsXRestrictionSharingPayloadEntityV2 struct {
 	Mail *bool `json:"Mail,omitempty"`
 	// Gets or sets a value indicating whether whether to enable Messages.
 	Messages *bool `json:"Messages,omitempty"`
-	// Gets or sets a value indicating whether whether to enable restrictions for sharing services.
-	RestrictWhichSharingServicesAreEnabled *bool `json:"RestrictWhichSharingServicesAreEnabled,omitempty"`
 	// Gets or sets a value indicating whether whether to enable Sina Weibo.
 	SinaWeibo *bool `json:"SinaWeibo,omitempty"`
 	// Gets or sets a value indicating whether whether to enable Twitter.
@@ -4522,7 +4757,7 @@ type AppleVpnOnDemandEntityV2 struct {
 	// Gets or sets domain name for VPN On Demand.
 	Domain string `json:"Domain,omitempty"`
 	// Gets or sets specifies the On Demand Action on the Domain.
-	Type *int `json:"Type,omitempty"`
+	Type string `json:"Type,omitempty"`
 }
 
 // AppleVpnPayloadV2Entity represents Apple VPN Payload V2 Entity.
@@ -4811,6 +5046,28 @@ type ApplicationListEntityV2 struct {
 	LaunchOnStart *bool `json:"LaunchOnStart,omitempty"`
 }
 
+// BaseExceptionModelV2 represents Base model for exception.
+
+type BaseExceptionModelV2 struct {
+	// Gets or sets transactionId of the request.
+	ActivityID string `json:"activityId,omitempty"`
+	// Gets or sets application error code.
+	ErrorCode *int `json:"errorCode,omitempty"`
+	// Gets or sets list of hypermedia link.
+	Links []LinkV2 `json:"links,omitempty"`
+	// Gets or sets friendly error message.
+	Message map[string]interface{} `json:"message,omitempty"`
+}
+
+// BaseModelV2 represents Base class for ViewModels.
+
+type BaseModelV2 struct {
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
 // CertificateMetadataModel1V2 represents Certificate Metadata Model.
 
 type CertificateMetadataModel1V2 struct {
@@ -4885,8 +5142,273 @@ type DenyRuleV2 struct {
 // DeviceProfileV2Entity represents This will be the base class for all the Device Profiles pertaining to different Platforms(Android, Apple, etc.) All Paltform specific Device Profile Entities should inherit this class It is not essential that this class has members, it just serves as a base entity that will be returned from the API calls to the Client code.
 
 type DeviceProfileV2Entity struct {
+	// Gets or sets List of EAS AirWatch Mail Credential payload.
+	AWMailCredentialList []AppleEASAWMailCredentialPayloadV2Entity `json:"AWMailCredentialList,omitempty"`
+	// Android work custom messages profile entity.
+	AndroidForWorkCustomMessages *AndroidForWorkCustomMessagesPayloadV2Entity `json:"AndroidForWorkCustomMessages,omitempty"`
+	// Credentials payload list. Item shape varies by platform; modeled generically here to avoid silently dropping platform-specific fields.
+	CredentialsList []map[string]interface{} `json:"CredentialsList,omitempty"`
+	// Gets or sets the Custom Attributes payload.
+	CustomAttributes []MacOsCustomAttributePayloadV2Model `json:"CustomAttributes,omitempty"`
+	// Custom settings payload list. Item shape varies by platform; modeled generically here to avoid silently dropping platform-specific fields.
+	CustomSettingsList []map[string]interface{} `json:"CustomSettingsList,omitempty"`
+	// The Apple macOS Disk Encryption Payload Entity.
+	DiskEncryption *AppleOsXDiskEncryptionPayloadEntityV2 `json:"DiskEncryption,omitempty"`
+	// Gets or sets List of EAS Native Mail Client payload.
+	EASNativeMailClientList []AppleEASNativeMailClientPayloadV2Entity `json:"EASNativeMailClientList,omitempty"`
+	// Email payload list. Item shape varies by platform; modeled generically here to avoid silently dropping platform-specific fields.
+	EmailList []map[string]interface{} `json:"EmailList,omitempty"`
+	// The windows desktop firewall payload entity.
+	Firewall *WindowsDesktopFirewallPayloadEntityV2 `json:"Firewall,omitempty"`
 	// General payload V2 entity.
 	General *GeneralPayloadV2Entity `json:"General,omitempty"`
+	// Gets or sets List of Google Account payload.
+	GoogleAccount []AppleGoogleAccountPayloadV2Entity `json:"GoogleAccount,omitempty"`
+	// Gets or sets List of Network payload.
+	NetworkList []AppleOsXNetworkPayloadEntityV2 `json:"NetworkList,omitempty"`
+	// Passcode payload. Shape varies by platform; modeled generically here to avoid silently dropping platform-specific fields.
+	Passcode map[string]interface{} `json:"Passcode,omitempty"`
+	// Restrictions payload. Shape varies by platform (Android/Apple/AppleOsX/WinRT each have a distinct Restrictions schema); modeled generically here to avoid silently dropping platform-specific fields.
+	Restrictions map[string]interface{} `json:"Restrictions,omitempty"`
+	// SCEP payload list. Item shape varies by platform; modeled generically here to avoid silently dropping platform-specific fields.
+	ScepList []map[string]interface{} `json:"ScepList,omitempty"`
+	// SSO extension payload list. Item shape varies by platform; modeled generically here to avoid silently dropping platform-specific fields.
+	SsoExtensionList []map[string]interface{} `json:"SsoExtensionList,omitempty"`
+	// VPN payload list. Item shape varies by platform; modeled generically here to avoid silently dropping platform-specific fields.
+	VpnList []map[string]interface{} `json:"VpnList,omitempty"`
+	// Gets or sets Web clips payload list.
+	WebClipsList []MacOsWebClipsPayloadV2Entity `json:"WebClipsList,omitempty"`
+	// WiFi payload list. Item shape varies by platform; modeled generically here to avoid silently dropping platform-specific fields.
+	WifiList []map[string]interface{} `json:"WifiList,omitempty"`
+}
+
+// DeviceSensorAssignedSmartGroupV1ModelV2 represents A model holding the details of smart groups assigned to device sensors.
+
+type DeviceSensorAssignedSmartGroupV1ModelV2 struct {
+	// Name of the smart group.
+	Name string `json:"name,omitempty"`
+	// Unique identifier for the smart group.
+	SmartGroupUUID string `json:"smart_group_uuid,omitempty"`
+}
+
+// DeviceSensorAssignmentRankingV1ModelV2 represents The device sensor assignment model containing assignment ranking.
+
+type DeviceSensorAssignmentRankingV1ModelV2 struct {
+	// The device sensor assignment ranking
+	Ranking *int `json:"ranking,omitempty"`
+	// The device sensor assignment uuid
+	UUID string `json:"uuid,omitempty"`
+}
+
+// DeviceSensorAssignmentRequestV1ModelV2 represents A device sensor assignment update model
+
+type DeviceSensorAssignmentRequestV1ModelV2 struct {
+	// Event triggers defining the trigger for the data collection. The NETWORK_CHANGE trigger is applicable only for macOS platform.
+	EventTriggers []string `json:"event_triggers,omitempty"`
+	// Name of the device sensor assignment.
+	Name string `json:"name"`
+	// The list of smart group UUIDs assigned to the sensor
+	SmartGroupUUIDs []string `json:"smart_group_uuids,omitempty"`
+	// Trigger type for script execution. SCHEDULEANDEVENT trigger type is applicable only for macOS platform. Linux platform supports only SCHEDULE trigger type.
+	TriggerType string `json:"trigger_type,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceSensorAssignmentRequestV1ModelV2) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for DeviceSensorAssignmentRequestV1ModelV2")
+	}
+	return nil
+}
+
+// DeviceSensorAssignmentResponseV1ModelV2 represents A device sensor assignment model
+
+type DeviceSensorAssignmentResponseV1ModelV2 struct {
+	// Assigned smart groups to the device sensor.
+	AssignedSmartGroups []DeviceSensorAssignedSmartGroupV1ModelV2 `json:"assigned_smart_groups,omitempty"`
+	// Event triggers defining the trigger for the data collection. The NETWORK_CHANGE trigger is applicable only for macOS platform.
+	EventTriggers []string `json:"event_triggers,omitempty"`
+	// Name of the device sensor assignment.
+	Name string `json:"name,omitempty"`
+	// Ranking of the assignment. 1 specifies highest ranking.
+	Ranking *int `json:"ranking,omitempty"`
+	// The total count of smart groups associated with the assignment.
+	SmartGroupCount *int `json:"smart_group_count,omitempty"`
+	// Trigger type for script execution. SCHEDULEANDEVENT trigger type is applicable only for macOS platform. Linux platform supports only SCHEDULE trigger type.
+	TriggerType string `json:"trigger_type,omitempty"`
+	// Assignment UUID
+	UUID string `json:"uuid,omitempty"`
+}
+
+// DeviceSensorListResponseV2Model represents A model holding the details of device sensors for the Organization Group and the count of device sensors.
+
+type DeviceSensorListResponseV2Model struct {
+	// A list of device sensor details.
+	ResultSet []DeviceSensorResponseLiteV2Model `json:"result_set,omitempty"`
+	// Total number of device sensors for the Organization Group.
+	TotalResults *int `json:"total_results,omitempty"`
+}
+
+// DeviceSensorRequestV2Model represents Request model for creating a device sensor
+
+type DeviceSensorRequestV2Model struct {
+	// Description of the device sensor.
+	Description string `json:"description,omitempty"`
+	// Execution architecture under which the script would be run on device.
+	ExecutionArchitecture string `json:"execution_architecture,omitempty"`
+	// Execution context under which the script would be run on device.
+	ExecutionContext string `json:"execution_context,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Name of the device sensor.
+	Name string `json:"name"`
+	// Organization Group uuid
+	OrganizationGroupUUID string `json:"organization_group_uuid"`
+	// Platform for which the device sensor will be created.
+	Platform string `json:"platform"`
+	// Response type of the data.
+	QueryResponseType string `json:"query_response_type,omitempty"`
+	// Query type of the script.
+	QueryType string `json:"query_type"`
+	// Base64 encoded script to be executed on the device.
+	ScriptData string `json:"script_data"`
+	// Key Value pairs for the environment variables used in scripts.
+	ScriptEnvironmentVariables []DeviceSensorScriptEnvironmentVariableV1V2 `json:"script_environment_variables,omitempty"`
+	// Defines timeout for the script execution in seconds.
+	Timeout *int `json:"timeout,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceSensorRequestV2Model) Validate() error {
+	if r.Name == "" {
+		return fmt.Errorf("Name is required for DeviceSensorRequestV2Model")
+	}
+	if r.OrganizationGroupUUID == "" {
+		return fmt.Errorf("OrganizationGroupUUID is required for DeviceSensorRequestV2Model")
+	}
+	if r.Platform == "" {
+		return fmt.Errorf("Platform is required for DeviceSensorRequestV2Model")
+	}
+	if r.QueryType == "" {
+		return fmt.Errorf("QueryType is required for DeviceSensorRequestV2Model")
+	}
+	if r.ScriptData == "" {
+		return fmt.Errorf("ScriptData is required for DeviceSensorRequestV2Model")
+	}
+	return nil
+}
+
+// DeviceSensorResponseLiteV2Model represents A model holding the details of a device sensor
+
+type DeviceSensorResponseLiteV2Model struct {
+	// The total count of assignment groups associated with the sensor.
+	AssignmentCount *int `json:"assignment_count,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// The user that last modified the sensor or created it in case modifiedBy is not present.
+	LastModifiedBy string `json:"last_modified_by,omitempty"`
+	// The time stamp when the sensor was last modified or created in case modifiedOn is not present.
+	LastModifiedOn client.UEMTime `json:"last_modified_on,omitempty"`
+	// Name of the device sensor.
+	Name string `json:"name,omitempty"`
+	// Organization Group name the device sensor is managed by.
+	OrganizationGroupName string `json:"organization_group_name,omitempty"`
+	// Identifier of the Organization Group.
+	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
+	// Platform for which the device sensor will be created.
+	Platform string `json:"platform,omitempty"`
+	// Query response type of the script.
+	QueryResponseType string `json:"query_response_type,omitempty"`
+	// Query type of the script.
+	QueryType string `json:"query_type,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// DeviceSensorResponseV2Model represents A model holding the details of a device sensor
+
+type DeviceSensorResponseV2Model struct {
+	// Description of the device sensor.
+	Description string `json:"description,omitempty"`
+	// Execution architecture under which the script would be run on device.
+	ExecutionArchitecture string `json:"execution_architecture,omitempty"`
+	// Execution context under which the script would be run on device.
+	ExecutionContext string `json:"execution_context,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Specifies if the sensor is read only with respect to the current Organization Group.
+	IsReadOnly *bool `json:"is_read_only,omitempty"`
+	// Name of the device sensor.
+	Name string `json:"name,omitempty"`
+	// Organization Group name the device sensor is managed by.
+	OrganizationGroupName string `json:"organization_group_name,omitempty"`
+	// Identifier of the Organization Group.
+	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
+	// Platform for which the device sensor will be created.
+	Platform string `json:"platform,omitempty"`
+	// Response type of the data.
+	QueryResponseType string `json:"query_response_type,omitempty"`
+	// Query type of the script.
+	QueryType string `json:"query_type,omitempty"`
+	// Base64 encoded script to be executed on the device.
+	ScriptData string `json:"script_data,omitempty"`
+	// Key Value pairs for the environment variables used in scripts.
+	ScriptEnvironmentVariables []DeviceSensorScriptEnvironmentVariableV1V2 `json:"script_environment_variables,omitempty"`
+	// Defines timeout(in seconds) for the script execution.
+	Timeout *int `json:"timeout,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+}
+
+// DeviceSensorScriptEnvironmentVariableV1V2 represents Model for script environment variables
+
+type DeviceSensorScriptEnvironmentVariableV1V2 struct {
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Script environment variable key
+	Key string `json:"key"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
+	// Script environment variable value. Lookups are supported.
+	Value string `json:"value"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *DeviceSensorScriptEnvironmentVariableV1V2) Validate() error {
+	if r.Key == "" {
+		return fmt.Errorf("Key is required for DeviceSensorScriptEnvironmentVariableV1V2")
+	}
+	if r.Value == "" {
+		return fmt.Errorf("Value is required for DeviceSensorScriptEnvironmentVariableV1V2")
+	}
+	return nil
+}
+
+// DeviceSensorUpdateV2Model represents Request model for updating a device sensor
+
+type DeviceSensorUpdateV2Model struct {
+	// Description of the device sensor.
+	Description string `json:"description,omitempty"`
+	// Execution architecture under which the script would be run on the device.
+	ExecutionArchitecture string `json:"execution_architecture,omitempty"`
+	// Execution context under which the script would be run on the device.
+	ExecutionContext string `json:"execution_context,omitempty"`
+	// Gets or sets identifier.
+	ID *int `json:"id,omitempty"`
+	// Platform for which the device sensor will be created.
+	Platform string `json:"platform,omitempty"`
+	// Query type of the script.
+	QueryType string `json:"query_type,omitempty"`
+	// Base64 encoded script to be executed on the device.
+	ScriptData string `json:"script_data,omitempty"`
+	// Key Value pairs for the environment variables used in scripts.
+	ScriptEnvironmentVariables []DeviceSensorScriptEnvironmentVariableV1V2 `json:"script_environment_variables,omitempty"`
+	// Defines timeout for the script execution in seconds.
+	Timeout *int `json:"timeout,omitempty"`
+	// Gets or sets current objects UUID.
+	UUID string `json:"uuid,omitempty"`
 }
 
 // FirewallRuleV2 represents Firewall rules
@@ -4963,6 +5485,8 @@ type GeneralPayloadV2Entity struct {
 	ManagedLocationGroupID *int `json:"ManagedLocationGroupID,omitempty"`
 	// Gets or sets name.
 	Name string `json:"Name,omitempty"`
+	// The organization group ID that owns this profile.
+	OrganizationGroupID *int `json:"OrganizationGroupId,omitempty"`
 	// Gets or sets unlock Password.
 	Password string `json:"Password,omitempty"`
 	Platform string `json:"Platform,omitempty"`
@@ -5314,7 +5838,7 @@ type ProfileDetailsV2Entity struct {
 	// Gets or sets profile's Assignment Type.
 	AssignmentType string `json:"AssignmentType,omitempty"`
 	// Gets or sets context of the Profile.
-	Context *int `json:"Context,omitempty"`
+	Context string `json:"Context,omitempty"`
 	// Gets or sets excluded Smart Groups.
 	ExcludedSmartGroups []ProfileSmartGroupV2Entity `json:"ExcludedSmartGroups,omitempty"`
 	// Gets or sets profile's Organization Group name.
@@ -5593,7 +6117,7 @@ type WindowsDesktopBiosPayloadEntityV2 struct {
 	// Gets or sets enable bluetooth?.
 	Bluetooth *bool `json:"Bluetooth,omitempty"`
 	// Gets or sets boot mode {AirWatch.ServiceModel.Profiles.V2.Resources.WindowsDesktop.WindowsDesktopBiosPayloadEntity.BootMode} .
-	BootMode *int `json:"BootMode,omitempty"`
+	BootMode string `json:"BootMode,omitempty"`
 	// Gets or sets enable cellular radio?.
 	CellularRadio *bool `json:"CellularRadio,omitempty"`
 	// Gets or sets battery Design Capacity.
@@ -5629,7 +6153,7 @@ type WindowsDesktopBiosPayloadEntityV2 struct {
 	// Gets or sets this is a percentage-based number that follows the Windows reported battery life value. The goal of this setting is to try and ensure that Peak Shift does not turn off charging when the battery is in danger of running out of power. If the Battery Threshold is reached, the system will switch to AC power ,even if the system has not yet reached Peakshift End. However, charging will not resume until Peak Shift Charge Start time is reached. Note: Peak shift Battery threshold takes the value in the range between 15-100.
 	PeakShiftBatteryThreshold *int `json:"PeakShiftBatteryThreshold,omitempty"`
 	// Gets or sets primary battery charge configuration {WanderingWiFi.AirWatch.Entity.InterrogatorSamples.BatteryChargeConfiguration}.
-	PrimaryBatteryCharge *int `json:"PrimaryBatteryCharge,omitempty"`
+	PrimaryBatteryCharge string `json:"PrimaryBatteryCharge,omitempty"`
 	// Gets or sets percentage (0..100) at which primary battery should start charging.
 	PrimaryBatteryCustomChargeStartLimit *int `json:"PrimaryBatteryCustomChargeStartLimit,omitempty"`
 	// Gets or sets percentage (0..100) at which primary battery should stop charging.
@@ -6033,6 +6557,14 @@ type WindowsDesktopKioskPayloadEntityV2 struct {
 	AssignedAccessConfigurationXmlFileID *int `json:"assignedAccessConfigurationXmlFileId,omitempty"`
 	// Gets or sets the kiosk design xml.
 	KioskDesignXml string `json:"kioskDesignXml"`
+}
+
+// Validate returns an error naming the first required field left unset.
+func (r *WindowsDesktopKioskPayloadEntityV2) Validate() error {
+	if r.KioskDesignXml == "" {
+		return fmt.Errorf("KioskDesignXml is required for WindowsDesktopKioskPayloadEntityV2")
+	}
+	return nil
 }
 
 // WindowsDesktopLicensingPayloadEntityV2 represents The WindowsDesktopLicensingPayloadEntity class.
@@ -6624,6 +7156,8 @@ type WindowsDesktopUpdatesV2PayloadEntity struct {
 	AllowMUUpdateService *bool `json:"AllowMUUpdateService,omitempty"`
 	// Gets or sets a value indicating whether automatic updates accepts updates signed by entities other than Microsoft.
 	AllowNonMicrosoftSignedUpdate *bool `json:"AllowNonMicrosoftSignedUpdate,omitempty"`
+	// Gets or sets a value indicating whether out-of-box experience (OOBE) updates are allowed.
+	AllowOOBEUpdates *bool `json:"AllowOOBEUpdates,omitempty"`
 	// Gets or sets a value indicating whether to send diagnostic and usage telemetry data, such as Watson.
 	AllowTelemetry *int `json:"AllowTelemetry,omitempty"`
 	// Gets or sets a value indicating whether the device could use Microsoft Update, Windows Server Update Services (WSUS), or Microsoft Store.

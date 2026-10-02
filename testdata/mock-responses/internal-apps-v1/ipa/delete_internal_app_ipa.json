@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "description": "Internal-app delete (ipa), captured live via tools/internalapps-capture against 26.2.0.0; anonymized via mock-capture's Anonymize() before commit.",
+    "endpoint": "/api/mam/apps/internal/65653",
+    "method": "DELETE",
+    "platform": "ipa",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "body": null,
+    "headers": {},
+    "status_code": 204
+  }
+}
