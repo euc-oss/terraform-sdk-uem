@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/apps/{applicationUuid}/assignment-rules",
     "method": "POST",
-    "description": "Live-captured via bin/mock-capture against <internal-env>/26.2.0.0, org group 138883 (sdktest), the recapture epic's Group A retry. Resolves AppsV2Service.GetListOfDevices (operation AppsV2_GetListOfDevices) -- NOTE this is not a create/assign call despite sharing the POST verb and path with the assignment-rules resource: swagger declares it as a devices-preview query (required query param action=PREVIEW_DEVICES), taking an AppAssignmentRuleV2Model body to preview which devices would be added/removed/unchanged if that rule were applied, without persisting anything. Called against the same real internal iOS app used for the sibling GET/PUT assignment-rules captures (its own UUID as {applicationUuid}), with an empty {} body (no assignments configured). 200, real success: total_count 0 (no devices match an empty rule, expected). App deleted at session end; deletion confirmed.",
+    "description": "Captured POST /api/mam/apps/{applicationUuid}/assignment-rules on the 26.4 lab tenant (UEM 26.4), 2026-09-24, recaptured live via AppsV2Service.GetListOfDevices (action=PREVIEW_DEVICES) against rofx-mac-app-1's uuid, read-only in effect, empty rule body. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {

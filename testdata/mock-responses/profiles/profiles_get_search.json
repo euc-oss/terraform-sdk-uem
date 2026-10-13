@@ -33,13 +33,13 @@
               "Name": "Test Koaladid"
             }
           ],
-          "AssignmentType": "Compliance",
+          "AssignmentType": "Auto",
           "Context": "Device",
           "ExcludedSmartGroups": [],
           "ManagedBy": "PeteLemonChiffon",
-          "OrganizationGroupId": 12347,
+          "OrganizationGroupId": 12345,
           "OrganizationGroupUuid": "4f3fd647-3b82-0193-16a7-4b247f4fe1ab",
-          "Platform": "Apple",
+          "Platform": "AppleOsX",
           "ProfileId": 12348,
           "ProfileName": "Test Butterflykiss",
           "ProfileStatus": "Active",
@@ -47,22 +47,87 @@
           "ProfileUuid": "003d68d0-f7ed-4d3f-fe04-2ebe7a4c652a"
         },
         {
-          "AssignmentSmartGroups": [],
+          "AssignmentSmartGroups": [
+            {
+              "Id": 12349,
+              "Name": "Test MintCreamoffice"
+            }
+          ],
           "AssignmentType": "Auto",
           "Context": "Device",
           "ExcludedSmartGroups": [],
-          "ManagedBy": "LycheeUptight74",
-          "OrganizationGroupId": 12349,
-          "OrganizationGroupUuid": "9c1c3ffc-0f3c-6d86-b09d-b26ad0c7d28c",
-          "Platform": "WinRT",
-          "ProfileId": 12350,
-          "ProfileName": "Test Houndcould",
+          "ManagedBy": "BananaAdventurous45",
+          "OrganizationGroupId": 12345,
+          "OrganizationGroupUuid": "562a7f01-33cf-c986-1515-a7ebb4326547",
+          "Platform": "Apple",
+          "ProfileId": 12351,
+          "ProfileName": "Test Chinchillashould",
           "ProfileStatus": "Active",
           "ProfileType": "Device",
-          "ProfileUuid": "65a9758a-c774-df11-572d-9c9595e2f0b5"
+          "ProfileUuid": "17854d04-8236-e03f-86ea-a8aa56466270"
+        },
+        {
+          "AssignmentSmartGroups": [
+            {
+              "Id": 12352,
+              "Name": "Test SaddleBrownwoman"
+            }
+          ],
+          "AssignmentType": "Auto",
+          "Context": "Device",
+          "ExcludedSmartGroups": [],
+          "ManagedBy": "Woofgang Puck113",
+          "OrganizationGroupId": 12345,
+          "OrganizationGroupUuid": "2f675e2f-88d5-cb76-bd38-9944b986a5da",
+          "Platform": "Apple",
+          "ProfileId": 12354,
+          "ProfileName": "Test Yearride",
+          "ProfileStatus": "Active",
+          "ProfileType": "Device",
+          "ProfileUuid": "46f23381-f29c-4567-0c15-f1df43d7f85f"
+        },
+        {
+          "AssignmentSmartGroups": [
+            {
+              "Id": 12355,
+              "Name": "Test Whalehug"
+            }
+          ],
+          "AssignmentType": "Auto",
+          "Context": "Device",
+          "ExcludedSmartGroups": [],
+          "ManagedBy": "msYates",
+          "OrganizationGroupId": 12345,
+          "OrganizationGroupUuid": "9ed00424-7d54-9852-d8d4-512b6dc00f55",
+          "Platform": "AppleOsX",
+          "ProfileId": 12357,
+          "ProfileName": "Test Orangeshower",
+          "ProfileStatus": "Active",
+          "ProfileType": "Device",
+          "ProfileUuid": "679dedd5-a00a-4063-e2d0-ef75f479bcb6"
+        },
+        {
+          "AssignmentSmartGroups": [
+            {
+              "Id": 12358,
+              "Name": "Test Pandashall"
+            }
+          ],
+          "AssignmentType": "Auto",
+          "Context": "Device",
+          "ExcludedSmartGroups": [],
+          "ManagedBy": "whykangaroo",
+          "OrganizationGroupId": 12345,
+          "OrganizationGroupUuid": "9b8172c1-e8ce-e147-2798-176b3776f76c",
+          "Platform": "AppleOsX",
+          "ProfileId": 12360,
+          "ProfileName": "Test Giraffeclimb",
+          "ProfileStatus": "Active",
+          "ProfileType": "Device",
+          "ProfileUuid": "e8a46eda-c660-74d3-2c5f-508b48b16715"
         }
       ],
-      "TotalResults": 2
+      "TotalResults": 5
     }
   }
 }

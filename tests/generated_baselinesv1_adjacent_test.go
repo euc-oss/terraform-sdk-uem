@@ -163,7 +163,7 @@ func TestGeneratedBaselinesV1Adjacent(t *testing.T) {
 	// PLATFORMS
 	plat := sdk.NewPlatformsV1Service(c)
 
-	_, platforms, err := plat.GetActivePlatformsAsync(ctx)
+	_, platforms, err := plat.GetActivePlatformsAsync(ctx, nil)
 	if err != nil {
 		t.Fatalf("PlatformsV1.GetActivePlatformsAsync failed: %v", err)
 	}

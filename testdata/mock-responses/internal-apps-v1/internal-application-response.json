@@ -2,7 +2,8 @@
   "metadata": {
     "endpoint": "/api/mam/apps/internal/application",
     "method": "POST",
-    "description": "Captured POST /api/mam/apps/internal/application (V1Model body, 4-decimal version supported, server hydrates Uuid + OrganizationGroupUuid)",
+    "platform": "pkg",
+    "description": "Captured POST /api/mam/apps/internal/application on the 26.4 lab tenant (UEM 26.4), 2026-09-24, internal-app create (pkg platform, synthetic payload) returning the full ApplicationV1-style body (AppVersion, DisplayName); supersedes an incomplete hand-authored 7-key port, matching the genuine 26.2 pkg/msi/apk/ipa create captures plus the additive DisplayName. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -17,13 +18,28 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
-      "Id": {"Value": 12345},
-      "Uuid": "9af645a8-fef3-3e6d-3408-5cc69e0937d4",
-      "OrganizationGroupUuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
-      "BundleId": "com.example.forklift",
-      "LocationGroupId": 12345,
-      "ApplicationName": "Forklift V1Model Test App",
-      "ActualFileVersion": "1.0.0.42"
+      "AppRank": 0,
+      "AppVersion": "1.0.0.0",
+      "ApplicationName": "Test Khakihouse",
+      "ApplicationSource": "Unknown",
+      "AssignedDeviceCount": 0,
+      "AutoUpdateVersion": false,
+      "BundleId": "com.example.FhBxZHFH",
+      "ContentGatewayId": 12346,
+      "DisplayName": "Test Sea Lionhas",
+      "EnableProvisioning": false,
+      "Id": {
+        "Value": 12347
+      },
+      "InstalledDeviceCount": 0,
+      "IsDependencyFile": false,
+      "IsReimbursable": false,
+      "LocationGroupId": 12348,
+      "NotInstalledDeviceCount": 0,
+      "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+      "Platform": 10,
+      "PushMode": 0,
+      "Uuid": "9c569049-a68a-75fd-ea6c-400fe8744b8b"
     }
   }
 }

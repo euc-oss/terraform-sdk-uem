@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/68912",
     "method": "GET",
-    "platform": "WinRT",
-    "description": "Live-captured GET /api/mdm/profiles/{profileId} immediately after CreateWinRTDeviceProfileAsync, UEM 26.2.0.0, 2026-07-30. Only General and Firewall are populated (all other WinRTDeviceProfileV2Entity payload fields are nil/omitted, matching the minimal create body used).",
+    "description": "Captured GET /api/mdm/profiles/68912 on the 26.4 lab tenant (UEM 26.4), 2026-09-24: WinRT profile GET by id right after create with a minimal Firewall payload; top-level keys General and Firewall. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -22,7 +21,7 @@
         "blockAllConnectionsToAllAppsForPrivateNetwork": false,
         "blockAllConnectionsToAllAppsForPublicNetwork": false,
         "enableFirewallForPrivateNetwork": true,
-        "enableFirewallForPublicNetwork": false,
+        "enableFirewallForPublicNetwork": true,
         "notifyUserWhenFirewallBlocksNewAppForPublicNetwork": false,
         "notifyWhenFirewallBlocksNewAppForPrivateNetwork": false,
         "useWindowsRecommendedSettings": false
@@ -32,18 +31,18 @@
         "AssignedSchedule": [],
         "AssignedSmartGroups": [],
         "AssignmentType": "Auto",
-        "Description": "Otherwise, keep the day simple.",
+        "Description": "Guard part with sensible limits.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
         "ManagedLocationGroupID": 12346,
-        "Name": "Test Crowdwill",
+        "Name": "Test LightCyannumber",
         "Password": "",
         "ProfileContext": "Device",
         "ProfileId": 12347,
-        "ProfileUuid": "a60fd465-5d13-4c9c-5275-852c0da239a6",
+        "ProfileUuid": "1e23aac7-c74d-3931-3a56-1b59c10966ee",
         "Version": 1
       }
     }

@@ -26,6 +26,8 @@ type AppAssignmentDistributionV2Model struct {
 	AppTrackID string `json:"app_track_id,omitempty"`
 	// Collection of application transforms uuids applicable only for Windows SFD apps.
 	ApplicationTransforms []string `json:"application_transforms,omitempty"`
+	// Archived phased deployment UUID when assignment was unassigned from phased deployment (direct assignment with history).
+	ArchivedPhasedDeploymentUUID string `json:"archived_phased_deployment_uuid,omitempty"`
 	// Auto update devices with previous versions is applicable for Android, iOS and Windows internal apps.
 	AutoUpdateDevicesWithPreviousVersions *bool `json:"auto_update_devices_with_previous_versions,omitempty"`
 	// Auto update priority. This is supposed to be only for Android and will default to null.
@@ -1035,6 +1037,17 @@ type DeploymentByCustomScriptApiModelV2 struct {
 	SuccessExitCode *int `json:"SuccessExitCode,omitempty"`
 }
 
+// DeploymentModelV2 represents Represents the configuration settings for an application deployment, including restart behavior, deployment conditions, and required application closures.
+
+type DeploymentModelV2 struct {
+	// List of blocking applications which must be closed prior to deployment.
+	BlockingApplications []string `json:"blocking_applications,omitempty"`
+	// Conditional expression that determines when the application should be deployed. The expression is a string evaluated by the deployment engine, and can include checks such as OS version, or other environment variables. For example "OSVersion &gt;= 10.0".
+	Condition string `json:"condition,omitempty"`
+	// Restart action behavior after install/uninstall.
+	RestartAction string `json:"restart_action,omitempty"`
+}
+
 // DeviceBranchCacheStatisticsModelV2 represents The BranchCache statistics for the application deployments for a specific device.
 
 type DeviceBranchCacheStatisticsModelV2 struct {
@@ -1095,12 +1108,16 @@ type EnterpriseAppPackageResponseV2Model struct {
 	DefaultLocale string `json:"default_locale,omitempty"`
 	// Comprehensive dependency information specifying all prerequisites required for successful package installation and operation across different dependency categories
 	Dependencies *DependencyInfoV2Model `json:"dependencies,omitempty"`
+	// Represents the configuration settings for an application deployment, including restart behavior, deployment conditions, and required application closures.
+	Deployment *DeploymentModelV2 `json:"deployment,omitempty"`
 	// Specifies the privilege elevation requirements for installing this package. This helps determine the necessary user permissions and security context for installation.
 	ElevationRequirement string `json:"elevation_requirement,omitempty"`
 	// Collection of expected return codes from the installer, mapping specific exit codes to known response types for installation outcome classification.
 	ExpectedReturnCodes []ExpectedReturnCodeV2Model `json:"expected_return_codes,omitempty"`
 	// Boolean indicator specifying whether additional related information is available beyond the current response, such as more version history entries.
 	HasMore *bool `json:"has_more,omitempty"`
+	// File size of the icon in megabytes.
+	IconFileSize *int64 `json:"icon_file_size,omitempty"`
 	// App icon hash generated with SHA256 algorithm.
 	IconSha256 string `json:"icon_sha256,omitempty"`
 	// App icon url.
@@ -1115,6 +1132,8 @@ type EnterpriseAppPackageResponseV2Model struct {
 	InstallerType string `json:"installer_type,omitempty"`
 	// Collection of available installer packages for different architectures, platforms, or configurations. Each installer entry contains specific download and installation information.
 	Installers []InstallerInfoV2Model `json:"installers,omitempty"`
+	// macOS-specific installer information including plist details and installer metadata for Apple macOS applications.
+	MacInstallerInfo *MacInstallerInfoV2Model `json:"mac_installer_info,omitempty"`
 	// Minimum operating system version required for successful installation and operation of the package. This helps prevent installation on incompatible systems.
 	MinimumOsVersion string `json:"minimum_os_version,omitempty"`
 	// Unique identifier for the application package. This identifier remains consistent across all versions of the package.
@@ -1131,6 +1150,8 @@ type EnterpriseAppPackageResponseV2Model struct {
 	PublisherName string `json:"publisher_name,omitempty"`
 	// Installation scope determining whether the package is installed for the current user only or system-wide for all users. This affects installation permissions and package visibility.
 	Scope string `json:"scope,omitempty"`
+	// Represents a collection of script groups used for installation, uninstallation, and verification processes.
+	Scripts *ScriptsModelV2 `json:"scripts,omitempty"`
 	// Concise description of the application's primary purpose and functionality, localized according to the requested locale preferences.
 	ShortDescription string `json:"short_description,omitempty"`
 	// ISO 8601 timestamp of the most recent modification to this package version's metadata or associated files. This helps identify when package information was last refreshed.
@@ -1187,7 +1208,7 @@ type EntityV1ModelV2 struct {
 
 type ExpectedReturnCodeV2Model struct {
 	// Numeric exit code returned by the installer process upon completion.
-	InstallerReturnCode *int `json:"installer_return_code,omitempty"`
+	InstallerReturnCode *int64 `json:"installer_return_code,omitempty"`
 	// Classification of the installer return code, describing the expected outcome or required action (e.g., rebootRequiredToFinish, systemNotSupported).
 	ReturnResponse string `json:"return_response,omitempty"`
 }
@@ -1249,6 +1270,8 @@ type ImportPackageRequestV2Model struct {
 	InstallerType string `json:"installer_type,omitempty"`
 	// The installer meta-data locale.
 	Locale string `json:"locale,omitempty"`
+	// Represents configuration details and script information for a macOS application package, including installation, uninstallation, and related behaviors.
+	MacOsPackageInfo *MacOsPackageInfoModelV2 `json:"mac_os_package_info,omitempty"`
 	// The organization group uuid.
 	OrganizationGroupUUID string `json:"organization_group_uuid,omitempty"`
 	// Unique package identifier to search for in the enterprise repository. The identifier should match the format used throughout the repository (e.g., 'Microsoft.VisualStudioCode').
@@ -1273,8 +1296,18 @@ func (r *ImportPackageRequestV2Model) Validate() error {
 // ImportPackageResponseV2Model represents Response model for blobIds returned after import.
 
 type ImportPackageResponseV2Model struct {
-	IconBlobID    *EntityIdV2 `json:"icon_blob_id,omitempty"`
-	PackageBlobID *EntityIdV2 `json:"package_blob_id,omitempty"`
+	IconBlobID        *EntityIdV2 `json:"icon_blob_id,omitempty"`
+	PackageBlobID     *EntityIdV2 `json:"package_blob_id,omitempty"`
+	PackageInfoBlobID *EntityIdV2 `json:"package_info_blob_id,omitempty"`
+}
+
+// InstallScriptsModelV2 represents Represents a set of scripts to be executed before and after an installation process.
+
+type InstallScriptsModelV2 struct {
+	// Post install script.
+	PostInstallScript string `json:"post_install_script,omitempty"`
+	// Pre install script.
+	PreInstallScript string `json:"pre_install_script,omitempty"`
 }
 
 // InstallerInfoV2Model represents Detailed information about a specific installer package, including download location, architecture support, installation requirements, and configuration options
@@ -1374,6 +1407,8 @@ type InternalAppModelV2 struct {
 	DevicesInstalledCount *int `json:"DevicesInstalledCount,omitempty"`
 	// Gets or sets number of devices to which current application is assigned, but not installed.
 	DevicesNotInstalledCount *int `json:"DevicesNotInstalledCount,omitempty"`
+	// Gets or sets the display name of the application.
+	DisplayName string `json:"DisplayName,omitempty"`
 	// Gets or sets the Unique Guid values of the excluded smart groups.
 	ExcludedSmartGroupGuids []string `json:"ExcludedSmartGroupGuids,omitempty"`
 	// Gets or sets the Smart group Ids to be excluded from receiving the application.
@@ -1470,6 +1505,60 @@ type LicensesSummaryV2Model struct {
 	Total *int `json:"total,omitempty"`
 	// Number of unallocated licenses.
 	Unallocated *int `json:"unallocated,omitempty"`
+}
+
+// MacInstallerInfoV2Model represents macOS-specific installer information including plist details and installer metadata for Apple macOS applications.
+
+type MacInstallerInfoV2Model struct {
+	// Target processor architecture for the macOS installer package.
+	Architecture string `json:"architecture,omitempty"`
+	// Extracted installer file name derived from the installer URL or response headers.
+	InstallerFileName string `json:"installer_file_name,omitempty"`
+	// Locale code indicating the primary language and regional settings for this macOS installer.
+	InstallerLocale string `json:"installer_locale,omitempty"`
+	// SHA-256 cryptographic hash of the macOS installer file for integrity verification.
+	InstallerSha256 string `json:"installer_sha256,omitempty"`
+	// Size of the macOS installer package in bytes.
+	InstallerSize *int64 `json:"installer_size,omitempty"`
+	// Specific installer format used for this macOS package (e.g., PKG, DMG).
+	InstallerType string `json:"installer_type,omitempty"`
+	// Direct download URL for the macOS installer package.
+	InstallerURL string `json:"installer_url,omitempty"`
+	// macOS platform variant supported by this installer.
+	Platform string `json:"platform,omitempty"`
+	// SHA-256 hash of the associated property list (plist) file.
+	PlistHash string `json:"plist_hash,omitempty"`
+	// Size of the property list (plist) file in bytes.
+	PlistSize *int64 `json:"plist_size,omitempty"`
+	// URL of the property list (plist) file associated with this macOS package.
+	PlistURL string `json:"plist_url,omitempty"`
+}
+
+// MacOsPackageInfoModelV2 represents Represents configuration details and script information for a macOS application package, including installation, uninstallation, and related behaviors.
+
+type MacOsPackageInfoModelV2 struct {
+	// List of application names that are currently blocking the operation.
+	BlockingApplications []string `json:"blocking_applications,omitempty"`
+	// Condition expression used to filter or evaluate items.
+	Condition string `json:"condition,omitempty"`
+	// Script used to verify whether the installation is present or valid.
+	InstallCheckScript string `json:"install_check_script,omitempty"`
+	// Script to execute after installation is complete.
+	PostInstallScript string `json:"post_install_script,omitempty"`
+	// Script to execute after the uninstall process completes.
+	PostUninstallScript string `json:"post_uninstall_script,omitempty"`
+	// Script to execute before the installation process begins.
+	PreInstallScript string `json:"pre_install_script,omitempty"`
+	// Script to execute before the uninstallation process begins.
+	PreUninstallScript string `json:"pre_uninstall_script,omitempty"`
+	// Action to perform when a restart is required.
+	RestartAction string `json:"restart_action,omitempty"`
+	// Script used to verify whether an application has been uninstalled.
+	UninstallCheckScript string `json:"uninstall_check_script,omitempty"`
+	// Name of the method used to uninstall the application or component.
+	UninstallMethod string `json:"uninstall_method,omitempty"`
+	// Script used to uninstall the application or component.
+	UninstallScript string `json:"uninstall_script,omitempty"`
 }
 
 // MacOsSoftwareDeploymentSummaryModelV2 represents Summary model for the macOs Software pacakge.
@@ -1605,6 +1694,8 @@ type PhasedDeploymentV1ModelV2 struct {
 	CreatedBy string `json:"created_by,omitempty"`
 	// Gets or sets the display name of status of the phased deployment.
 	DisplayStatus string `json:"display_status,omitempty"`
+	// Gets or sets the labeling status.
+	LabelStatus string `json:"label_status,omitempty"`
 	// Gets or sets list of phases in the phased deployment.
 	Phases []PhaseV1ModelV2 `json:"phases,omitempty"`
 	// Gets or sets the start date of the phased deployment.
@@ -1685,6 +1776,17 @@ type RuntimeApplicationPermissionV2 struct {
 	PermissionPolicy string `json:"permission_policy,omitempty"`
 }
 
+// ScriptsModelV2 represents Represents a collection of script groups used for installation, uninstallation, and verification processes.
+
+type ScriptsModelV2 struct {
+	// Represents a set of scripts to be executed before and after an installation process.
+	Install *InstallScriptsModelV2 `json:"install,omitempty"`
+	// Represents a set of scripts and configuration options used to perform an uninstallation process, including pre-uninstall, main uninstall, and post-uninstall steps.
+	Uninstall *UninstallScriptsModelV2 `json:"uninstall,omitempty"`
+	// Represents a set of scripts used to verify the installation and uninstallation state of a component.
+	Verify *VerificationScriptsModelV2 `json:"verify,omitempty"`
+}
+
 // SmartGroupApplicationMapV2Model represents The smart group applicaion mapping.
 
 type SmartGroupApplicationMapV2Model struct {
@@ -1692,6 +1794,28 @@ type SmartGroupApplicationMapV2Model struct {
 	Name string `json:"name,omitempty"`
 	// The smart group unique identifier.
 	SmartGroupUUID string `json:"smart_group_uuid,omitempty"`
+}
+
+// UninstallScriptsModelV2 represents Represents a set of scripts and configuration options used to perform an uninstallation process, including pre-uninstall, main uninstall, and post-uninstall steps.
+
+type UninstallScriptsModelV2 struct {
+	// Post uninstall script.
+	PostUninstallScript string `json:"post_uninstall_script,omitempty"`
+	// Pre uninstall script.
+	PreUninstallScript string `json:"pre_uninstall_script,omitempty"`
+	// Uninstall method.
+	UninstallMethod string `json:"uninstall_method,omitempty"`
+	// Main uninstall script.
+	UninstallScript string `json:"uninstall_script,omitempty"`
+}
+
+// VerificationScriptsModelV2 represents Represents a set of scripts used to verify the installation and uninstallation state of a component.
+
+type VerificationScriptsModelV2 struct {
+	// The script used to verify whether the installation is present or valid.
+	InstallCheckScript string `json:"install_check_script,omitempty"`
+	// The script used to verify whether the application is uninstalled on the target system.
+	UninstallCheckScript string `json:"uninstall_check_script,omitempty"`
 }
 
 // VppAssignmentV2Model represents Contains information about the assignment of a purchased application.

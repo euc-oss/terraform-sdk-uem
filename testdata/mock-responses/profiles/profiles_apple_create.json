@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/platforms/apple/create",
     "method": "POST",
-    "platform": "Apple",
-    "description": "Live-captured POST /api/mdm/profiles/platforms/apple/create against UEM 26.2.0.0, 2026-07-30 -- re-verified with clean v2 header post-fix. Response is a bare int (created ProfileId). Note: the mock-capture anonymizer does not touch top-level scalar bodies (the anonymize key is empty string for a bare int, so no substring rule matches) -- the real captured id was hand-replaced here with 68910 for anonymization.",
+    "description": "Captured POST /api/mdm/profiles/platforms/apple/create on the 26.4 lab tenant (UEM 26.4), 2026-09-24, iOS profile create — bare int id, canonical id for the apple create/get/update/delete lifecycle in this recapture. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {

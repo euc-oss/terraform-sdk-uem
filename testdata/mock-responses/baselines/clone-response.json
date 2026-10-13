@@ -2,28 +2,37 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}",
     "method": "POST",
-    "description": "Schema-derived placeholder, not a live capture (Pattern C: 201 + body + Location). Triggered via ?action=clone query parameter; the mock matcher does not inspect query params by default so this fixture matches the bare POST. A genuine live capture was not possible when this was written -- the test tenant had no baseline available at that moment and no enrolled device -- NOT because the API lacks a create route: it does (resources/baseline_creator.go's BaselineCreator.Create, POST /api/mdm/groups/{organizationGroupUuid}/baselines, genuinely live-captured as baselines/create-response.json, ledger verified[12]). This file's own git history has no live-capture commit at any point (only refresh/prune/hydration/corpus-land commits), consistent with the 2026-08-04 integrity audit (commit dffd8b612), which found this class of BaselinesV1Service fixture lacked live-capture provenance.",
+    "description": "Captured POST /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}?action=clone on the 26.4 lab tenant (UEM 26.4), 2026-09-24: clone of a disposable baseline in a disposable org group, 201 with the full BaselineV1Model body and a Location header. PlatformUUID/OsVersionUUID are cross-tenant catalog constants (Windows 10 / version 1709). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
     "headers": {
-      "Accept": "application/json;version=1"
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
     }
   },
   "response": {
     "status_code": 201,
     "headers": {
-      "Content-Type": "application/json;version=1; charset=utf-8",
-      "Location": "/api/mdm/groups/7d0aef64-735e-853e-1695-fdb07ba63f5c/baselines/cecef9d7-5863-aecf-f36b-ee8c12c0b543"
+      "Content-Type": "application/json; charset=utf-8",
+      "Location": "/api/mdm/groups/94c39f2b-690e-fef9-3b82-ed97952f348d/baselines/67c0b478-2793-f0d6-aad8-8cef0cbdabd7"
     },
     "body": {
-      "baselineUUID": "cecef9d7-5863-aecf-f36b-ee8c12c0b543",
-      "name": "Win 10 baseline 1 (clone)",
-      "description": "Cloned from baseline 1",
-      "version": 1,
-      "rootLocationGroupID": 12345,
-      "rootLocationGroupUUID": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
-      "platformUUID": "fea1c595-91f0-e37b-aef6-6769865efad2"
+      "assignmentCount": 0,
+      "baselineTemplateUUID": "90794f82-c864-1a36-48c2-183d302e1aa6",
+      "baselineType": "Desktop",
+      "baselineUUID": "67c0b478-2793-f0d6-aad8-8cef0cbdabd7",
+      "customizations": [],
+      "description": "Balanced person and work should essential.",
+      "name": "Test Batski",
+      "osVersionUUID": "964426e5-7f69-e9e5-5641-b8b169107927",
+      "platformUUID": "a80ea502-3c05-9987-b114-b674f8f44f09",
+      "policies": [],
+      "rootLocationGroupID": 12346,
+      "rootLocationGroupName": "Test Jackalwin",
+      "rootLocationGroupUUID": "94c39f2b-690e-fef9-3b82-ed97952f348d",
+      "templateName": "Test GoldenRodsugar",
+      "version": 1
     }
   }
 }

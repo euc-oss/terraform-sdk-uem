@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/scripts",
     "method": "GET",
-    "description": "Captured GET /api/mdm/groups/{organizationGroupUuid}/scripts",
+    "description": "Captured GET /api/mdm/groups/{organizationGroupUuid}/scripts on the 26.4 lab tenant (UEM 26.4), 2026-09-24, listing scripts in the populated readonly_fixtures org group (two scripts). Genuine 26.4 recapture from a populated org group, replacing an earlier genuine 26.4 capture taken from an empty one.",
     "version": "1"
   },
   "request": {
@@ -20,30 +20,30 @@
       "RecordCount": 2,
       "SearchResults": [
         {
-          "assignment_count": 0,
-          "created_or_modified_by": "Enrique703",
+          "assignment_count": 1,
+          "created_or_modified_by": "mrYoung",
           "created_or_modified_on": "2024-01-15T00:00:00Z",
-          "description": "Quietly harden the government later.",
-          "name": "Test Koaladid",
-          "organization_group_name": "Test Trouthave",
-          "organization_group_uuid": "987afa5b-9012-ddc6-764a-e5c4168e1db1",
+          "description": "Visualize man for faster decisions.",
+          "name": "Test Timewould",
+          "organization_group_name": "Test Deskwas",
+          "organization_group_uuid": "846432f0-32ef-1fca-bbde-43a81af4ef9b",
           "platform": "APPLE_OSX",
           "script_type": "BASH",
-          "script_uuid": "8e1b2805-313c-42d3-5ad1-c49a1657e355",
-          "version": "6077ea5e-0010-5924-f9ac-9ec15306e6b9"
+          "script_uuid": "1d7cacb9-d9df-274d-06be-d2de702ec3f5",
+          "version": "abe6c7ec-3c4d-85db-2d41-511f0870d3ac"
         },
         {
-          "assignment_count": 0,
-          "created_or_modified_by": "Las Vegas16",
+          "assignment_count": 1,
+          "created_or_modified_by": "mrYoung",
           "created_or_modified_on": "2024-01-15T00:00:00Z",
-          "description": "Design for failure and graceful week.",
-          "name": "Test Tanline",
-          "organization_group_name": "Test Speedwould",
-          "organization_group_uuid": "c7b9a8d8-9ef9-0589-2712-8f9c3798f707",
-          "platform": "WIN_RT",
-          "script_type": "POWERSHELL",
-          "script_uuid": "47e0d844-0381-60ea-166e-89b79aed620c",
-          "version": "c36e3b7c-906e-d9d5-3f8a-47e0ce9cc3fe"
+          "description": "Visualize man for faster decisions.",
+          "name": "Test Rhinocerosdream",
+          "organization_group_name": "Test Deskwas",
+          "organization_group_uuid": "846432f0-32ef-1fca-bbde-43a81af4ef9b",
+          "platform": "APPLE_OSX",
+          "script_type": "PYTHON",
+          "script_uuid": "ce5f2f23-538e-78e8-7628-ffd0cdfdbfdf",
+          "version": "8c7ac653-47e5-4d01-f356-a3a2b116b038"
         }
       ]
     }

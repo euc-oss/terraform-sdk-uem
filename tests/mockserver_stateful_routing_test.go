@@ -94,13 +94,18 @@ func TestSharedMockServer_ProfileDeleteDefersToConcreteFixture(t *testing.T) {
 }
 
 // TestSharedMockServer_SmartGroupGetFollowsObservedLifecycle proves GET
-// /api/mdm/smartgroups/{id}, which three fixtures share, serves the
+// /api/mdm/smartgroups/{id}, which several fixtures share, serves the
 // lifecycle stage matching the mutations the server has observed for that id.
+// With nothing observed, the matcher's default (the alphabetically-first GET
+// fixture) is the immediately-after-create shape: on 26.4 that is the
+// genuine 26.4.0.0 capture smartgroups_get_26400.json, which supersedes
+// 26.2's smartgroups_get_after_create.json.
 func TestSharedMockServer_SmartGroupGetFollowsObservedLifecycle(t *testing.T) {
 	ms := mockserver.LoadMockResponses(t, "../testdata/mock-responses")
 	const path = "/api/mdm/smartgroups/12346"
+	const afterCreate = "smartgroups/smartgroups_get_26400.json"
 
-	assertServes(t, ms, http.MethodGet, path, "1", "smartgroups/smartgroups_get_after_create.json")
+	assertServes(t, ms, http.MethodGet, path, "1", afterCreate)
 	assertServes(t, ms, http.MethodPut, path, "1", "smartgroups/smartgroups_update.json")
 	assertServes(t, ms, http.MethodGet, path, "1", "smartgroups/smartgroups_get_after_update.json")
 	assertServes(t, ms, http.MethodDelete, path, "1", "smartgroups/smartgroups_delete.json")
@@ -109,5 +114,5 @@ func TestSharedMockServer_SmartGroupGetFollowsObservedLifecycle(t *testing.T) {
 	// A captured not-found DELETE (non-2xx) is served from its concrete
 	// fixture and leaves no state behind, so the id's GET is unchanged.
 	assertServes(t, ms, http.MethodDelete, "/api/mdm/smartgroups/46813", "1", "smartgroups/smartgroups_delete_not_found.json")
-	assertServes(t, ms, http.MethodGet, "/api/mdm/smartgroups/46813", "1", "smartgroups/smartgroups_get_after_create.json")
+	assertServes(t, ms, http.MethodGet, "/api/mdm/smartgroups/46813", "1", afterCreate)
 }

@@ -19,6 +19,28 @@ type ResponseMetadata struct {
 	Platform    string `json:"platform"`    // Platform filter (Android, iOS, etc.) - optional
 	Description string `json:"description"` // Human-readable description
 	Version     string `json:"version"`     // API version - optional
+	// Provenance is set on a fixture carried over from an earlier release's
+	// corpus rather than captured on this release (see FixtureProvenance).
+	Provenance *FixtureProvenance `json:"provenance,omitempty"`
+}
+
+// PortedFrom262 is the provenance class of a fixture ported unchanged from
+// the 26.2 corpus and not re-verified on this release.
+const PortedFrom262 = "PORTED-FROM-26.2"
+
+// FixtureProvenance records where a ported fixture came from.
+type FixtureProvenance struct {
+	Class         string  `json:"class"`
+	SourceTenant  string  `json:"source_tenant"`
+	SourceVersion string  `json:"source_version"`
+	SourceCommit  string  `json:"source_commit"`
+	ReverifiedOn  *string `json:"reverified_on"`
+}
+
+// IsPorted reports whether the fixture is a port rather than a genuine
+// capture of this release.
+func (m ResponseMetadata) IsPorted() bool {
+	return m.Provenance != nil && m.Provenance.Class == PortedFrom262
 }
 
 // RequestSpec defines the expected request characteristics.

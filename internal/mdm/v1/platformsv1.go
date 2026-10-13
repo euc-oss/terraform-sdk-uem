@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 	"net/http"
+	"net/url"
 )
 
 // PlatformsV1Service provides PlatformsV1 API operations.
@@ -19,14 +20,30 @@ func NewPlatformsV1Service(c *client.Client) *PlatformsV1Service {
 	return &PlatformsV1Service{client: c}
 }
 
+// PlatformsV1GetActivePlatformsAsyncOptions holds optional query parameters for GetActivePlatformsAsync.
+type PlatformsV1GetActivePlatformsAsyncOptions struct {
+	PlatformType *string // Filters platforms by platform type.
+}
+
 // GetActivePlatformsAsync — New - Retrieves a list of active platforms.
 // Operation ID: PlatformsV1_GetActivePlatformsAsync
 // HTTP: GET /api/mdm/baselines/platforms
 func (s *PlatformsV1Service) GetActivePlatformsAsync(
 	ctx context.Context,
+	opts *PlatformsV1GetActivePlatformsAsyncOptions,
 ) (http.Header, *[]PlatformV2ModelV1, error) {
 	// Build endpoint path
 	endpoint := "/api/mdm/baselines/platforms"
+	// Build query parameters
+	if opts != nil {
+		query := url.Values{}
+		if opts.PlatformType != nil {
+			query.Set("platformType", fmt.Sprintf("%s", *opts.PlatformType))
+		}
+		if len(query) > 0 {
+			endpoint = endpoint + "?" + query.Encode()
+		}
+	}
 	var response []PlatformV2ModelV1
 	headers, err := s.client.DoRequest(ctx, "GET", endpoint, AcceptHeader, "application/json", nil, &response)
 	if err != nil {

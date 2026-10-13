@@ -6,22 +6,27 @@ Terraform provider or any Go consumer.
 ## The `APIError` Type
 
 When the UEM API returns a non-2xx status code, the SDK returns an `*wsone.APIError`.
-The struct has exactly three fields:
+The fields are:
 
 ```go
 type APIError struct {
-    StatusCode int    // HTTP status code (e.g. 404, 429, 500)
-    Message    string // Human-readable error message from the API response body
-    ErrorCode  string // Machine-readable error code string from the API response body
+    StatusCode    int    // HTTP status code (e.g. 404, 429, 500)
+    Message       string // Human-readable error message from the API response body
+    ErrorCode     string // Machine-readable error code string from the API response body
+    Attempts      int    // Requests made when the retry policy gave up; 0 otherwise
+    CorrelationID string // X-Correlation-ID of the call, for support and server log lookups
+
+    SentCorrelationID string // the id the SDK sent; differs from CorrelationID only if a gateway answered with another
 }
 ```
 
 `APIError` implements the `error` interface. Its `Error()` string includes the
-status code, the `ErrorCode` when present, and the `Message`:
+status code, the `ErrorCode` when present, the `Message`, and the correlation ID
+when there is one:
 
 ```
-API error 404 (PROFILE_NOT_FOUND): The requested profile does not exist.
-API error 500: Internal Server Error
+API error 404 (PROFILE_NOT_FOUND): The requested profile does not exist. (correlation id: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee)
+API error 500: Internal Server Error (correlation id: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee)
 ```
 
 `StatusCode` is never serialized from JSON — it is set by the SDK from the HTTP
@@ -55,6 +60,64 @@ _ = profile
 
 All SDK operations surface API failures as the same `*wsone.APIError` type.
 The handling pattern above works for any SDK call.
+
+## Correlation ID
+
+Workspace ONE UEM tags every response with an `X-Correlation-ID` header and writes
+the same value to its server-side log, so one ID ties a failed call to the server's
+record of it. Quote it when you contact support.
+
+The SDK sends a fresh GUID in the request's `X-Correlation-ID` header, one per call.
+When the call is retried, every attempt carries the same ID, so all attempts appear
+under it in the server's logs. UEM reuses a valid GUID from the request, so the ID the
+server logs is normally the one the SDK sent.
+A live read-only check against a UEM 26.2 server showed the gateway echoing the GUID the
+SDK sent, on successful and on error responses.
+
+**Every error a call returns carries that ID, with debug logging off.** Its text
+contains `(correlation id: <guid>)`, and you can extract the ID without parsing text:
+
+- An API error response is an `*wsone.APIError`; `apiErr.CorrelationID` holds the
+  value the server returned (or the sent ID if the response had none, or an unusable
+  one: anything but 1 to 128 printable ASCII characters). `apiErr.SentCorrelationID`
+  is the ID the SDK sent, which differs only if a gateway answered with another ID;
+  the error text then shows both.
+- Every other error (a timeout, context deadline or cancellation, a connection, TLS
+  or DNS failure, retries exhausted without a response, a failed token request, or a
+  request the SDK rejected before sending, such as a body that fails validation) is a
+  `*wsone.CorrelatedError`. It unwraps to the original error, so `errors.Is` and
+  `errors.As` still see the cause: `errors.Is(err, context.DeadlineExceeded)` is true
+  for a timeout, and `errors.As(err, &netErr)` finds the `net.Error`. For a request
+  that was never sent the ID is the one it would have sent; the server has no record
+  of it. A failed token request carries the ID of the API call that needed the token;
+  the SDK's OAuth2 provider also sends that ID on the token request. A custom
+  `AuthProvider` has its errors tagged the same way but is not handed the ID.
+  The token endpoint does not echo the header, so for a token failure the ID is the one
+  the SDK sent.
+- `wsone.CorrelationID(err)` returns the ID from either kind, found anywhere in the
+  error chain, or `""` for an error that has none.
+
+A call is a request made through the client; every error of a call carries the ID. An
+error a helper builds itself, where there is no call or the call succeeded, is a plain
+error without one: a local check or read failure before or between requests (an
+unsupported platform in a create helper, the chunked uploader's argument checks or a
+reader that runs dry), and an upload the server answers with a successful status but
+reports as unsuccessful in the body.
+
+```go
+if err != nil {
+    log.Printf("request failed: %v", err) // the text already contains (correlation id: ...)
+    if id := wsone.CorrelationID(err); id != "" {
+        // attach id to your own diagnostics or support ticket
+        _ = id
+    }
+    return err
+}
+```
+
+The ID is also available on successful calls in the response header returned by the
+lower-level `client.Client.DoRequest`, and the compact debug line (see
+[Debugging](#debugging)) prints it for every call.
 
 ## Datetime Parse Errors
 
@@ -221,6 +284,13 @@ Debug output is written to **stderr** and looks like:
 [UEM-SDK] Response Headers:
   Content-Type: application/json; charset=utf-8
   ...
+```
+
+Each call also writes one compact summary line after any retries, with the method,
+the path without its query string, the final status and the correlation ID:
+
+```
+[UEM-SDK] POST /api/mdm/profiles/android/ -> 200 correlation-id=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
 ```
 
 **Sensitive headers are always redacted**, regardless of log level:

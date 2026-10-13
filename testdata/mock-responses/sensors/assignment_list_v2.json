@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/{sensorUuid}/assignments",
     "method": "GET",
-    "description": "V2 list assignments for a device sensor (GET /devicesensors/{sensorUuid}/assignments), 200, array body. Captured after the ranking-update op; ranking:1 reflects that update.",
+    "description": "Captured GET /api/mdm/devicesensors/{sensorUuid}/assignments on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/mdm/devicesensors/{sensorUuid}/assignments (v2) live-recaptured against 26.4 lab tenant, disposable sensor. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -20,16 +20,16 @@
       {
         "assigned_smart_groups": [
           {
-            "name": "Test Rabbitthrow",
-            "smart_group_uuid": "eaa54c29-851f-fe01-320e-bce278850dab"
+            "name": "Test Mallardride",
+            "smart_group_uuid": "eb21c497-0f2d-0d98-376f-afdef3c3ce49"
           }
         ],
         "event_triggers": [],
-        "name": "Test Manateewill",
+        "name": "Test Toadcould",
         "ranking": 1,
         "smart_group_count": 1,
         "trigger_type": "SCHEDULE",
-        "uuid": "8fe98ed4-4ad2-ac03-26a2-60eb985e3f18"
+        "uuid": "327eb924-9636-19a8-8aaf-d434b9025456"
       }
     ]
   }

@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/smartgroups/{id}",
     "method": "DELETE",
-    "description": "Live-captured DELETE /api/mdm/smartgroups/{id} against UEM 26.2.0.0, 2026-07-30 -- deletion confirmed via a subsequent GET readback that returned a not-found error (see smartgroups_get_after_delete.json).",
+    "description": "Captured DELETE /api/mdm/smartgroups/{id} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, DELETE /api/mdm/smartgroups/{id} live-recaptured against 26.4 lab tenant on a disposable smart group. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {

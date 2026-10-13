@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/{id}",
     "method": "GET",
-    "platform": "Apple",
-    "description": "Captured GET /api/mdm/profiles/{id} for Apple",
+    "description": "Captured GET /api/mdm/profiles/{id}",
     "version": "2"
   },
   "request": {
@@ -24,7 +23,7 @@
       "EASNativeMailClientList": [],
       "EmailList": [],
       "General": {
-        "AllowRemoval": "Never",
+        "AllowRemoval": "Always",
         "AssignedSchedule": [],
         "AssignedSmartGroups": [
           {
@@ -32,14 +31,14 @@
             "SmartGroupId": 12346
           }
         ],
-        "AssignmentType": "Compliance",
+        "AssignmentType": "Auto",
         "Description": "Reduce cognitive load in the person.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
-        "ManagedLocationGroupID": 12347,
+        "ManagedLocationGroupID": 12345,
         "Name": "Test Manateewill",
         "Password": "",
         "ProfileContext": "Device",
@@ -48,16 +47,14 @@
         "Version": 1
       },
       "GoogleAccount": [],
-      "Passcode": {
-        "AllowSimpleValue": true,
-        "GracePeriodForDeviceLock": 0,
-        "MaximumNumberOfFailedAttempts": "None",
-        "MinimumNumberOfComplexCharacters": 0,
-        "MinimumPasscodeLength": 0,
-        "RequireAlphanumericValue": false,
-        "RequirePasscodeOnDevice": false
-      },
-      "ScepList": [],
+      "ScepList": [
+        {
+          "CertificateAuthority": 12345,
+          "CertificateTemplate": 12346,
+          "CredentialSource": "DefinedCA",
+          "Name": "Test Trouthave"
+        }
+      ],
       "SsoExtensionList": [],
       "VpnList": [],
       "WifiList": []

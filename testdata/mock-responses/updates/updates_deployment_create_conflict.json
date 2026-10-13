@@ -2,8 +2,9 @@
   "metadata": {
     "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployment",
     "method": "POST",
-    "description": "Captured POST /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployment -- 409 conflict from a duplicate create against an already-existing deployment. The deployment uuid embedded in the server's free-text error message is not touched by the standard key-based anonymizer (it lives inside a message string, not a dedicated uuid-shaped field), so it was manually aligned here to the same anonymized deployment uuid (bc75eecb_bacf_4938_9c7d_6295ce0b5446) used consistently by the sibling updates_deployment_get.json/updates_deployment_create.json fixtures, in place of the real captured uuid.",
-    "version": "1"
+    "description": "Captured POST /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployment when a deployment for the same update+org group already exists — 409 with errorCode 5206 (DeploymentExists). Wire-vs-canonical disagreement: canonical docs describe a `self` link pointing at the existing deployment; the actual body has no `self` field at all — the existing deployment's uuid is embedded only inside the free-text `message` string, alongside a generic `activityId` correlation field. Shape confirmed against 26.4.0.0 live capture: identical errorCode 5206, same message format with UUID embedded in text, same {errorCode, message, activityId} three-field body with no self link.",
+    "version": "1",
+    "confirmed_against": ["26.2.0.0", "26.4.0.0"]
   },
   "request": {
     "headers": {
@@ -17,9 +18,9 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
-      "activityId": "76006911-0b52-64e6-4d52-14589585be25",
       "errorCode": 5206,
-      "message": "Deployment with deployment uuid 1bc333e5-b6ed-b450-37c4-0007f627bd62 already exists."
+      "message": "Deployment with deployment uuid ec4a352b-6409-c5a7-84b0-6c192258c3ba already exists.",
+      "activityId": "0b0d6fc4-838a-e89b-d117-57f62678207d"
     }
   }
 }

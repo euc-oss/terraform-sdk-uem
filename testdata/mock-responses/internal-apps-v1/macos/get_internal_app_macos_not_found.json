@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "endpoint": "/api/mam/apps/internal/67090",
+    "endpoint": "/api/mam/apps/internal/{applicationId}",
     "method": "GET",
-    "description": "Live-captured with tools/mock-capture --allow-error-status against UEM 26.2 on 2026-09-24, inside a disposable sdktestrun org group, on an object deleted moments earlier (the org group was deleted afterwards and a second DELETE on it returned 400, quirk 20). Status, errorCode and message are verbatim except that the real resource id (in the path and the message) is replaced by a fixed id chosen to be unique in this corpus; the activityId is the capture anonymizer's output. GET /api/mam/apps/internal/{applicationId} after a macOS internal app (created through the full-SLM upload path) was deleted: HTTP 401 with errorCode 7000, 'Application not found or user does not have access to it.'. client.IsNotFound requires errorCode exactly 7000 on a 401; a plain 401 stays an auth failure.",
+    "description": "Captured GET /api/mam/apps/internal/{applicationId} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET internal app after delete: 401/errorCode 7000, live-recaptured 26.4. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -17,7 +17,7 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
-      "activityId": "fcfa22e6-2758-dd21-e66c-5a590181f5f1",
+      "activityId": "bb900a5e-fa2f-bbe1-0f43-146694451ecb",
       "errorCode": 7000,
       "message": "Application not found or user does not have access to it."
     }

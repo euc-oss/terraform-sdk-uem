@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "description": "Internal-app delete (ipa), captured live via tools/internalapps-capture against 26.2.0.0; anonymized via mock-capture's Anonymize() before commit.",
     "endpoint": "/api/mam/apps/internal/65653",
     "method": "DELETE",
     "platform": "ipa",
+    "description": "Captured DELETE /api/mam/apps/internal/67013 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, recaptured live via tools/internalapps-capture chunked upload lifecycle (ipa). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -13,8 +13,8 @@
     }
   },
   "response": {
-    "body": null,
+    "status_code": 204,
     "headers": {},
-    "status_code": 204
+    "body": null
   }
 }

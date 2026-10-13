@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/system/groups/search",
     "method": "GET",
-    "description": "Captured GET /api/system/groups/search",
+    "description": "Captured GET /api/system/groups/search on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/system/groups/search live-recaptured against 26.4 lab tenant. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -19,69 +19,39 @@
     "body": {
       "LocationGroups": [
         {
-          "Admins": "Enrique703",
+          "Admins": "drSnyder",
           "Country": "United States",
-          "CreatedOn": "2/9/2026 7:59:49 PM",
+          "CreatedOn": "9/25/2026 4:43:10 AM",
           "Devices": "0",
-          "GroupId": "Schmitt5713",
+          "GroupId": "mrFleming",
           "Id": {
             "Value": 12346
           },
           "IsCustomerTypeExistInParentHierarchy": false,
           "Locale": "English (United States)",
           "LocationGroupType": "Container",
-          "Name": "Test Koaladid",
-          "Users": "PeteLemonChiffon"
+          "Name": "Test Muleplay",
+          "Users": "WatermelonItchy80"
         },
         {
-          "Admins": "drNorris",
+          "Admins": "muchbaboon",
           "Country": "United States",
-          "CreatedOn": "4/2/2026 7:38:11 AM",
+          "CreatedOn": "7/30/2026 4:58:23 PM",
           "Devices": "0",
-          "GroupId": "Archibaldshiny",
+          "GroupId": "Darrick.Richardson",
           "Id": {
             "Value": 12347
           },
           "IsCustomerTypeExistInParentHierarchy": false,
           "Locale": "English (United States)",
           "LocationGroupType": "Container",
-          "Name": "Test Campdoes",
-          "Users": "Abner670"
-        },
-        {
-          "Admins": "Savannah473",
-          "Country": "United States",
-          "CreatedOn": "6/7/2019 12:12:16 AM",
-          "Devices": "13",
-          "GroupId": "Parisianllama",
-          "Id": {
-            "Value": 12348
-          },
-          "IsCustomerTypeExistInParentHierarchy": false,
-          "Locale": "English (United States)",
-          "LocationGroupType": "Customer",
-          "Name": "Test Tennisdo",
-          "Users": "Woofgang Puck113"
-        },
-        {
-          "Admins": "Bernardo_Barnes",
-          "Country": "United States",
-          "CreatedOn": "7/22/2024 7:30:08 PM",
-          "Devices": "0",
-          "GroupId": "CadetBlue_airport",
-          "Id": {
-            "Value": 12349
-          },
-          "IsCustomerTypeExistInParentHierarchy": false,
-          "Locale": "English (United States)",
-          "LocationGroupType": "Container",
-          "Name": "Test Koalashall",
-          "Users": "Maria_Harris"
+          "Name": "Test Wateropen",
+          "Users": "WatermelonItchy80"
         }
       ],
       "Page": 0,
       "PageSize": 500,
-      "Total": 4
+      "Total": 2
     }
   }
 }

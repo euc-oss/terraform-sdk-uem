@@ -95,6 +95,7 @@ var ledgerUnverifiedCategoryPrefixes = []string{
 	"Blocked (tenant precondition)",
 	"Blocked (SDK gap)",
 	"Deliberate edge case",
+	"Pending recapture (PORTED-FROM-26.2)",
 }
 
 func ledgerUnverifiedHasCategoryLead(reason string) bool {

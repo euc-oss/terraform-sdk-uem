@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/deployments/{uuid}",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/updates/deployments/{uuid} after PUT /api/mdm/updates/deployments/{uuid} against 26.4.0.0. FINDING: ranking field is silently ignored by the PUT endpoint (204 returned, but ranking remained 1, not the 2 sent in the body). This is consistent with the canonical model: DeviceUpdateDeploymentUpdateV1Model has no ranking field — ranking is managed exclusively via the bulk-rank endpoint (PUT /api/mdm/updates/{uuid}/groups/{ogUuid}/deployments/bulk-rank). Sending ranking in the PUT body is silently dropped. priority remains absent (consistent with Questions A & B findings). Real UUIDs anonymized.",
+    "version": "1",
+    "captured_against": "26.4.0.0"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "uuid": "ec4a352b-6409-c5a7-84b0-6c192258c3ba",
+      "ranking": 1,
+      "organization_group_uuid": "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c",
+      "device_update_uuid": "9af645a8-fef3-3e6d-3408-5cc69e0937d4",
+      "name": "sdk-test-deployment-26400",
+      "deployment_start_time": "2026-08-01T00:00:00",
+      "deployment_type": "DOWNLOAD_ONLY",
+      "smart_group_uuids": ["c2e73a8e-0b57-a56f-d3ae-45c0a3f9c220"],
+      "notifications": []
+    }
+  }
+}

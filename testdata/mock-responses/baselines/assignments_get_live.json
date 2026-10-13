@@ -2,18 +2,19 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments",
     "method": "GET",
-    "description": "Genuine live capture against a persistent hand-created baseline (test_baseline_sdk in the readonly_fixtures organization group) before any assignment was made -- a real, empty result.",
+    "description": "Captured GET /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments live-recaptured against 26.4 lab tenant, disposable baseline (no assignments yet). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
     "headers": {
-      "Accept": "application/json;version=1"
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
     }
   },
   "response": {
     "status_code": 200,
     "headers": {
-      "Content-Type": "application/json;version=1; charset=utf-8"
+      "Content-Type": "application/json; charset=utf-8"
     },
     "body": []
   }

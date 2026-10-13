@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/68964",
     "method": "GET",
-    "platform": "AppleOsX",
-    "description": "Successful macOS network (Wi-Fi) profile retrieval by ID. Literal id changed from a collision-prone 12345 to 68964 (collision sweep, 2026-08-05) -- 12345 was also used by get_profile_12345.json, which IS load-bearing (TestGeneratedGetProfile requests exactly that literal ID), unlike this fixture which is only ever read directly by decodeDeviceProfileFixtureBody (metadata.endpoint is inert for that path). 68964 matches this same profile's own id noted in appleosx/create-v2.json's api_validation.notes, not used as a literal endpoint anywhere else.",
+    "description": "Captured GET /api/mdm/profiles/68964 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, macOS network (Wi-Fi) profile GET by id -- RECAPTURED to the full live DeviceProfileV2Entity shape (genuine 26.4 behavior wins over the prior 26.2 port, which was a stale two-key hand-trim missing the omitempty-but-present empty-list keys). Genuine 26.4 recapture from a populated org group, replacing an earlier genuine 26.4 capture taken from an empty one.",
     "version": "2"
   },
   "request": {
@@ -15,36 +14,63 @@
   "response": {
     "status_code": 200,
     "headers": {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
+      "CredentialsList": [],
+      "CustomAttributes": [],
+      "CustomSettingsList": [],
+      "EmailList": [],
       "General": {
+        "AllowRemoval": "Always",
+        "AssignedSchedule": [],
+        "AssignedSmartGroups": [],
         "AssignmentType": "Auto",
-        "Description": "Weekends reserve time for Rock Climbing and person.",
+        "Description": "Since, prefer person over child.",
+        "EnableProvisioning": false,
+        "ExcludedSmartGroups": [],
         "IsActive": true,
+        "IsManaged": true,
+        "IsProvisionedForOobe": false,
         "ManagedLocationGroupID": 12346,
-        "Name": "Test LemonChiffonstairs",
-        "Platform": "AppleOsX",
+        "Name": "Test SaddleBrownmurder",
+        "Password": "",
         "ProfileContext": "Device",
         "ProfileId": 12347,
-        "ProfileScope": "Production",
-        "ProfileType": "Device",
-        "ProfileUuid": "08e56864-baa2-84e7-71b7-54711284a42e"
+        "ProfileUuid": "d411ba6c-3e8f-7700-f666-cef91691096b",
+        "Version": 1
       },
       "NetworkList": [
         {
+          "AllowTrustExceptions": false,
+          "AllowTwoRANDs": false,
           "AutoJoin": true,
-          "DisableAssociationMACRandomization": true,
+          "DisableAssociationMACRandomization": false,
+          "EAPAKA": false,
+          "EAPFAST": false,
+          "EAPSIM": false,
           "HiddenNetwork": false,
+          "LEAP": false,
           "NetworkInterface": "BuiltInWireless",
-          "Password": "rr4F*@vMG0Z_D_@A",
+          "PEAP": false,
+          "PacFallback": false,
+          "Password": "3Pb7uzF4rKy-Htb5",
+          "ProxyServerPort": 0,
           "ProxyType": "None",
-          "SecurityType": "WEP",
-          "ServiceSetIdentifier": "CorpWiFi",
-          "UseAsLoginWindowConfiguration": true,
-          "UseDirectoryAuthentication": false
+          "SecurityType": "WPA",
+          "ServiceSetIdentifier": "MocktestWiFi",
+          "TLS": false,
+          "TTLS": false,
+          "TrustedCertificates": [],
+          "UseAsLoginWindowConfiguration": false,
+          "UseDirectoryAuthentication": false,
+          "UsePAC": false
         }
-      ]
+      ],
+      "ScepList": [],
+      "SsoExtensionList": [],
+      "VpnList": [],
+      "WebClipsList": []
     }
   }
 }

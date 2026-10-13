@@ -16,6 +16,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode"
 
 	"github.com/hashicorp/go-retryablehttp"
 	"golang.org/x/time/rate"
@@ -77,6 +78,20 @@ type Config struct {
 	// HTTPClient is an optional custom *http.Client to use as the inner transport.
 	// When nil, a default client with sensible timeouts is used.
 	HTTPClient *http.Client
+
+	// UserAgent is an optional product token (or several, space separated) that
+	// identifies the application embedding the SDK, for example
+	// "my-app/1.2.0 my-framework/3.4.0". It is placed in
+	// front of the SDK's own token, so the User-Agent of every request, the
+	// OAuth2 token call included, reads
+	// "my-app/1.2.0 my-framework/3.4.0 uem-sdk-go/<version>".
+	// The SDK adds no prefix of its own. The value is sanitized (white space
+	// collapsed, control characters and non-ASCII dropped); when nothing is left
+	// only "uem-sdk-go/<version>" is sent. The SDK sets User-Agent on every
+	// request it builds and replaces any value already there; a custom
+	// HTTPClient transport that sets its own User-Agent runs afterwards and
+	// wins, so such a transport should not.
+	UserAgent string
 }
 
 // Client is the main client for interacting with the Workspace ONE UEM API.
@@ -86,6 +101,7 @@ type Client struct {
 	auth        AuthProvider
 	rateLimiter *rate.Limiter
 	baseURL     *url.URL
+	userAgent   string
 }
 
 // NewClient creates a new Workspace ONE client with the given configuration.
@@ -163,6 +179,13 @@ func NewClient(config *Config) (*Client, error) {
 		auth = NewBasicAuth(config.Username, config.Password)
 	}
 
+	// The token call carries the same User-Agent as API calls, unless the
+	// provider was given its own (OAuth2Auth.SetUserAgent).
+	userAgent := BuildUserAgent(config.UserAgent)
+	if a, ok := auth.(interface{ attachUserAgent(string) }); ok {
+		a.attachUserAgent(userAgent)
+	}
+
 	// Create rate limiter (requests per minute to requests per second)
 	ratePerSecond := float64(config.RateLimit) / 60.0
 	rateLimiter := rate.NewLimiter(rate.Limit(ratePerSecond), config.RateLimit)
@@ -173,6 +196,7 @@ func NewClient(config *Config) (*Client, error) {
 		auth:        auth,
 		rateLimiter: rateLimiter,
 		baseURL:     baseURL,
+		userAgent:   userAgent,
 	}
 
 	return client, nil
@@ -182,7 +206,21 @@ func NewClient(config *Config) (*Client, error) {
 // The acceptHeader and contentType are set directly on the request; callers must supply the correct values.
 // Returns the response headers and any error. Response headers are available even on successful requests,
 // enabling callers to read Location, X-Api-Version, and other response metadata.
-func (c *Client) DoRequest(ctx context.Context, method, endpoint, acceptHeader, contentType string, body interface{}, out interface{}) (http.Header, error) {
+func (c *Client) DoRequest(ctx context.Context, method, endpoint, acceptHeader, contentType string, body interface{}, out interface{}) (respHeaders http.Header, err error) {
+	// One correlation id per logical call. It is sent on the request (the retry
+	// layer re-sends the same request, so every attempt carries it) and attached to
+	// every error this call returns, so support never needs debug output to get it.
+	sentID := newCorrelationID()
+	// logged records that the call's debug line was written (once a response
+	// arrived); an error that returns before that gets the "no response" line.
+	logged := false
+	defer func() {
+		if err != nil && !logged {
+			c.debugCall(method, endpoint, 0, sentID, "")
+		}
+		err = withCorrelation(err, sentID)
+	}()
+
 	// Apply rate limiting.
 	//
 	// This deliberately runs BEFORE the request-body Validate() hook below, so a
@@ -240,13 +278,15 @@ func (c *Client) DoRequest(ctx context.Context, method, endpoint, acceptHeader, 
 	}
 
 	// Add headers using the caller-supplied accept and content-type values
-	if err := c.addHeaders(req.Request, acceptHeader, contentType); err != nil {
+	if err := c.addHeaders(req.Request, acceptHeader, contentType, sentID); err != nil {
 		return nil, fmt.Errorf("failed to add headers: %w", err)
 	}
 
 	// Execute request
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
+		// No response: the deferred cleanup writes the debug line with the id we
+		// sent, which is the only handle on the call.
 		return nil, fmt.Errorf("request failed: %w", err)
 	}
 	defer func() {
@@ -260,17 +300,56 @@ func (c *Client) DoRequest(ctx context.Context, method, endpoint, acceptHeader, 
 	// attempts marker (see exhaustedRetryHandler) is not a server header.
 	attempts, _ := strconv.Atoi(resp.Header.Get(attemptsHeader))
 	resp.Header.Del(attemptsHeader)
-	respHeaders := resp.Header.Clone()
+	respHeaders = resp.Header.Clone()
+	correlationID := resolveCorrelationID(respHeaders.Get(CorrelationIDHeader), sentID)
+	c.debugCall(method, endpoint, resp.StatusCode, correlationID, sentID)
+	logged = true
 
 	// Handle response
 	if err := c.handleResponse(resp, out); err != nil {
 		var apiErr *APIError
-		if attempts > 0 && errors.As(err, &apiErr) {
-			apiErr.Attempts = attempts
+		if errors.As(err, &apiErr) {
+			if attempts > 0 {
+				apiErr.Attempts = attempts
+			}
+			apiErr.CorrelationID = correlationID
+			apiErr.SentCorrelationID = sentID
+		} else {
+			// A body that cannot be read or decoded: the server's id, which is
+			// authoritative, not the one we sent.
+			err = withCorrelation(err, correlationID)
 		}
 		return respHeaders, err
 	}
 	return respHeaders, nil
+}
+
+// debugCall writes the one compact line per logical call to the SDK's debug
+// output (UEM_DEBUG / TF_LOG): method, path, final status and correlation id.
+// The path is the endpoint without its query string; no header, query value or
+// body is printed. A status of 0 means no response arrived.
+func (c *Client) debugCall(method, endpoint string, status int, correlationID, sentID string) {
+	if !isDebugEnabled() {
+		return
+	}
+	path, _, _ := strings.Cut(endpoint, "?")
+	// A path must not be able to break the line in two: keep printable runes only
+	// (this drops ASCII controls and also U+0085, U+2028, U+2029 and the like).
+	path = strings.Map(func(r rune) rune {
+		if !unicode.IsPrint(r) {
+			return -1
+		}
+		return r
+	}, path)
+	if status == 0 {
+		_, _ = fmt.Fprintf(logWriter, "[UEM-SDK] %s %s -> no response correlation-id=%s\n", method, path, correlationID)
+		return
+	}
+	extra := ""
+	if sentID != "" && sentID != correlationID {
+		extra = " sent-correlation-id=" + sentID // the server answered with a different id
+	}
+	_, _ = fmt.Fprintf(logWriter, "[UEM-SDK] %s %s -> %d correlation-id=%s%s\n", method, path, status, correlationID, extra)
 }
 
 // buildURL constructs the full URL for an API endpoint.
@@ -291,9 +370,18 @@ func (c *Client) buildURL(endpoint string) string {
 }
 
 // addHeaders adds required headers to the request.
-func (c *Client) addHeaders(req *http.Request, acceptHeader, contentType string) error {
-	// Get authentication token
-	token, err := c.auth.GetToken()
+func (c *Client) addHeaders(req *http.Request, acceptHeader, contentType, correlationID string) error {
+	// Get authentication token. A provider that can carry the call's correlation id
+	// on its token request does, so a token failure correlates like the call.
+	var token string
+	var err error
+	if p, ok := c.auth.(interface {
+		getTokenWithCorrelation(string) (string, error)
+	}); ok {
+		token, err = p.getTokenWithCorrelation(correlationID)
+	} else {
+		token, err = c.auth.GetToken()
+	}
 	if err != nil {
 		return fmt.Errorf("failed to get auth token: %w", err)
 	}
@@ -309,6 +397,10 @@ func (c *Client) addHeaders(req *http.Request, acceptHeader, contentType string)
 	req.Header.Set("Accept", acceptHeader)
 	req.Header.Set("Content-Type", contentType)
 	req.Header.Set("aw-tenant-code", c.config.TenantCode) // CRITICAL: Required on ALL requests
+	req.Header.Set(userAgentHeader, c.userAgent)
+	if correlationID != "" {
+		req.Header.Set(CorrelationIDHeader, correlationID)
+	}
 
 	return nil
 }
@@ -413,6 +505,14 @@ type APIError struct {
 	// Attempts is the number of requests made when the SDK's retry policy
 	// gave up on a retryable status (e.g. a persistent 500); 0 otherwise.
 	Attempts int `json:"-"`
+	// CorrelationID is the X-Correlation-ID of the call, for support and server
+	// log lookups: the value the server echoed, or the id the SDK sent when the
+	// response carried none. Empty only for an APIError built outside DoRequest.
+	CorrelationID string `json:"-"`
+	// SentCorrelationID is the id the SDK sent with the call. It equals
+	// CorrelationID unless a gateway answered with a different one, in which case
+	// both are kept.
+	SentCorrelationID string `json:"-"`
 }
 
 // UnmarshalJSON tolerates errorCode arriving as either a JSON string or a
@@ -454,10 +554,17 @@ func (e *APIError) UnmarshalJSON(data []byte) error {
 
 // Error implements the error interface.
 func (e *APIError) Error() string {
+	msg := fmt.Sprintf("API error %d: %s", e.StatusCode, e.Message)
 	if e.ErrorCode != "" {
-		return fmt.Sprintf("API error %d (%s): %s", e.StatusCode, e.ErrorCode, e.Message)
+		msg = fmt.Sprintf("API error %d (%s): %s", e.StatusCode, e.ErrorCode, e.Message)
 	}
-	return fmt.Sprintf("API error %d: %s", e.StatusCode, e.Message)
+	if e.CorrelationID != "" {
+		msg += " (correlation id: " + e.CorrelationID + ")"
+		if e.SentCorrelationID != "" && e.SentCorrelationID != e.CorrelationID {
+			msg += " (sent correlation id: " + e.SentCorrelationID + ")"
+		}
+	}
+	return msg
 }
 
 // GetHTTPTransport returns the current HTTP transport.

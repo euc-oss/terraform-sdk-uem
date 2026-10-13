@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/68912",
     "method": "DELETE",
-    "platform": "WinRT",
-    "description": "Live-captured DELETE /api/mdm/profiles/{profileId} against UEM 26.2.0.0, 2026-07-30. Real-wire finding: same as profiles_apple_delete.json / profiles_appleosx_delete.json -- response carries X-Api-Version: v1 even though the request sent Accept version=2, body empty (200, Content-Length 0). --accept-version 2 passed explicitly to route around the default --swagger-dir's false v1/v3 ambiguity (see profiles_appleosx_delete.json for detail); the route itself is unambiguous in the swagger source actually used by codegen.",
+    "description": "Captured DELETE /api/mdm/profiles/68912 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, DELETE WinRT profile by id -- X-Api-Version v1 despite v2 Accept, matches known quirk. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {

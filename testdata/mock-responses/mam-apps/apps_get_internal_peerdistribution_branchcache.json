@@ -2,8 +2,15 @@
   "metadata": {
     "endpoint": "/api/mam/apps/internal/peerdistribution/branchcache/{bundleid}",
     "method": "GET",
-    "description": "Captured GET BranchCache summary (bundle id URL-encoded in request path)",
-    "version": "2"
+    "description": "PORTED-FROM-26.2 (not re-verified on 26.4): Captured GET BranchCache summary (bundle id URL-encoded in request path)",
+    "version": "2",
+    "provenance": {
+      "class": "PORTED-FROM-26.2",
+      "source_tenant": "unrecorded",
+      "source_version": "unrecorded",
+      "source_commit": "a4b67af4b43fa6e94365fcae2ae565376dfde61a",
+      "reverified_on": null
+    }
   },
   "request": {
     "headers": {

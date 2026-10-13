@@ -2,29 +2,35 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}",
     "method": "POST",
-    "description": "Genuine live capture: cloning a persistent hand-created baseline (test_baseline_sdk in the readonly_fixtures organization group) INTO a disposable organization group via the clone request body's rootLocationGroupID -- confirmed cross-OG (the clone lands under the target OG, not the source), never mutating the source baseline or its OG. Triggered via ?action=clone; the mock matcher does not inspect query params by default so this fixture matches the bare POST.",
+    "description": "Captured POST /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, POST /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}?action=clone live-recaptured against 26.4 lab tenant, disposable baseline cloned within the same disposable OG; leak-fixed Location header. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
     "headers": {
-      "Accept": "application/json;version=1"
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
     }
   },
   "response": {
     "status_code": 201,
     "headers": {
-      "Content-Type": "application/json;version=1; charset=utf-8"
+      "Content-Type": "application/json; charset=utf-8",
+      "Location": "/api/mdm/groups/076ce949-e037-14c1-fe3d-0071ef92c22b/baselines/7c392016-ba72-9ed7-704a-5dea31c59bac"
     },
     "body": {
       "assignmentCount": 0,
-      "baselineTemplateUUID": "01698c81-fd06-3d73-0794-a86ca8453c7e",
-      "baselineUUID": "fb7d4cad-56f2-2e5e-f5a1-0af1331d390c",
-      "name": "Test LightSalmonmistake",
-      "osVersionUUID": "d029ef65-c4ac-5136-5a6f-ee5453cd493b",
+      "baselineTemplateUUID": "2f456baf-87d9-b8b1-e8f5-7014bf9391a9",
+      "baselineType": "Desktop",
+      "baselineUUID": "5fa61c15-7a99-be7a-2891-62a0466f74d2",
+      "customizations": [],
+      "description": "Visualize man for faster decisions.",
+      "name": "Test Squirrelbeen",
+      "osVersionUUID": "964426e5-7f69-e9e5-5641-b8b169107927",
+      "policies": [],
       "rootLocationGroupID": 12346,
-      "rootLocationGroupName": "Test Jackalwin",
-      "rootLocationGroupUUID": "9713f2a4-fd08-cec6-2047-71807757e116",
-      "templateName": "Test Minnowmight",
+      "rootLocationGroupName": "Test Raccoonbeen",
+      "rootLocationGroupUUID": "f9a304b9-238e-4a89-d1f9-5fbddf6e2c85",
+      "templateName": "Test Lousecry",
       "version": 1
     }
   }

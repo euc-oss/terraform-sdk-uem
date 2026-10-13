@@ -17,6 +17,9 @@ const (
 	// responses sharing this shape, replacing the old hand-authored placeholder.
 	testBaselineUUID       = "f9e174ca-9ee2-9354-2762-b0bf409a123b"
 	testBaselineDeviceUUID = "2e121787-d028-941a-7fc9-0df5de7ad6f4"
+	// The Windows 10 baseline platform catalog UUID, which the
+	// anonymizer preserves verbatim in the captured baselines.
+	testBaselineWin10PlatformUUID = "a80ea502-3c05-9987-b114-b674f8f44f09"
 )
 
 // TestGeneratedBaselinesV1Lifecycle exercises the BaselinesV1Service
@@ -68,8 +71,13 @@ func TestGeneratedBaselinesV1Lifecycle(t *testing.T) {
 	}
 	var wantCreated struct {
 		BaselineUUID string `json:"baselineUUID"`
+		Name         string `json:"name"`
+		Version      int    `json:"version"`
 	}
 	loadFixtureResponseBodyForTest(t, "baselines/create-response.json", &wantCreated)
+	if !looksLikeUUID(wantCreated.BaselineUUID) || wantCreated.Name == "" || wantCreated.Version < 1 {
+		t.Fatalf("fixture invariant: baselines/create-response.json has baselineUUID %q, name %q, version %d, want a UUID, a non-empty name and version >= 1", wantCreated.BaselineUUID, wantCreated.Name, wantCreated.Version)
+	}
 	if created == nil || created.BaselineUUID != wantCreated.BaselineUUID {
 		t.Fatalf("expected created BaselineUUID %q, got %+v", wantCreated.BaselineUUID, created)
 	}
@@ -94,6 +102,16 @@ func TestGeneratedBaselinesV1Lifecycle(t *testing.T) {
 		t.Fatalf("list: got %d baselines, want %d (non-zero) from the fixture", len(*list), len(wantList))
 	}
 	for i, want := range wantList {
+		// Fixed structural invariants: an identified baseline on the Windows 10 platform.
+		if uuid, _ := want["baselineUUID"].(string); !looksLikeUUID(uuid) {
+			t.Fatalf("fixture invariant: groups_get_id_baselines.json[%d] baselineUUID = %v, want a UUID", i, want["baselineUUID"])
+		}
+		if name, _ := want["name"].(string); name == "" {
+			t.Fatalf("fixture invariant: groups_get_id_baselines.json[%d] name is empty", i)
+		}
+		if want["platformName"] != "Windows 10" || want["platformUUID"] != testBaselineWin10PlatformUUID {
+			t.Fatalf("fixture invariant: groups_get_id_baselines.json[%d] platformName = %v, platformUUID = %v, want Windows 10 / %s", i, want["platformName"], want["platformUUID"], testBaselineWin10PlatformUUID)
+		}
 		got := (*list)[i]
 		if got.BaselineUUID != want["baselineUUID"] || got.Name != want["name"] || got.PlatformName != want["platformName"] || got.TemplateName != want["templateName"] {
 			t.Errorf("list[%d]: got uuid=%q name=%q platform=%q template=%q, want %v/%v/%v/%v", i,
@@ -111,6 +129,9 @@ func TestGeneratedBaselinesV1Lifecycle(t *testing.T) {
 		PlatformUUID string `json:"platformUUID"`
 	}
 	loadFixtureResponseBodyForTest(t, "baselines/get.json", &wantGot)
+	if !looksLikeUUID(wantGot.BaselineUUID) || wantGot.PlatformUUID != testBaselineWin10PlatformUUID {
+		t.Fatalf("fixture invariant: baselines/get.json has baselineUUID %q, platformUUID %q, want a UUID and the Windows 10 platform %s", wantGot.BaselineUUID, wantGot.PlatformUUID, testBaselineWin10PlatformUUID)
+	}
 	if got == nil || got.BaselineUUID != wantGot.BaselineUUID {
 		t.Fatalf("unexpected get response: %+v", got)
 	}
@@ -131,13 +152,24 @@ func TestGeneratedBaselinesV1Lifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("update failed: %v", err)
 	}
-	// Live-captured 2026-08-05: the anonymizer reuses the same deterministic
-	// fake name across create/get/update responses sharing this shape (the
-	// real server-side rename did happen -- version correctly bumped 1->2 --
-	// but the anonymized name string doesn't reflect it, same as
-	// testBaselineUUID above).
-	if updated == nil || updated.Name != "Test Manateewill" {
-		t.Errorf("expected renamed baseline in update response, got %+v", updated)
+	// The anonymizer's fake name in the update response fixture is read
+	// from the fixture itself (the genuine 26.4 recapture) rather than
+	// hardcoded -- it does not necessarily match the requested rename
+	// string above (the real server-side rename did happen -- version
+	// correctly bumped 1->2 -- but the anonymized name string doesn't
+	// reflect it, same as testBaselineUUID above).
+	var wantUpdated struct {
+		BaselineUUID string `json:"baselineUUID"`
+		Name         string `json:"name"`
+		Version      int    `json:"version"`
+	}
+	loadFixtureResponseBodyForTest(t, "baselines/update-response.json", &wantUpdated)
+	// An update response carries the bumped version (1 -> 2 on the capture).
+	if !looksLikeUUID(wantUpdated.BaselineUUID) || wantUpdated.Name == "" || wantUpdated.Version < 2 {
+		t.Fatalf("fixture invariant: baselines/update-response.json has baselineUUID %q, name %q, version %d, want a UUID, a non-empty name and version >= 2", wantUpdated.BaselineUUID, wantUpdated.Name, wantUpdated.Version)
+	}
+	if updated == nil || updated.Name != wantUpdated.Name {
+		t.Errorf("expected renamed baseline in update response, got %+v, want name %q", updated, wantUpdated.Name)
 	}
 
 	// CLONE — POST ?action=clone → 201 + body + Location (Pattern C). The
@@ -152,7 +184,7 @@ func TestGeneratedBaselinesV1Lifecycle(t *testing.T) {
 		// (which addresses the org group by UUID in the URL path). The
 		// value below is a fixed sample number; the mock server serves a
 		// static fixture and does not resolve it.
-		RootLocationGroupID: 138883,
+		RootLocationGroupID: 123456,
 	}
 	cloneOpts := &mdmv1.BaselinesV1CloneBaselineAsyncOptions{Action: "clone"}
 	_, cloned, err := svc.CloneBaselineAsync(ctx, testBaselinesOrgGroupUUID, testBaselineUUID, cloneReq, cloneOpts)
@@ -245,6 +277,13 @@ func TestGeneratedBaselinesV1Lifecycle(t *testing.T) {
 	loadFixtureResponseBodyForTest(t, "baselines/device-policies.json", &wantPolicies)
 	if policies == nil || len(wantPolicies.Results) == 0 || len(policies.Results) != len(wantPolicies.Results) {
 		t.Fatalf("device-policies: got %+v, want %d results", policies, len(wantPolicies.Results))
+	}
+	// total counts every policy while results is one page of them.
+	if wantPolicies.Total == nil {
+		t.Fatal("fixture invariant: baselines/device-policies.json has no total")
+	}
+	if *wantPolicies.Total <= 0 || int(*wantPolicies.Total) < len(wantPolicies.Results) {
+		t.Fatalf("fixture invariant: baselines/device-policies.json total = %v, want > 0 and >= the %d results returned", *wantPolicies.Total, len(wantPolicies.Results))
 	}
 	if wantPolicies.Total == nil || policies.Total == nil || *policies.Total != int(*wantPolicies.Total) {
 		t.Errorf("device-policies total: got %v, want %v", policies.Total, wantPolicies.Total)

@@ -10,7 +10,7 @@ Go SDK.
   suffix from v2 on, so every import and every `go get` carries it. The sync derives
   it from the release version, so nothing is edited by hand.
 - Tags are `v26.<minor>.<patch>`, with `-beta.N` on a beta
-  (`v26.2.0-beta.1` -> `v26.2.0` -> `v26.2.1`), and are created on the release branch of
+  (`v26.4.0-beta.1` -> `v26.4.0` -> the next patch), and are created on the release branch of
   the UEM version they target. Three parts only: the internal four-part build number is
   never a tag.
 - A tag is never moved or reused; a bad release is superseded by the next patch.
@@ -26,14 +26,15 @@ fixed cadence.
 1. Confirm `[Unreleased]` in [CHANGELOG.md](CHANGELOG.md) describes all
    user-visible changes since the prior release.
 2. Choose the next version number (`v26.<minor>.<patch>[-beta.N]`):
-   - **Patch** (`v26.2.0` -> `v26.2.1`): bug fixes only, no API changes.
-   - **Minor** (`v26.2.0` -> `v26.3.0`): new functionality and additive API
-     changes; a breaking change to the Go API also ships in a minor.
-   - **Beta** (`v26.2.0-beta.1` -> `v26.2.0-beta.2`): a pre-release of the next
-     version; its API may still change before the final tag.
+   - **Patch** (`v26.<minor>.<patch>` -> `v26.<minor>.<patch+1>`): bug fixes only,
+     no API changes.
+   - **Minor** (`v26.<minor>.<patch>` -> `v26.<minor+1>.0`): new functionality and
+     additive API changes; a breaking change to the Go API also ships in a minor.
+   - **Beta** (`v26.<minor>.<patch>-beta.1` -> `v26.<minor>.<patch>-beta.2`): a
+     pre-release of the next version; its API may still change before the final tag.
    A breaking change is recorded under "Breaking" in the CHANGELOG.
 3. The `Version` constant in `version.go` needs no manual bump: the sync renders it
-   from its `--version` flag (the 3-part form, e.g. `26.2.0`) each time it assembles
+   from its `--version` flag (the 3-part form, e.g. `26.4.0`) each time it assembles
    the tree, so it carries the internal release version of the build, which is not
    necessarily the `vX.Y.Z` tag chosen in step 2.
 4. Move CHANGELOG `[Unreleased]` content into a new `[vX.Y.Z] - YYYY-MM-DD`

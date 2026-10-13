@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/68911",
     "method": "GET",
-    "platform": "AppleOsX",
-    "description": "Live-captured GET /api/mdm/profiles/{profileId} immediately after UpdateAppleOsXDeviceProfileAsync (with General.CreateNewVersion=true), UEM 26.2.0.0, 2026-07-30. Real-wire finding: Restrictions.Sharing.Mail remained false even on this second (post-update) write, still gated by RestrictWhichSharingServicesAreEnabled=false -- the parent-flag dependency is sticky across updates, not just create. Shadowed by profiles_appleosx_get_after_create.json under the same literal path in a full-corpus load, so exercised via an isolated single-fixture mock server (see TestGeneratedProfilesV2AppleOsXGetAfterUpdate).",
+    "description": "Captured GET /api/mdm/profiles/68911 on the 26.4 lab tenant (UEM 26.4), 2026-09-24: macOS profile GET by id right after update, with Restrictions.Sharing.Mail=true sent again on update; Restrictions is present and Mail reads back false (gated by the parent restriction flag). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -27,18 +26,18 @@
         "AssignedSchedule": [],
         "AssignedSmartGroups": [],
         "AssignmentType": "Auto",
-        "Description": "Carefully vilify the cardigan enthusiastically.",
+        "Description": "Durable problem am worth the growth.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
         "ManagedLocationGroupID": 12346,
-        "Name": "Test Successsit",
+        "Name": "Test OliveDrabcompany",
         "Password": "",
         "ProfileContext": "Device",
         "ProfileId": 12347,
-        "ProfileUuid": "68f5b0d4-c0c2-b41e-ec0b-58c85e091ba7",
+        "ProfileUuid": "08e9ad58-da21-8038-17d0-e1b693c74a5d",
         "Version": 2
       },
       "NetworkList": [],
@@ -109,7 +108,7 @@
             "AllowPasswordSharing": false
           },
           "Spotlight": {
-            "AllowSpotlightSuggestions": true
+            "AllowSpotlightSuggestions": false
           }
         },
         "Media": {

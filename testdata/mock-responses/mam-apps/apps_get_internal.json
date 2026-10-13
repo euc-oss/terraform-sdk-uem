@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/apps/internal/{uuid}",
     "method": "GET",
-    "description": "Captured GET /api/mam/apps/internal/{uuid}",
+    "description": "Captured GET /api/mam/apps/internal/{uuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, Recaptured GET /api/mam/apps/internal/{uuid} against 26.4 lab tenant using rofx-mac-app-1's uuid; 200, matches port shape. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -17,13 +17,15 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
-      "ActualFileVersion": "1.0.0.0",
-      "AirwatchAppVersion": "0.0.0.0",
-      "AppId": "{c7bacf90-1345-fa90-7838-f31f4e7df60f}",
-      "AppProvisioningProfileUuid": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c",
-      "AppSizeInKB": 1892,
-      "ApplicationName": "Test Lovesmell",
-      "ApplicationUrl": "https://example.com/dwZhenuX",
+      "ActualFileVersion": "1.0",
+      "AirwatchAppVersion": "1.0.0.0",
+      "AppId": "com.example.PCOmnWfS",
+      "AppProvisioningProfileUuid": "50b29af6-be92-ab5f-4514-90097a345a02",
+      "AppSizeInKB": 17,
+      "ApplicationFileBlobGUID": "db5e5210-1d55-4231-b352-3eb35c4e7c77",
+      "ApplicationFileHash": "5DD97C1558E1AF38BF041C0EADC48E1115BCFDA43AB44834CAEABA2F7A98B0CE",
+      "ApplicationName": "Test Froghas",
+      "ApplicationUrl": "https://example.com/qUcMcDlq",
       "Assignments": [
         {
           "AfwVpnProfileId": 12346,
@@ -33,7 +35,7 @@
           "AppAttributes": [],
           "AppConfig": "Disabled",
           "AppConfigs": [],
-          "ApplicationBackup": "Enabled",
+          "ApplicationBackup": "Disabled",
           "ApplicationTransformIds": [],
           "AutoUpdateDevicesWithPreviousVersion": "Disabled",
           "EffectiveDate": "2024-01-15T00:00:00Z",
@@ -41,83 +43,80 @@
           "PreventRemoval": "Disabled",
           "PushMode": "OnDemand",
           "Rank": 0,
-          "RemoveOnUnEnroll": "Disabled",
+          "RemoveOnUnEnroll": "Enabled",
           "SmartGroupId": 12348,
-          "SmartGroupName": "Test MediumSeaGreenyear",
-          "SmartGroupUuid": "e8a0a223-9cf1-eaa1-af17-a7b985793f5c",
+          "SmartGroupName": "Test OliveDrabtrust",
+          "SmartGroupUuid": "f751f939-c2e7-47a0-bdaf-06bd9ffb3f45",
           "VisibleInAppCatalog": true,
           "VpnProfileId": 12349
         }
       ],
-      "AssumeManagementOfUserInstalledApp": "mrDaniels",
-      "BuildVersion": "{c7bacf90-1345-fa90-7838-f31f4e7df60f}",
+      "AssumeManagementOfUserInstalledApp": "Young4457",
+      "BuildVersion": "",
       "CategoryList": [],
       "ChangeLog": "",
-      "Comments": "",
-      "DeploymentOptions": {
-        "HowToInstall": {
-          "AdminPrivileges": true,
-          "DeviceRestart": "DoNotRestart",
-          "InstallCommand": "msiexec.exe /i '7z2409-x64.msi' /qn /norestart",
-          "InstallContext": "Device",
-          "InstallTimeoutInMinutes": 60,
-          "InstallerRebootExitCode": "",
-          "InstallerSuccessExitCode": "",
-          "RestartDeadlineInDays": 0,
-          "RetryCount": 3,
-          "RetryIntervalInMinutes": 5,
-          "UninstallDeviceRestart": "Unknown"
-        },
-        "WhenToCallInstallComplete": {
-          "CriteriaList": [],
-          "IdentifyApplicationBy": "LycheeUptight74",
-          "UseAdditionalCriteria": true
-        },
-        "WhenToInstall": {
-          "DataContingencies": [],
-          "DevicePowerRequired": 0,
-          "DiskSpaceRequiredInKb": 0,
-          "RamRequiredInMb": 0
-        }
-      },
-      "DevicesAssignedCount": 6,
+      "Comments": "Synthetic mock test app for Workspace ONE UEM SDK InternalAppsV1 capture testing. Not a real product.",
+      "DevicesAssignedCount": 0,
       "DevicesInstalledCount": 0,
-      "DevicesNotInstalledCount": 6,
+      "DevicesNotInstalledCount": 0,
+      "DisplayName": "Test Oxygenshake",
       "ExcludedSmartGroupGuids": [],
       "ExcludedSmartGroupIds": [],
-      "FilesOptions": {
-        "AppDependenciesList": [],
-        "AppPatchesList": [],
-        "AppTransformsList": [],
-        "ApplicationUnInstallProcess": {
-          "CustomScript": {
-            "CustomScriptType": "Input",
-            "UninstallCommand": "msiexec.exe /x '7z2409-x64.msi' /qn /norestart",
-            "UninstallScriptBlobId": 12350
-          },
-          "UseCustomScript": true
-        }
+      "LargeIconBlobGUID": "d30d29f9-3348-d159-01a3-84be2b4ef547",
+      "MacOsSoftwareDeploymentSummary": {
+        "IsManaged": "True",
+        "Pkginfo": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>_metadata</key>\n\t<dict>\n\t\t<key>created_by</key>\n\t\t<string>sdk-test</string>\n\t\t<key>creation_date</key>\n\t\t<date>2024-01-15T00:00:00Z</date>\n\t\t<key>munki_version</key>\n\t\t<string>5.0.0</string>\n\t\t<key>os_version</key>\n\t\t<string>14.0</string>\n\t</dict>\n\t<key>autoremove</key>\n\t<false/>\n\t<key>catalogs</key>\n\t<array>\n\t\t<string>testing</string>\n\t</array>\n\t<key>category</key>\n\t<string>Software</string>\n\t<key>description</key>\n\t<string>Synthetic mock test app for Workspace ONE UEM SDK InternalAppsV1 capture testing. Not a real product.</string>\n\t<key>developer</key>\n\t<string></string>\n\t<key>display_name</key>\n\t<string>MacOSDMGTestApp</string>\n\t<key>installer_item_hash</key>\n\t<string>5dd97c1558e1af38bf041c0eadc48e1115bcfda43ab44834caeaba2f7a98b0ce</string>\n\t<key>installer_item_location</key>\n\t<string>MacOSDMGTestApp.dmg</string>\n\t<key>installer_item_size</key>\n\t<integer>18</integer>\n\t<key>installer_type</key>\n\t<string>copy_from_dmg</string>\n\t<key>installs</key>\n\t<array>\n\t\t<dict>\n\t\t\t<key>CFBundleIdentifier</key>\n\t\t\t<string>com.omnissa.sdktest.macosdmg</string>\n\t\t\t<key>CFBundleName</key>\n\t\t\t<string>MacOSDMGTestApp</string>\n\t\t\t<key>CFBundleShortVersionString</key>\n\t\t\t<string>1.0</string>\n\t\t\t<key>CFBundleVersion</key>\n\t\t\t<string>1</string>\n\t\t\t<key>minosversion</key>\n\t\t\t<string>10.14</string>\n\t\t\t<key>path</key>\n\t\t\t<string>/Applications/MacOSDMGTestApp.app</string>\n\t\t\t<key>type</key>\n\t\t\t<string>application</string>\n\t\t\t<key>version_comparison_key</key>\n\t\t\t<string>CFBundleShortVersionString</string>\n\t\t</dict>\n\t</array>\n\t<key>items_to_copy</key>\n\t<array>\n\t\t<dict>\n\t\t\t<key>destination_path</key>\n\t\t\t<string>/Applications</string>\n\t\t\t<key>source_item</key>\n\t\t\t<string>MacOSDMGTestApp.app</string>\n\t\t</dict>\n\t</array>\n\t<key>minimum_os_version</key>\n\t<string>10.14</string>\n\t<key>name</key>\n\t<string>MacOSDMGTestApp</string>\n\t<key>unattended_install</key>\n\t<false/>\n\t<key>unattended_uninstall</key>\n\t<false/>\n\t<key>uninstall_method</key>\n\t<string>remove_copied_items</string>\n\t<key>uninstallable</key>\n\t<true/>\n\t<key>version</key>\n\t<string>1.0</string>\n</dict>\n</plist>\n"
       },
-      "LaunchCommand": "",
-      "LaunchType": "LaunchPath",
-      "ManagedBy": "Adams8942",
-      "ManagedByUuid": "e7647d10-6683-b05c-9359-b80002ded769",
-      "MinimumOperatingSystem": "",
-      "Platform": "WinRT",
+      "ManagedBy": "Chartreusewombat",
+      "ManagedByUuid": "fcad7455-77a6-40a3-7c7d-26b0a27e7511",
+      "MediumIconBlobGUID": "ad6420b2-d9a6-8ab4-c703-b839d8958602",
+      "MinimumOperatingSystem": "macOS Mojave 10.14.0",
+      "Platform": "AppleOsX",
       "Rating": 0,
       "Sdk": "Disabled",
+      "SmallIconBlobGUID": "e6c4f9fd-6dc0-e82b-77f1-bcc61c5281b9",
       "Status": "Active",
       "SupportedModels": [
         {
-          "Name": "Test Tomatoregiment",
+          "Name": "Test Marriageam",
+          "id": 12350
+        },
+        {
+          "Name": "Test Vestis",
           "id": 12351
+        },
+        {
+          "Name": "Test Wasplisten",
+          "id": 12352
+        },
+        {
+          "Name": "Test LemonChiffonhail",
+          "id": 12353
+        },
+        {
+          "Name": "Test Purpleman",
+          "id": 12354
+        },
+        {
+          "Name": "Test Hamburgerwill",
+          "id": 12355
+        },
+        {
+          "Name": "Test Showerpaint",
+          "id": 12356
         }
       ],
       "SupportedModelsName": [
-        "Test Llamacook"
+        "Test DimGreyheap",
+        "Test Houndwould",
+        "Test Baleis",
+        "Test Truckcan",
+        "Test DeepSkyBluefather",
+        "Test Yellowregiment",
+        "Test Marketwas"
       ],
-      "id": 12352,
-      "uuid": "f3be5b88-fb76-176d-845b-0be80ea3f3ad"
+      "id": 12357,
+      "uuid": "6c220dfd-67e6-6d62-69b5-0813d406a828"
     }
   }
 }

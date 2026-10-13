@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/68911",
     "method": "GET",
-    "platform": "AppleOsX",
-    "description": "Live-captured GET /api/mdm/profiles/{profileId} immediately after CreateAppleOsXDeviceProfileAsync, UEM 26.2.0.0, 2026-07-30. Real-wire finding (matches the April macOS-CRUD-capture template notes): the create request sent Restrictions.Sharing.Mail=true, but with the parent Restrictions.Sharing.RestrictWhichSharingServicesAreEnabled left at its default (false), the server silently persists Mail as false anyway -- the individual toggles only take effect once the parent restriction flag is enabled.",
+    "description": "Captured GET /api/mdm/profiles/68911 on the 26.4 lab tenant (UEM 26.4), 2026-09-24: macOS profile GET by id right after create, with the create request Restrictions.Sharing.Mail=true and RestrictWhichSharingServicesAreEnabled left at its default (false); Mail reads back false, because the parent restriction flag gates it. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -27,18 +26,18 @@
         "AssignedSchedule": [],
         "AssignedSmartGroups": [],
         "AssignmentType": "Auto",
-        "Description": "Otherwise, keep the day simple.",
+        "Description": "Reduce cognitive load in the point.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
         "ManagedLocationGroupID": 12346,
-        "Name": "Test Successsit",
+        "Name": "Test Baboonthrow",
         "Password": "",
         "ProfileContext": "Device",
         "ProfileId": 12347,
-        "ProfileUuid": "68f5b0d4-c0c2-b41e-ec0b-58c85e091ba7",
+        "ProfileUuid": "eccf607e-4f90-cf59-71a5-60882ab62c1b",
         "Version": 1
       },
       "NetworkList": [],

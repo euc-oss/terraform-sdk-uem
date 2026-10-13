@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/apps/search",
     "method": "GET",
-    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. GET /api/mam/apps/search (v2, organization_group_uuid = the disposable org group, which holds one macOS internal app created for this capture). The search returns apps from the org group's lineage (total 3). No MSI app exists in scope, so msi_deployment_parameters and the other MSI-only fields (application_size, application_url, comments, version_identifier) are ABSENT from this body rather than filled in.",
+    "description": "Captured GET /api/mam/apps/search on the 26.4 lab tenant (UEM 26.4), 2026-09-24, searching apps scoped to the populated readonly_fixtures org group (two macOS apps). Genuine 26.4 recapture from a populated org group, replacing an earlier genuine 26.4 capture taken from an empty one.",
     "version": "2"
   },
   "request": {
@@ -20,35 +20,40 @@
       "applications": [
         {
           "actual_file_version": "1.0",
-          "application_file_name": "Test Fishmight",
+          "application_file_name": "Test DarkRedexaltation",
           "application_name": "Test Lawyerride",
           "application_rank": 0,
           "application_source": 0,
           "application_type": "Internal",
           "application_version": "1.0.0.0",
           "assigned_device_count": 0,
-          "assignment_status": "Not Assigned",
+          "assignment_status": "Assigned",
           "bundle_id": "com.example.eZZIkbOJ",
           "category_list": {
             "category": []
           },
           "content_gateway_id": 0,
-          "icon_file_name": "Test MediumPurplecluster",
+          "icon_file_name": "Test Garlicfly",
           "installed_device_count": 0,
           "is_auto_update_version": false,
           "is_dependency_file": false,
           "is_enable_provisioning": false,
           "is_reimbursable": false,
-          "large_icon_uri": "https://example.com/MWiNOSri",
-          "medium_icon_uri": "https://example.com/zqkkcmXr",
-          "metadata_file_name": "Test Wolfshall",
+          "large_icon_uri": "https://example.com/OiIeBEnG",
+          "medium_icon_uri": "https://example.com/HPDuzYZK",
+          "metadata_file_name": "Test Hedgehogcan",
           "not_installed_device_count": 0,
-          "organization_group_uuid": "ebb64f4d-318b-5d93-e472-2500fe5d9cea",
+          "organization_group_uuid": "846432f0-32ef-1fca-bbde-43a81af4ef9b",
           "platform": "APPLE_OS_X",
           "push_mode": 0,
-          "root_organization_group_name": "Test Termitelisten",
-          "small_icon_uri": "https://example.com/lldKuKMy",
-          "smart_groups": [],
+          "root_organization_group_name": "Test Skunkbe",
+          "small_icon_uri": "https://example.com/FjgOLjth",
+          "smart_groups": [
+            {
+              "name": "Test Buffalohad",
+              "smart_group_uuid": "04652085-2b06-a3a3-c60e-fe0fb3daa90d"
+            }
+          ],
           "status": "Active",
           "supported_models": {
             "model": [
@@ -82,39 +87,44 @@
               }
             ]
           },
-          "uuid": "2bf246c1-0255-dac1-ccc0-bcf0e9730716"
+          "uuid": "6c220dfd-67e6-6d62-69b5-0813d406a828"
         },
         {
           "actual_file_version": "1.0",
-          "application_file_name": "Test Enthusiasmcan",
-          "application_name": "Test Eyebe",
+          "application_file_name": "Test Reindeerbe",
+          "application_name": "Test Oceanbeen",
           "application_rank": 0,
           "application_source": 0,
           "application_type": "Internal",
           "application_version": "1.0.0.0",
           "assigned_device_count": 0,
-          "assignment_status": "Not Assigned",
-          "bundle_id": "com.example.wyxgCSDD",
+          "assignment_status": "Assigned",
+          "bundle_id": "com.example.LtjXclgL",
           "category_list": {
             "category": []
           },
           "content_gateway_id": 0,
-          "icon_file_name": "Test Scorpiondoes",
+          "icon_file_name": "Test Elklisten",
           "installed_device_count": 0,
           "is_auto_update_version": false,
           "is_dependency_file": false,
           "is_enable_provisioning": false,
           "is_reimbursable": false,
-          "large_icon_uri": "https://example.com/XeBpATMs",
-          "medium_icon_uri": "https://example.com/TqZAyDqp",
-          "metadata_file_name": "Test LightSteelBlueanthology",
+          "large_icon_uri": "https://example.com/pBroTjQC",
+          "medium_icon_uri": "https://example.com/yeQOYoKd",
+          "metadata_file_name": "Test Aquamarineplace",
           "not_installed_device_count": 0,
-          "organization_group_uuid": "8f01d56f-4616-ca13-f8c1-73d52bf164cd",
+          "organization_group_uuid": "846432f0-32ef-1fca-bbde-43a81af4ef9b",
           "platform": "APPLE_OS_X",
           "push_mode": 0,
-          "root_organization_group_name": "Test MediumPurplegoodness",
-          "small_icon_uri": "https://example.com/CRbUiQLZ",
-          "smart_groups": [],
+          "root_organization_group_name": "Test Skunkbe",
+          "small_icon_uri": "https://example.com/eVZNoyES",
+          "smart_groups": [
+            {
+              "name": "Test Buffalohad",
+              "smart_group_uuid": "04652085-2b06-a3a3-c60e-fe0fb3daa90d"
+            }
+          ],
           "status": "Active",
           "supported_models": {
             "model": [
@@ -148,78 +158,12 @@
               }
             ]
           },
-          "uuid": "d346487b-0967-f614-4292-b38bcfa2ab39"
-        },
-        {
-          "actual_file_version": "1.0",
-          "application_file_name": "Test Lavenderwork",
-          "application_name": "Test Cowhad",
-          "application_rank": 0,
-          "application_source": 0,
-          "application_type": "Internal",
-          "application_version": "1.0.0.0",
-          "assigned_device_count": 0,
-          "assignment_status": "Not Assigned",
-          "bundle_id": "com.example.ZdEnkfzz",
-          "category_list": {
-            "category": []
-          },
-          "content_gateway_id": 0,
-          "icon_file_name": "Test Timewould",
-          "installed_device_count": 0,
-          "is_auto_update_version": false,
-          "is_dependency_file": false,
-          "is_enable_provisioning": false,
-          "is_reimbursable": false,
-          "large_icon_uri": "https://example.com/okWchiOs",
-          "medium_icon_uri": "https://example.com/BWaOfjvb",
-          "metadata_file_name": "Test Grasshoppercan",
-          "not_installed_device_count": 0,
-          "organization_group_uuid": "8f01d56f-4616-ca13-f8c1-73d52bf164cd",
-          "platform": "APPLE_OS_X",
-          "push_mode": 0,
-          "root_organization_group_name": "Test MediumPurplegoodness",
-          "small_icon_uri": "https://example.com/iIxRbFpA",
-          "smart_groups": [],
-          "status": "Active",
-          "supported_models": {
-            "model": [
-              {
-                "model_id": 14,
-                "model_name": "Test LawnGreenperson"
-              },
-              {
-                "model_id": 15,
-                "model_name": "Test Oxare"
-              },
-              {
-                "model_id": 16,
-                "model_name": "Test Goatsing"
-              },
-              {
-                "model_id": 30,
-                "model_name": "Test Greenpigeon"
-              },
-              {
-                "model_id": 31,
-                "model_name": "Test Bunchwould"
-              },
-              {
-                "model_id": 35,
-                "model_name": "Test Luxurybeing"
-              },
-              {
-                "model_id": 113,
-                "model_name": "Test DeepPinkyear"
-              }
-            ]
-          },
-          "uuid": "61e0f3b4-239b-92d2-5f11-4fc991eaabd8"
+          "uuid": "7ae15130-efd0-d6ae-9b59-707bb0ab9a90"
         }
       ],
       "page": 0,
       "page_size": 500,
-      "total": 3
+      "total": 2
     }
   }
 }

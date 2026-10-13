@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/{sensorUuid}",
     "method": "PUT",
-    "description": "V2 update device sensor (PUT /devicesensors/{sensorUuid}), 204 no content. Body changed timeout 120->180 and other fields; confirmed genuinely applied via a follow-up GET (not captured separately -- see get_sensor_v2.json note re: timeout always reading back as 0 regardless).",
+    "description": "Captured PUT /api/mdm/devicesensors/{sensorUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, PUT /api/mdm/devicesensors/{sensorUuid} (v2) live-recaptured against 26.4 lab tenant, disposable sensor. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {

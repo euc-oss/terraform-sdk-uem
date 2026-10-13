@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/smartgroups/{id}",
     "method": "GET",
-    "description": "Live-captured GET /api/mdm/smartgroups/{id} against UEM 26.2.0.0, 2026-07-30 -- readback immediately after DeleteAsync, confirming the group is actually gone. Wire-vs-expectation note: the live API does NOT return HTTP 404 for a deleted/missing smart group; it returns HTTP 400 with errorCode 6 and a descriptive not-found message. Treat this 400/errorCode:6 shape as the real 'not found' signal for this endpoint, not a literal 404.",
+    "description": "Captured GET /api/mdm/smartgroups/{id} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, reading back a disposable smart group after it was deleted (not found, errorCode 6). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -17,9 +17,9 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
+      "activityId": "628872be-c020-6d95-9b89-e3ad2bad02a3",
       "errorCode": 6,
-      "message": "Smart Group not found with Id: 12345 or User does not have access to it.",
-      "activityId": "0b0d6fc4-838a-e89b-d117-57f62678207d"
+      "message": "Smart Group not found with Id: 12347 or User does not have access to it."
     }
   }
 }

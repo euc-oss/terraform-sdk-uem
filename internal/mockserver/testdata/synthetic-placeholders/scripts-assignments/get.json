@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/scriptassignments/{assignmentUuid}",
     "method": "GET",
-    "description": "Captured GET /api/mdm/scriptassignments/{assignmentUuid}",
+    "description": "Captured GET /api/mdm/scriptassignments/{assignmentUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/mdm/scriptassignments/{assignmentUuid} live-recaptured against 26.4 lab tenant, rofx mirror assignment. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -19,13 +19,13 @@
     "body": {
       "assigned_smart_groups": [
         {
-          "smart_group_name": "Test Rabbitthrow",
-          "smart_group_uuid": "eaa54c29-851f-fe01-320e-bce278850dab"
+          "smart_group_name": "Test Employmentwrite",
+          "smart_group_uuid": "04652085-2b06-a3a3-c60e-fe0fb3daa90d"
         }
       ],
-      "assignment_uuid": "b782404b-a750-be40-971c-dd462b7a941e",
+      "assignment_uuid": "e6503cf7-1e12-8cb2-9af8-abda3e205887",
       "deployment_mode": "AUTO",
-      "name": "Test Koaladid",
+      "name": "Test Crowhad",
       "priority": 1,
       "show_in_catalog": false,
       "smart_group_count": 1

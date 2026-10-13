@@ -2,8 +2,8 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/68990",
     "method": "DELETE",
-    "description": "Live-captured with tools/mock-capture --allow-error-status against UEM 26.2 on 2026-09-24, inside a disposable sdktestrun org group, on an object deleted moments earlier (the org group was deleted afterwards and a second DELETE on it returned 400, quirk 20). Status, errorCode and message are verbatim except that the real resource id (in the path and the message) is replaced by a fixed id chosen to be unique in this corpus; the activityId is the capture anonymizer's output. Second DELETE /api/mdm/profiles/{profileId} on an already-deleted profile: 400, errorCode 400, 'Profile not found or User does not have access to the Profile.'. Differs from the GET wording. The request was sent with Accept version=2 (recorded as metadata.version and request.headers), but the response's X-Api-Version header said v1: this route is registered only at v1, and the server serves a higher requested version with its highest registered one (api-doctrine quirk 1). The SDK's generated DELETE now sends version=1. client.IsNotFound matches the message prefix so Terraform Delete can treat already-gone as success.",
-    "version": "2"
+    "description": "Captured DELETE /api/mdm/profiles/{id} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, DELETE on a disposable profile deleted moments earlier by this run, 26.4 lab tenant. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
+    "version": "1"
   },
   "request": {
     "headers": {

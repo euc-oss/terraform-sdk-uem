@@ -2,8 +2,15 @@
   "metadata": {
     "endpoint": "/api/mam/apps/internal/provisionings/{uuid}",
     "method": "GET",
-    "description": "Live-captured via bin/mock-capture against <internal-env>/26.2.0.0, org group 138883 (sdktest), the recapture epic's Workstream C. Resolves InternalAppsV2Service.GetApplicationList (operation InternalAppsV2_GetApplicationList) using the real AppProvisioningProfileUuid attached to internal iOS app id 66115 (created via tools/internalapps-capture with a valid, unexpired embedded.mobileprovision -- see the sibling begininstall fixture's description for the DTPlatformName precondition). Previously blocked (see this endpoint's now-superseded unverified ledger entry): 'mock-capture discovers application UUID from apps/search; this route requires provisioning profile UUID. First discovered internal app had no provisioning profile' -- resolved by reading AppProvisioningProfileUuid off the GET /api/mam/apps/internal/{applicationId} response for the freshly-created app instead of discovering via apps/search. GENUINE SDK MODEL/WIRE MISMATCH FOUND (not fixed here, out of scope for a capture task -- flagging for a follow-up): internal/mam/v2/models.go's AppListUsingProvisioningProfileModelV2.AppUUIDs is typed []ApplicationUuidV2 (an array of {\"appUuids\": string} objects), but the live wire response returns \"AppUuids\" as a plain array of UUID strings (confirmed live, this exact capture) -- json.Unmarshal will fail per-element (a JSON string cannot decode into the ApplicationUuidV2 struct). This fixture preserves the true wire shape (plain string array) rather than the model's declared shape. 200, real success.",
-    "version": "2"
+    "description": "PORTED-FROM-26.2 (not re-verified on 26.4): Live-captured via bin/mock-capture against <internal-env>/26.2.0.0, org group 123456 (sdktest), the recapture epic's Workstream C. Resolves InternalAppsV2Service.GetApplicationList (operation InternalAppsV2_GetApplicationList) using the real AppProvisioningProfileUuid attached to internal iOS app id 66115 (created via tools/internalapps-capture with a valid, unexpired embedded.mobileprovision -- see the sibling begininstall fixture's description for the DTPlatformName precondition). Previously blocked (see this endpoint's now-superseded unverified ledger entry): 'mock-capture discovers application UUID from apps/search; this route requires provisioning profile UUID. First discovered internal app had no provisioning profile' -- resolved by reading AppProvisioningProfileUuid off the GET /api/mam/apps/internal/{applicationId} response for the freshly-created app instead of discovering via apps/search. GENUINE SDK MODEL/WIRE MISMATCH FOUND (not fixed here, out of scope for a capture task -- flagging for a follow-up): internal/mam/v2/models.go's AppListUsingProvisioningProfileModelV2.AppUUIDs is typed []ApplicationUuidV2 (an array of {\"appUuids\": string} objects), but the live wire response returns \"AppUuids\" as a plain array of UUID strings (confirmed live, this exact capture) -- json.Unmarshal will fail per-element (a JSON string cannot decode into the ApplicationUuidV2 struct). This fixture preserves the true wire shape (plain string array) rather than the model's declared shape. 200, real success.",
+    "version": "2",
+    "provenance": {
+      "class": "PORTED-FROM-26.2",
+      "source_tenant": "lab-tenant",
+      "source_version": "26.2.0.0",
+      "source_commit": "a4b67af4b43fa6e94365fcae2ae565376dfde61a",
+      "reverified_on": null
+    }
   },
   "request": {
     "headers": {

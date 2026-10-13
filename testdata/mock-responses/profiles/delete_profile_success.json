@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/{id}",
     "method": "DELETE",
-    "description": "Captured DELETE /api/mdm/profiles/{id}",
+    "description": "Captured DELETE /api/mdm/profiles/68911 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, DELETE profile by id -- generic success case, empty 200 body. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {

@@ -2,8 +2,15 @@
   "metadata": {
     "endpoint": "/api/mam/apps/internal/67007",
     "method": "GET",
-    "description": "SYNTHETIC / HAND-AUTHORED PLACEHOLDER -- NOT live-captured; live .zip capture is explicitly HELD pending SFD feature-flag confirmation (see internal_app_create_zip.json's description for the full rationale, which applies identically here). GET /api/mam/apps/internal/{applicationId} for the placeholder zip app in that sibling fixture. DeploymentOptions/FilesOptions ARE populated here (unlike the pkg sibling fixture) because .zip's mandatory-field set includes them per vendored-test-apps/windows/SPEC.md section 9 -- FilesOptions.ApplicationUnInstallProcess shows UseCustomScript=true with a populated CustomScript, which is the one field that distinguishes zip's required metadata from msi's (msi's own get fixture shows UseCustomScript=false). The literal id 67007 is baked into the path (not the {applicationId} template) for the same RequestMatcher collision-avoidance reason documented throughout this directory tree.",
-    "version": "1"
+    "description": "PORTED-FROM-26.2 (not re-verified on 26.4): SYNTHETIC / HAND-AUTHORED PLACEHOLDER -- NOT live-captured; live .zip capture is explicitly HELD pending SFD feature-flag confirmation (see internal_app_create_zip.json's description for the full rationale, which applies identically here). GET /api/mam/apps/internal/{applicationId} for the placeholder zip app in that sibling fixture. DeploymentOptions/FilesOptions ARE populated here (unlike the pkg sibling fixture) because .zip's mandatory-field set includes them per vendored-test-apps/windows/SPEC.md section 9 -- FilesOptions.ApplicationUnInstallProcess shows UseCustomScript=true with a populated CustomScript, which is the one field that distinguishes zip's required metadata from msi's (msi's own get fixture shows UseCustomScript=false). The literal id 67007 is baked into the path (not the {applicationId} template) for the same RequestMatcher collision-avoidance reason documented throughout this directory tree.",
+    "version": "1",
+    "provenance": {
+      "class": "PORTED-FROM-26.2",
+      "source_tenant": "none (hand-authored, not a live capture)",
+      "source_version": "not applicable",
+      "source_commit": "a4b67af4b43fa6e94365fcae2ae565376dfde61a",
+      "reverified_on": null
+    }
   },
   "request": {
     "headers": {

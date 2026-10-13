@@ -3,7 +3,7 @@
     "endpoint": "/api/mam/apps/internal/begininstall",
     "method": "POST",
     "platform": "apk",
-    "description": "Internal-app begininstall (apk), captured live via tools/internalapps-capture --use-begininstall. Auto-anonymized via tools/internal/capturetools.Anonymize -- review before committing.",
+    "description": "Captured POST /api/mam/apps/internal/begininstall on the 26.4 lab tenant (UEM 26.4), 2026-09-24, recaptured live via tools/internalapps-capture --use-begininstall legacy BeginInstall path. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -20,12 +20,13 @@
     "body": {
       "AppRank": 0,
       "AppVersion": "1.0.0",
-      "ApplicationName": "Test Rabbitthrow",
+      "ApplicationName": "Test Hippopotamusfight",
       "ApplicationSource": "Unknown",
       "AssignedDeviceCount": 0,
       "AutoUpdateVersion": false,
-      "BundleId": "com.example.XDndwZhe",
+      "BundleId": "com.example.INVbllBB",
       "ContentGatewayId": 12346,
+      "DisplayName": "Test LightGreenhat",
       "EnableProvisioning": false,
       "Id": {
         "Value": 12347
@@ -35,10 +36,10 @@
       "IsReimbursable": false,
       "LocationGroupId": 12348,
       "NotInstalledDeviceCount": 0,
-      "OrganizationGroupUuid": "c64784b5-7327-97e3-9758-f05e2603e6a2",
+      "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
       "Platform": 5,
       "PushMode": 0,
-      "Uuid": "b96eee9b-edb2-02b3-f245-7a823b349da9"
+      "Uuid": "992cc6aa-3ceb-1247-df16-4e88fbe9cdd9"
     }
   }
 }

@@ -60,7 +60,7 @@ func TestFixtureSchemaValidation(t *testing.T) {
 			func() any { return &mdmv1.ScriptsSearchResultV1{} }},
 		{"../internal/mockserver/testdata/synthetic-placeholders/scripts-assignments/list.json",
 			func() any { return &mdmv1.ScriptAssignmentsSearchResultV1{} }},
-		{"../testdata/mock-responses/profiles/profiles_get_apple_id.json",
+		{"../testdata/mock-responses/profiles/get_apple_scep_12348.json",
 			func() any { return &mdmv2.DeviceProfileV2Entity{} }},
 		{"../testdata/mock-responses/mam-apps/apps_get_filters_id.json",
 			func() any { return &[]mamv2.ApplicationFiltersModelV2{} }},

@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
+	"github.com/euc-oss/terraform-sdk-uem/v26/client"
 	mamv1 "github.com/euc-oss/terraform-sdk-uem/v26/internal/mam/v1"
 	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
 )
@@ -40,12 +41,14 @@ type macOsAppAsset struct {
 	pkginfoContent  []byte
 	version         string
 
-	// wantLocationID is the app id baked into this asset's OWN create
-	// fixture's Location header. Asserting this exact value -- not just
-	// "the Location header parses as an int" -- is what proves this
-	// asset's own create fixture was served rather than a sibling's; see
-	// the orgGroupID doc comment above for why that is not automatic.
-	wantLocationID int
+	// createFixturePath (corpus-relative) is this asset's OWN create
+	// fixture. wantLocationID -- the app id proving THIS asset's create
+	// fixture was served rather than a sibling's -- is read from this
+	// fixture's own response.headers.Location at runtime (the genuine 26.4
+	// recapture), not hardcoded, since the anonymized id can differ from
+	// the 26.2 capture. See the orgGroupID doc comment above for why
+	// asserting the exact id (not just "it parsed") matters.
+	createFixturePath string
 
 	// capturedAppID is the literal, anonymized app id baked into this
 	// asset's GET/DELETE fixture paths (see those fixtures' own doc
@@ -138,11 +141,27 @@ func runMacOsAppsV1Lifecycle(t *testing.T, asset macOsAppAsset) {
 	if err != nil {
 		t.Fatalf("could not parse an integer app id out of Location header %q: %v", location, err)
 	}
+	// wantLocationID comes from this asset's own create fixture's
+	// response.headers.Location (the genuine 26.4 recapture), read at
+	// runtime rather than hardcoded.
+	createFixture, err := mockserver.LoadResponseFromFile(mockserver.ResolveResponsesDir("../testdata/mock-responses/" + asset.createFixturePath))
+	if err != nil {
+		t.Fatalf("load create fixture %s: %v", asset.createFixturePath, err)
+	}
+	wantLocationIDStr, err := client.ParseLocationID(createFixture.Response.Headers["Location"])
+	if err != nil {
+		t.Fatalf("parse fixture Location header failed: %v", err)
+	}
+	wantLocationID, err := strconv.Atoi(wantLocationIDStr)
+	if err != nil {
+		t.Fatalf("expected numeric app ID in fixture %s Location header, got %q: %v", asset.createFixturePath, wantLocationIDStr, err)
+	}
 	// Asserting the EXACT expected id (not just "it parsed") is what proves
 	// THIS asset's own create fixture was served -- see the orgGroupID doc
-	// comment on macOsAppAsset for the collision this guards against.
-	if gotLocationID != asset.wantLocationID {
-		t.Errorf("Location header %q parsed to id %d, want %d (own create fixture not served -- got a different asset's fixture instead)", location, gotLocationID, asset.wantLocationID)
+	// comment on macOsAppAsset for the collision this guards against
+	// (a review finding from the macOS-apps capture round).
+	if gotLocationID != wantLocationID {
+		t.Errorf("Location header %q parsed to id %d, want %d (own create fixture not served -- got a different asset's fixture instead)", location, gotLocationID, wantLocationID)
 	}
 
 	// 3. Get — GET /api/mam/apps/internal/{applicationId} → 200. Uses a
@@ -249,7 +268,9 @@ func runMacOsAppsV1Lifecycle(t *testing.T, asset macOsAppAsset) {
 // exercises the explicit pkginfo-blob delete only, matching what the live
 // capture actually had to do.
 //
-// Fixtures: testdata/mock-responses/internal-apps-v1/macos/{get,delete,internal_app_create}_internal_app_macos.json,
+// Fixtures: testdata/mock-responses/internal-apps-v1/macos/get_internal_app_macos.json,
+// testdata/mock-responses/internal-apps-v1/macos/delete_internal_app_macos.json,
+// testdata/mock-responses/internal-apps-v1/macos/internal_app_create_macos.json,
 // testdata/mock-responses/blobs/upload_blob_v2.json (shared, platform-agnostic).
 func TestGeneratedMacOsAppsV1Lifecycle(t *testing.T) {
 	runMacOsAppsV1Lifecycle(t, macOsAppAsset{
@@ -274,8 +295,8 @@ func TestGeneratedMacOsAppsV1Lifecycle(t *testing.T) {
 		pkginfoContent:  []byte("fake pkginfo plist bytes"),
 		version:         "1.0.0",
 
-		wantLocationID: 12357,
-		capturedAppID:  67003,
+		createFixturePath: "internal-apps-v1/macos/internal_app_create_macos.json",
+		capturedAppID:     67003,
 
 		wantPkginfoContains: "com.omnissa.sdktest.macosdmg",
 	})
@@ -311,11 +332,15 @@ func TestGeneratedMacOsAppsV1Lifecycle(t *testing.T) {
 // after, no explicit delete call made against them); only the pkginfo blob
 // needed its own explicit delete. See delete_internal_app_macos_ws1assist.json.
 //
-// Fixtures: testdata/mock-responses/internal-apps-v1/macos/{get,delete,internal_app_create}_internal_app_macos_ws1assist.json
+// Fixtures: testdata/mock-responses/internal-apps-v1/macos/get_internal_app_macos_ws1assist.json,
+// testdata/mock-responses/internal-apps-v1/macos/delete_internal_app_macos_ws1assist.json,
+// testdata/mock-responses/internal-apps-v1/macos/internal_app_create_macos_ws1assist.json
 // (filenames kept for historical continuity; content is now fully synthetic)
 //
-// orgGroupID uses a distinct literal (67004, matching this asset's own
-// GET/DELETE app id family) rather than the DMG asset's 12345: both tests
+// orgGroupID uses a distinct literal (12346 on 26.4; 26.2 used 67004,
+// matching this asset's own GET/DELETE app id family, and the 26.4 port of
+// the create fixture rewrote the endpoint's org-group id to the placeholder
+// 12346) rather than the DMG asset's 12345: both tests
 // load the full ../testdata/mock-responses tree, and internal/mockserver's
 // RequestMatcher scores an exact-literal path match above a template-path
 // match, so this asset's create fixture MUST bake in its own literal
@@ -324,7 +349,7 @@ func TestGeneratedMacOsAppsV1Lifecycle(t *testing.T) {
 // the match for both tests' create calls.
 func TestGeneratedMacOsAppsV1Lifecycle_WS1Assist(t *testing.T) {
 	runMacOsAppsV1Lifecycle(t, macOsAppAsset{
-		orgGroupID: 67004,
+		orgGroupID: 12346,
 
 		appFileName: "MacOSPkgTestApp-1.0.pkg",
 		// appContent is intentionally throwaway inline bytes, not the real
@@ -338,8 +363,8 @@ func TestGeneratedMacOsAppsV1Lifecycle_WS1Assist(t *testing.T) {
 		pkginfoContent:  []byte("fake pkginfo plist bytes"),
 		version:         "1.0.0",
 
-		wantLocationID: 67004,
-		capturedAppID:  67004,
+		createFixturePath: "internal-apps-v1/macos/internal_app_create_macos_ws1assist.json",
+		capturedAppID:     67004,
 
 		wantPkginfoContains:    "com.omnissa.sdktest.macospkgstyle",
 		wantPkginfoNotContains: "installer_type",

@@ -2,8 +2,9 @@
   "metadata": {
     "endpoint": "/api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployment",
     "method": "POST",
-    "description": "Live-captured POST /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployment against a real update-catalog uuid and a disposable-OG smart group (deleted after capture). id manually restored to 0 here: the standard anonymizer's key==\"id\" rule unconditionally replaces any \"id\" field with a nonzero sequential counter value, which silently corrupted this specific field's real, meaningful value of 0 (deployments are UUID-identified, not integer-ID-identified, per this test suite's own prior-established, still-accurate finding) -- confirmed against the equivalent already-verified sibling captures in this same fixture family.",
-    "version": "1"
+    "description": "Captured POST /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/deployment — canonical docs say 201 with a BaseModel {id, uuid} body. Confirmed: id is 0 (deployments are UUID-identified, not integer-ID-identified) and the deployment uuid appears only in the body, never in a Location/self header. Shape confirmed against 26.4.0.0 live capture: identical {id: 0, uuid: \"...\"} body, status 201.",
+    "version": "1",
+    "confirmed_against": ["26.2.0.0", "26.4.0.0"]
   },
   "request": {
     "headers": {
@@ -18,7 +19,7 @@
     },
     "body": {
       "id": 0,
-      "uuid": "1bc333e5-b6ed-b450-37c4-0007f627bd62"
+      "uuid": "ec4a352b-6409-c5a7-84b0-6c192258c3ba"
     }
   }
 }

@@ -277,9 +277,10 @@ if err != nil {
 _ = profile
 ```
 
-`*wsone.APIError` has exactly three fields. The `ErrorCode` is the
-machine-readable code from the API response body (e.g.,
-`"PROFILE_NOT_FOUND"`); `Message` is the human-readable text.
+The `ErrorCode` of a `*wsone.APIError` is the machine-readable code from the API
+response body (e.g., `"PROFILE_NOT_FOUND"`); `Message` is the human-readable text.
+`CorrelationID` is the call's `X-Correlation-ID`: include it when you ask for support
+(see [Error Handling](error-handling.md#correlation-id)).
 
 ## Getting Help
 

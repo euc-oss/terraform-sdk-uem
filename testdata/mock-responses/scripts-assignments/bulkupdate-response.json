@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/scripts/{scriptUuid}/updateassignments",
     "method": "POST",
-    "description": "Captured POST /api/mdm/scripts/{scriptUuid}/updateassignments",
+    "description": "Captured POST /api/mdm/scripts/{scriptUuid}/updateassignments on the 26.4 lab tenant (UEM 26.4), 2026-09-24, POST /api/mdm/scripts/{scriptUuid}/updateassignments live-recaptured against 26.4 lab tenant, disposable script/assignment/smart-group. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {

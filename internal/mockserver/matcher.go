@@ -29,22 +29,59 @@ const preferredFixtureBonus = 99
 
 // MatchPreferring is Match, except that a matching fixture whose SourceFile
 // equals preferred gets preferredFixtureBonus. An empty preferred is Match.
+//
+// A ported fixture (metadata.provenance.class PORTED-FROM-26.2) never wins
+// default lookup over a genuine fixture that matches the path at least as
+// specifically: the port competes on score only when its path match is
+// strictly more specific (an exact literal path against a genuine {id}
+// template, e.g. a captured not-found for one id) or when it is the
+// stateful preference. With no genuine match, the best port is served.
+// Ties keep the first-highest in walk order.
 func (rm *RequestMatcher) MatchPreferring(r *http.Request, preferred string) *MockResponse {
-	var bestMatch *MockResponse
-	var bestScore int
-
+	type candidate struct {
+		response  *MockResponse
+		score     int
+		pathScore int
+		preferred bool
+	}
+	var genuine, ported []candidate
+	genuinePath := 0
 	for _, response := range rm.responses {
 		score := scoreMatch(r, response)
-		if score > 0 && preferred != "" && response.SourceFile == preferred {
-			score += preferredFixtureBonus
+		if score <= 0 {
+			continue
 		}
-		if score > bestScore {
-			bestScore = score
-			bestMatch = response
+		c := candidate{response: response, score: score, pathScore: pathMatchScore(r.URL.Path, response.Metadata.Endpoint)}
+		if preferred != "" && response.SourceFile == preferred {
+			c.score += preferredFixtureBonus
+			c.preferred = true
+		}
+		if response.Metadata.IsPorted() {
+			ported = append(ported, c)
+			continue
+		}
+		genuine = append(genuine, c)
+		if c.pathScore > genuinePath {
+			genuinePath = c.pathScore
 		}
 	}
 
-	return bestMatch
+	var best *MockResponse
+	bestScore := 0
+	consider := func(c candidate) {
+		if c.score > bestScore {
+			bestScore, best = c.score, c.response
+		}
+	}
+	for _, c := range genuine {
+		consider(c)
+	}
+	for _, c := range ported {
+		if len(genuine) == 0 || c.preferred || c.pathScore > genuinePath {
+			consider(c)
+		}
+	}
+	return best
 }
 
 // scoreMatch calculates how well a request matches a response fixture.

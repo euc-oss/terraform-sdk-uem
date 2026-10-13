@@ -29,6 +29,14 @@ type OAuth2Auth struct {
 	token        string
 	expiryTime   time.Time
 	mu           sync.RWMutex
+
+	// userAgent is the full User-Agent of the token call. explicitUA records that
+	// SetUserAgent chose it, so a Client that adopts this provider keeps it.
+	userAgent  string
+	explicitUA bool
+	// attachedUA is the User-Agent of the Client the provider is attached to, kept
+	// apart from userAgent so that clearing an explicit value can resume adopting it.
+	attachedUA string
 }
 
 // NewOAuth2Auth creates a new OAuth2 authentication provider.
@@ -43,8 +51,46 @@ func NewOAuth2Auth(tokenURL, clientID, clientSecret string) *OAuth2Auth {
 	}
 }
 
+// SetUserAgent gives the token call its own User-Agent: the caller's product
+// token(s), sanitized as for client.Config.UserAgent, followed by the SDK's own
+// token. Without it the token call carries the User-Agent of the Client the
+// provider is attached to, or just "uem-sdk-go/<version>" when it is used alone.
+//
+// A value that sanitizes to nothing counts as not given: the provider goes back to
+// adopting the User-Agent of the Client it is attached to, which also clears a value
+// an earlier call set. A provider shared by several clients takes the value of the
+// client created last; call SetUserAgent to pin its own.
+func (a *OAuth2Auth) SetUserAgent(callerTokens string) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	if SanitizeUserAgentPrefix(callerTokens) == "" {
+		a.explicitUA = false
+		a.userAgent = a.attachedUA
+		return
+	}
+	a.userAgent = BuildUserAgent(callerTokens)
+	a.explicitUA = true
+}
+
+// attachUserAgent adopts the Client's User-Agent unless SetUserAgent chose one.
+func (a *OAuth2Auth) attachUserAgent(ua string) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	a.attachedUA = ua
+	if !a.explicitUA {
+		a.userAgent = ua
+	}
+}
+
 // GetToken returns a valid OAuth2 token, refreshing if necessary.
 func (a *OAuth2Auth) GetToken() (string, error) {
+	return a.getTokenWithCorrelation("")
+}
+
+// getTokenWithCorrelation is GetToken for a call that has a correlation id: a
+// refresh sends it as X-Correlation-ID on the token request. Client uses it so
+// that the id of the API call also appears on the token request it triggered.
+func (a *OAuth2Auth) getTokenWithCorrelation(correlationID string) (string, error) {
 	a.mu.RLock()
 	// Check if token is still valid (with 5-minute buffer)
 	if a.token != "" && time.Now().Before(a.expiryTime.Add(-5*time.Minute)) {
@@ -55,7 +101,7 @@ func (a *OAuth2Auth) GetToken() (string, error) {
 	a.mu.RUnlock()
 
 	// Token needs refresh
-	if err := a.RefreshToken(); err != nil {
+	if err := a.refreshToken(correlationID); err != nil {
 		return "", err
 	}
 
@@ -64,8 +110,22 @@ func (a *OAuth2Auth) GetToken() (string, error) {
 	return a.token, nil
 }
 
+// tokenUserAgent is the User-Agent of the token call; the caller holds a.mu.
+func (a *OAuth2Auth) tokenUserAgent() string {
+	if a.userAgent != "" {
+		return a.userAgent
+	}
+	return DefaultUserAgent()
+}
+
 // RefreshToken obtains a new OAuth2 token from the Workspace ONE API.
 func (a *OAuth2Auth) RefreshToken() error {
+	return a.refreshToken("")
+}
+
+// refreshToken fetches a token; a non-empty correlationID is sent as the
+// X-Correlation-ID of the token request.
+func (a *OAuth2Auth) refreshToken(correlationID string) error {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 
@@ -94,6 +154,10 @@ func (a *OAuth2Auth) RefreshToken() error {
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Accept", "application/json")
+	req.Header.Set(userAgentHeader, a.tokenUserAgent())
+	if correlationID != "" {
+		req.Header.Set(CorrelationIDHeader, correlationID)
+	}
 
 	// Execute request
 	client := &http.Client{Timeout: 30 * time.Second}

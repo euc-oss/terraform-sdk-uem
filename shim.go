@@ -20,6 +20,12 @@ type OAuth2Config struct {
 	ClientID     string
 	ClientSecret string
 	TokenURL     string
+
+	// UserAgent is an optional product token (or several) for the token call's
+	// User-Agent, placed in front of the SDK's own token. Leave it empty to give
+	// the token call the same User-Agent as API calls (Config.UserAgent of the
+	// client the provider is used with).
+	UserAgent string
 }
 
 // Config is the ergonomic public-surface configuration for the SDK client.
@@ -52,7 +58,25 @@ type Config struct {
 	// Timeout is the per-request HTTP timeout. Zero means use the SDK default
 	// (30 seconds).
 	Timeout time.Duration
+
+	// UserAgent is an optional product token (or several, space separated) that
+	// identifies the application embedding the SDK, for example
+	// "my-app/1.2.0 terraform/1.9.0". It is placed in front of the SDK's own
+	// token, "uem-sdk-go/<version>", in the User-Agent of every request including
+	// the OAuth2 token call. The SDK adds no prefix of its own. See
+	// client.Config.UserAgent for the sanitizing rules.
+	UserAgent string
 }
+
+// CorrelatedError is an error returned by a call, wrapped together with the call's
+// X-Correlation-ID. Its text ends in "(correlation id: <id>)" and it unwraps to the
+// original error, so errors.Is and errors.As keep working. See client.CorrelatedError.
+type CorrelatedError = client.CorrelatedError
+
+// CorrelationID returns the X-Correlation-ID of the call that produced err: the
+// CorrelationID of an *APIError or the ID of a *CorrelatedError found anywhere in
+// err's chain, or "" when err carries none. Every error a call returns carries one.
+func CorrelationID(err error) string { return client.CorrelationID(err) }
 
 // NewOAuth2Auth constructs an OAuth2 auth provider from an OAuth2Config.
 // Returns an error if any required field is empty.
@@ -60,7 +84,11 @@ func NewOAuth2Auth(cfg OAuth2Config) (AuthProvider, error) {
 	if cfg.ClientID == "" || cfg.ClientSecret == "" || cfg.TokenURL == "" {
 		return nil, errors.New("OAuth2Config requires ClientID, ClientSecret, and TokenURL")
 	}
-	return client.NewOAuth2Auth(cfg.TokenURL, cfg.ClientID, cfg.ClientSecret), nil
+	auth := client.NewOAuth2Auth(cfg.TokenURL, cfg.ClientID, cfg.ClientSecret)
+	if cfg.UserAgent != "" {
+		auth.SetUserAgent(cfg.UserAgent)
+	}
+	return auth, nil
 }
 
 // NewClient constructs a new SDK client from a public Config. This is the
@@ -75,6 +103,7 @@ func NewClient(cfg Config) (*client.Client, error) {
 		MaxRetries:  cfg.MaxRetries,
 		RateLimit:   cfg.RateLimit,
 		Timeout:     cfg.Timeout,
+		UserAgent:   cfg.UserAgent,
 	}
 	return client.NewClient(&inner)
 }

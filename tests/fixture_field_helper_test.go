@@ -39,3 +39,27 @@ func loadFixtureResponseBodyForTest(t *testing.T, relPath string, target interfa
 		t.Fatalf("parse fixture %s response.body into %T: %v", fullPath, target, err)
 	}
 }
+
+// loadSyntheticTwinBodyForTest decodes the response body of a
+// synthetic-placeholders twin (internal/mockserver/testdata/
+// synthetic-placeholders/<relPath>) into target, for tests whose mock server
+// serves the twin rather than the vendored corpus file.
+func loadSyntheticTwinBodyForTest(t *testing.T, relPath string, target interface{}) {
+	t.Helper()
+	fullPath := "../internal/mockserver/testdata/synthetic-placeholders/" + relPath
+	data, err := os.ReadFile(fullPath)
+	if err != nil {
+		t.Fatalf("read synthetic twin %s: %v", fullPath, err)
+	}
+	var envelope struct {
+		Response struct {
+			Body json.RawMessage `json:"body"`
+		} `json:"response"`
+	}
+	if err := json.Unmarshal(data, &envelope); err != nil {
+		t.Fatalf("parse synthetic twin %s: %v", fullPath, err)
+	}
+	if err := json.Unmarshal(envelope.Response.Body, target); err != nil {
+		t.Fatalf("decode synthetic twin body %s into %T: %v", fullPath, target, err)
+	}
+}

@@ -2,26 +2,8 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/12348",
     "method": "GET",
-    "description": "macOS network-wifi profile — GET by int id (V2)",
-    "version": "2",
-    "platform": "AppleOsX",
-    "api_validation": {
-      "console_url": "https://cn0000.example.com",
-      "uem_version": "25.9.1134.9",
-      "api_version": "2",
-      "accept_header": "application/json;version=2",
-      "org_group_id": 12345,
-      "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
-      "captured_at": "2026-04-23",
-      "result": "accepted",
-      "ticket": "regression-repro",
-      "endpoint": "GET /api/mdm/profiles/12348",
-      "response_id_example": 68964,
-      "notes": "SecurityType enum values: server rejected \"WPA2 Personal\"; \"WPA\" accepted. Enum not declared in swagger — canonical C# EncryptionType drives values.",
-      "request_templates": [
-        "testdata/request-templates/profiles/appleosx/network-wifi/network-wifi-create-v2.json"
-      ]
-    }
+    "description": "Captured GET /api/mdm/profiles/12348 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, macOS network-wifi profile GET by id -- a disposable profile created for this capture. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
+    "version": "2"
   },
   "request": {
     "headers": {
@@ -44,18 +26,18 @@
         "AssignedSchedule": [],
         "AssignedSmartGroups": [],
         "AssignmentType": "Auto",
-        "Description": "Weekends reserve time for Rock Climbing and person.",
+        "Description": "Since, prefer person over child.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
         "ManagedLocationGroupID": 12346,
-        "Name": "Test LemonChiffonstairs",
+        "Name": "Test Standdance",
         "Password": "",
         "ProfileContext": "Device",
         "ProfileId": 12347,
-        "ProfileUuid": "08e56864-baa2-84e7-71b7-54711284a42e",
+        "ProfileUuid": "8d4f4557-4f0b-ffc4-a752-30b2c7d86126",
         "Version": 1
       },
       "NetworkList": [
@@ -72,7 +54,7 @@
           "NetworkInterface": "BuiltInWireless",
           "PEAP": false,
           "PacFallback": false,
-          "Password": "*****",
+          "Password": "3Pb7uzF4rKy-Htb5",
           "ProxyServerPort": 0,
           "ProxyType": "None",
           "SecurityType": "WPA",

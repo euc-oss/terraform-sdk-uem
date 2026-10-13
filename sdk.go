@@ -371,6 +371,8 @@ type DeploymentByCriteriaApiModelV2 = mamv2.DeploymentByCriteriaApiModelV2
 
 type DeploymentByCustomScriptApiModelV2 = mamv2.DeploymentByCustomScriptApiModelV2
 
+type DeploymentModelV2 = mamv2.DeploymentModelV2
+
 type DeviceBranchCacheStatisticsModelV2 = mamv2.DeviceBranchCacheStatisticsModelV2
 
 type DeviceInformationV2Model = mamv2.DeviceInformationV2Model
@@ -395,6 +397,8 @@ type ImportPackageRequestV2Model = mamv2.ImportPackageRequestV2Model
 
 type ImportPackageResponseV2Model = mamv2.ImportPackageResponseV2Model
 
+type InstallScriptsModelV2 = mamv2.InstallScriptsModelV2
+
 type InstallerInfoV2Model = mamv2.InstallerInfoV2Model
 
 type InstallerSwitchesV2Model = mamv2.InstallerSwitchesV2Model
@@ -408,6 +412,10 @@ type LatestAppPackageInstallerInfoModelV2 = mamv2.LatestAppPackageInstallerInfoM
 type LatestVersionAppPackageModelV2 = mamv2.LatestVersionAppPackageModelV2
 
 type LicensesSummaryV2Model = mamv2.LicensesSummaryV2Model
+
+type MacInstallerInfoV2Model = mamv2.MacInstallerInfoV2Model
+
+type MacOsPackageInfoModelV2 = mamv2.MacOsPackageInfoModelV2
 
 type MacOsSoftwareDeploymentSummaryModelV2 = mamv2.MacOsSoftwareDeploymentSummaryModelV2
 
@@ -435,7 +443,13 @@ type RuleV1ModelV2 = mamv2.RuleV1ModelV2
 
 type RuntimeApplicationPermissionV2 = mamv2.RuntimeApplicationPermissionV2
 
+type ScriptsModelV2 = mamv2.ScriptsModelV2
+
 type SmartGroupApplicationMapV2Model = mamv2.SmartGroupApplicationMapV2Model
+
+type UninstallScriptsModelV2 = mamv2.UninstallScriptsModelV2
+
+type VerificationScriptsModelV2 = mamv2.VerificationScriptsModelV2
 
 type VppAssignmentV2Model = mamv2.VppAssignmentV2Model
 
@@ -724,6 +738,8 @@ type CatalogsV1GetPolicyCatalogAsyncOptions = mdmv1.CatalogsV1GetPolicyCatalogAs
 type DeviceSensorsGetDeviceSensorsByDeviceUuidAsyncOptions = mdmv1.DeviceSensorsGetDeviceSensorsByDeviceUuidAsyncOptions
 
 type DeviceSensorsV1GetDeviceSensorsOptions = mdmv1.DeviceSensorsV1GetDeviceSensorsOptions
+
+type PlatformsV1GetActivePlatformsAsyncOptions = mdmv1.PlatformsV1GetActivePlatformsAsyncOptions
 
 type ProfilesV1SearchOptions = mdmv1.ProfilesV1SearchOptions
 

@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/{sensorUuid}",
     "method": "GET",
-    "description": "Get device sensor by UUID (V1). Live-captured against <internal-env>/26.2.0.0, org 138883 (sdktest), for the sensor created in create_sensor.json. Confirms real server behavior: timeout always reads back 0 regardless of the value sent on create (same finding as V2's sibling fixture batch); event_trigger defaults to [\"UNKNOWN\"] when trigger_type=SCHEDULE and no event_trigger was supplied on create.",
+    "description": "Captured GET /api/mdm/devicesensors/{sensorUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/mdm/devicesensors/{sensorUuid} (v1) live-recaptured against 26.4 lab tenant, disposable sensor. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -18,15 +18,15 @@
     },
     "body": {
       "assigned_smart_groups": [],
-      "description": "Weekends reserve time for Rock Climbing and person.",
+      "description": "Up to the time, we try a smaller thing.",
       "event_trigger": [
         "UNKNOWN"
       ],
       "execution_architecture": "EITHER64OR32BIT",
       "execution_context": "SYSTEM",
       "is_read_only": false,
-      "name": "Test LemonChiffonstairs",
-      "organization_group_uuid": "08e56864-baa2-84e7-71b7-54711284a42e",
+      "name": "Test Bisquecompany",
+      "organization_group_uuid": "076ce949-e037-14c1-fe3d-0071ef92c22b",
       "platform": "WIN_RT",
       "query_response_type": "STRING",
       "query_type": "POWERSHELL",
@@ -34,7 +34,7 @@
       "script_data": "V3JpdGUtT3V0cHV0ICdTREsgY2FwdHVyZSB0ZXN0IHNlbnNvcic=",
       "timeout": 0,
       "trigger_type": "SCHEDULE",
-      "uuid": "0e44d914-4225-2276-b7cc-5cecb1ab3c4b"
+      "uuid": "1f05d8d9-d54f-ac67-b07a-593dc32e60e7"
     }
   }
 }

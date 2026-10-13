@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/system/groups/{id}/children",
     "method": "GET",
-    "description": "Captured GET /api/system/groups/{id}/children",
+    "description": "Captured GET /api/system/groups/{id}/children on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/system/groups/{id}/children live-recaptured against 26.4 lab tenant. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -18,9 +18,9 @@
     },
     "body": [
       {
-        "Admins": "MediumSlateBluegerbil",
+        "Admins": "few_bouquet",
         "Country": "United States",
-        "CreatedOn": "6/15/2026 8:16:52 PM",
+        "CreatedOn": "7/30/2026 4:58:23 PM",
         "Devices": "0",
         "GroupId": "Darrick.Richardson",
         "Id": {
@@ -29,16 +29,39 @@
         "IsCustomerTypeExistInParentHierarchy": false,
         "LgLevel": 0,
         "Locale": "en-US",
-        "LocationGroupType": "Customer",
+        "LocationGroupType": "Container",
         "Name": "Test Wateropen",
         "ParentLocationGroup": {
           "Id": {
             "Value": 12347
           },
-          "Uuid": "10fdc858-9266-1ebe-40a6-47b043411839"
+          "Uuid": "7a1c5716-6705-27f6-618a-89ca08f9c085"
         },
         "Users": "WatermelonItchy80",
-        "Uuid": "689df136-a2c8-1c6d-ae6d-e0d9b0b6fec4"
+        "Uuid": "63996656-0486-cdce-c74a-5219a34041f3"
+      },
+      {
+        "Admins": "drSnyder",
+        "Country": "United States",
+        "CreatedOn": "9/25/2026 4:43:10 AM",
+        "Devices": "0",
+        "GroupId": "mrFleming",
+        "Id": {
+          "Value": 12348
+        },
+        "IsCustomerTypeExistInParentHierarchy": false,
+        "LgLevel": 1,
+        "Locale": "en-US",
+        "LocationGroupType": "Container",
+        "Name": "Test Muleplay",
+        "ParentLocationGroup": {
+          "Id": {
+            "Value": 12349
+          },
+          "Uuid": "63996656-0486-cdce-c74a-5219a34041f3"
+        },
+        "Users": "WatermelonItchy80",
+        "Uuid": "1ec207a1-ac4f-42c6-0939-2d083d588662"
       }
     ]
   }

@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/68912",
     "method": "GET",
-    "platform": "WinRT",
-    "description": "Live-captured GET /api/mdm/profiles/{profileId} immediately after UpdateWinRTDeviceProfileAsync (with General.CreateNewVersion=true), UEM 26.2.0.0, 2026-07-30. Shadowed by profiles_winrt_get_after_create.json under the same literal path in a full-corpus load, so exercised via an isolated single-fixture mock server (see TestGeneratedProfilesV2WinRTGetAfterUpdate).",
+    "description": "Captured GET /api/mdm/profiles/68912 on the 26.4 lab tenant (UEM 26.4), 2026-09-24: WinRT profile GET by id right after the PUT update, with the Firewall payload sent again on update; top-level keys General and Firewall. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -32,18 +31,18 @@
         "AssignedSchedule": [],
         "AssignedSmartGroups": [],
         "AssignmentType": "Auto",
-        "Description": "Carefully vilify the cardigan enthusiastically.",
+        "Description": "Durable problem am worth the growth.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
         "ManagedLocationGroupID": 12346,
-        "Name": "Test Crowdwill",
+        "Name": "Test MintCreamwad",
         "Password": "",
         "ProfileContext": "Device",
         "ProfileId": 12347,
-        "ProfileUuid": "a60fd465-5d13-4c9c-5275-852c0da239a6",
+        "ProfileUuid": "e2a84b66-110f-23d3-5f08-add7efff941c",
         "Version": 2
       }
     }

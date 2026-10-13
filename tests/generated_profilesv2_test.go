@@ -19,8 +19,8 @@ func intPtr(i int) *int    { return &i }
 // files' metadata.endpoint as literal (not "{id}") paths -- the mockserver's
 // exact-path match (score 200) beats any {id}-template fixture (score 100),
 // so each platform's own literal id is collision-free against every other
-// fixture in the corpus. The get_profile_12345.json, get_android_68748.json,
-// and get_apple_68749.json were fixed to the same literal-endpoint pattern
+// fixture in the corpus. The files get_profile_12345.json, get_android_testdouble.json,
+// and get_apple_testdouble.json were fixed to the same literal-endpoint pattern
 // -- they previously all
 // declared the generic {id} template and genuinely tied for score against
 // each other and against the canonical profiles_get_apple_id.json capture,
@@ -630,23 +630,37 @@ func TestGeneratedProfilesV2WinRTGetAfterDelete(t *testing.T) {
 	}
 }
 
-// TestGeneratedProfilesV2SearchV2 verifies SearchProfiles against the
-// re-captured v2 fixture (profiles_search_v2.json), which correctly uses
-// the current wire shape (AdditionalInfo + ProfileList + TotalResults),
-// unlike the older search_android_success.json (a v1-shaped Profiles/Page/
-// PageSize body that does not match ProfileSearchResultV2Entity at all).
-// Loaded via an isolated single-fixture mock server so this specific
-// fixture's shape is what gets exercised, regardless of tie-break ordering
-// among the several pre-existing (and, in places, hand-fabricated) search
-// fixtures already in the corpus.
+// TestGeneratedProfilesV2SearchV2 verifies SearchProfiles against a
+// live-captured v2 search fixture that uses the current wire shape
+// (AdditionalInfo + ProfileList + TotalResults), unlike the older
+// search_android_success.json (a v1-shaped Profiles/Page/PageSize body that
+// does not match ProfileSearchResultV2Entity at all). On 26.4 the fixture is
+// profiles/profiles_get_search_264sandbox_v2.json, the genuine 26.4.0.0
+// capture that supersedes 26.2's profiles_search_v2.json. Expected values
+// are read from the fixture's own body. Loaded via an isolated
+// single-fixture mock server so this fixture's shape is what gets
+// exercised, regardless of tie-break ordering among the other search
+// fixtures in the corpus.
 func TestGeneratedProfilesV2SearchV2(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping integration test")
 	}
 
-	resp, err := mockserver.LoadResponseFromFile(mockserver.ResolveResponsesDir("../testdata/mock-responses/profiles/profiles_search_v2.json"))
+	const fixture = "profiles/profiles_get_search_264sandbox_v2.json"
+	var want struct {
+		ProfileList []struct {
+			Platform string `json:"Platform"`
+		} `json:"ProfileList"`
+		TotalResults *int `json:"TotalResults"`
+	}
+	loadFixtureResponseBodyForTest(t, fixture, &want)
+	if len(want.ProfileList) == 0 || want.TotalResults == nil {
+		t.Fatalf("%s: fixture has no ProfileList rows or no TotalResults", fixture)
+	}
+
+	resp, err := mockserver.LoadResponseFromFile(mockserver.ResolveResponsesDir("../testdata/mock-responses/profiles/profiles_get_search_264sandbox_v2.json"))
 	if err != nil {
-		t.Fatalf("load search_v2 fixture: %v", err)
+		t.Fatalf("load %s: %v", fixture, err)
 	}
 	ms := mockserver.NewMockServer([]*mockserver.MockResponse{resp})
 	t.Cleanup(ms.Close)
@@ -662,20 +676,17 @@ func TestGeneratedProfilesV2SearchV2(t *testing.T) {
 	if result == nil {
 		t.Fatal("expected non-nil search response")
 	}
-	// Field-verification: the generated ProfileSearchResultV2Entity already
-	// has a ProfileList field (not "Profiles") -- matches the live wire
-	// response field-for-field, confirmed by this fixture.
-	if len(result.ProfileList) != 3 {
-		t.Fatalf("expected 3 profiles in ProfileList, got %d", len(result.ProfileList))
+	// Field-verification: the generated ProfileSearchResultV2Entity has a
+	// ProfileList field (not "Profiles"), matching the live wire response.
+	if len(result.ProfileList) != len(want.ProfileList) {
+		t.Fatalf("ProfileList: got %d profiles, want the fixture's %d", len(result.ProfileList), len(want.ProfileList))
 	}
-	if result.TotalResults == nil || *result.TotalResults != 3 {
-		t.Errorf("expected TotalResults=3, got %+v", result.TotalResults)
+	if result.TotalResults == nil || *result.TotalResults != *want.TotalResults {
+		t.Errorf("TotalResults: got %+v, want the fixture's %d", result.TotalResults, *want.TotalResults)
 	}
-	platforms := map[string]bool{}
-	for _, p := range result.ProfileList {
-		platforms[p.Platform] = true
-	}
-	if !platforms["Apple"] || !platforms["WinRT"] {
-		t.Errorf("expected Apple and WinRT platforms in results, got %+v", platforms)
+	for i, p := range result.ProfileList {
+		if p.Platform != want.ProfileList[i].Platform {
+			t.Errorf("ProfileList[%d].Platform: got %q, want the fixture's %q", i, p.Platform, want.ProfileList[i].Platform)
+		}
 	}
 }

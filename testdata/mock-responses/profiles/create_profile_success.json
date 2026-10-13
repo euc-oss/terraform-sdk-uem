@@ -3,8 +3,15 @@
     "endpoint": "/api/mdm/profiles/platforms/android/create",
     "method": "POST",
     "platform": "Android",
-    "description": "Successful profile creation",
-    "version": "2"
+    "description": "PORTED-FROM-26.2 (not re-verified on 26.4): Successful profile creation",
+    "version": "2",
+    "provenance": {
+      "class": "PORTED-FROM-26.2",
+      "source_tenant": "none (hand-authored, not a live capture)",
+      "source_version": "not applicable",
+      "source_commit": "a4b67af4b43fa6e94365fcae2ae565376dfde61a",
+      "reverified_on": null
+    }
   },
   "request": {
     "headers": {

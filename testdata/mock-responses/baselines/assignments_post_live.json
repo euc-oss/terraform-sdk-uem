@@ -2,16 +2,18 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments",
     "method": "POST",
-    "description": "Genuine live capture: assigning a freshly-created smart group to a disposable clone of test_baseline_sdk, both scoped to the same disposable organization group -- never the source baseline or its OG (Pattern D: 204 empty).",
+    "description": "Captured POST /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments on the 26.4 lab tenant (UEM 26.4), 2026-09-24, POST /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/assignments live-recaptured against 26.4 lab tenant, disposable baseline and smart group. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
     "headers": {
-      "Accept": "application/json;version=1"
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
     }
   },
   "response": {
     "status_code": 204,
+    "headers": {},
     "body": null
   }
 }

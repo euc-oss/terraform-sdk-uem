@@ -2,6 +2,7 @@ package tests
 
 import (
 	"context"
+	"encoding/json"
 	"strings"
 	"testing"
 
@@ -57,13 +58,10 @@ func TestGeneratedUpdatesV1ReadOnly(t *testing.T) {
 	if searchResp == nil {
 		t.Fatal("expected non-nil search response")
 	}
-	if searchResp.Total == nil || *searchResp.Total != 173 {
-		t.Errorf("total: got %v, want 173", searchResp.Total)
-	}
-	if len(searchResp.UpdateList) != 50 {
-		t.Fatalf("update_list length: got %d, want 50", len(searchResp.UpdateList))
-	}
+	// Expected values are read from the fixture's own body, so the test
+	// asserts faithful decoding of whichever version's capture is staged.
 	var wantSearchFirst struct {
+		Total      *int `json:"total"`
 		UpdateList []struct {
 			Name       string `json:"name"`
 			UUID       string `json:"uuid"`
@@ -71,8 +69,25 @@ func TestGeneratedUpdatesV1ReadOnly(t *testing.T) {
 		} `json:"update_list"`
 	}
 	loadFixtureResponseBodyForTest(t, "updates/updates_search.json", &wantSearchFirst)
-	if len(wantSearchFirst.UpdateList) == 0 {
-		t.Fatal("updates/updates_search.json fixture has an empty update_list -- cannot derive expected values")
+	if len(wantSearchFirst.UpdateList) == 0 || wantSearchFirst.Total == nil {
+		t.Fatal("updates/updates_search.json fixture has an empty update_list or no total -- cannot derive expected values")
+	}
+	// Fixed structural invariants (the derived comparisons below agree with
+	// whatever the fixture holds): the page is a slice of a positive total and
+	// every update is identified.
+	if *wantSearchFirst.Total <= 0 || *wantSearchFirst.Total < len(wantSearchFirst.UpdateList) {
+		t.Fatalf("fixture invariant: updates_search.json total = %d, want > 0 and >= the %d rows returned", *wantSearchFirst.Total, len(wantSearchFirst.UpdateList))
+	}
+	for i, u := range wantSearchFirst.UpdateList {
+		if u.UUID == "" || u.Name == "" || u.UpdateType == "" {
+			t.Fatalf("fixture invariant: updates_search.json update_list[%d] has uuid %q, name %q, update_type %q, want all non-empty", i, u.UUID, u.Name, u.UpdateType)
+		}
+	}
+	if searchResp.Total == nil || *searchResp.Total != *wantSearchFirst.Total {
+		t.Errorf("total: got %v, want the fixture's %d", searchResp.Total, *wantSearchFirst.Total)
+	}
+	if len(searchResp.UpdateList) != len(wantSearchFirst.UpdateList) {
+		t.Fatalf("update_list length: got %d, want the fixture's %d", len(searchResp.UpdateList), len(wantSearchFirst.UpdateList))
 	}
 	wantFirst := wantSearchFirst.UpdateList[0]
 
@@ -96,14 +111,28 @@ func TestGeneratedUpdatesV1ReadOnly(t *testing.T) {
 	if details == nil {
 		t.Fatal("expected non-nil details response")
 	}
-	if details.Name != "Test Rabbitthrow" {
-		t.Errorf("details name: got %q, want %q", details.Name, "Test Rabbitthrow")
+	var wantDetails struct {
+		UUID             string            `json:"uuid"`
+		Name             string            `json:"name"`
+		Version          string            `json:"version"`
+		UpdateType       string            `json:"update_type"`
+		SupportedDevices []json.RawMessage `json:"supported_devices"`
 	}
-	if details.Version != "17.3.1" {
-		t.Errorf("details version: got %q, want %q", details.Version, "17.3.1")
+	loadFixtureResponseBodyForTest(t, "updates/updates_get_details.json", &wantDetails)
+	if wantDetails.Name == "" || wantDetails.Version == "" || len(wantDetails.SupportedDevices) == 0 {
+		t.Fatal("updates/updates_get_details.json lacks name/version/supported_devices")
 	}
-	if len(details.SupportedDevices) != 49 {
-		t.Errorf("supported_devices length: got %d, want 49", len(details.SupportedDevices))
+	if wantDetails.UUID == "" || wantDetails.UpdateType == "" {
+		t.Fatalf("fixture invariant: updates_get_details.json has uuid %q and update_type %q, want both non-empty", wantDetails.UUID, wantDetails.UpdateType)
+	}
+	if details.Name != wantDetails.Name {
+		t.Errorf("details name: got %q, want the fixture's %q", details.Name, wantDetails.Name)
+	}
+	if details.Version != wantDetails.Version {
+		t.Errorf("details version: got %q, want the fixture's %q", details.Version, wantDetails.Version)
+	}
+	if len(details.SupportedDevices) != len(wantDetails.SupportedDevices) {
+		t.Errorf("supported_devices length: got %d, want the fixture's %d", len(details.SupportedDevices), len(wantDetails.SupportedDevices))
 	}
 	// Real-wire finding: the live server omits "description" and
 	// "external_key" entirely when they are empty (JsonNetFormatter's
@@ -137,17 +166,34 @@ func TestGeneratedUpdatesV1ReadOnly(t *testing.T) {
 	if readiness == nil {
 		t.Fatal("expected non-nil readiness response")
 	}
-	if readiness.Eligible == nil || *readiness.Eligible != 0 {
-		t.Errorf("eligible: got %v, want 0", readiness.Eligible)
+	var wantReadiness struct {
+		Eligible             *int `json:"eligible"`
+		NotEligible          *int `json:"not_eligible"`
+		AlreadyOnThisVersion *int `json:"already_on_this_version"`
+		OnHigherVersion      *int `json:"on_higher_version"`
 	}
-	if readiness.NotEligible == nil || *readiness.NotEligible != 0 {
-		t.Errorf("not_eligible: got %v, want 0", readiness.NotEligible)
-	}
-	if readiness.AlreadyOnThisVersion == nil || *readiness.AlreadyOnThisVersion != 0 {
-		t.Errorf("already_on_this_version: got %v, want 0", readiness.AlreadyOnThisVersion)
-	}
-	if readiness.OnHigherVersion == nil || *readiness.OnHigherVersion != 0 {
-		t.Errorf("on_higher_version: got %v, want 0", readiness.OnHigherVersion)
+	loadFixtureResponseBodyForTest(t, "updates/updates_device_readiness.json", &wantReadiness)
+	for _, c := range []struct {
+		name      string
+		got, want *int
+	}{
+		{"eligible", readiness.Eligible, wantReadiness.Eligible},
+		{"not_eligible", readiness.NotEligible, wantReadiness.NotEligible},
+		{"already_on_this_version", readiness.AlreadyOnThisVersion, wantReadiness.AlreadyOnThisVersion},
+		{"on_higher_version", readiness.OnHigherVersion, wantReadiness.OnHigherVersion},
+	} {
+		if c.want == nil {
+			t.Errorf("%s: updates/updates_device_readiness.json has no value", c.name)
+			continue
+		}
+		// The captured org group has no eligible devices, so zero is the
+		// genuine state; only a negative count is structurally impossible.
+		if *c.want < 0 {
+			t.Errorf("fixture invariant: updates_device_readiness.json %s = %d, want >= 0", c.name, *c.want)
+		}
+		if c.got == nil || *c.got != *c.want {
+			t.Errorf("%s: got %v, want the fixture's %d", c.name, c.got, *c.want)
+		}
 	}
 
 	// 6. GET COUNT OF DEVICE STATUS — GET /api/mdm/updates/{updateUuid}/groups/{organizationGroupUuid}/device-status → 404
@@ -174,11 +220,25 @@ func TestGeneratedUpdatesV1ReadOnly(t *testing.T) {
 	if statusResp == nil {
 		t.Fatal("expected non-nil status response")
 	}
-	if statusResp.Total == nil || *statusResp.Total != 0 {
-		t.Errorf("total: got %v, want 0", statusResp.Total)
+	var wantStatus struct {
+		Total      *int              `json:"total"`
+		DeviceList []json.RawMessage `json:"device_list"`
 	}
-	if len(statusResp.DeviceList) != 0 {
-		t.Errorf("device_list length: got %d, want 0 (no deployments in this org group)", len(statusResp.DeviceList))
+	loadFixtureResponseBodyForTest(t, "updates/updates_update_status.json", &wantStatus)
+	if wantStatus.Total == nil {
+		t.Fatal("updates/updates_update_status.json has no total")
+	}
+	// The capture's deployment-free org group yields an empty device_list with
+	// total 0, so non-emptiness is not an invariant; total must still be a
+	// non-negative count covering every row returned.
+	if *wantStatus.Total < 0 || *wantStatus.Total < len(wantStatus.DeviceList) {
+		t.Fatalf("fixture invariant: updates_update_status.json total = %d, want >= 0 and >= the %d device_list rows", *wantStatus.Total, len(wantStatus.DeviceList))
+	}
+	if statusResp.Total == nil || *statusResp.Total != *wantStatus.Total {
+		t.Errorf("total: got %v, want the fixture's %d", statusResp.Total, *wantStatus.Total)
+	}
+	if len(statusResp.DeviceList) != len(wantStatus.DeviceList) {
+		t.Errorf("device_list length: got %d, want the fixture's %d", len(statusResp.DeviceList), len(wantStatus.DeviceList))
 	}
 }
 
@@ -246,6 +306,9 @@ func TestGeneratedUpdatesV1DeploymentLifecycle(t *testing.T) {
 		UUID string `json:"uuid"`
 	}
 	loadFixtureResponseBodyForTest(t, "updates/updates_deployment_create.json", &wantCreated)
+	if wantCreated.UUID == "" {
+		t.Fatal("fixture invariant: updates_deployment_create.json uuid is empty, want a created deployment UUID")
+	}
 	if created == nil || created.UUID != wantCreated.UUID {
 		t.Fatalf("expected created deployment UUID %q, got %+v", wantCreated.UUID, created)
 	}
@@ -262,17 +325,31 @@ func TestGeneratedUpdatesV1DeploymentLifecycle(t *testing.T) {
 		t.Fatalf("GetDeviceUpdateDeploymentDetails failed: %v", err)
 	}
 	var wantGot struct {
-		UUID string `json:"uuid"`
+		UUID           string `json:"uuid"`
+		Name           string `json:"name"`
+		Ranking        *int   `json:"ranking"`
+		DeploymentType string `json:"deployment_type"`
 	}
 	loadFixtureResponseBodyForTest(t, "updates/updates_deployment_get.json", &wantGot)
+	if wantGot.Name == "" || wantGot.Ranking == nil {
+		t.Fatal("updates/updates_deployment_get.json lacks name/ranking")
+	}
+	switch wantGot.DeploymentType {
+	case "DOWNLOAD_AND_INSTALL", "DOWNLOAD_ONLY", "INSTALL_ONLY", "DEFAULT", "INSTALL_ASAP", "NOTIFY_ONLY", "INSTALL_LATER", "INSTALL_FORCE_RESTART":
+	default:
+		t.Fatalf("fixture invariant: updates_deployment_get.json deployment_type = %q, want one of the 8 documented non-UNKNOWN values", wantGot.DeploymentType)
+	}
+	if wantGot.UUID == "" || *wantGot.Ranking <= 0 {
+		t.Fatalf("fixture invariant: updates_deployment_get.json uuid = %q, ranking = %d, want a non-empty uuid and ranking > 0", wantGot.UUID, *wantGot.Ranking)
+	}
 	if got == nil || got.UUID != wantGot.UUID {
 		t.Fatalf("expected fetched deployment UUID %q, got %+v", wantGot.UUID, got)
 	}
-	if got.Name != "Test Snowlung" {
-		t.Errorf("name: got %q, want %q", got.Name, "Test Snowlung")
+	if got.Name != wantGot.Name {
+		t.Errorf("name: got %q, want the fixture's %q", got.Name, wantGot.Name)
 	}
-	if got.Ranking == nil || *got.Ranking != 1 {
-		t.Errorf("ranking: got %v, want 1", got.Ranking)
+	if got.Ranking == nil || *got.Ranking != *wantGot.Ranking {
+		t.Errorf("ranking: got %v, want the fixture's %d", got.Ranking, *wantGot.Ranking)
 	}
 	// Real-wire finding (see fixture description): allow_user_deferral,
 	// max_number_of_deferrals, and priority are all omitted on a fresh V1

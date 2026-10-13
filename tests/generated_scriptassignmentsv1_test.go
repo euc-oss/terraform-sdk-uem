@@ -47,10 +47,10 @@ func TestGeneratedScriptAssignmentsV1Lifecycle(t *testing.T) {
 
 	// LIST — GET /api/mdm/scripts/{scriptUuid}/assignments → 200 +
 	// ScriptAssignmentsSearchResult ({SearchResults+RecordCount} wrapper).
-	// list.json is a synthetic placeholder (see its own metadata.description):
-	// no live-tenant capture exists for this endpoint. It now asserts an
-	// empty result set (RecordCount=0, no SearchResults), matching the
-	// fixture's real recaptured content.
+	// Expected values are read from the fixture the mock server serves (the
+	// synthetic-placeholders twin, byte-identical to the vendored
+	// scripts-assignments/list.json; on 26.4 a genuine capture holding one
+	// assignment).
 	_, list, err := svc.GetScriptAssignmentsAsync(ctx, scriptUUID)
 	if err != nil {
 		t.Fatalf("list failed: %v", err)
@@ -58,15 +58,27 @@ func TestGeneratedScriptAssignmentsV1Lifecycle(t *testing.T) {
 	if list == nil {
 		t.Fatal("expected non-nil list result")
 	}
-	if list.RecordCount == nil || *list.RecordCount != 0 {
+	var wantList struct {
+		RecordCount   int `json:"RecordCount"`
+		SearchResults []struct {
+			Name string `json:"name"`
+		} `json:"SearchResults"`
+	}
+	loadSyntheticTwinBodyForTest(t, "scripts-assignments/list.json", &wantList)
+	if list.RecordCount == nil || *list.RecordCount != wantList.RecordCount {
 		got := -1
 		if list.RecordCount != nil {
 			got = *list.RecordCount
 		}
-		t.Fatalf("expected RecordCount=0, got %d", got)
+		t.Fatalf("RecordCount: got %d, want the fixture's %d", got, wantList.RecordCount)
 	}
-	if len(list.SearchResults) != 0 {
-		t.Fatalf("expected 0 SearchResults, got %d", len(list.SearchResults))
+	if len(list.SearchResults) != len(wantList.SearchResults) {
+		t.Fatalf("SearchResults: got %d, want the fixture's %d", len(list.SearchResults), len(wantList.SearchResults))
+	}
+	for i := range list.SearchResults {
+		if list.SearchResults[i].Name != wantList.SearchResults[i].Name {
+			t.Errorf("SearchResults[%d].Name: got %q, want the fixture's %q", i, list.SearchResults[i].Name, wantList.SearchResults[i].Name)
+		}
 	}
 
 	// CREATE — POST /api/mdm/scripts/{scriptUuid}/assignments → 201 +
@@ -109,8 +121,12 @@ func TestGeneratedScriptAssignmentsV1Lifecycle(t *testing.T) {
 	if got.AssignmentUUID == "" {
 		t.Error("expected non-empty AssignmentUUID")
 	}
-	if got.Name != "Test Koaladid" {
-		t.Errorf("expected name 'Test Koaladid', got %q", got.Name)
+	var wantGet struct {
+		Name string `json:"name"`
+	}
+	loadSyntheticTwinBodyForTest(t, "scripts-assignments/get.json", &wantGet)
+	if got.Name != wantGet.Name {
+		t.Errorf("name: got %q, want the fixture's %q", got.Name, wantGet.Name)
 	}
 
 	// BULKUPDATE — POST /api/mdm/scripts/{scriptUuid}/updateassignments →

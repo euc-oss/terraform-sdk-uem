@@ -40,8 +40,18 @@ func TestEnterpriseAppRepositoryV2GetApplicationsDetails(t *testing.T) {
 	if result == nil {
 		t.Fatal("expected non-nil response")
 	}
-	if result.PackageIdentifier != "com.example.pQIihbwj" {
-		t.Errorf("PackageIdentifier: got %q, want com.example.pQIihbwj", result.PackageIdentifier)
+	// Expected PackageIdentifier is read from the fixture's own body (the
+	// genuine 26.4 recapture), not hardcoded.
+	var want struct {
+		PackageIdentifier string `json:"package_identifier"`
+	}
+	loadFixtureResponseBodyForTest(t, "mam-apps/enterpriseapprepository_get_packages.json", &want)
+	// Without this the comparison below would pass on two empty identifiers.
+	if want.PackageIdentifier == "" {
+		t.Fatal("fixture invariant: enterpriseapprepository_get_packages.json package_identifier is empty, want a package identifier")
+	}
+	if result.PackageIdentifier != want.PackageIdentifier {
+		t.Errorf("PackageIdentifier: got %q, want %s", result.PackageIdentifier, want.PackageIdentifier)
 	}
 	if result.PackageVersion != "1.7.3" {
 		t.Errorf("PackageVersion: got %q, want 1.7.3", result.PackageVersion)
@@ -59,21 +69,65 @@ func TestEnterpriseAppRepositoryV2GetApplicationsDetails(t *testing.T) {
 	}
 }
 
+// profileSearchFixtureRow is the structural slice of a v2 profile-search row
+// that assertProfileSearchFixtureInvariants checks.
+type profileSearchFixtureRow struct {
+	ProfileID   int    `json:"ProfileId"`
+	ProfileUUID string `json:"ProfileUuid"`
+	ProfileName string `json:"ProfileName"`
+	Platform    string `json:"Platform"`
+}
+
+// assertProfileSearchFixtureInvariants checks the fixed structure of a captured
+// v2 profile search: a positive TotalResults covering every row returned, and
+// rows that are identified and carry a known platform string.
+func assertProfileSearchFixtureInvariants(t *testing.T, fixture string, rows []profileSearchFixtureRow, total *int) {
+	t.Helper()
+	if total == nil {
+		t.Fatalf("fixture invariant: %s has no TotalResults", fixture)
+	}
+	if *total <= 0 || *total < len(rows) {
+		t.Fatalf("fixture invariant: %s TotalResults = %d, want > 0 and >= the %d rows returned", fixture, *total, len(rows))
+	}
+	for i, r := range rows {
+		if r.ProfileID <= 0 || r.ProfileUUID == "" || r.ProfileName == "" {
+			t.Fatalf("fixture invariant: %s ProfileList[%d] has ProfileId %d, ProfileUuid %q, ProfileName %q, want all set", fixture, i, r.ProfileID, r.ProfileUUID, r.ProfileName)
+		}
+		switch r.Platform {
+		case "Apple", "Apple iOS", "AppleOsX", "Android", "WinRT", "Windows 10", "Windows_Rugged", "Qnx", "To do":
+		default:
+			t.Fatalf("fixture invariant: %s ProfileList[%d].Platform = %q, want a known profile platform", fixture, i, r.Platform)
+		}
+	}
+}
+
 // TestProfilesV2SearchProfilesSecondCapture verifies SearchProfiles against
-// the second, independently-provenanced real v2 capture
-// (profiles_get_search.json), distinct from the fixture already covered by
-// TestGeneratedProfilesV2SearchV2 (profiles_search_v2.json/search_v2.json).
-// Loaded via an isolated single-fixture mock server so this specific
-// fixture's shape is what gets exercised.
+// a second, independently captured real v2 search response
+// (profiles_get_search.json), distinct from the fixture covered by
+// TestGeneratedProfilesV2SearchV2. On 26.4 this is the genuine 26.4.0.0
+// capture; expected values are read from the fixture's own body. Loaded
+// via an isolated single-fixture mock server so this specific fixture's
+// shape is what gets exercised.
 // Fixture: testdata/mock-responses/profiles/profiles_get_search.json.
 func TestProfilesV2SearchProfilesSecondCapture(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping integration test")
 	}
 
+	const fixture = "profiles/profiles_get_search.json"
+	var want struct {
+		ProfileList  []profileSearchFixtureRow `json:"ProfileList"`
+		TotalResults *int                      `json:"TotalResults"`
+	}
+	loadFixtureResponseBodyForTest(t, fixture, &want)
+	if len(want.ProfileList) == 0 || want.TotalResults == nil {
+		t.Fatalf("%s: fixture has no ProfileList rows or no TotalResults", fixture)
+	}
+	assertProfileSearchFixtureInvariants(t, fixture, want.ProfileList, want.TotalResults)
+
 	resp, err := mockserver.LoadResponseFromFile(mockserver.ResolveResponsesDir("../testdata/mock-responses/profiles/profiles_get_search.json"))
 	if err != nil {
-		t.Fatalf("load profiles_get_search fixture: %v", err)
+		t.Fatalf("load %s: %v", fixture, err)
 	}
 	ms := mockserver.NewMockServer([]*mockserver.MockResponse{resp})
 	t.Cleanup(ms.Close)
@@ -89,18 +143,16 @@ func TestProfilesV2SearchProfilesSecondCapture(t *testing.T) {
 	if result == nil {
 		t.Fatal("expected non-nil search response")
 	}
-	if len(result.ProfileList) != 2 {
-		t.Fatalf("expected 2 profiles in ProfileList, got %d", len(result.ProfileList))
+	if len(result.ProfileList) != len(want.ProfileList) {
+		t.Fatalf("ProfileList: got %d profiles, want the fixture's %d", len(result.ProfileList), len(want.ProfileList))
 	}
-	if result.TotalResults == nil || *result.TotalResults != 2 {
-		t.Errorf("expected TotalResults=2, got %+v", result.TotalResults)
+	if result.TotalResults == nil || *result.TotalResults != *want.TotalResults {
+		t.Errorf("TotalResults: got %+v, want the fixture's %d", result.TotalResults, *want.TotalResults)
 	}
-	platforms := map[string]bool{}
-	for _, p := range result.ProfileList {
-		platforms[p.Platform] = true
-	}
-	if !platforms["Apple"] || !platforms["WinRT"] {
-		t.Errorf("expected Apple and WinRT platforms in results, got %+v", platforms)
+	for i, p := range result.ProfileList {
+		if p.Platform != want.ProfileList[i].Platform {
+			t.Errorf("ProfileList[%d].Platform: got %q, want the fixture's %q", i, p.Platform, want.ProfileList[i].Platform)
+		}
 	}
 }
 

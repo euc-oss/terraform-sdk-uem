@@ -2,8 +2,15 @@
   "metadata": {
     "endpoint": "/api/mam/apps/internal/67007",
     "method": "DELETE",
-    "description": "SYNTHETIC / HAND-AUTHORED PLACEHOLDER -- NOT live-captured; live .zip capture is explicitly HELD pending SFD feature-flag confirmation (see internal_app_create_zip.json's description). DELETE /api/mam/apps/internal/{applicationid} for the same placeholder zip app. Modeled on the real 204/empty-body shape confirmed live for apk/msi/macos/ipa on this same endpoint -- reused here as a well-established real-wire behavior for this endpoint, even though this fixture's own create/get siblings are synthetic placeholders.",
-    "version": "1"
+    "description": "PORTED-FROM-26.2 (not re-verified on 26.4): SYNTHETIC / HAND-AUTHORED PLACEHOLDER -- NOT live-captured; live .zip capture is explicitly HELD pending SFD feature-flag confirmation (see internal_app_create_zip.json's description). DELETE /api/mam/apps/internal/{applicationid} for the same placeholder zip app. Modeled on the real 204/empty-body shape confirmed live for apk/msi/macos/ipa on this same endpoint -- reused here as a well-established real-wire behavior for this endpoint, even though this fixture's own create/get siblings are synthetic placeholders.",
+    "version": "1",
+    "provenance": {
+      "class": "PORTED-FROM-26.2",
+      "source_tenant": "none (hand-authored, not a live capture)",
+      "source_version": "not applicable",
+      "source_commit": "a4b67af4b43fa6e94365fcae2ae565376dfde61a",
+      "reverified_on": null
+    }
   },
   "request": {
     "headers": {

@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/groups/{id}/macos/apps",
     "method": "POST",
-    "description": "Captured POST /api/mam/groups/{id}/macos/apps (Pattern B: 201 + Location header pointing at new app's canonical URL; empty body per canonical CreateMacOSApplication — .WithLocationHeader only, no .WithModel).",
+    "description": "Captured POST /api/mam/groups/12345/macos/apps on the 26.4 lab tenant (UEM 26.4), 2026-09-24, recaptured live via 3-blob precondition + MacOsAppsV1Service.CreateMacOSApplication (mam-apps create-only scenario). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -14,8 +14,7 @@
   "response": {
     "status_code": 201,
     "headers": {
-      "Content-Type": "application/json; charset=utf-8",
-      "Location": "api/mam/apps/internal/424242"
+      "Location": "api/mam/apps/internal/67005"
     },
     "body": null
   }

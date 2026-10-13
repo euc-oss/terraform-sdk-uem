@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "description": "Internal-app create (ipa), captured live via tools/internalapps-capture against 26.2.0.0; anonymized via mock-capture's Anonymize() before commit.",
     "endpoint": "/api/mam/apps/internal/application",
     "method": "POST",
     "platform": "ipa",
+    "description": "Captured POST /api/mam/apps/internal/application on the 26.4 lab tenant (UEM 26.4), 2026-09-24, recaptured live via tools/internalapps-capture chunked upload lifecycle (ipa). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -13,15 +13,20 @@
     }
   },
   "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
     "body": {
       "AppRank": 0,
       "AppVersion": "1.1.0.0",
-      "ApplicationName": "Test Rabbitthrow",
+      "ApplicationName": "Test DodgerBluefork",
       "ApplicationSource": "Unknown",
       "AssignedDeviceCount": 0,
       "AutoUpdateVersion": false,
-      "BundleId": "com.example.XDndwZhe",
+      "BundleId": "com.example.fPeSGxUg",
       "ContentGatewayId": 12346,
+      "DisplayName": "Test Snakewere",
       "EnableProvisioning": false,
       "Id": {
         "Value": 12347
@@ -31,14 +36,10 @@
       "IsReimbursable": false,
       "LocationGroupId": 12348,
       "NotInstalledDeviceCount": 0,
-      "OrganizationGroupUuid": "c64784b5-7327-97e3-9758-f05e2603e6a2",
+      "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
       "Platform": 2,
       "PushMode": 0,
-      "Uuid": "b96eee9b-edb2-02b3-f245-7a823b349da9"
-    },
-    "headers": {
-      "Content-Type": "application/json; charset=utf-8"
-    },
-    "status_code": 200
+      "Uuid": "bff73b33-f24f-5122-8c1d-cf3347c255df"
+    }
   }
 }

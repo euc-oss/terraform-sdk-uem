@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines",
     "method": "POST",
-    "description": "Captured POST /api/mdm/groups/{organizationGroupUuid}/baselines (multipart create via BaselineCreator helper; canonical impl returns 200 + BaselineV1Model body, not 201 + Location)",
+    "description": "Captured POST /api/mdm/groups/{organizationGroupUuid}/baselines on the 26.4 lab tenant (UEM 26.4), 2026-09-24, creating a disposable baseline via the multipart create (deleted afterwards). Genuine 26.4 recapture from a populated org group, replacing an earlier genuine 26.4 capture taken from an empty one.",
     "version": "1"
   },
   "request": {
@@ -17,19 +17,19 @@
     },
     "body": {
       "assignmentCount": 0,
-      "baselineTemplateUUID": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c",
-      "baselineUUID": "f9e174ca-9ee2-9354-2762-b0bf409a123b",
-      "customizations": [],
-      "description": "Reduce cognitive load in the person.",
-      "name": "Test Manateewill",
+      "baselineTemplateUUID": "2f456baf-87d9-b8b1-e8f5-7014bf9391a9",
+      "baselineType": "Desktop",
+      "baselineUUID": "2caabe74-8711-6596-c110-6491668d0bb1",
+      "description": "Over the rice, she paint anxiously.",
+      "name": "Test Thingstand",
       "osVersionUUID": "964426e5-7f69-e9e5-5641-b8b169107927",
       "platformUUID": "a80ea502-3c05-9987-b114-b674f8f44f09",
-      "policies": [],
       "rootLocationGroupID": 12346,
-      "rootLocationGroupName": "Test MediumAquaMarinehail",
-      "rootLocationGroupUUID": "b96eee9b-edb2-02b3-f245-7a823b349da9",
-      "templateName": "Test Olivepurse",
-      "vendorTemplateUUID": "6151ed79-729f-a8ce-97a4-220bbc892bf0",
+      "rootLocationGroupName": "Test Raccoonbeen",
+      "rootLocationGroupUUID": "f9a304b9-238e-4a89-d1f9-5fbddf6e2c85",
+      "securityLevelUUID": "84d156ed-5714-5aac-5518-674ae198eb56",
+      "templateName": "Test Lousecry",
+      "vendorTemplateUUID": "9bd65872-4532-e283-1a84-e12efe140571",
       "version": 1
     }
   }

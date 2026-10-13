@@ -2,6 +2,7 @@ package tests
 
 import (
 	"context"
+	"encoding/json"
 	"testing"
 
 	"github.com/euc-oss/terraform-sdk-uem/v26/internal/mockserver"
@@ -9,28 +10,38 @@ import (
 	"github.com/euc-oss/terraform-sdk-uem/v26/resources"
 )
 
-// TestProfileServiceGet_ManagedLocationGroupIDFromGeneral exercises the
-// live-captured (and genuine, not a field-decode-shape test double) v2 GET
-// /api/mdm/profiles/{id} fixture: profiles/profiles_get_apple_id.json. Its
-// verified-endpoints.json ledger row records it as a "Genuine live capture
-// (commit e7dc544bd), real UUID and name (not placeholder), strict-decoded
-// against mdmv2.DeviceProfileV2Entity in fixture_schema_validation_test.go."
+// TestProfileServiceGet_ManagedLocationGroupIDFromGeneral exercises a
+// live-captured (genuine, not a field-decode-shape test double) v2 GET
+// /api/mdm/profiles/{id} fixture for an iOS ("apple") profile:
+// profiles/get_apple_scep_12348.json, the genuine 26.4.0.0 capture that
+// supersedes 26.2's profiles/profiles_get_apple_id.json for this scenario.
 //
 // The fixture's General section carries ManagedLocationGroupID as a nested
-// integer (General.ManagedLocationGroupID = 12347), not at the top level.
-// This asserts Layer-2 resources.ProfileService.Get surfaces that value on
-// the returned models.Profile.ManagedLocationGroupID.
+// integer, not at the top level. This asserts Layer-2
+// resources.ProfileService.Get surfaces that value on the returned
+// models.Profile.ManagedLocationGroupID. The expected value and the profile
+// id are read from the fixture itself.
 func TestProfileServiceGet_ManagedLocationGroupIDFromGeneral(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping integration test")
 	}
 
-	const fixturePath = "../testdata/mock-responses/profiles/profiles_get_apple_id.json"
-	const wantManagedLocationGroupID = "12347" // profiles_get_apple_id.json General.ManagedLocationGroupID
+	const fixture = "profiles/get_apple_scep_12348.json"
+	var body struct {
+		General struct {
+			ManagedLocationGroupID json.Number `json:"ManagedLocationGroupID"`
+			ProfileID              int         `json:"ProfileId"`
+		} `json:"General"`
+	}
+	loadFixtureResponseBodyForTest(t, fixture, &body)
+	wantManagedLocationGroupID := body.General.ManagedLocationGroupID.String()
+	if wantManagedLocationGroupID == "" || body.General.ProfileID == 0 {
+		t.Fatalf("%s: fixture lacks General.ManagedLocationGroupID/ProfileId", fixture)
+	}
 
-	resp, err := mockserver.LoadResponseFromFile(mockserver.ResolveResponsesDir(fixturePath))
+	resp, err := mockserver.LoadResponseFromFile(mockserver.ResolveResponsesDir("../testdata/mock-responses/profiles/get_apple_scep_12348.json"))
 	if err != nil {
-		t.Fatalf("load profiles_get_apple_id fixture: %v", err)
+		t.Fatalf("load %s: %v", fixture, err)
 	}
 	ms := mockserver.NewMockServer([]*mockserver.MockResponse{resp})
 	t.Cleanup(ms.Close)
@@ -39,7 +50,7 @@ func TestProfileServiceGet_ManagedLocationGroupIDFromGeneral(t *testing.T) {
 	svc := resources.NewProfileService(c)
 	ctx := context.Background()
 
-	profile, err := svc.Get(ctx, 68910, models.PlatformAppleIOS)
+	profile, err := svc.Get(ctx, body.General.ProfileID, models.PlatformAppleIOS)
 	if err != nil {
 		t.Fatalf("Get failed: %v", err)
 	}
@@ -48,6 +59,6 @@ func TestProfileServiceGet_ManagedLocationGroupIDFromGeneral(t *testing.T) {
 	}
 
 	if profile.ManagedLocationGroupID != wantManagedLocationGroupID {
-		t.Errorf("ManagedLocationGroupID = %q, want %q", profile.ManagedLocationGroupID, wantManagedLocationGroupID)
+		t.Errorf("ManagedLocationGroupID = %q, want the fixture's %q", profile.ManagedLocationGroupID, wantManagedLocationGroupID)
 	}
 }

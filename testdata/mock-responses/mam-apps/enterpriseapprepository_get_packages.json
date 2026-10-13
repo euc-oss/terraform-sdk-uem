@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/enterpriseapprepository/packages",
     "method": "GET",
-    "description": "Captured GET /api/mam/enterpriseapprepository/packages",
+    "description": "Captured GET /api/mam/enterpriseapprepository/packages on the 26.4 lab tenant (UEM 26.4), 2026-09-24, recaptured live via EnterpriseAppRepositoryV2Service.GetApplicationsDetailsAsync, quirk 15 required packageId/version query params confirmed wired live. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -24,7 +24,7 @@
       "created_at": "2024-01-15T00:00:00Z",
       "default_locale": "en-US",
       "expected_return_codes": [],
-      "icon_url": "https://example.com/ulESXDnd",
+      "icon_url": "https://example.com/dMftQzOh",
       "install_modes": [],
       "installer_success_codes": [],
       "installer_type": "NULLSOFT",
@@ -34,25 +34,25 @@
           "expected_return_codes": [],
           "install_Command": "\"clippy_1.7.3_x64-setup.exe\" /S",
           "install_modes": [],
-          "installer_file_name": "Test Koaladid",
+          "installer_file_name": "Test Hedgehogski",
           "installer_sha256": "DC69D942BD5FFD499D5B15E01C0C268E3CD3408EB40A76211B6F07051779C94B",
           "installer_success_codes": [],
           "installer_type": "NULLSOFT",
-          "installer_url": "https://example.com/nuXTfkFC",
+          "installer_url": "https://example.com/mObfoQTQ",
           "platform": [
             1
           ]
         }
       ],
-      "package_identifier": "com.example.pQIihbwj",
-      "package_name": "Test Batpaint",
+      "package_identifier": "com.example.peNdaQnX",
+      "package_name": "Test Pridemay",
       "package_version": "1.7.3",
       "platform": [
         1
       ],
-      "publisher_name": "Test PaleTurquoisefrailty",
+      "publisher_name": "Test Dreamcan",
       "scope": "USER",
-      "short_description": "Consistent life should the foundation of religion.",
+      "short_description": "Align fact with user intent.",
       "updated_at": "2024-01-15T00:00:00Z"
     }
   }

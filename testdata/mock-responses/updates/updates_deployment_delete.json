@@ -2,8 +2,9 @@
   "metadata": {
     "endpoint": "/api/mdm/updates/deployments/{uuid}",
     "method": "DELETE",
-    "description": "Captured DELETE /api/mdm/updates/deployments/{uuid} — canonical docs say 204 No Content. Confirmed by re-GET: a subsequent GET on the same uuid returns 404 (see updates_get_details fixture family for the 404 error-body shape), not a stale 200.",
-    "version": "1"
+    "description": "Captured DELETE /api/mdm/updates/deployments/{uuid} — canonical docs say 204 No Content. Confirmed by re-GET: a subsequent GET on the same uuid returns 404 (see updates_get_details fixture family for the 404 error-body shape), not a stale 200. Confirmed against 26.4.0.0: 204 returned, immediate re-GET yields 404 with errorCode 5207.",
+    "version": "1",
+    "confirmed_against": ["26.2.0.0", "26.4.0.0"]
   },
   "request": {
     "headers": {

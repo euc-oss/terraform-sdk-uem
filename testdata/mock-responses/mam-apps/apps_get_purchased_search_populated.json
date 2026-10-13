@@ -1,0 +1,428 @@
+{
+  "metadata": {
+    "endpoint": "/api/mam/apps/purchased/search",
+    "method": "GET",
+    "description": "Captured GET /api/mam/apps/purchased/search on the 26.4 lab tenant (UEM 26.4), 2026-09-24, searching purchased (VPP) apps on a tenant with a configured VPP token (12 apps). Genuine 26.4 capture of an additional scenario.",
+    "version": "1"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "Application": [
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test OrangeRedlife",
+          "ApplicationSize": "323.17 MB",
+          "ApplicationUrl": "https://example.com/DGUytnYo",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.rXfzPQEw",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12346
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/pOKravdh",
+          "LocationGroupId": 12347,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/XAKhwZut",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 2,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/yPMKuJKq",
+          "Uuid": "9bf98d28-8961-8872-7a3a-f0d1f899996c"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test Oxmust",
+          "ApplicationUrl": "https://example.com/lZYRYJTQ",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.nWUnYnAW",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12348
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/zFLrXuir",
+          "LocationGroupId": 12349,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/PuDnLOWG",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 2,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/aSLFZmUw",
+          "Uuid": "af538747-7bfe-3633-ec12-6902cfbf4e9d"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test MediumTurquoiseorchard",
+          "ApplicationUrl": "https://example.com/mMAStTZj",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.YrAtvJgh",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12350
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/toUeohvV",
+          "LocationGroupId": 12351,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/JJtOPbvI",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 2,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/QaJferlc",
+          "Uuid": "82badbb3-32ca-84c9-5095-e84897204bb1"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test BlanchedAlmondwheat",
+          "ApplicationUrl": "https://example.com/RWKDJnnW",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.btFoiYpB",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12352
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/TIYWUmEq",
+          "LocationGroupId": 12353,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/DMcXEPQS",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 2,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/UBCJfrDu",
+          "Uuid": "1d222368-bc12-6224-23b9-956c81095378"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test AntiqueWhiteear",
+          "ApplicationSize": "460.45 MB",
+          "ApplicationUrl": "https://example.com/gDPDWcIF",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.OgFIcTYn",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12354
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/FIEynGtf",
+          "LocationGroupId": 12355,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/qgDBpDTB",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 2,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/VFMoKLdb",
+          "Uuid": "a4ed232a-2f32-cd23-6283-b33f3d486c54"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test Oxmust",
+          "ApplicationUrl": "https://example.com/lZYRYJTQ",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.nWUnYnAW",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12356
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/zFLrXuir",
+          "LocationGroupId": 12357,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/PuDnLOWG",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 10,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/aSLFZmUw",
+          "Uuid": "d32527b6-b684-7ed0-0e7a-1e896a9dacb6"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test Camellaugh",
+          "ApplicationSize": "1.19 GB",
+          "ApplicationUrl": "https://example.com/prqZKCPp",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.rBtglcGx",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12358
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/cHeWbyAe",
+          "LocationGroupId": 12359,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/VwuyfaTr",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 10,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/RRwDsedU",
+          "Uuid": "c3d63c67-8313-41cc-5731-50c8ecbb0e48"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test Alligatorcan",
+          "ApplicationSize": "2.49 GB",
+          "ApplicationUrl": "https://example.com/bllSwhpt",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.OuUUerDl",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12360
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/JWfYMLkc",
+          "LocationGroupId": 12361,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/wwFayfdt",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 10,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/lwHKmDUk",
+          "Uuid": "8f9aac0a-47a4-ce25-a572-054b8b88bec1"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test MediumTurquoiseorchard",
+          "ApplicationUrl": "https://example.com/mMAStTZj",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.YrAtvJgh",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12362
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/toUeohvV",
+          "LocationGroupId": 12363,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/JJtOPbvI",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 10,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/QaJferlc",
+          "Uuid": "49911485-d91b-304b-e68c-fff80ff3cced"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test BlanchedAlmondwheat",
+          "ApplicationUrl": "https://example.com/RWKDJnnW",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.btFoiYpB",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12364
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/TIYWUmEq",
+          "LocationGroupId": 12365,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/DMcXEPQS",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 10,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/UBCJfrDu",
+          "Uuid": "9f10b4db-9b06-9f5f-585a-9c020ddb0fea"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test AntiqueWhiteear",
+          "ApplicationSize": "460.45 MB",
+          "ApplicationUrl": "https://example.com/gDPDWcIF",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.OgFIcTYn",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12366
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/FIEynGtf",
+          "LocationGroupId": 12367,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/qgDBpDTB",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 10,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/VFMoKLdb",
+          "Uuid": "ab68c7d5-5075-1c77-c353-487d475b2844"
+        },
+        {
+          "AppType": "Purchased",
+          "ApplicationName": "Test Oxmust",
+          "ApplicationUrl": "https://example.com/lZYRYJTQ",
+          "AssignmentStatus": "Assigned",
+          "BundleId": "com.example.nWUnYnAW",
+          "Deployment": {
+            "AssignmentType": "Auto",
+            "PreventApplicationBackup": false,
+            "RemoveOnUnenroll": false,
+            "UseVPN": false
+          },
+          "Id": {
+            "Value": 12368
+          },
+          "IsAutoUpdateEnabled": false,
+          "IsReimbursable": false,
+          "LargeIconUri": "https://example.com/zFLrXuir",
+          "LocationGroupId": 12369,
+          "ManagedDistribution": {
+            "AppLicenseEligibility": "Device",
+            "Available": 10,
+            "Burned": 0,
+            "OnHold": 0,
+            "Purchased": 10
+          },
+          "MediumIconUri": "https://example.com/PuDnLOWG",
+          "OrganizationGroupUuid": "c6d906f9-76e0-36a4-21ed-dffd3263120f",
+          "Platform": 22,
+          "RootOrganizationGroupName": "Test Minuteis",
+          "SmallIconUri": "https://example.com/aSLFZmUw",
+          "Uuid": "154563b6-341b-2825-834e-b91252ba397f"
+        }
+      ],
+      "Page": 0,
+      "PageSize": 500,
+      "Total": 12
+    }
+  }
+}

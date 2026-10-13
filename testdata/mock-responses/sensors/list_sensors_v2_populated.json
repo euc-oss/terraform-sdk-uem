@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/list/{organizationGroupUuid}",
     "method": "GET",
-    "description": "Captured GET /api/mdm/devicesensors/list/{organizationGroupUuid}",
+    "description": "Captured GET /api/mdm/devicesensors/list/{organizationGroupUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, listing the populated readonly_fixtures org group (two sensors) via the v2 list. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -20,27 +20,27 @@
       "result_set": [
         {
           "assignment_count": 1,
-          "last_modified_by": "tribe19",
+          "last_modified_by": "Olga744",
           "last_modified_on": "2024-01-15T00:00:00Z",
           "name": "Test Otterlaugh",
           "organization_group_name": "Test Deskwas",
-          "organization_group_uuid": "d6b327d5-f3d1-9f75-d672-64d31f87d9cd",
+          "organization_group_uuid": "846432f0-32ef-1fca-bbde-43a81af4ef9b",
           "platform": "APPLE_OSX",
           "query_response_type": "STRING",
           "query_type": "BASH",
-          "uuid": "7fb7bef5-e109-4d05-10cb-93f0c7abdb37"
+          "uuid": "b83b912c-21f3-a7a6-d9c8-2a4503c65b51"
         },
         {
           "assignment_count": 1,
-          "last_modified_by": "tribe19",
+          "last_modified_by": "Olga744",
           "last_modified_on": "2024-01-15T00:00:00Z",
           "name": "Test Eelmust",
           "organization_group_name": "Test Deskwas",
-          "organization_group_uuid": "d6b327d5-f3d1-9f75-d672-64d31f87d9cd",
+          "organization_group_uuid": "846432f0-32ef-1fca-bbde-43a81af4ef9b",
           "platform": "APPLE_OSX",
           "query_response_type": "STRING",
           "query_type": "BASH",
-          "uuid": "c72029e0-caa9-a12e-8d89-6fbf15f78b73"
+          "uuid": "33893dff-4ae4-0fe4-c990-e5528d5b17cc"
         }
       ],
       "total_results": 2

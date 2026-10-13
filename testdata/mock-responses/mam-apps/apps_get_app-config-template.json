@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/apps/{applicationUuid}/app-config-template",
     "method": "GET",
-    "description": "Captured GET /api/mam/apps/{applicationUuid}/app-config-template",
+    "description": "Captured GET /api/mam/apps/{applicationUuid}/app-config-template on the 26.4 lab tenant (UEM 26.4), 2026-09-24, Recaptured GET /api/mam/apps/{applicationUuid}/app-config-template against 26.4 lab tenant using rofx-mac-app-1 (readonly mirror); empty array response, same shape as port. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {

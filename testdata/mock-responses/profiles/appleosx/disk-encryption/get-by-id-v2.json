@@ -2,26 +2,8 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/12346",
     "method": "GET",
-    "description": "macOS disk-encryption profile — GET by int id (V2)",
-    "version": "2",
-    "platform": "AppleOsX",
-    "api_validation": {
-      "console_url": "https://cn0000.example.com",
-      "uem_version": "25.9.1134.9",
-      "api_version": "2",
-      "accept_header": "application/json;version=2",
-      "org_group_id": 12345,
-      "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
-      "captured_at": "2026-04-23",
-      "result": "accepted",
-      "ticket": "regression-repro",
-      "endpoint": "GET /api/mdm/profiles/12346",
-      "response_id_example": 68961,
-      "notes": "Validates PR #21 int→string fix on the wire: EncryptionActionAfterLastNotification, FileVaultUser, PromptToEnableFileVaultAt all round-trip as string. Update endpoint returns 200 but silently no-ops.",
-      "request_templates": [
-        "testdata/request-templates/profiles/appleosx/disk-encryption/disk-encryption-create-v2.json"
-      ]
-    }
+    "description": "Captured GET /api/mdm/profiles/12346 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, macOS disk-encryption profile GET by id -- a disposable profile created for this capture. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
+    "version": "2"
   },
   "request": {
     "headers": {
@@ -63,7 +45,7 @@
         },
         "DiskEncryptionFileVault2": {
           "Enable": true,
-          "FileVaultUser": "Enrique703",
+          "FileVaultUser": "Keller3289",
           "NumberOfTimesUserCanBypass": 3,
           "PromptToEnableFileVaultAt": "BothLoginAndLogout",
           "RecoveryType": 1,
@@ -79,18 +61,18 @@
         "AssignedSchedule": [],
         "AssignedSmartGroups": [],
         "AssignmentType": "Auto",
-        "Description": "Quietly harden the government later.",
+        "Description": "You stand painfully to stabilize the life.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
         "ManagedLocationGroupID": 12346,
-        "Name": "Test Koaladid",
+        "Name": "Test Prairie Dogclap",
         "Password": "",
         "ProfileContext": "Device",
         "ProfileId": 12347,
-        "ProfileUuid": "c64784b5-7327-97e3-9758-f05e2603e6a2",
+        "ProfileUuid": "045455db-bc25-98ef-c7e5-147baf37a699",
         "Version": 1
       },
       "NetworkList": [],

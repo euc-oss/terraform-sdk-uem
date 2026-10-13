@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "description": "Internal-app delete (pkg), captured live via tools/internalapps-capture against <internal-env>/26.2.1614.12. 204, empty body, matching the sibling apk/msi/ipa platforms' delete signature exactly. This delete also served as live-tenant teardown for the pkg test app created during this capture; a follow-up GET confirmed the standard 401/errorCode-7000 not-found signature (see tests/verified-endpoints.json), and a second explicit search confirmed no orphan remained on the tenant.",
     "endpoint": "/api/mam/apps/internal/65679",
     "method": "DELETE",
     "platform": "pkg",
+    "description": "Captured DELETE /api/mam/apps/internal/67014 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, recaptured live via tools/internalapps-capture chunked upload lifecycle (pkg). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -13,8 +13,8 @@
     }
   },
   "response": {
-    "body": null,
+    "status_code": 204,
     "headers": {},
-    "status_code": 204
+    "body": null
   }
 }

@@ -62,7 +62,23 @@ func TestGeneratedMacOsAppsV1Create(t *testing.T) {
 		t.Fatalf("expected numeric app ID from Location header, got %q: %v", idStr, err)
 	}
 
-	if id != 424242 {
-		t.Fatalf("expected app ID 424242 from fixture Location header, got %d", id)
+	// Expected id comes from mam-apps/macos_create.json's own
+	// response.headers.Location (the genuine 26.4 recapture), not a
+	// hardcoded literal.
+	fixture, err := mockserver.LoadResponseFromFile(mockserver.ResolveResponsesDir("../testdata/mock-responses/mam-apps/macos_create.json"))
+	if err != nil {
+		t.Fatalf("load fixture: %v", err)
+	}
+	wantIDStr, err := client.ParseLocationID(fixture.Response.Headers["Location"])
+	if err != nil {
+		t.Fatalf("parse fixture Location header failed: %v", err)
+	}
+	wantID, err := strconv.Atoi(wantIDStr)
+	if err != nil {
+		t.Fatalf("expected numeric app ID from fixture Location header, got %q: %v", wantIDStr, err)
+	}
+
+	if id != wantID {
+		t.Fatalf("expected app ID %d from fixture Location header, got %d", wantID, id)
 	}
 }

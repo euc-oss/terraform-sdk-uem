@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/status",
     "method": "GET",
-    "description": "Captured GET baseline compliance status (bare array of BaselineStatusV1Model). Empty array is genuine: this baseline was freshly created with no devices assigned, so no compliance records exist yet.",
+    "description": "Captured GET /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/status on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/status live-recaptured against 26.4 lab tenant, disposable baseline (no status entries). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {

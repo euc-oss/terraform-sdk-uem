@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/68910",
     "method": "GET",
-    "platform": "Apple",
-    "description": "Live-captured GET /api/mdm/profiles/{profileId} immediately after UpdateAppleDeviceProfileAsync (with General.CreateNewVersion=true), UEM 26.2.0.0, 2026-07-30. Shadowed by profiles_apple_get_after_create.json under the same literal path in a full-corpus load, so this fixture is exercised via an isolated single-fixture mock server (see TestGeneratedProfilesV2AppleGetAfterUpdate).",
+    "description": "Captured GET /api/mdm/profiles/68910 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, iOS profile GET by id right after update. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -28,18 +27,18 @@
         "AssignedSchedule": [],
         "AssignedSmartGroups": [],
         "AssignmentType": "Auto",
-        "Description": "Carefully vilify the cardigan enthusiastically.",
+        "Description": "After 3 iterations, they munch the company rightfully.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
         "ManagedLocationGroupID": 12346,
-        "Name": "Test Gerbilhad",
+        "Name": "Test MediumSpringGreentrain",
         "Password": "",
         "ProfileContext": "Device",
         "ProfileId": 12347,
-        "ProfileUuid": "ec54f999-928f-77d2-0219-35cab217a723",
+        "ProfileUuid": "268a4717-219c-b920-fc35-a4d069ee7af3",
         "Version": 2
       },
       "GoogleAccount": [],

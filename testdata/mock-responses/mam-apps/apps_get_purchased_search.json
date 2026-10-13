@@ -2,8 +2,15 @@
   "metadata": {
     "endpoint": "/api/mam/apps/purchased/search",
     "method": "GET",
-    "description": "Captured GET /api/mam/apps/purchased/search",
-    "version": "1"
+    "description": "PORTED-FROM-26.2 (not re-verified on 26.4): Captured GET /api/mam/apps/purchased/search",
+    "version": "1",
+    "provenance": {
+      "class": "PORTED-FROM-26.2",
+      "source_tenant": "lab-tenant",
+      "source_version": "26.2",
+      "source_commit": "a4b67af4b43fa6e94365fcae2ae565376dfde61a",
+      "reverified_on": null
+    }
   },
   "request": {
     "headers": {

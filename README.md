@@ -22,7 +22,7 @@ This SDK is maintained by Omnissa.
 ## Status
 
 The module follows the Workspace ONE UEM release line it targets: version
-`v26.2.0-beta.1` is the first beta of the UEM 26.2 line, and its module path ends in
+`v26.4.0-beta.1` is the first beta of that line, and its module path ends in
 `/v26`. See [Versioning](#versioning) and [CHANGELOG.md](CHANGELOG.md).
 
 - **Go version:** 1.25 or later
@@ -32,7 +32,7 @@ The module follows the Workspace ONE UEM release line it targets: version
 ## Installation
 
 ```bash
-go get github.com/euc-oss/terraform-sdk-uem/v26@v26.2.0-beta.1
+go get github.com/euc-oss/terraform-sdk-uem/v26@v26.4.0-beta.1
 ```
 
 Add an import:
@@ -237,6 +237,14 @@ if err != nil {
 log.Printf("found %d profiles", len(profiles))
 ```
 
+Every error a call returns carries the call's `X-Correlation-ID`, the handle that support
+and the server logs use for the request: `apiErr.CorrelationID` on an `*wsone.APIError`, a
+`*wsone.CorrelatedError` around everything else (timeouts, connection and TLS failures, a
+failed token request), and `wsone.CorrelationID(err)` to extract it. The SDK sends one ID
+per call and keeps it across retries. (An error a helper builds itself, where there is no call or
+the call succeeded, is a plain error; see [docs/error-handling.md](docs/error-handling.md).) Every request also carries `User-Agent: uem-sdk-go/<version>`, and
+`Config.UserAgent` adds your application's token in front of it.
+
 See [docs/error-handling.md](docs/error-handling.md) for full details.
 
 ## Documentation
@@ -295,7 +303,7 @@ network access.
 ## Versioning
 
 Releases are tagged `v26.<minor>.<patch>`, with `-beta.N` on a beta
-(`v26.2.0-beta.1`, then `v26.2.0`), on the release branch of the UEM version they
+(`v26.4.0-beta.1`, then `v26.4.0`), on the release branch of the UEM version they
 target. The first number is the UEM major version, and Go's rule for major versions
 applies: from v2 on, the module path ends in `/vN`. This module is
 `github.com/euc-oss/terraform-sdk-uem/v26`, so every import and every `go get` carries the `/v26`:

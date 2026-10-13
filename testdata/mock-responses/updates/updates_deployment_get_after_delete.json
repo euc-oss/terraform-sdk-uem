@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "endpoint": "/api/mdm/updates/deployments/{uuid}",
+    "method": "GET",
+    "description": "Captured GET /api/mdm/updates/deployments/{uuid} after DELETE /api/mdm/updates/deployments/{uuid} against 26.4.0.0. Confirms deletion persisted: 404 with errorCode 5207. Response shape: {errorCode, message, activityId} — consistent with the 26.2.0.0 finding. activityId anonymized.",
+    "version": "1",
+    "captured_against": "26.4.0.0"
+  },
+  "request": {
+    "headers": {
+      "Accept": "application/json;version=1"
+    }
+  },
+  "response": {
+    "status_code": 404,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "errorCode": 5207,
+      "message": "Device update deployment with deployment uuid:[REDACTED] not found.",
+      "activityId": "[REDACTED]"
+    }
+  }
+}

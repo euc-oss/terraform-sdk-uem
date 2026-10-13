@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/smartgroups/46813",
     "method": "DELETE",
-    "description": "Live-captured with tools/mock-capture --allow-error-status against UEM 26.2 on 2026-09-24, inside a disposable sdktestrun org group, on an object deleted moments earlier (the org group was deleted afterwards and a second DELETE on it returned 400, quirk 20). Status, errorCode and message are verbatim except that the real resource id (in the path and the message) is replaced by a fixed id chosen to be unique in this corpus; the activityId is the capture anonymizer's output. Second DELETE /api/mdm/smartgroups/{id} on an already-deleted smart group: 400 with errorCode 400 (NOT the errorCode 6 the GET returns; see smartgroups_get_after_delete.json) and the same 'Smart Group not found with Id: <id> ...' message. client.IsNotFound accepts that message with errorCode 6 or 400 only.",
+    "description": "Captured DELETE /api/mdm/smartgroups/{id} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, repeat DELETE on a disposable smart group deleted moments earlier by this run, 26.4 lab tenant (quirk 20 confirmation pattern). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {

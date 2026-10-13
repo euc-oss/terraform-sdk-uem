@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"path/filepath"
 	"strings"
 	"sync"
 	"testing"
@@ -225,6 +226,31 @@ func TestChunkHandler_UploadChunk_DoesNotHoldLockDuringWrite(t *testing.T) {
 	<-doneA
 }
 
+// chunkFixtureNameForTest reads a chunk fixture's own ApplicationName, so a
+// recapture that re-anonymizes the name does not break the routing assertion
+// (the handler returns whatever the fixture holds).
+func chunkFixtureNameForTest(t *testing.T, name string) string {
+	t.Helper()
+	raw, err := os.ReadFile(chunkFixturePath(name))
+	if err != nil {
+		t.Fatalf("read fixture %s: %v", chunkFixturePath(name), err)
+	}
+	var decoded struct {
+		Response struct {
+			Body struct {
+				ApplicationName string
+			} `json:"body"`
+		} `json:"response"`
+	}
+	if err := json.Unmarshal(raw, &decoded); err != nil {
+		t.Fatalf("decode fixture %s: %v", name, err)
+	}
+	if decoded.Response.Body.ApplicationName == "" {
+		t.Fatalf("fixture %s has no ApplicationName", name)
+	}
+	return decoded.Response.Body.ApplicationName
+}
+
 // chunkFixtureUuidForTest reads chunkFixturePath(name)'s own "Uuid" field at
 // test-run time, rather than a test source asserting a hardcoded literal
 // value. The public package's sync scrubber rewrites any whole-UUID-shaped
@@ -306,8 +332,9 @@ func TestChunkHandler_InternalApplication_ApkFileName_ServesApkFixture(t *testin
 	if status != http.StatusOK {
 		t.Fatalf("status: got %d, want 200 (response: %v)", status, resp)
 	}
-	if name, _ := resp["ApplicationName"].(string); name != "JustSayHello" {
-		t.Errorf("ApplicationName: got %q, want the apk fixture's %q", name, "JustSayHello")
+	want := chunkFixtureNameForTest(t, filepath.Join("apk", "internal_app_create_apk.json"))
+	if name, _ := resp["ApplicationName"].(string); name != want {
+		t.Errorf("ApplicationName: got %q, want the apk fixture's %q", name, want)
 	}
 }
 
@@ -320,8 +347,9 @@ func TestChunkHandler_InternalApplication_MsiFileName_ServesMsiFixture(t *testin
 	if status != http.StatusOK {
 		t.Fatalf("status: got %d, want 200 (response: %v)", status, resp)
 	}
-	if name, _ := resp["ApplicationName"].(string); name != "7z2409-x64-Test" {
-		t.Errorf("ApplicationName: got %q, want the msi fixture's %q", name, "7z2409-x64-Test")
+	want := chunkFixtureNameForTest(t, filepath.Join("msi", "internal_app_create_msi.json"))
+	if name, _ := resp["ApplicationName"].(string); name != want {
+		t.Errorf("ApplicationName: got %q, want the msi fixture's %q", name, want)
 	}
 }
 
@@ -334,8 +362,9 @@ func TestChunkHandler_InternalApplication_IpaFileName_ServesIpaFixture(t *testin
 	if status != http.StatusOK {
 		t.Fatalf("status: got %d, want 200 (response: %v)", status, resp)
 	}
-	if name, _ := resp["ApplicationName"].(string); name != "Test Rabbitthrow" {
-		t.Errorf("ApplicationName: got %q, want the ipa fixture's %q", name, "Test Rabbitthrow")
+	want := chunkFixtureNameForTest(t, filepath.Join("ipa", "internal_app_create_ipa.json"))
+	if name, _ := resp["ApplicationName"].(string); name != want {
+		t.Errorf("ApplicationName: got %q, want the ipa fixture's %q", name, want)
 	}
 }
 
@@ -353,8 +382,15 @@ func TestChunkHandler_InternalApplication_PkgFileName_ServesPkgFixture(t *testin
 	// above) -- both are independent anonymizer outputs for unrelated real
 	// captures, not a routing bug; this test still verifies file_name ->
 	// pkg-specific-fixture routing independently of what the fake name is.
-	if name, _ := resp["ApplicationName"].(string); name != "Test Rabbitthrow" {
-		t.Errorf("ApplicationName: got %q, want the pkg fixture's %q", name, "Test Rabbitthrow")
+	want := chunkFixtureNameForTest(t, filepath.Join("pkg", "internal_app_create_pkg.json"))
+	if want == chunkFixtureNameForTest(t, filepath.Join("ipa", "internal_app_create_ipa.json")) {
+		// Coincidental on the 26.2 corpus: both carried the same anonymized
+		// name, so this assertion alone cannot tell pkg routing from ipa
+		// routing there (the 26.4 recaptures differ).
+		t.Log("pkg and ipa fixtures share an ApplicationName; routing is not distinguishable by name on this corpus")
+	}
+	if name, _ := resp["ApplicationName"].(string); name != want {
+		t.Errorf("ApplicationName: got %q, want the pkg fixture's %q", name, want)
 	}
 }
 

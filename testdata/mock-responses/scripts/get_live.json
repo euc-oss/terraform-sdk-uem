@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/scripts/{scriptUuid}",
     "method": "GET",
-    "description": "Captured GET /api/mdm/scripts/{scriptUuid}",
+    "description": "Captured GET /api/mdm/scripts/{scriptUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/mdm/scripts/{scriptUuid} live-recaptured against 26.4 lab tenant, disposable script. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -19,27 +19,21 @@
     "body": {
       "allowed_in_catalog": false,
       "assignment_count": 0,
-      "description": "Visualize man for faster decisions.",
+      "description": "Align government with user intent.",
       "execution_context": "SYSTEM",
       "is_idempotent": false,
-      "name": "Test Hamsterbuy",
-      "organization_group_name": "Test Clevernesscan",
-      "organization_group_uuid": "65bd7e3c-9e73-85dd-5598-6d7078ec1915",
+      "name": "Test Hippopotamusmust",
+      "organization_group_name": "Test DarkTurquoiseshoes",
+      "organization_group_uuid": "076ce949-e037-14c1-fe3d-0071ef92c22b",
       "platform": "APPLE_OSX",
-      "platform_architecture": "UNKNOWN",
-      "script_data": "eGZneGc=",
+      "platform_architecture": 0,
+      "script_data": "IyEvYmluL2Jhc2gKZWNobyBoZWxsbw==",
       "script_type": "BASH",
-      "script_uuid": "64c7d5c5-ac02-505f-9131-99ed7bf4b7f7",
-      "script_variables": [
-        {
-          "is_lookup": false,
-          "name": "Test Parthad",
-          "value": "xgxgx"
-        }
-      ],
-      "timeout": 30,
+      "script_uuid": "a5bcad10-893a-eb69-fa05-04165e56c3c1",
+      "script_variables": [],
+      "timeout": 60,
       "user_interaction": false,
-      "version": "6077ea5e-0010-5924-f9ac-9ec15306e6b9"
+      "version": "6be36c6e-af9c-c529-4fa4-7aa9700cd07d"
     }
   }
 }

@@ -37,7 +37,7 @@ releases are tagged `v26.<minor>.<patch>[-beta.N]`. For production use, pin a
 specific version to avoid unexpected changes:
 
 ```bash
-go get github.com/euc-oss/terraform-sdk-uem/v26@v26.2.0-beta.1
+go get github.com/euc-oss/terraform-sdk-uem/v26@v26.4.0-beta.1
 ```
 
 Your `go.mod` will look like:
@@ -48,7 +48,7 @@ module your-project-name
 go 1.25
 
 require (
-    github.com/euc-oss/terraform-sdk-uem/v26 v26.2.0-beta.1
+    github.com/euc-oss/terraform-sdk-uem/v26 v26.4.0-beta.1
 )
 ```
 

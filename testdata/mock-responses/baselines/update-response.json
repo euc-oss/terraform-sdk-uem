@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}",
     "method": "PUT",
-    "description": "Captured PUT single baseline. Canonical impl returns 200 + BaselineV1Model body, NOT 204 per .Generated.cs (D6).",
+    "description": "Captured PUT /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, PUT /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid} live-recaptured against 26.4 lab tenant, disposable unassigned baseline (see notes: updating an assigned baseline on this lab tenant hit a distinct server-side notification error, tracked separately). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -18,19 +18,21 @@
     },
     "body": {
       "assignmentCount": 0,
-      "baselineTemplateUUID": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c",
-      "baselineUUID": "f9e174ca-9ee2-9354-2762-b0bf409a123b",
+      "baselineTemplateUUID": "2f456baf-87d9-b8b1-e8f5-7014bf9391a9",
+      "baselineType": "Desktop",
+      "baselineUUID": "2a3aeb24-6e01-4b8a-c5ac-4358076c3f85",
       "customizations": [],
-      "description": "Reduce cognitive load in the person.",
-      "name": "Test Manateewill",
+      "description": "Weekends reserve time for Pottery and man.",
+      "name": "Test Teawash",
       "osVersionUUID": "964426e5-7f69-e9e5-5641-b8b169107927",
       "platformUUID": "a80ea502-3c05-9987-b114-b674f8f44f09",
       "policies": [],
       "rootLocationGroupID": 12346,
-      "rootLocationGroupName": "Test MediumAquaMarinehail",
-      "rootLocationGroupUUID": "b96eee9b-edb2-02b3-f245-7a823b349da9",
-      "templateName": "Test Olivepurse",
-      "vendorTemplateUUID": "6151ed79-729f-a8ce-97a4-220bbc892bf0",
+      "rootLocationGroupName": "Test Raccoonbeen",
+      "rootLocationGroupUUID": "f9a304b9-238e-4a89-d1f9-5fbddf6e2c85",
+      "securityLevelUUID": "84d156ed-5714-5aac-5518-674ae198eb56",
+      "templateName": "Test Lousecry",
+      "vendorTemplateUUID": "9bd65872-4532-e283-1a84-e12efe140571",
       "version": 2
     }
   }

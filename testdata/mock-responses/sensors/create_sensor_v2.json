@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors",
     "method": "POST",
-    "description": "V2 create device sensor (POST /devicesensors). Live-captured; response body's uuid was independently re-verified as reliable via a separate raw (non-anonymized) create+list scratch check -- an earlier working assumption that the create response's uuid did not match the real resource was WRONG and has been retracted: it compared this fixture's own anonymized uuid value (anonymize.go unconditionally fakes any '*uuid'-suffixed key) against a real value, which will never match by construction. The real create response uuid does correctly identify the created resource.",
+    "description": "Captured POST /api/mdm/devicesensors on the 26.4 lab tenant (UEM 26.4), 2026-09-24, POST /api/mdm/devicesensors (v2) live-recaptured against 26.4 lab tenant, disposable sensor. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -14,10 +14,11 @@
   "response": {
     "status_code": 201,
     "headers": {
-      "Content-Type": "application/json; charset=utf-8"
+      "Content-Type": "application/json; charset=utf-8",
+      "Location": "/api/mdm/devicesensors/14d15a04-844b-fee4-f54c-f7fadb8898cd"
     },
     "body": {
-      "uuid": "a10997f9-1ae8-5f22-4770-2b0552d3cb5c"
+      "uuid": "40ee972d-b28e-a209-0cac-56b839b5c822"
     }
   }
 }

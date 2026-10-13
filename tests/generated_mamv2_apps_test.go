@@ -37,11 +37,18 @@ func TestMamV2InternalAppGetByUuid(t *testing.T) {
 	if resp == nil {
 		t.Fatal("GetInternalAppByUuid returned nil response")
 	}
-	if resp.ApplicationName != "Test Lovesmell" {
-		t.Errorf("ApplicationName: got %q, want Test Lovesmell", resp.ApplicationName)
+	// Expected values are read from the fixture's own body (the genuine
+	// 26.4 recapture of mam-apps/apps_get_internal.json), not hardcoded.
+	var want struct {
+		ApplicationName string `json:"ApplicationName"`
+		Platform        string `json:"Platform"`
 	}
-	if resp.Platform != "WinRT" {
-		t.Errorf("Platform: got %q, want WinRT", resp.Platform)
+	loadFixtureResponseBodyForTest(t, "mam-apps/apps_get_internal.json", &want)
+	if resp.ApplicationName != want.ApplicationName {
+		t.Errorf("ApplicationName: got %q, want %s", resp.ApplicationName, want.ApplicationName)
+	}
+	if resp.Platform != want.Platform {
+		t.Errorf("Platform: got %q, want %s", resp.Platform, want.Platform)
 	}
 }
 

@@ -861,6 +861,8 @@ type InternalAppChunkTransactionV1 struct {
 	DeveloperPhone string `json:"DeveloperPhone,omitempty"`
 	// Gets or sets Device Type. Supported values: Apple = 2, Android = 5, WinRT = 12, AppleOSX = 10, AppleTv = 14, WindowsPhone8 = 11.
 	DeviceType string `json:"DeviceType,omitempty"`
+	// Gets or sets application Display Name.
+	DisplayName string `json:"DisplayName,omitempty"`
 	// Gets or sets a EAR app update preference. Supported Values: None = 0, Notify = 1, AutoUpdate = 2.
 	EARAppUpdateMode string `json:"EARAppUpdateMode,omitempty"`
 	// Gets or sets enterprise app repo package installer suppported architecture.
@@ -951,6 +953,8 @@ type InternalAppChunkTransactionV1Model struct {
 	DeveloperPhone string `json:"developer_phone,omitempty"`
 	// Gets or sets Device Type. Supported values : Apple = 2, Android = 5, WinRT = 12, AppleOSX = 10, AppleTv = 14, WindowsPhone8 = 11.
 	DeviceType string `json:"device_type,omitempty"`
+	// Gets or sets application display Name.
+	DisplayName string `json:"display_name,omitempty"`
 	// Automatic update scheduling configuration for an internal application through the Enterprise App Repository.
 	EarAppAutoUpdateConfiguration *EarAppAutoUpdateConfigurationV1Model `json:"ear_app_auto_update_configuration,omitempty"`
 	// Gets or sets EAR app update preference. Supported Values: None = 0, Notify = 1, AutoUpdate = 2.
@@ -1052,8 +1056,9 @@ type InternalAppModelV1 struct {
 	// Gets or sets devices on which current application is installed.
 	DevicesInstalledCount *int `json:"DevicesInstalledCount,omitempty"`
 	// Gets or sets number of devices to which current application is assigned, but not installed.
-	DevicesNotInstalledCount *int   `json:"DevicesNotInstalledCount,omitempty"`
-	DisplayName              string `json:"DisplayName,omitempty"`
+	DevicesNotInstalledCount *int `json:"DevicesNotInstalledCount,omitempty"`
+	// Gets or sets the display name of the application.
+	DisplayName string `json:"DisplayName,omitempty"`
 	// Gets or sets the Unique Guid values of the excluded smart groups.
 	ExcludedSmartGroupGuids []string `json:"ExcludedSmartGroupGuids,omitempty"`
 	// Gets or sets the Smart group Ids to be excluded from receiving the application.
@@ -1149,6 +1154,8 @@ type InternalApplicationEntityV1 struct {
 	DeveloperEmail string `json:"DeveloperEmail,omitempty"`
 	// Gets or sets phone number of developer.
 	DeveloperPhone string `json:"DeveloperPhone,omitempty"`
+	// Gets or sets application Display Name.
+	DisplayName string `json:"DisplayName,omitempty"`
 	// Gets or sets EAR App update preference.
 	EARAppUpdateMode string `json:"EARAppUpdateMode,omitempty"`
 	// Gets or sets a value indicating whether flag to indicate Application will be used for Product Provisioning. Valid values: true, false.
@@ -1225,6 +1232,8 @@ type MacOsCreateApplicationRequestV1Model struct {
 	ApplicationBlobID *int `json:"applicationBlobId,omitempty"`
 	// blobId of uploaded application icon
 	ApplicationIconID *int `json:"applicationIconId,omitempty"`
+	// Gets or sets the unique identifier of the EAR package associated with this entity.
+	EarPackageIdentifier string `json:"earPackageIdentifier,omitempty"`
 	// blobId of uploaded macOS application metadata file
 	PkgInfoBlobID *int `json:"pkgInfoBlobId,omitempty"`
 	// Application Version for internal tracking purpose

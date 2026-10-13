@@ -283,7 +283,9 @@ type BaselineSummaryModelV1 struct {
 // BaselineTemplateV1 represents A vendor baseline template
 
 type BaselineTemplateV1 struct {
-	ID *int `json:"id,omitempty"`
+	// The Windows release version
+	CatalogOsVersion *OSVersionV1Model `json:"catalogOsVersion,omitempty"`
+	ID               *int              `json:"id,omitempty"`
 	// The Windows release version
 	OsVersion *OSVersionV1Model `json:"osVersion,omitempty"`
 	// A hierarchical list of category and policies
@@ -307,6 +309,8 @@ type BaselineV1Model struct {
 	AssignmentCount *int `json:"assignmentCount,omitempty"`
 	// Unique identifier of the baseline template
 	BaselineTemplateUUID string `json:"baselineTemplateUUID,omitempty"`
+	// Target device category for a baseline.
+	BaselineType string `json:"baselineType,omitempty"`
 	// Unique identifier of the baseline
 	BaselineUUID string `json:"baselineUUID,omitempty"`
 	// The custom baseline archive blob identifier
@@ -440,6 +444,8 @@ type CertificateV1 struct {
 // CreateBaselineRequestV1Model represents Contains metadata to create a new baseline
 
 type CreateBaselineRequestV1Model struct {
+	// Baseline Type
+	BaselineType string `json:"baselineType,omitempty"`
 	// Policy customizations to the baseline policies
 	Customizations []PolicyItemModelV1 `json:"customizations,omitempty"`
 	// Description of the baseline
@@ -1625,6 +1631,8 @@ type SmartGroupEditV1Model struct {
 // SmartGroupModelDetailV1 represents Represents Smart group Model Detail Resource.
 
 type SmartGroupModelDetailV1 struct {
+	// Gets or sets model FamilyId.
+	FamilyID string `json:"FamilyId,omitempty"`
 	// Gets or sets modelDetail Identifier.
 	ID string `json:"Id,omitempty"`
 	// Gets or sets modelDetail Name.

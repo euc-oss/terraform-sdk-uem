@@ -37,43 +37,65 @@ func TestGeneratedOrganizationGroupsV1Search(t *testing.T) {
 		t.Fatal("expected non-nil search result")
 	}
 
-	if got.Page == nil || *got.Page != 0 {
-		t.Errorf("Page: got %v, want 0", got.Page)
+	// Expected values are read from the fixture's own body (the genuine
+	// 26.4 recapture), not hardcoded.
+	var want struct {
+		LocationGroups []struct {
+			Name              string `json:"Name"`
+			GroupID           string `json:"GroupId"`
+			LocationGroupType string `json:"LocationGroupType"`
+			ID                struct {
+				Value *int64 `json:"Value"`
+			} `json:"Id"`
+		} `json:"LocationGroups"`
+		Page     *int `json:"Page"`
+		PageSize *int `json:"PageSize"`
+		Total    *int `json:"Total"`
 	}
-	if got.PageSize == nil || *got.PageSize != 500 {
-		t.Errorf("PageSize: got %v, want 500", got.PageSize)
-	}
-	if got.Total == nil || *got.Total != 4 {
-		t.Errorf("Total: got %v, want 4", got.Total)
+	loadFixtureResponseBodyForTest(t, "org-groups/groups_get_search.json", &want)
+	if len(want.LocationGroups) == 0 || want.Total == nil {
+		t.Fatal("org-groups/groups_get_search.json has no LocationGroups rows or no Total -- cannot derive expected values")
 	}
 
-	if len(got.LocationGroups) != 4 {
-		t.Fatalf("LocationGroups: got %d items, want 4", len(got.LocationGroups))
+	if got.Page == nil || want.Page == nil || *got.Page != *want.Page {
+		t.Errorf("Page: got %v, want %v", got.Page, want.Page)
+	}
+	if got.PageSize == nil || want.PageSize == nil || *got.PageSize != *want.PageSize {
+		t.Errorf("PageSize: got %v, want %v", got.PageSize, want.PageSize)
+	}
+	if got.Total == nil || *got.Total != *want.Total {
+		t.Errorf("Total: got %v, want %v", got.Total, *want.Total)
+	}
+
+	if len(got.LocationGroups) != len(want.LocationGroups) {
+		t.Fatalf("LocationGroups: got %d items, want %d", len(got.LocationGroups), len(want.LocationGroups))
 	}
 
 	first := got.LocationGroups[0]
-	if first.Name != "Test Koaladid" {
-		t.Errorf("LocationGroups[0].Name: got %q, want %q", first.Name, "Test Koaladid")
+	wantFirst := want.LocationGroups[0]
+	if first.Name != wantFirst.Name {
+		t.Errorf("LocationGroups[0].Name: got %q, want %q", first.Name, wantFirst.Name)
 	}
-	if first.GroupID != "Schmitt5713" {
-		t.Errorf("LocationGroups[0].GroupID: got %q, want %q", first.GroupID, "Schmitt5713")
+	if first.GroupID != wantFirst.GroupID {
+		t.Errorf("LocationGroups[0].GroupID: got %q, want %q", first.GroupID, wantFirst.GroupID)
 	}
-	if first.LocationGroupType != "Container" {
-		t.Errorf("LocationGroups[0].LocationGroupType: got %q, want %q", first.LocationGroupType, "Container")
+	if first.LocationGroupType != wantFirst.LocationGroupType {
+		t.Errorf("LocationGroups[0].LocationGroupType: got %q, want %q", first.LocationGroupType, wantFirst.LocationGroupType)
 	}
-	if first.ID == nil || first.ID.Value == nil || *first.ID.Value != 12346 {
-		t.Errorf("LocationGroups[0].ID.Value: got %+v, want 12346", first.ID)
+	if first.ID == nil || first.ID.Value == nil || wantFirst.ID.Value == nil || *first.ID.Value != *wantFirst.ID.Value {
+		t.Errorf("LocationGroups[0].ID.Value: got %+v, want %v", first.ID, wantFirst.ID.Value)
 	}
 
-	third := got.LocationGroups[2]
-	if third.Name != "Test Tennisdo" {
-		t.Errorf("LocationGroups[2].Name: got %q, want %q", third.Name, "Test Tennisdo")
+	last := got.LocationGroups[len(got.LocationGroups)-1]
+	wantLast := want.LocationGroups[len(want.LocationGroups)-1]
+	if last.Name != wantLast.Name {
+		t.Errorf("LocationGroups[last].Name: got %q, want %q", last.Name, wantLast.Name)
 	}
-	if third.GroupID != "Parisianllama" {
-		t.Errorf("LocationGroups[2].GroupID: got %q, want %q", third.GroupID, "Parisianllama")
+	if last.GroupID != wantLast.GroupID {
+		t.Errorf("LocationGroups[last].GroupID: got %q, want %q", last.GroupID, wantLast.GroupID)
 	}
-	if third.LocationGroupType != "Customer" {
-		t.Errorf("LocationGroups[2].LocationGroupType: got %q, want %q", third.LocationGroupType, "Customer")
+	if last.LocationGroupType != wantLast.LocationGroupType {
+		t.Errorf("LocationGroups[last].LocationGroupType: got %q, want %q", last.LocationGroupType, wantLast.LocationGroupType)
 	}
 
 	// Search-result rows never carry a Uuid on the wire (confirmed by the
@@ -88,7 +110,11 @@ func TestGeneratedOrganizationGroupsV1Search(t *testing.T) {
 }
 
 // TestGeneratedOrganizationGroupsV1GetByID exercises the live-captured (and
-// anonymized) GET /api/system/groups/{id} fixture: org-groups/groups_get_id.json.
+// anonymized) GET /api/system/groups/{id} fixture: org-groups/groups_get.json
+// (the genuine 26.4.0.0 capture; on 26.2 this scenario was
+// org-groups/groups_get_id.json, which the 26.4 corpus supersedes). Expected
+// values are read from the fixture's own body, so the test asserts the SDK
+// decodes the capture faithfully rather than pinning one tenant's data.
 //
 // Divergence side 1: per canonical doc
 // docs/guides/org-groups/canonical-models/org-groups-response-v1.md:33, "The
@@ -97,25 +123,25 @@ func TestGeneratedOrganizationGroupsV1Search(t *testing.T) {
 // "ParentLocationGroup" key at all. Compare against
 // TestGeneratedOrganizationGroupsV1GetChildren below, where the same field
 // is populated.
-//
-// NOTE on fixture collision: org-groups/groups_get.json (a different,
-// unrelated ledger entry backing OrgGroupResolution.GetOrganizationGroup)
-// declares the exact same endpoint/method (GET /api/system/groups/{id})
-// with no distinguishing query params as org-groups/groups_get_id.json. A
-// full-corpus mock server load always resolves a plain GET to the
-// alphabetically-first fixture ("groups_get.json" < "groups_get_id.json",
-// since '.' sorts before '_'). This mirrors the identical collision already
-// documented for SmartGroupsV1 (see generated_smartgroupsv1_test.go). An
-// isolated single-fixture mock server is required here to exercise
-// groups_get_id.json specifically.
 func TestGeneratedOrganizationGroupsV1GetByID(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping integration test")
 	}
 
-	resp, err := mockserver.LoadResponseFromFile(mockserver.ResolveResponsesDir("../testdata/mock-responses/org-groups/groups_get_id.json"))
+	const fixture = "org-groups/groups_get.json"
+	resp, err := mockserver.LoadResponseFromFile(mockserver.ResolveResponsesDir("../testdata/mock-responses/org-groups/groups_get.json"))
 	if err != nil {
-		t.Fatalf("load groups_get_id fixture: %v", err)
+		t.Fatalf("load %s: %v", fixture, err)
+	}
+	var want struct {
+		UUID              string `json:"Uuid"`
+		Name              string `json:"Name"`
+		GroupID           string `json:"GroupId"`
+		LocationGroupType string `json:"LocationGroupType"`
+	}
+	loadFixtureResponseBodyForTest(t, fixture, &want)
+	if want.UUID == "" || want.Name == "" || want.GroupID == "" || want.LocationGroupType == "" {
+		t.Fatalf("%s: fixture body lacks Uuid/Name/GroupId/LocationGroupType: %+v", fixture, want)
 	}
 	ms := mockserver.NewMockServer([]*mockserver.MockResponse{resp})
 	t.Cleanup(ms.Close)
@@ -132,17 +158,17 @@ func TestGeneratedOrganizationGroupsV1GetByID(t *testing.T) {
 		t.Fatal("expected non-nil location group")
 	}
 
-	if got.UUID != "e8a0a223-9cf1-eaa1-af17-a7b985793f5c" {
-		t.Errorf("UUID: got %q, want %q", got.UUID, "e8a0a223-9cf1-eaa1-af17-a7b985793f5c")
+	if got.UUID != want.UUID {
+		t.Errorf("UUID: got %q, want the fixture's %q", got.UUID, want.UUID)
 	}
-	if got.Name != "Test Standwill" {
-		t.Errorf("Name: got %q, want %q", got.Name, "Test Standwill")
+	if got.Name != want.Name {
+		t.Errorf("Name: got %q, want the fixture's %q", got.Name, want.Name)
 	}
-	if got.GroupID != "sdktest" {
-		t.Errorf("GroupID: got %q, want %q", got.GroupID, "sdktest")
+	if got.GroupID != want.GroupID {
+		t.Errorf("GroupID: got %q, want the fixture's %q", got.GroupID, want.GroupID)
 	}
-	if got.LocationGroupType != "Customer" {
-		t.Errorf("LocationGroupType: got %q, want %q", got.LocationGroupType, "Customer")
+	if got.LocationGroupType != want.LocationGroupType {
+		t.Errorf("LocationGroupType: got %q, want the fixture's %q", got.LocationGroupType, want.LocationGroupType)
 	}
 
 	// Divergence assertion, side 1 (see doc comment above).
@@ -180,27 +206,48 @@ func TestGeneratedOrganizationGroupsV1GetChildren(t *testing.T) {
 	if got == nil {
 		t.Fatal("expected non-nil children slice")
 	}
-	if len(*got) != 1 {
-		t.Fatalf("children: got %d items, want 1 (fixture reflects the OG's own row, no real children exist)", len(*got))
+
+	// Expected count and first-item field values are read from the
+	// fixture's own body (the genuine 26.4 recapture), not hardcoded.
+	var wantChildren []struct {
+		Name                string `json:"Name"`
+		UUID                string `json:"Uuid"`
+		ParentLocationGroup *struct {
+			ID struct {
+				Value *int64 `json:"Value"`
+			} `json:"Id"`
+			UUID string `json:"Uuid"`
+		} `json:"ParentLocationGroup"`
+	}
+	loadFixtureResponseBodyForTest(t, "org-groups/groups_get_id_children.json", &wantChildren)
+	if len(wantChildren) == 0 {
+		t.Fatal("org-groups/groups_get_id_children.json has no rows -- cannot derive expected values")
+	}
+	if len(*got) != len(wantChildren) {
+		t.Fatalf("children: got %d items, want %d (from the fixture)", len(*got), len(wantChildren))
 	}
 
 	child := (*got)[0]
-	if child.Name != "Test Wateropen" {
-		t.Errorf("child.Name: got %q, want %q", child.Name, "Test Wateropen")
+	wantChild := wantChildren[0]
+	if child.Name != wantChild.Name {
+		t.Errorf("child.Name: got %q, want %q", child.Name, wantChild.Name)
 	}
-	if child.UUID != "689df136-a2c8-1c6d-ae6d-e0d9b0b6fec4" {
-		t.Errorf("child.UUID: got %q, want %q", child.UUID, "689df136-a2c8-1c6d-ae6d-e0d9b0b6fec4")
+	if child.UUID != wantChild.UUID {
+		t.Errorf("child.UUID: got %q, want %q", child.UUID, wantChild.UUID)
 	}
 
 	// Divergence assertion, side 2 (see doc comment above).
 	if child.ParentLocationGroup == nil {
 		t.Fatal("ParentLocationGroup: got nil, want populated -- GET /groups/{id}/children fully populates this field (org-groups-response-v1.md:166)")
 	}
-	if child.ParentLocationGroup.ID == nil || child.ParentLocationGroup.ID.Value == nil || *child.ParentLocationGroup.ID.Value != 12347 {
-		t.Errorf("ParentLocationGroup.ID.Value: got %+v, want 12347", child.ParentLocationGroup.ID)
+	if wantChild.ParentLocationGroup == nil {
+		t.Fatal("fixture's first row has no ParentLocationGroup -- cannot derive expected values")
 	}
-	if child.ParentLocationGroup.UUID != "10fdc858-9266-1ebe-40a6-47b043411839" {
-		t.Errorf("ParentLocationGroup.UUID: got %q, want %q", child.ParentLocationGroup.UUID, "10fdc858-9266-1ebe-40a6-47b043411839")
+	if child.ParentLocationGroup.ID == nil || child.ParentLocationGroup.ID.Value == nil || wantChild.ParentLocationGroup.ID.Value == nil || *child.ParentLocationGroup.ID.Value != *wantChild.ParentLocationGroup.ID.Value {
+		t.Errorf("ParentLocationGroup.ID.Value: got %+v, want %v", child.ParentLocationGroup.ID, wantChild.ParentLocationGroup.ID.Value)
+	}
+	if child.ParentLocationGroup.UUID != wantChild.ParentLocationGroup.UUID {
+		t.Errorf("ParentLocationGroup.UUID: got %q, want %q", child.ParentLocationGroup.UUID, wantChild.ParentLocationGroup.UUID)
 	}
 }
 
@@ -236,10 +283,15 @@ func TestGeneratedOrganizationGroupsV1GetParents(t *testing.T) {
 		t.Fatal("expected non-nil parents collection")
 	}
 
-	want := []string{
-		"340c16e2-0750-f33b-5449-477fd584e16d",
-		"de6a7cca-2cb3-9aaa-2450-1c84b5077a9f",
-		"580192fa-028d-ee8e-13f5-f71d9c91130b",
+	// Expected items are read from the fixture's own body (the genuine 26.4
+	// recapture), not hardcoded.
+	var wantBody struct {
+		Items []string `json:"items"`
+	}
+	loadFixtureResponseBodyForTest(t, "org-groups/groups_get_id_parents.json", &wantBody)
+	want := wantBody.Items
+	if len(want) == 0 {
+		t.Fatal("org-groups/groups_get_id_parents.json has no items -- cannot derive expected values")
 	}
 	if len(got.Items) != len(want) {
 		t.Fatalf("Items: got %d entries, want %d", len(got.Items), len(want))

@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/assign",
     "method": "POST",
-    "description": "Assign device sensor(s) to smart group(s) (V1). Live-captured against <internal-env>/26.2.0.0, org 138883 (sdktest): assigned the sensor from create_sensor.json to a real smart group discovered via GET /smartgroups/search?organizationgroupid=138883. On this all-accepted (0 failures) success case, the server omits the schema-declared uuid, failed_sensors, and id fields entirely rather than sending empty/null placeholders -- the fixture's prior version (before this recapture) had invented values for all-accepted/failed-mixed fields that don't reflect this real all-success wire shape.",
+    "description": "Captured POST /api/mdm/devicesensors/assign on the 26.4 lab tenant (UEM 26.4), 2026-09-24, POST /api/mdm/devicesensors/assign (v1) live-recaptured against 26.4 lab tenant, disposable sensor and smart group. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -18,7 +18,7 @@
     },
     "body": {
       "accepted_items": 1,
-      "activity_id": "677074e7-45d1-2024-322f-99409fc0ab4e",
+      "activity_id": "bbc4dead-9397-a515-4e11-d25fae1909f9",
       "failed_items": 0,
       "failed_smart_groups": [],
       "total_items": 1

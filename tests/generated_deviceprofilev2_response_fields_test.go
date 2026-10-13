@@ -97,8 +97,19 @@ func TestGeneratedDeviceProfileV2Response_AppleOsXRestrictionsAndNetwork(t *test
 	if len(networkProfile.NetworkList) != 1 {
 		t.Fatalf("expected exactly one NetworkList entry, got %d -- it was silently dropped before the fix", len(networkProfile.NetworkList))
 	}
-	if got := networkProfile.NetworkList[0].ServiceSetIdentifier; got != "CorpWiFi" {
-		t.Errorf("expected NetworkList[0].ServiceSetIdentifier=CorpWiFi, got %q", got)
+	// The SSID is read from the fixture's own body (the genuine 26.4
+	// recapture carries a different anonymized SSID than 26.2's capture).
+	var wantNetwork struct {
+		NetworkList []struct {
+			ServiceSetIdentifier string `json:"ServiceSetIdentifier"`
+		} `json:"NetworkList"`
+	}
+	loadFixtureResponseBodyForTest(t, "profiles/get_appleosx_network_profile.json", &wantNetwork)
+	if len(wantNetwork.NetworkList) != 1 || wantNetwork.NetworkList[0].ServiceSetIdentifier == "" {
+		t.Fatalf("profiles/get_appleosx_network_profile.json: want one NetworkList entry with an SSID, got %+v", wantNetwork.NetworkList)
+	}
+	if got, want := networkProfile.NetworkList[0].ServiceSetIdentifier, wantNetwork.NetworkList[0].ServiceSetIdentifier; got != want {
+		t.Errorf("NetworkList[0].ServiceSetIdentifier: got %q, want the fixture's %q", got, want)
 	}
 }
 
@@ -149,8 +160,19 @@ func TestGeneratedDeviceProfileV2Response_AppleOsXDiskEncryption(t *testing.T) {
 	if profile.DiskEncryption.DiskEncryptionFileVault2 == nil {
 		t.Fatal("expected non-nil DiskEncryption.DiskEncryptionFileVault2")
 	}
-	if profile.DiskEncryption.DiskEncryptionFileVault2.FileVaultUser != "Enrique703" {
-		t.Errorf("DiskEncryptionFileVault2.FileVaultUser: got %q, want %q", profile.DiskEncryption.DiskEncryptionFileVault2.FileVaultUser, "Enrique703")
+	// FileVaultUser is read from the fixture's own body (the genuine 26.4
+	// recapture carries a different anonymized value than 26.2's capture).
+	var wantDiskEncryption struct {
+		DiskEncryption struct {
+			DiskEncryptionFileVault2 struct {
+				FileVaultUser string `json:"FileVaultUser"`
+			} `json:"DiskEncryptionFileVault2"`
+		} `json:"DiskEncryption"`
+	}
+	loadFixtureResponseBodyForTest(t, "profiles/appleosx/disk-encryption/get-by-id-v2.json", &wantDiskEncryption)
+	wantFileVaultUser := wantDiskEncryption.DiskEncryption.DiskEncryptionFileVault2.FileVaultUser
+	if profile.DiskEncryption.DiskEncryptionFileVault2.FileVaultUser != wantFileVaultUser {
+		t.Errorf("DiskEncryptionFileVault2.FileVaultUser: got %q, want %q", profile.DiskEncryption.DiskEncryptionFileVault2.FileVaultUser, wantFileVaultUser)
 	}
 	if profile.DiskEncryption.DiskEncryptionMCX == nil {
 		t.Fatal("expected non-nil DiskEncryption.DiskEncryptionMCX")
@@ -211,7 +233,7 @@ func TestGeneratedDeviceProfileV2Response_EmptyListsSurvive(t *testing.T) {
 		t.Error("expected WebClipsList to decode as an empty (non-nil-omitted) slice from `[]`")
 	}
 
-	android := decodeDeviceProfileFixtureBody(t, "../testdata/mock-responses/profiles/get_android_68748.json")
+	android := decodeDeviceProfileFixtureBody(t, "../testdata/mock-responses/profiles/get_android_testdouble.json")
 	if android.Passcode == nil {
 		t.Error("expected Passcode to decode as a non-nil generic object")
 	}
@@ -222,19 +244,23 @@ func TestGeneratedDeviceProfileV2Response_EmptyListsSurvive(t *testing.T) {
 	}
 }
 
-// TestGeneratedDeviceProfileV2Response_GeneralOrganizationGroupId is a
-// regression guard for internal-source/mdmv2.profiles-general.overlay.yaml's
-// OrganizationGroupId gap-fill on GeneralPayloadV2Entity. Both live-captured
-// profile-detail fixtures (Android and Apple) genuinely return
-// General.OrganizationGroupId, but the upstream mdmv2.json schema copy of
-// GeneralPayloadV2Entity omits it (doctrine quirk 14: the same field can be
-// independently missing from separately-patchable schema copies). If the
-// overlay entry regresses, OrganizationGroupID disappears from the generated
-// struct and this file fails to compile -- same "compile failure is the
-// proof" pattern as the rest of this file.
-// Fixtures: profiles/get_android_68748.json, profiles/get_apple_68749.json.
+// TestGeneratedDeviceProfileV2Response_GeneralOrganizationGroupId covers the
+// org-group field of the v2 profile GET's General payload.
+//
+// Apple half: the genuine 26.4 iOS capture. Canonical 26.4 says the v2
+// GeneralPayloadV2Entity has NO OrganizationGroupId; the org group is
+// ManagedLocationGroupID, set on every v2 GET, so that is what is asserted.
+//
+// Android half: a hand-authored test double (no Android profile can be
+// captured on the 26.4 tenant). It still carries OrganizationGroupId because
+// internal-source/mdmv2.profiles-general.overlay.yaml gap-filled that field
+// from the two test doubles; canonical 26.4 contradicts that basis. The
+// overlay field stays in 26.4 (removing it would be a breaking change) and
+// is queued for 26.7 removal; this half only guards that the generated
+// struct still decodes it.
+// Fixtures: profiles/get_android_testdouble.json, profiles/get_apple_ios_restrictions_live.json.
 func TestGeneratedDeviceProfileV2Response_GeneralOrganizationGroupId(t *testing.T) {
-	android := decodeDeviceProfileFixtureBody(t, "../testdata/mock-responses/profiles/get_android_68748.json")
+	android := decodeDeviceProfileFixtureBody(t, "../testdata/mock-responses/profiles/get_android_testdouble.json")
 	if android.General == nil {
 		t.Fatal("expected non-nil General")
 	}
@@ -242,11 +268,16 @@ func TestGeneratedDeviceProfileV2Response_GeneralOrganizationGroupId(t *testing.
 		t.Fatal("expected General.OrganizationGroupID to be present -- it was silently dropped before the fix")
 	}
 
-	apple := decodeDeviceProfileFixtureBody(t, "../testdata/mock-responses/profiles/get_apple_68749.json")
+	// Apple: the GENUINE 26.4 iOS profile GET. Canonical 26.4 (api-doctrine
+	// quirk 46): the v2 General has NO OrganizationGroupId; the org group is
+	// RootLocationGroupId, serialized as ManagedLocationGroupID, a
+	// non-nullable int set on every v2 GET. So assert that, and nothing
+	// about OrganizationGroupId.
+	apple := decodeDeviceProfileFixtureBody(t, "../testdata/mock-responses/profiles/get_apple_ios_restrictions_live.json")
 	if apple.General == nil {
 		t.Fatal("expected non-nil General")
 	}
-	if apple.General.OrganizationGroupID == nil {
-		t.Fatal("expected General.OrganizationGroupID to be present -- it was silently dropped before the fix")
+	if apple.General.ManagedLocationGroupID == nil || *apple.General.ManagedLocationGroupID <= 0 {
+		t.Fatalf("expected General.ManagedLocationGroupID > 0 (the org group on a v2 GET), got %v", apple.General.ManagedLocationGroupID)
 	}
 }

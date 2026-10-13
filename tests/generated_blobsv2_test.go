@@ -2,6 +2,7 @@ package tests
 
 import (
 	"context"
+	"encoding/json"
 	"testing"
 
 	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
@@ -80,9 +81,21 @@ func TestGeneratedBlobsV2Lifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Get failed (raw-byte-response regression): %v", err)
 	}
-	// json.Encoder.Encode (used by the mock server) always appends a trailing
-	// newline after the encoded value -- part of the real wire bytes here.
-	wantRaw := "\"sample blob content\"\n"
+	// wantRaw is derived from get_blob_v2.json's own response.body (the
+	// genuine 26.4 recapture), not a hardcoded literal, since the
+	// anonymized/synthetic body content can differ from the 26.2 capture.
+	// json.Encoder.Encode (used by the mock server) always appends a
+	// trailing newline after the encoded value, and JSON-encodes the raw
+	// string body (quoting + HTML-escaping) -- part of the real wire bytes
+	// here -- so the expectation is reproduced the same way via
+	// json.Marshal rather than compared against the unescaped Go string.
+	var fixtureBody string
+	loadFixtureResponseBodyForTest(t, "blobs/get_blob_v2.json", &fixtureBody)
+	encodedBody, err := json.Marshal(fixtureBody)
+	if err != nil {
+		t.Fatalf("marshal fixture body: %v", err)
+	}
+	wantRaw := string(encodedBody) + "\n"
 	if string(got) != wantRaw {
 		t.Errorf("Get() body = %q, want raw wire bytes %q", got, wantRaw)
 	}

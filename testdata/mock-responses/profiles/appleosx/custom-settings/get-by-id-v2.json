@@ -2,26 +2,8 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/12347",
     "method": "GET",
-    "description": "macOS custom-settings profile — GET by int id (V2)",
-    "version": "2",
-    "platform": "AppleOsX",
-    "api_validation": {
-      "console_url": "https://cn0000.example.com",
-      "uem_version": "25.9.1134.9",
-      "api_version": "2",
-      "accept_header": "application/json;version=2",
-      "org_group_id": 12345,
-      "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
-      "captured_at": "2026-04-23",
-      "result": "accepted",
-      "ticket": "regression-repro",
-      "endpoint": "GET /api/mdm/profiles/12347",
-      "response_id_example": 68963,
-      "notes": "Plist payload stored verbatim on the wire.",
-      "request_templates": [
-        "testdata/request-templates/profiles/appleosx/custom-settings/custom-settings-create-v2.json"
-      ]
-    }
+    "description": "Captured GET /api/mdm/profiles/12347 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, macOS custom-settings profile GET by id -- rofx-profile-1-custom read-only fixture. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
+    "version": "2"
   },
   "request": {
     "headers": {
@@ -39,27 +21,32 @@
       "CustomAttributes": [],
       "CustomSettingsList": [
         {
-          "CustomSettings": "<dict><key>PayloadType</key><string>com.apple.example.test</string><key>PayloadIdentifier</key><string>com.example.mocktest.custom</string><key>PayloadDisplayName</key><string>Mocktest Custom</string><key>PayloadVersion</key><integer>1</integer><key>PayloadUUID</key><string>7ac1b8d7-010b-b6cd-3a3e-84e7f90136b8</string><key>MyCustomKey</key><string>MyCustomValue</string></dict>"
+          "CustomSettings": "<dict><key>PayloadType</key><string>com.apple.example.test</string><key>PayloadIdentifier</key><string>com.example.mocktest.custom</string><key>PayloadDisplayName</key><string>Mocktest Custom</string><key>PayloadVersion</key><integer>1</integer><key>PayloadUUID</key><string>634628da-7d50-1654-2e8a-9c7cd7d7bd24</string><key>MyCustomKey</key><string>MyCustomValue</string></dict>"
         }
       ],
       "EmailList": [],
       "General": {
         "AllowRemoval": "Always",
         "AssignedSchedule": [],
-        "AssignedSmartGroups": [],
+        "AssignedSmartGroups": [
+          {
+            "Name": "Test Leapsew",
+            "SmartGroupId": 12346
+          }
+        ],
         "AssignmentType": "Auto",
-        "Description": "Weekends reserve time for Rock Climbing and person.",
+        "Description": "Steady vast progress in Miami had visible.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
-        "ManagedLocationGroupID": 12346,
-        "Name": "Test LemonChiffonstairs",
+        "ManagedLocationGroupID": 12347,
+        "Name": "Test Clumpthrow",
         "Password": "",
         "ProfileContext": "Device",
-        "ProfileId": 12347,
-        "ProfileUuid": "08e56864-baa2-84e7-71b7-54711284a42e",
+        "ProfileId": 12348,
+        "ProfileUuid": "1ec6ed4b-2b8f-bf8e-43cd-b31396e1e5a8",
         "Version": 1
       },
       "NetworkList": [],

@@ -20,8 +20,10 @@ import (
 const testSmartGroupID = 450125
 
 // TestGeneratedSmartGroupsV1Lifecycle exercises the live-captured (and
-// anonymized) create/get/update/delete SmartGroups V1 lifecycle against
-// UEM 26.2.0.0 fixtures in testdata/mock-responses/smartgroups/:
+// anonymized) create/get/update/delete SmartGroups V1 lifecycle. On 26.4 the
+// create is the genuine 26.4.0.0 capture smartgroups/smartgroups_post_26400.json
+// (it supersedes 26.2's smartgroups_create.json); the created id and uuid
+// are read from it rather than pinned:
 //   - CREATE  POST /api/mdm/smartgroups           → 201 {Value, uuid}
 //   - GET     GET  /api/mdm/smartgroups/{id}       → 200, immediately-after-create shape
 //   - UPDATE  PUT  /api/mdm/smartgroups/{id}       → 204 empty
@@ -52,7 +54,16 @@ func TestGeneratedSmartGroupsV1Lifecycle(t *testing.T) {
 	ctx := context.Background()
 
 	// CREATE — POST /api/mdm/smartgroups → 201 {Value, uuid}.
-	// Fixture: smartgroups/smartgroups_create.json
+	// Fixture: smartgroups/smartgroups_post_26400.json
+	const createFixture = "smartgroups/smartgroups_post_26400.json"
+	var wantCreate struct {
+		Value int64  `json:"Value"`
+		UUID  string `json:"uuid"`
+	}
+	loadFixtureResponseBodyForTest(t, createFixture, &wantCreate)
+	if wantCreate.Value == 0 || wantCreate.UUID == "" {
+		t.Fatalf("%s: fixture lacks Value/uuid", createFixture)
+	}
 	createReq := &sdk.SmartGroupEditV1Model{
 		Name:                         "Test SmartGroup",
 		CriteriaType:                 "All",
@@ -62,8 +73,8 @@ func TestGeneratedSmartGroupsV1Lifecycle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("CreateSmartGroupAsync failed: %v", err)
 	}
-	if created == nil || created.Value == nil || *created.Value != 12346 {
-		t.Fatalf("expected created Value=12346, got %+v", created)
+	if created == nil || created.Value == nil || *created.Value != wantCreate.Value {
+		t.Fatalf("expected created Value=%d (the fixture's), got %+v", wantCreate.Value, created)
 	}
 	// Regression guard for internal-source/mdmv1.smartgroups.overlay.yaml:
 	// EntityId (the un-patched swagger response schema) only declares Value.
@@ -73,16 +84,14 @@ func TestGeneratedSmartGroupsV1Lifecycle(t *testing.T) {
 	// struct and the line below fails to compile -- the same "compile
 	// failure is the proof" pattern used in
 	// generated_deviceprofilev2_response_fields_test.go.
-	var wantCreate struct {
-		UUID string `json:"uuid"`
-	}
-	loadFixtureResponseBodyForTest(t, "smartgroups/smartgroups_create.json", &wantCreate)
 	if created.UUID != wantCreate.UUID {
 		t.Errorf("uuid: got %q, want %q -- was it dropped from SmartGroupCreateResponseV1?", created.UUID, wantCreate.UUID)
 	}
 
 	// GET — GET /api/mdm/smartgroups/{id} → 200, immediately-after-create shape.
-	// Fixture: smartgroups/smartgroups_get_after_create.json
+	// Fixture: the alphabetically-first GET fixture in a full-corpus load,
+	// smartgroups/smartgroups_get_26400.json on 26.4 (the same live
+	// lifecycle as the create capture).
 	_, got, err := svc.LoadSmartGroupAsync(ctx, testSmartGroupID)
 	if err != nil {
 		t.Fatalf("LoadSmartGroupAsync failed: %v", err)

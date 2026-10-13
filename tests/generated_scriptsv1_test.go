@@ -3,6 +3,7 @@ package tests
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"testing"
 
 	sdk "github.com/euc-oss/terraform-sdk-uem/v26"
@@ -12,6 +13,24 @@ import (
 )
 
 const testScriptsOrgGroupUUID = "7d0aef64-735e-853e-1695-fdb07ba63f5c"
+
+// assertScriptFixtureInvariants checks the fixed structure of one captured
+// script (a list row or a get body): non-empty identifiers, a documented
+// platform, and a script type that is valid for that platform (POWERSHELL on
+// WIN_RT; BASH or PYTHON on APPLE_OSX).
+func assertScriptFixtureInvariants(t *testing.T, what, uuid, name, platform, scriptType string) {
+	t.Helper()
+	if uuid == "" || name == "" {
+		t.Fatalf("fixture invariant: %s has script_uuid %q and name %q, want both non-empty", what, uuid, name)
+	}
+	valid := map[string][]string{"WIN_RT": {"POWERSHELL"}, "APPLE_OSX": {"BASH", "PYTHON"}}[platform]
+	for _, v := range valid {
+		if scriptType == v {
+			return
+		}
+	}
+	t.Fatalf("fixture invariant: %s has platform %q and script_type %q, want WIN_RT/POWERSHELL or APPLE_OSX/BASH|PYTHON", what, platform, scriptType)
+}
 
 // TestGeneratedScriptsV1Lifecycle exercises the in-scope ScriptsV1Service
 // surface against the testdata/mock-responses/scripts/ fixtures: List, Create
@@ -64,25 +83,45 @@ func TestGeneratedScriptsV1Lifecycle(t *testing.T) {
 	if list == nil {
 		t.Fatal("expected non-nil list result")
 	}
-	if list.RecordCount == nil || *list.RecordCount != 2 {
+	// Expected values are read from the fixture's own body (on 26.4 the
+	// genuine 2026-09-24 recapture of the readonly_fixtures org group).
+	var wantList struct {
+		RecordCount   int `json:"RecordCount"`
+		SearchResults []struct {
+			Name       string `json:"name"`
+			Platform   string `json:"platform"`
+			ScriptType string `json:"script_type"`
+			ScriptUUID string `json:"script_uuid"`
+		} `json:"SearchResults"`
+	}
+	loadFixtureResponseBodyForTest(t, "scripts/list.json", &wantList)
+	if len(wantList.SearchResults) == 0 {
+		t.Fatal("scripts/list.json has no SearchResults -- cannot derive expected values")
+	}
+	// Fixed structural invariants, independent of the derived comparisons
+	// below: a degenerate fixture must fail here instead of agreeing with itself.
+	if wantList.RecordCount <= 0 || wantList.RecordCount < len(wantList.SearchResults) {
+		t.Fatalf("fixture invariant: scripts/list.json RecordCount = %d, want > 0 and >= the %d rows returned", wantList.RecordCount, len(wantList.SearchResults))
+	}
+	for i, row := range wantList.SearchResults {
+		assertScriptFixtureInvariants(t, fmt.Sprintf("scripts/list.json row %d", i), row.ScriptUUID, row.Name, row.Platform, row.ScriptType)
+	}
+	if list.RecordCount == nil || *list.RecordCount != wantList.RecordCount {
 		got := -1
 		if list.RecordCount != nil {
 			got = *list.RecordCount
 		}
-		t.Fatalf("expected RecordCount=2, got %d", got)
+		t.Fatalf("RecordCount: got %d, want the fixture's %d", got, wantList.RecordCount)
 	}
-	if len(list.SearchResults) != 2 {
-		t.Fatalf("expected 2 SearchResults, got %d", len(list.SearchResults))
+	if len(list.SearchResults) != len(wantList.SearchResults) {
+		t.Fatalf("SearchResults: got %d, want the fixture's %d", len(list.SearchResults), len(wantList.SearchResults))
 	}
-	// Live-captured against the real test tenant:
-	// list.json now holds a genuine 2-script capture, replacing a fabricated
-	// fixture. get.json (used by the GET step below) is a separate,
-	// untouched fixture, so it keeps its own pre-existing values.
-	if list.SearchResults[0].Name != "Test Koaladid" {
-		t.Errorf("expected first script name 'Test Koaladid', got %q", list.SearchResults[0].Name)
+	if list.SearchResults[0].Name != wantList.SearchResults[0].Name {
+		t.Errorf("first script name: got %q, want the fixture's %q", list.SearchResults[0].Name, wantList.SearchResults[0].Name)
 	}
-	if list.SearchResults[0].Platform != "APPLE_OSX" {
-		t.Errorf("expected first script Platform 'APPLE_OSX' (string-enum), got %q", list.SearchResults[0].Platform)
+	// Platform decodes as the string enum (not an int).
+	if list.SearchResults[0].Platform != wantList.SearchResults[0].Platform || list.SearchResults[0].Platform != "APPLE_OSX" {
+		t.Errorf("first script Platform: got %q, want the fixture's %q (APPLE_OSX, string-enum)", list.SearchResults[0].Platform, wantList.SearchResults[0].Platform)
 	}
 
 	// CREATE — POST /api/mdm/groups/{ogUuid}/scripts → 201 + Location, empty body.
@@ -114,13 +153,34 @@ func TestGeneratedScriptsV1Lifecycle(t *testing.T) {
 	if got == nil {
 		t.Fatal("expected non-nil get response")
 	}
-	if got.Name != "Sample script 1" {
-		t.Errorf("expected name 'Sample script 1', got %q", got.Name)
+	// Expected values are read from the fixture actually served for this
+	// GET, not hardcoded: scripts/get.json is tagged
+	// provenance.class=PORTED-FROM-26.2, and the matcher's genuine-over-
+	// ported preference (RequestMatcher.MatchPreferring) makes the genuine
+	// scripts/get_live.json win the full-tree match here instead, even
+	// though get.json is the lexically-first file. So this asserts against
+	// get_live.json's own body (the genuine 26.4 recapture), which is
+	// unrelated to the script this test just created above -- the mock
+	// server is stateless.
+	var wantGet struct {
+		Name       string `json:"name"`
+		Platform   string `json:"platform"`
+		ScriptData string `json:"script_data"`
+		ScriptType string `json:"script_type"`
+		ScriptUUID string `json:"script_uuid"`
 	}
-	if got.Platform != "WIN_RT" {
-		t.Errorf("expected ScriptResource.Platform 'WIN_RT' (string-enum), got %q", got.Platform)
+	loadFixtureResponseBodyForTest(t, "scripts/get_live.json", &wantGet)
+	assertScriptFixtureInvariants(t, "scripts/get_live.json", wantGet.ScriptUUID, wantGet.Name, wantGet.Platform, wantGet.ScriptType)
+	if wantGet.Platform != "APPLE_OSX" || wantGet.ScriptData == "" {
+		t.Fatalf("fixture invariant: scripts/get_live.json platform = %q (want APPLE_OSX), script_data empty = %t (want false)", wantGet.Platform, wantGet.ScriptData == "")
 	}
-	if got.ScriptData != "R2V0LURhdGUgfCBPdXQtRmlsZSBDOlx0ZXN0LnR4dA==" {
+	if got.Name != wantGet.Name {
+		t.Errorf("expected name %q, got %q", wantGet.Name, got.Name)
+	}
+	if got.Platform != wantGet.Platform {
+		t.Errorf("expected ScriptResource.Platform %q (string-enum), got %q", wantGet.Platform, got.Platform)
+	}
+	if got.ScriptData != wantGet.ScriptData {
 		t.Errorf("expected base64 script_data round-trip; got %q", got.ScriptData)
 	}
 
@@ -222,7 +282,9 @@ func TestGeneratedScriptsV1BulkDeletePartial(t *testing.T) {
 //
 // The samples-response.json fixture is a genuine live capture (vendored 4f0dd5fe5,
 // 2026-09-24: a real enrolled AppleOsX device with an APPLE_OSX script,
-// 204 No Content) and backs a verified[] ledger row. It is loaded via the
+// 204 No Content), carried over from the 26.2 corpus. Its ledger row is
+// unverified[] pending a 26.4 recapture; a byte-identical twin does not make
+// it verified evidence. It is loaded via the
 // bypass mechanism (newMockServerWithBypassFixtures, see
 // tests/bypass_fixture_helper_test.go) from its byte-identical twin at
 // internal/mockserver/testdata/synthetic-placeholders/scripts/
@@ -285,13 +347,27 @@ func TestGeneratedScriptsV1GetLiveCapture(t *testing.T) {
 	if got == nil {
 		t.Fatal("expected non-nil get response")
 	}
-	if got.Name != "Test Hamsterbuy" {
-		t.Errorf("expected name 'Test Hamsterbuy', got %q", got.Name)
+	// Expected values are read from get_live.json's own body (the genuine
+	// 26.4 recapture), not hardcoded.
+	var wantGet struct {
+		Name       string `json:"name"`
+		Platform   string `json:"platform"`
+		ScriptData string `json:"script_data"`
+		ScriptType string `json:"script_type"`
+		ScriptUUID string `json:"script_uuid"`
 	}
-	if got.Platform != "APPLE_OSX" {
-		t.Errorf("expected Platform 'APPLE_OSX' (string-enum), got %q", got.Platform)
+	loadFixtureResponseBodyForTest(t, "scripts/get_live.json", &wantGet)
+	assertScriptFixtureInvariants(t, "scripts/get_live.json", wantGet.ScriptUUID, wantGet.Name, wantGet.Platform, wantGet.ScriptType)
+	if wantGet.Platform != "APPLE_OSX" || wantGet.ScriptData == "" {
+		t.Fatalf("fixture invariant: scripts/get_live.json platform = %q (want APPLE_OSX), script_data empty = %t (want false)", wantGet.Platform, wantGet.ScriptData == "")
 	}
-	if got.ScriptData != "eGZneGc=" {
+	if got.Name != wantGet.Name {
+		t.Errorf("expected name %q, got %q", wantGet.Name, got.Name)
+	}
+	if got.Platform != wantGet.Platform {
+		t.Errorf("expected Platform %q (string-enum), got %q", wantGet.Platform, got.Platform)
+	}
+	if got.ScriptData != wantGet.ScriptData {
 		t.Errorf("expected base64 script_data round-trip; got %q", got.ScriptData)
 	}
 }

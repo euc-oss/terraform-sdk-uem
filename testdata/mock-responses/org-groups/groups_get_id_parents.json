@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/system/groups/{uuid}/parents",
     "method": "GET",
-    "description": "Captured GET /api/system/groups/{uuid}/parents",
+    "description": "Captured GET /api/system/groups/{uuid}/parents on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/system/groups/{uuid}/parents live-recaptured against 26.4 lab tenant. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -18,9 +18,10 @@
     },
     "body": {
       "items": [
-        "340c16e2-0750-f33b-5449-477fd584e16d",
-        "de6a7cca-2cb3-9aaa-2450-1c84b5077a9f",
-        "580192fa-028d-ee8e-13f5-f71d9c91130b"
+        "3fec55c9-37b9-ef9c-ed35-3e6d90b3d0fe",
+        "8bbe5e04-5161-dd67-06af-bb55e43728a5",
+        "4c8fa413-49d6-8fcc-8a2a-51b55716e276",
+        "1ae6099b-7603-fc85-31e0-56682d78732c"
       ]
     }
   }

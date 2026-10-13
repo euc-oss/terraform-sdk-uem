@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines",
     "method": "GET",
-    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. GET /api/mdm/groups/{organizationGroupUuid}/baselines (v1) for a disposable org group holding one Windows 10 baseline created for this capture (template Windows Security Baseline, OS version 1709). Replaces the earlier empty-array body.",
+    "description": "Captured GET /api/mdm/groups/{organizationGroupUuid}/baselines on the 26.4 lab tenant (UEM 26.4), 2026-09-24, listing baselines in an org group holding one disposable baseline (created for this capture and deleted afterwards, deletion confirmed by a not-found read). Genuine 26.4 recapture from a populated org group, replacing an earlier genuine 26.4 capture taken from an empty one.",
     "version": "1"
   },
   "request": {
@@ -20,16 +20,17 @@
       {
         "assignmentCount": 0,
         "baselineTemplateUUID": "90794f82-c864-1a36-48c2-183d302e1aa6",
-        "baselineUUID": "18bdbfc6-ff8c-057c-f302-63d34a4f8ff7",
+        "baselineType": "Desktop",
+        "baselineUUID": "38f3d47a-8736-f480-094b-f4bd4ed756c3",
         "customizations": [],
-        "description": "However the prior approach, this group have clearer.",
-        "name": "Test Buffalokiss",
+        "description": "Optimize work for cute clarity.",
+        "name": "Test Bouquetdoes",
         "platformName": "Windows 10",
         "platformUUID": "a80ea502-3c05-9987-b114-b674f8f44f09",
         "policies": [],
         "rootLocationGroupID": 12346,
-        "rootLocationGroupName": "Test Jackalwin",
-        "rootLocationGroupUUID": "0aed748c-7d18-59aa-3e70-2f4ab3c1ca21",
+        "rootLocationGroupName": "Test Raccoonbeen",
+        "rootLocationGroupUUID": "f9a304b9-238e-4a89-d1f9-5fbddf6e2c85",
         "templateName": "Test GoldenRodsugar",
         "version": 1
       }

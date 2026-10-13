@@ -199,6 +199,9 @@
         "DeviceType": {
           "presence": "optional"
         },
+        "DisplayName": {
+          "presence": "optional"
+        },
         "EARAppUpdateMode": {
           "presence": "optional"
         },
@@ -343,6 +346,9 @@
         "device_type": {
           "presence": "optional"
         },
+        "display_name": {
+          "presence": "optional"
+        },
         "ear_app_auto_update_configuration": {
           "presence": "optional"
         },
@@ -471,6 +477,9 @@
           "presence": "optional"
         },
         "applicationIconId": {
+          "presence": "optional"
+        },
+        "earPackageIdentifier": {
           "presence": "optional"
         },
         "pkgInfoBlobId": {
@@ -936,6 +945,9 @@
         "locale": {
           "presence": "optional"
         },
+        "mac_os_package_info": {
+          "presence": "optional"
+        },
         "organization_group_uuid": {
           "presence": "optional"
         },
@@ -1262,6 +1274,9 @@
         ]
       },
       "fields": {
+        "baselineType": {
+          "presence": "optional"
+        },
         "customizations": {
           "presence": "optional"
         },

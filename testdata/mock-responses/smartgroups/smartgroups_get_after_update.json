@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/smartgroups/{id}",
     "method": "GET",
-    "description": "Live-captured GET /api/mdm/smartgroups/{id} against UEM 26.2.0.0, 2026-07-30 -- readback after UpdateSmartGroupAsync, confirming the Name change actually persisted (not a silent no-op PUT). Same SmartGroupID/org group as smartgroups_get_after_create.json; Name differs to reflect the real update.",
+    "description": "Captured GET /api/mdm/smartgroups/{id} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, reading back a disposable smart group after a successful rename (the rename persisted). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -26,11 +26,11 @@
       "EnrollmentCategories": [],
       "Exclusions": 0,
       "ManagedByOrganizationGroupId": "12346",
-      "ManagedByOrganizationGroupName": "Test Wombatclose",
-      "ManagedByOrganizationGroupUuid": "3ea820da-ec54-ff68-7158-358f3684912e",
+      "ManagedByOrganizationGroupName": "Test Oilthrow",
+      "ManagedByOrganizationGroupUuid": "20690911-b499-cb22-e2b8-a2c6bcbdf288",
       "ManagementTypes": [],
       "Models": [],
-      "Name": "Test BlueVioletpride",
+      "Name": "Test Lossbeen",
       "OEMAndModels": [],
       "OperatingSystems": [],
       "OrganizationGroups": [],
@@ -39,7 +39,7 @@
       ],
       "Platforms": [],
       "SmartGroupID": 12347,
-      "SmartGroupUuid": "65435db3-4244-7de7-be14-d5871a3cdae5",
+      "SmartGroupUuid": "c8377aae-656c-d7e7-d2fd-3e99062c181c",
       "Tags": [],
       "UserAdditions": [],
       "UserExclusions": [],

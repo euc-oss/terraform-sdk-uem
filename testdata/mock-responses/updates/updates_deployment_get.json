@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/updates/deployments/{uuid}",
     "method": "GET",
-    "description": "Live-captured GET /api/mdm/updates/deployments/{uuid} against a real deployment created in a disposable sdktestrun* org group under parent 138883 (deleted after capture). The smart_group_uuids array is not touched by the standard key-based anonymizer (plural-keyed uuid arrays aren't matched by its single-value string heuristic), so its one entry was manually replaced with a placeholder UUID in place of the real captured smart group uuid. deployment_start_time reads \"2024-01-15T00:00:00Z\" because the anonymizer's timestamp-normalization rule rewrites any field whose key contains \"date\"/\"time\" to this exact literal whenever the captured value looks like a timestamp -- a disclosed normalization artifact, not a fabrication; multiple other genuine fixtures in this corpus carry the identical literal for the same field-key-matching reason.",
+    "description": "Captured GET /api/mdm/updates/deployments/{uuid} immediately after create. Confirms: of the 5 fields DeviceUpdateDeploymentV1Model adds beyond the 7-field create model, only uuid and ranking are present on a freshly-created deployment; allow_user_deferral, max_number_of_deferrals, and priority are all omitted from the wire (never set by V1 create, and this API's NullValueHandling.Ignore drops unset optional fields entirely rather than emitting null).",
     "version": "1"
   },
   "request": {
@@ -17,17 +17,15 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
+      "uuid": "ec4a352b-6409-c5a7-84b0-6c192258c3ba",
+      "ranking": 1,
+      "organization_group_uuid": "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c",
+      "device_update_uuid": "9af645a8-fef3-3e6d-3408-5cc69e0937d4",
+      "name": "Test Deployment",
       "deployment_start_time": "2024-01-15T00:00:00Z",
       "deployment_type": "DOWNLOAD_ONLY",
-      "device_update_uuid": "ea1eb4bf-4e92-1a63-25ec-e7a3eb15955f",
-      "name": "Test Snowlung",
-      "notifications": [],
-      "organization_group_uuid": "975c599a-df74-30b7-21ec-8d162ec05351",
-      "ranking": 1,
-      "smart_group_uuids": [
-        "c858ee63-11bb-659a-2068-8687798b314f"
-      ],
-      "uuid": "1bc333e5-b6ed-b450-37c4-0007f627bd62"
+      "smart_group_uuids": ["c2e73a8e-0b57-a56f-d3ae-45c0a3f9c220"],
+      "notifications": []
     }
   }
 }

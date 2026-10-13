@@ -2,8 +2,15 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}/devices/{deviceUuid}/policies",
     "method": "GET",
-    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 on 2026-09-23, for a real enrolled device under a real baseline (first landed as vendored commit 22d4e7c5e, 2026-09-23). The response is a results-wrapper OBJECT {results, total}, not a bare array, and each item is {uuid, name, className, path, status, compliance{status}}, which is not the device-level BaselineDeviceComplianceV1Model (quirk 36). total=343 with 10 results: total is the grand total and 10 is the default limit (canonical: offset/limit paging). Values are anonymized by the capture anonymizer: every *name* key is 'Test <word>' and uuids are regenerated; path, status and compliance.status are verbatim.",
-    "version": "1"
+    "description": "PORTED-FROM-26.2 (not re-verified on 26.4): GENUINE: live-captured with tools/mock-capture against UEM 26.2 on 2026-09-23, for a real enrolled device under a real baseline (first landed as vendored commit 22d4e7c5e, 2026-09-23). The response is a results-wrapper OBJECT {results, total}, not a bare array, and each item is {uuid, name, className, path, status, compliance{status}}, which is not the device-level BaselineDeviceComplianceV1Model (quirk 36). total=343 with 10 results: total is the grand total and 10 is the default limit (canonical: offset/limit paging). Values are anonymized by the capture anonymizer: every *name* key is 'Test <word>' and uuids are regenerated; path, status and compliance.status are verbatim.",
+    "version": "1",
+    "provenance": {
+      "class": "PORTED-FROM-26.2",
+      "source_tenant": "lab-tenant",
+      "source_version": "26.2",
+      "source_commit": "a4b67af4b43fa6e94365fcae2ae565376dfde61a",
+      "reverified_on": null
+    }
   },
   "request": {
     "headers": {

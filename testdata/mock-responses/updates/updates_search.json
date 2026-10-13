@@ -22,7 +22,7 @@
     "body": {
       "page": 1,
       "page_size": 50,
-      "total": 173,
+      "total": 75,
       "update_list": [
         {
           "available_for_install": true,
@@ -34,7 +34,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "08e56864-baa2-84e7-71b7-54711284a42e",
-          "version": "26.6"
+          "version": "14.8.9"
         },
         {
           "available_for_install": true,
@@ -46,7 +46,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "4f3fd647-3b82-0193-16a7-4b247f4fe1ab",
-          "version": "14.8.8"
+          "version": "15.7.9"
         },
         {
           "available_for_install": true,
@@ -58,14 +58,14 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "e9296f88-1a71-4037-36c2-b48258637445",
-          "version": "15.7.8"
+          "version": "26.6.1"
         },
         {
           "available_for_install": true,
           "description": "Retire outdated week each quarter.",
           "expiration_date": "2024-01-15T00:00:00Z",
           "external_key": "",
-          "is_paused": false,
+          "is_paused": true,
           "name": "Test Batpaint",
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
@@ -82,7 +82,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "f3be5b88-fb76-176d-845b-0be80ea3f3ad",
-          "version": "26.5.2"
+          "version": "14.8.8"
         },
         {
           "available_for_install": true,
@@ -94,7 +94,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "dcc63df8-dd91-cd6e-d476-e5245d9f22c4",
-          "version": "26.5.2"
+          "version": "15.7.8"
         },
         {
           "available_for_install": true,
@@ -106,7 +106,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "039f5aee-b33b-934a-c392-a10b119cd572",
-          "version": "26.5.1"
+          "version": "26.6"
         },
         {
           "available_for_install": true,
@@ -118,7 +118,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "915c13b7-6f23-a54b-8656-3b206b746653",
-          "version": "26.5.1"
+          "version": "26.5.2"
         },
         {
           "available_for_install": true,
@@ -130,7 +130,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "3d060cc9-9ea2-f0dc-8fd3-1082a4515968",
-          "version": "15.8.8"
+          "version": "26.5.2"
         },
         {
           "available_for_install": true,
@@ -142,7 +142,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "f472b378-bb19-091b-5f8c-c615d3b066c2",
-          "version": "16.7.16"
+          "version": "26.5.1"
         },
         {
           "available_for_install": true,
@@ -154,7 +154,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "beb299fd-4c3a-074c-bfa5-89dafae9ed95",
-          "version": "17.7.11"
+          "version": "26.5.1"
         },
         {
           "available_for_install": true,
@@ -166,7 +166,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "8a706091-cfff-86a1-d3c7-da3e85f91290",
-          "version": "18.7.9"
+          "version": "15.8.8"
         },
         {
           "available_for_install": true,
@@ -178,7 +178,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "a90fb3b5-95a7-02e3-a1dc-a815ed5522b0",
-          "version": "26.5"
+          "version": "16.7.16"
         },
         {
           "available_for_install": true,
@@ -190,7 +190,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "9add9ac7-0afe-d4ef-8954-a9772efb5d74",
-          "version": "14.8.7"
+          "version": "17.7.11"
         },
         {
           "available_for_install": true,
@@ -202,7 +202,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "50534e99-becc-9ba9-4b79-0d455cd43c18",
-          "version": "15.7.7"
+          "version": "18.7.9"
         },
         {
           "available_for_install": true,
@@ -226,7 +226,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "276b2add-19ec-802d-9af1-4a007af585f5",
-          "version": "26.4.2"
+          "version": "14.8.7"
         },
         {
           "available_for_install": true,
@@ -238,7 +238,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "39a391f1-c4f9-6abc-58ec-16b83781e361",
-          "version": "17.7.10"
+          "version": "15.7.7"
         },
         {
           "available_for_install": true,
@@ -250,7 +250,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "e8cb2c0f-8f58-3b8b-a51b-7311b5d0024f",
-          "version": "12.5.8"
+          "version": "26.5"
         },
         {
           "available_for_install": true,
@@ -262,7 +262,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "c58f0191-41e0-681c-c73b-4bd14455a2e5",
-          "version": "15.8.7"
+          "version": "26.4.2"
         },
         {
           "available_for_install": true,
@@ -274,7 +274,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "f34f362c-3ec4-fc72-dfe0-792859f380b9",
-          "version": "16.7.15"
+          "version": "15.8.7"
         },
         {
           "available_for_install": true,
@@ -286,7 +286,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "e8450bca-941d-94ab-f433-ed89c56c2147",
-          "version": "18.7.8"
+          "version": "16.7.15"
         },
         {
           "available_for_install": true,
@@ -298,7 +298,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "4beb89ae-f134-bbbb-0849-12cfef81ba56",
-          "version": "26.4.1"
+          "version": "17.7.10"
         },
         {
           "available_for_install": true,
@@ -310,7 +310,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "027df127-78b2-6b27-7b46-0cb5e896e7b4",
-          "version": "15.7.5"
+          "version": "12.5.8"
         },
         {
           "available_for_install": true,
@@ -322,7 +322,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "6d4fd7d1-947c-9631-5310-d26fa57b6157",
-          "version": "13.7.8"
+          "version": "18.7.8"
         },
         {
           "available_for_install": true,
@@ -334,7 +334,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "e7f1609f-6d91-0664-3039-9f7c81541602",
-          "version": "14.8.5"
+          "version": "26.4.1"
         },
         {
           "available_for_install": true,
@@ -346,7 +346,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "e55b6612-a17c-a92e-a3e3-88f2b2418c5c",
-          "version": "11.7.11"
+          "version": "13.7.8"
         },
         {
           "available_for_install": true,
@@ -358,10 +358,10 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "dbfcc523-7b3b-6511-2f5a-275fd962be6b",
-          "version": "12.7.6"
+          "version": "14.8.5"
         },
         {
-          "available_for_install": false,
+          "available_for_install": true,
           "description": "After 9 iterations, you widen the government blindly.",
           "expiration_date": "2024-01-15T00:00:00Z",
           "external_key": "",
@@ -370,10 +370,10 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "e387d077-fec5-4d3b-a68f-f8adfd125b90",
-          "version": "26.4.1"
+          "version": "11.7.11"
         },
         {
-          "available_for_install": false,
+          "available_for_install": true,
           "description": "Share the decision record for the fact.",
           "expiration_date": "2024-01-15T00:00:00Z",
           "external_key": "",
@@ -382,10 +382,10 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "52620a55-b8fe-dc69-f026-36f405fc4a71",
-          "version": "18.7.7"
+          "version": "15.7.5"
         },
         {
-          "available_for_install": false,
+          "available_for_install": true,
           "description": "Defaults at J.P. Morgan Chase might shape time.",
           "expiration_date": "2024-01-15T00:00:00Z",
           "external_key": "",
@@ -394,7 +394,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "bc2b033c-7a67-8fb0-c2a3-b50fd329c452",
-          "version": "26.4"
+          "version": "12.7.6"
         },
         {
           "available_for_install": false,
@@ -406,7 +406,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "7101db25-dd61-6c6e-135a-a808127e0917",
-          "version": "26.4"
+          "version": "26.4.1"
         },
         {
           "available_for_install": false,
@@ -418,7 +418,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "4e6d2fd2-2c9a-dd4f-8db7-92f9e37a96d7",
-          "version": "18.7.6"
+          "version": "18.7.7"
         },
         {
           "available_for_install": false,
@@ -430,7 +430,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "d3c4d237-a3fa-4bee-1025-63c847eb3229",
-          "version": "26.3.1"
+          "version": "26.4"
         },
         {
           "available_for_install": false,
@@ -442,7 +442,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "82f38a1d-bb34-b9dd-b3c0-2c80219ea2f0",
-          "version": "18.7.5"
+          "version": "26.4"
         },
         {
           "available_for_install": false,
@@ -466,7 +466,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "bfdcaa32-9195-fd19-2d33-da773bd2b381",
-          "version": "26.3"
+          "version": "18.7.5"
         },
         {
           "available_for_install": false,
@@ -478,7 +478,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "a7045ad8-92be-e971-d0bc-46cd49c9131d",
-          "version": "14.8.4"
+          "version": "18.7.6"
         },
         {
           "available_for_install": false,
@@ -490,7 +490,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "28445f44-aa04-168b-8de1-6db74c6f9000",
-          "version": "26.3"
+          "version": "26.3.1"
         },
         {
           "available_for_install": false,
@@ -502,7 +502,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "0202649f-f829-c145-fc1a-86fd69949c41",
-          "version": "16.7.14"
+          "version": "26.3"
         },
         {
           "available_for_install": false,
@@ -514,7 +514,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "e624c667-0999-40c9-6972-9304ec462311",
-          "version": "15.8.6"
+          "version": "14.8.4"
         },
         {
           "available_for_install": false,
@@ -526,7 +526,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "0fd81aab-f09a-4def-6651-31a5d6f2281a",
-          "version": "16.7.13"
+          "version": "26.3"
         },
         {
           "available_for_install": false,
@@ -538,7 +538,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "6babf8db-6149-20a9-7e3f-c9ea32969b08",
-          "version": "26.2.1"
+          "version": "16.7.14"
         },
         {
           "available_for_install": false,
@@ -550,7 +550,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "128c5fce-f0bd-ea8e-4cea-c32ad2eb4ca4",
-          "version": "26.2"
+          "version": "15.8.6"
         },
         {
           "available_for_install": false,
@@ -562,7 +562,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "9733854f-662e-ef52-751c-e1d023aa0c7d",
-          "version": "14.8.3"
+          "version": "16.7.13"
         },
         {
           "available_for_install": false,
@@ -574,7 +574,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "c5744c02-4a23-be84-9360-45fe45787193",
-          "version": "15.7.3"
+          "version": "26.2.1"
         },
         {
           "available_for_install": false,
@@ -610,7 +610,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "389497bb-64db-48f9-3a34-da28dff1ec0f",
-          "version": "18.7.2"
+          "version": "14.8.3"
         },
         {
           "available_for_install": false,
@@ -622,7 +622,7 @@
           "release_date": "2024-01-15T00:00:00Z",
           "update_type": "OS",
           "uuid": "6026dc85-44d1-c72b-c0ea-19b08e22cf0b",
-          "version": "26.1"
+          "version": "15.7.3"
         }
       ]
     }

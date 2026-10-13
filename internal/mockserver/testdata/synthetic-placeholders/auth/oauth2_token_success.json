@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "description": "Live-captured POST to the real OAuth2 client_credentials token endpoint (shape only: status code, headers, response field set/types) -- the real live call hit the cloud connect/token path, but metadata.endpoint is filed as /oauth/token to match this corpus/test-harness's established mock-matching convention for OAuth fixtures (see internal/mockserver/helpers.go NewMockClientWithOAuth2, which hardcodes /oauth/token for every mock OAuth2 client). access_token is replaced with an obvious, unambiguous placeholder string (not an anonymizer-random value) so no reader could mistake it for a real secret -- this is a disclosed, deliberate redaction, not an incidental anonymizer gap.",
+    "description": "Captured POST /oauth/token on the 26.4 lab tenant (UEM 26.4), 2026-09-24, POST /oauth/token client_credentials live-recaptured against 26.4 lab tenant; access_token replaced with synthetic placeholder. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "endpoint": "/oauth/token",
     "method": "POST",
     "version": "n/a (not a swagger-declared operation)"

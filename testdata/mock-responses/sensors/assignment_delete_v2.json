@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/assignments/{assignmentUuid}",
     "method": "DELETE",
-    "description": "V2 delete assignment (DELETE /devicesensors/assignments/{assignmentUuid}), 204 no content. Confirmed via a follow-up GET on the same assignment UUID returning 404, closing the lifecycle.",
+    "description": "Captured DELETE /api/mdm/devicesensors/assignments/{assignmentUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, DELETE /api/mdm/devicesensors/assignments/{assignmentUuid} (v2) live-recaptured against 26.4 lab tenant, disposable assignment cleaned up. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {

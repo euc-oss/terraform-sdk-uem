@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/apps/categories",
     "method": "GET",
-    "description": "Captured GET /api/mam/apps/categories (mocktest OG, Application category type)",
+    "description": "Captured GET /api/mam/apps/categories (org group uuid anonymized; categorytype=Application)",
     "version": "2"
   },
   "request": {
@@ -12,7 +12,7 @@
     },
     "query_params": {
       "categorytype": "Application",
-      "oguuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c"
+      "oguuid": "666ff6cc-aa5b-3c07-feaa-3a95d3a4bd2c"
     }
   },
   "response": {

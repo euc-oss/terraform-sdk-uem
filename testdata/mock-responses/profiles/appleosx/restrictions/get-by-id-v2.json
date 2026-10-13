@@ -2,26 +2,8 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/12349",
     "method": "GET",
-    "description": "macOS restrictions profile — GET by int id (V2)",
-    "version": "2",
-    "platform": "AppleOsX",
-    "api_validation": {
-      "console_url": "https://cn0000.example.com",
-      "uem_version": "25.9.1134.9",
-      "api_version": "2",
-      "accept_header": "application/json;version=2",
-      "org_group_id": 12345,
-      "org_group_uuid": "7d0aef64-735e-853e-1695-fdb07ba63f5c",
-      "captured_at": "2026-04-23",
-      "result": "accepted",
-      "ticket": "regression-repro",
-      "endpoint": "GET /api/mdm/profiles/12349",
-      "response_id_example": 68965,
-      "notes": "Sharing sub-payload: when parent Sharing.RestrictWhichSharingServicesAreEnabled=false (default), the individual toggles (Mail, AirDrop, Facebook, etc.) all persist as false regardless of submitted value.",
-      "request_templates": [
-        "testdata/request-templates/profiles/appleosx/restrictions/restrictions-create-v2.json"
-      ]
-    }
+    "description": "Captured GET /api/mdm/profiles/12349 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, macOS restrictions profile GET by id -- rofx-profile-2-restrictions read-only fixture. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
+    "version": "2"
   },
   "request": {
     "headers": {
@@ -42,20 +24,25 @@
       "General": {
         "AllowRemoval": "Always",
         "AssignedSchedule": [],
-        "AssignedSmartGroups": [],
+        "AssignedSmartGroups": [
+          {
+            "Name": "Test Leapsew",
+            "SmartGroupId": 12346
+          }
+        ],
         "AssignmentType": "Auto",
-        "Description": "Weekends reserve time for Rock Climbing and person.",
+        "Description": "Publish a changelog entry for the part.",
         "EnableProvisioning": false,
         "ExcludedSmartGroups": [],
         "IsActive": true,
         "IsManaged": true,
         "IsProvisionedForOobe": false,
-        "ManagedLocationGroupID": 12346,
-        "Name": "Test LemonChiffonstairs",
+        "ManagedLocationGroupID": 12347,
+        "Name": "Test Sharkthink",
         "Password": "",
         "ProfileContext": "Device",
-        "ProfileId": 12347,
-        "ProfileUuid": "08e56864-baa2-84e7-71b7-54711284a42e",
+        "ProfileId": 12348,
+        "ProfileUuid": "e34ce60e-eb6f-b958-4903-23e33988b185",
         "Version": 1
       },
       "NetworkList": [],

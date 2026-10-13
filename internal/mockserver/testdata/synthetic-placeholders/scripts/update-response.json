@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/scripts/{scriptUuid}",
     "method": "PUT",
-    "description": "Captured PUT /api/mdm/scripts/{scriptUuid}",
+    "description": "Captured PUT /api/mdm/scripts/{scriptUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, PUT /api/mdm/scripts/{scriptUuid} live-recaptured against 26.4 lab tenant, disposable script. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {
@@ -14,7 +14,7 @@
   "response": {
     "status_code": 204,
     "headers": {
-      "Location": "/api/mdm/scripts/b1bfacb4-9b81-bf73-9865-fa75378c42a5"
+      "Location": "/api/mdm/scripts/a5bcad10-893a-eb69-fa05-04165e56c3c1"
     },
     "body": null
   }

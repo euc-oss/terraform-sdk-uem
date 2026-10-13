@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid}",
     "method": "DELETE",
-    "description": "Captured DELETE single baseline (canonical impl returns 200 empty body, NOT 204 per .Generated.cs; D6)",
+    "description": "Captured DELETE /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, DELETE /api/mdm/groups/{organizationGroupUuid}/baselines/{baselineUuid} live-recaptured against 26.4 lab tenant, disposable baseline cleaned up. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {

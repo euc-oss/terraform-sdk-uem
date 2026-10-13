@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/blobs/blob/{blobId}",
     "method": "DELETE",
-    "description": "Captured DELETE /api/mam/blobs/blob/{blobId}",
+    "description": "Captured DELETE /api/mam/blobs/blob/{blobId} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, deleting that blob by its raw numeric Value id (v1). Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "1"
   },
   "request": {

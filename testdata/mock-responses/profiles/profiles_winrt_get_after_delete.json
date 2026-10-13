@@ -2,8 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/profiles/68912",
     "method": "GET",
-    "platform": "WinRT",
-    "description": "Live-captured (via direct SDK-client probe -- see profiles_apple_get_after_delete.json for why) GET /api/mdm/profiles/{profileId} immediately after DeleteProfileAsync, UEM 26.2.0.0, 2026-07-30. Real error text (status 400, errorCode 400, \"Invalid Profile <id>.\"), real id replaced with the same anonymized placeholder (68912) used across this platform's other fixtures. Shadowed by profiles_winrt_get_after_create.json under the same literal path in a full-corpus load, so exercised via an isolated single-fixture mock server (see TestGeneratedProfilesV2WinRTGetAfterDelete).",
+    "description": "Captured GET /api/mdm/profiles/68912 on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET by id immediately after delete -- 400 Invalid Profile, leak-fixed real id in message. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -18,7 +17,7 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
-      "activityId": "c2e73a8e-0b57-a56f-d3ae-45c0a3f9c220",
+      "activityId": "3237cd94-ca37-fab9-f807-fbeb84545dcf",
       "errorCode": 400,
       "message": "Invalid Profile 68912."
     }

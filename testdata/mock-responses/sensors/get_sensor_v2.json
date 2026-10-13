@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/{sensorUuid}",
     "method": "GET",
-    "description": "V2 get device sensor by UUID (GET /devicesensors/{sensorUuid}), captured immediately after create. Real-wire finding: 'timeout' is returned as 0 even though the create request sent timeout=120 -- the anonymizer does not touch the 'timeout' field (verified in tools/mock-capture/anonymize.go), so this is a genuine server-side value, not an anonymization artifact.",
+    "description": "Captured GET /api/mdm/devicesensors/{sensorUuid} on the 26.4 lab tenant (UEM 26.4), 2026-09-24, GET /api/mdm/devicesensors/{sensorUuid} (v2) live-recaptured against 26.4 lab tenant, disposable sensor. Genuine 26.4 recapture replacing the PORTED-FROM-26.2 fixture at this path.",
     "version": "2"
   },
   "request": {
@@ -17,19 +17,19 @@
       "Content-Type": "application/json; charset=utf-8"
     },
     "body": {
-      "description": "Weekends reserve time for Rock Climbing and person.",
+      "description": "Systematically improve the eye weekly.",
       "execution_architecture": "EITHER64OR32BIT",
       "execution_context": "SYSTEM",
       "is_read_only": false,
-      "name": "Test LemonChiffonstairs",
-      "organization_group_uuid": "08e56864-baa2-84e7-71b7-54711284a42e",
+      "name": "Test Birdcan",
+      "organization_group_uuid": "076ce949-e037-14c1-fe3d-0071ef92c22b",
       "platform": "WIN_RT",
       "query_response_type": "STRING",
       "query_type": "POWERSHELL",
       "script_data": "V3JpdGUtT3V0cHV0ICJoZWxsbyI=",
       "script_environment_variables": [],
       "timeout": 0,
-      "uuid": "0e44d914-4225-2276-b7cc-5cecb1ab3c4b"
+      "uuid": "40ee972d-b28e-a209-0cac-56b839b5c822"
     }
   }
 }

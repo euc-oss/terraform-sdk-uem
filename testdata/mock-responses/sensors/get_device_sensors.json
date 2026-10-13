@@ -2,8 +2,15 @@
   "metadata": {
     "endpoint": "/api/mdm/devices/{deviceUuid}/sensors",
     "method": "GET",
-    "description": "Returns the list of sensors reported by a specific device. GET /api/mdm/devices/{deviceUuid}/sensors (V1). The body's uuid values (a1b2c3d4_e5f6_7890_abcd_ef1234567890, b2c3d4e5_f6a7_8901_bcde_f01234567891) are hand-typed ascending-hex placeholders, not gofakeit output -- not a genuine live capture.",
-    "version": "1"
+    "description": "PORTED-FROM-26.2 (not re-verified on 26.4): Returns the list of sensors reported by a specific device. GET /api/mdm/devices/{deviceUuid}/sensors (V1). The body's uuid values (a1b2c3d4_e5f6_7890_abcd_ef1234567890, b2c3d4e5_f6a7_8901_bcde_f01234567891) are hand-typed ascending-hex placeholders, not gofakeit output -- not a genuine live capture.",
+    "version": "1",
+    "provenance": {
+      "class": "PORTED-FROM-26.2",
+      "source_tenant": "none (hand-authored, not a live capture)",
+      "source_version": "not applicable",
+      "source_commit": "a4b67af4b43fa6e94365fcae2ae565376dfde61a",
+      "reverified_on": null
+    }
   },
   "request": {
     "headers": {

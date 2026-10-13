@@ -2,8 +2,9 @@
   "metadata": {
     "endpoint": "/api/mdm/updates/deployments/{uuid}",
     "method": "PUT",
-    "description": "Captured PUT /api/mdm/updates/deployments/{uuid} — canonical docs say 204 No Content. Confirmed by re-GET: the update actually persists (name and deployment_start_time both changed on the follow-up GET), unlike the family of silent-no-op update bugs seen on other resources.",
-    "version": "1"
+    "description": "Captured PUT /api/mdm/updates/deployments/{uuid} — canonical docs say 204 No Content. Confirmed by re-GET: the update actually persists (name and deployment_start_time both changed on the follow-up GET), unlike the silent no-op profile updates recorded for macOS and Android (commit 87c857c38, 2026-04-28; resolved in eb881bb9b, 2026-07-30). Confirmed against 26.4.0.0: 204 returned, name/deployment_type/smart_group_uuids persist. FINDING (26.4.0.0): ranking sent in the PUT body is silently ignored and unchanged on re-GET — this is correct behavior: DeviceUpdateDeploymentUpdateV1Model has no ranking field; ranking is managed exclusively via PUT /api/mdm/updates/{uuid}/groups/{ogUuid}/deployments/bulk-rank.",
+    "version": "1",
+    "confirmed_against": ["26.2.0.0", "26.4.0.0"]
   },
   "request": {
     "headers": {

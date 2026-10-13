@@ -2,8 +2,15 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/scripts/samples",
     "method": "POST",
-    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. POST /api/mdm/groups/{organizationGroupUuid}/scripts/samples (v1) for a real enrolled AppleOsX device and an APPLE_OSX script created for this capture, queried at the shared parent org group: 204 No Content, no samples reported for that pairing.",
-    "version": "1"
+    "description": "PORTED-FROM-26.2 (not re-verified on 26.4): GENUINE: live-captured with tools/mock-capture against UEM 26.2 (lab-tenant) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. POST /api/mdm/groups/{organizationGroupUuid}/scripts/samples (v1) for a real enrolled AppleOsX device and an APPLE_OSX script created for this capture, queried at the shared parent org group: 204 No Content, no samples reported for that pairing.",
+    "version": "1",
+    "provenance": {
+      "class": "PORTED-FROM-26.2",
+      "source_tenant": "lab-tenant",
+      "source_version": "26.2",
+      "source_commit": "a4b67af4b43fa6e94365fcae2ae565376dfde61a",
+      "reverified_on": null
+    }
   },
   "request": {
     "headers": {
