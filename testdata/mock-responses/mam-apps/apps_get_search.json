@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mam/apps/search",
     "method": "GET",
-    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. GET /api/mam/apps/search (v2, organization_group_uuid = the disposable org group, which holds one macOS internal app created for this capture). The search returns apps from the org group's lineage (total 3). No MSI app exists in scope, so msi_deployment_parameters and the other MSI-only fields (application_size, application_url, comments, version_identifier) are ABSENT from this body rather than filled in.",
+    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (lab-tenant) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. GET /api/mam/apps/search (v2, organization_group_uuid = the disposable org group, which holds one macOS internal app created for this capture). The search returns apps from the org group's lineage (total 3). No MSI app exists in scope, so msi_deployment_parameters and the other MSI-only fields (application_size, application_url, comments, version_identifier) are ABSENT from this body rather than filled in.",
     "version": "2"
   },
   "request": {

@@ -72,7 +72,7 @@ func publicTargetsWiringVerdict(makefile, testSrc string) (skip string, problems
 			problems = append(problems, fmt.Sprintf("ASSEMBLED_GUARDS names %s, which does not exist in tests/", g))
 		}
 	}
-	for _, must := range []string{"TestAssembledPackagesHaveNoLeakedOGUUID", "TestAssembledPackagesHaveNoDashFormUUIDInProse"} {
+	for _, must := range []string{"TestAssembledPackagesHaveNoLeakedOGUUID", "TestAssembledPackagesHaveNoDashFormUUIDInProse", "TestShippedFilesHaveNoTestTenantLabelOrOrgGroupID"} {
 		if !strings.Contains(m[1], must) {
 			problems = append(problems, fmt.Sprintf("ASSEMBLED_GUARDS dropped %s", must))
 		}
@@ -130,7 +130,7 @@ func makefileTargetRecipe(makefile, target string) string {
 func TestPublicTargetsWiringVerdict(t *testing.T) {
 	const publicMakefile = "GO ?= go\n\n.PHONY: build\nbuild: ## Compile\n\t$(GO) build ./...\n\n.PHONY: test\ntest: ## Run tests\n\tTEST_MODE=mock $(GO) test ./...\n"
 
-	guardNames := []string{"TestGuardA", "TestGuardB", "TestGuardC", "TestGuardD", "TestAssembledPackagesHaveNoLeakedOGUUID", "TestAssembledPackagesHaveNoDashFormUUIDInProse"}
+	guardNames := []string{"TestGuardA", "TestGuardB", "TestGuardC", "TestGuardD", "TestAssembledPackagesHaveNoLeakedOGUUID", "TestAssembledPackagesHaveNoDashFormUUIDInProse", "TestShippedFilesHaveNoTestTenantLabelOrOrgGroupID"}
 	var testSrc strings.Builder
 	for _, g := range guardNames {
 		testSrc.WriteString("func " + g + "(t *testing.T) {}\n")

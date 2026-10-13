@@ -152,7 +152,7 @@ func TestGeneratedBaselinesV1Lifecycle(t *testing.T) {
 		// (which addresses the org group by UUID in the URL path). The
 		// value below is a fixed sample number; the mock server serves a
 		// static fixture and does not resolve it.
-		RootLocationGroupID: 138883,
+		RootLocationGroupID: 123456,
 	}
 	cloneOpts := &mdmv1.BaselinesV1CloneBaselineAsyncOptions{Action: "clone"}
 	_, cloned, err := svc.CloneBaselineAsync(ctx, testBaselinesOrgGroupUUID, testBaselineUUID, cloneReq, cloneOpts)

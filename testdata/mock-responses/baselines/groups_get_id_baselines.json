@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/groups/{organizationGroupUuid}/baselines",
     "method": "GET",
-    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (as8006) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. GET /api/mdm/groups/{organizationGroupUuid}/baselines (v1) for a disposable org group holding one Windows 10 baseline created for this capture (template Windows Security Baseline, OS version 1709). Replaces the earlier empty-array body.",
+    "description": "GENUINE: live-captured with tools/mock-capture against UEM 26.2 (lab-tenant) on 2026-09-24, in a disposable sdktestrun org group created for this capture under the shared parent (every created object deleted afterwards with a second-DELETE proof; the shared parent's snapshot was unchanged). Body values were anonymized by the capture anonymizer. GET /api/mdm/groups/{organizationGroupUuid}/baselines (v1) for a disposable org group holding one Windows 10 baseline created for this capture (template Windows Security Baseline, OS version 1709). Replaces the earlier empty-array body.",
     "version": "1"
   },
   "request": {

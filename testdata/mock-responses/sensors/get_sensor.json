@@ -2,7 +2,7 @@
   "metadata": {
     "endpoint": "/api/mdm/devicesensors/{sensorUuid}",
     "method": "GET",
-    "description": "Get device sensor by UUID (V1). Live-captured against <internal-env>/26.2.0.0, org 138883 (sdktest), for the sensor created in create_sensor.json. Confirms real server behavior: timeout always reads back 0 regardless of the value sent on create (same finding as V2's sibling fixture batch); event_trigger defaults to [\"UNKNOWN\"] when trigger_type=SCHEDULE and no event_trigger was supplied on create.",
+    "description": "Get device sensor by UUID (V1). Live-captured against <internal-env>/26.2.0.0, org 123456 (sdktest), for the sensor created in create_sensor.json. Confirms real server behavior: timeout always reads back 0 regardless of the value sent on create (same finding as V2's sibling fixture batch); event_trigger defaults to [\"UNKNOWN\"] when trigger_type=SCHEDULE and no event_trigger was supplied on create.",
     "version": "1"
   },
   "request": {

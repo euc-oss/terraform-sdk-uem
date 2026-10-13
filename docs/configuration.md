@@ -57,7 +57,8 @@ endpoint selection.
 ## Optional Tuning Fields
 
 `wsone.Config` exposes three optional fields for tuning retry, rate-limit, and
-timeout behavior. All three default to zero, which tells the SDK to apply its
+timeout behavior (the optional `UserAgent` field is covered under
+[User-Agent](#user-agent)). All three default to zero, which tells the SDK to apply its
 built-in defaults. You only need to set these when the defaults do not suit your
 deployment.
 
@@ -253,39 +254,47 @@ sequence stops as soon as the context is cancelled.
 
 ## User-Agent
 
-The SDK does not set a custom `User-Agent` header. Requests are sent with the
-default Go `net/http` user-agent string (`Go-http-client/1.1` or
-`Go-http-client/2.0` depending on the protocol).
+Every request the SDK sends, API calls and the OAuth2 token call alike, carries
+`User-Agent: uem-sdk-go/<version>`, where the version is the SDK release version
+(for example `uem-sdk-go/26.2.0`). The SDK sets the header on every request it
+builds, the API calls and the token call, so no request leaves without it.
 
-If you need a custom user-agent, wrap the transport:
+To identify your own application, set `Config.UserAgent`. Its product token(s) are
+placed in front of the SDK's token. The SDK adds no prefix of its own; you choose
+the whole front of the string:
 
 ```go
-type uaTransport struct {
-    base      http.RoundTripper
-    userAgent string
-}
-
-func (t *uaTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-    clone := req.Clone(req.Context())
-    clone.Header.Set("User-Agent", t.userAgent)
-    return t.base.RoundTrip(clone)
-}
-
 c, err := wsone.NewClient(wsone.Config{
     BaseURL:    "https://your-instance.awmdm.com",
     TenantCode: "your-tenant-code",
     Auth:       auth,
-    HTTPClient: &http.Client{
-        Transport: &uaTransport{
-            base:      http.DefaultTransport,
-            userAgent: "my-app/1.0",
-        },
-    },
+    UserAgent:  "my-app/1.2.0 my-framework/3.4.0",
 })
 if err != nil {
     return err
 }
+// User-Agent on every request:
+//   my-app/1.2.0 my-framework/3.4.0 uem-sdk-go/26.2.0
 ```
+
+The value is cleaned before it is sent: leading and trailing white space is
+dropped, runs of white space collapse to a single space, control characters
+(carriage return, line feed and the rest) count as white space so they cannot
+split the header, and characters outside ASCII are dropped. The result is limited to 256
+characters (cut at a token boundary). If nothing is left, only the SDK's own token
+is sent. A header is never empty and never contains a double space.
+
+The OAuth2 token call uses the same value. The provider you pass in `Auth` takes the
+`UserAgent` of the client it is attached to, unless you gave it its own through
+`OAuth2Config.UserAgent` (or `SetUserAgent` on the lower-level provider), in which
+case the token call keeps that value and API calls keep `Config.UserAgent`. A value
+that is empty after cleaning counts as not given. A provider shared by several
+clients takes the value of the client created last; give it its own value to pin it.
+
+The SDK sets `User-Agent` on every request it builds and replaces any value already
+on it. A custom `HTTPClient` transport runs after that and can still change the
+header; a transport that sets its own `User-Agent` therefore wins over the SDK's, so
+set the product token through `Config.UserAgent` instead.
 
 ## Debug Logging
 
@@ -301,6 +310,21 @@ starts:
 When enabled, the SDK logs every outgoing request and incoming response to
 `stderr`, including headers. Sensitive headers (`Authorization`,
 `aw-tenant-code`, cookies) are automatically redacted to `***`.
+
+In addition, each call writes one compact summary line, after retries, with the
+method, the path (never the query string), the final status and the
+[correlation ID](error-handling.md#correlation-id) of the call:
+
+```text
+[UEM-SDK] GET /api/mdm/profiles/12 -> 200 correlation-id=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+```
+
+When no response arrives (timeout, connection reset) or the call fails before it is
+sent (rate limiter, request validation, token request) the line reads
+`-> no response` and shows the ID the SDK sent; when the server answers with a
+different ID the line adds `sent-correlation-id=<id>`. No header, query value or body
+appears in it. The ID does not depend on debug logging: it is in every error the call
+returns (see [Error Handling](error-handling.md#correlation-id)).
 
 ```bash
 UEM_DEBUG=true go run ./cmd/myapp

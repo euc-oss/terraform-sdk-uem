@@ -32,6 +32,29 @@ module (the 26.2.0 internal baseline against this release).
   `Page`, `PageSize`, `Total`), `sdk.OrganizationGroupCollectionV1Model` (`Items`) and
   `sdk.EntityReferenceV1` (`ID`, `Name`, `UUID`).
 - `sdk.ProfilesV1Service.DeleteDeviceProfileAsync`.
+- `client.Config.UserAgent`, `sdk.Config.UserAgent` and `sdk.OAuth2Config.UserAgent`: product
+  token(s) that identify the application embedding the SDK, placed in front of the SDK's own
+  `uem-sdk-go/<version>` token in the `User-Agent` of every request, the OAuth2 token call
+  included (for example `my-app/1.2.0 uem-sdk-go/26.2.0`). The SDK adds no prefix of its own.
+  The value is sanitized: white space collapses, control characters and non-ASCII characters
+  are dropped, the result is limited to 256 characters, and when nothing is left only the SDK's
+  token is sent. Also
+  `client.OAuth2Auth.SetUserAgent`, `client.DefaultUserAgent`, `client.BuildUserAgent`,
+  `client.SanitizeUserAgentPrefix` and `client.Version`.
+- `client.CorrelationIDHeader`, `client.CorrelatedError`, `client.CorrelationID(err)` (also
+  `sdk.CorrelatedError` and `sdk.CorrelationID`) and `client.APIError.CorrelationID` /
+  `SentCorrelationID`: the SDK sends an `X-Correlation-ID` GUID with every call (one per call,
+  reused for every retry of it, and on the OAuth2 token request it triggers). Every error a
+  call returns carries that ID with debug logging off and its text contains
+  `(correlation id: <id>)` (an error a helper builds itself, where there is no call or the call succeeded, is a plain
+  error): an `*APIError` has `CorrelationID` (the server's value, or the sent
+  one when the response had none or an unusable one; `SentCorrelationID` is the sent one), and
+  every other error (timeouts, context deadline and cancellation, connection, TLS and DNS
+  failures, retries exhausted, token request failures, client-side validation) is wrapped in a
+  `*CorrelatedError` that unwraps to the original, so `errors.Is` and `errors.As` keep working.
+  `CorrelationID(err)` extracts the ID from either. With `UEM_DEBUG` or
+  `TF_LOG` set, each call writes one compact line (method, path without query, final status,
+  correlation ID).
 - `sdk.BaselineDevicePoliciesV1Model` (`Results`, `Total`), `sdk.BaselineDevicePolicyV1Model`
   (`UUID`, `Name`, `ClassName`, `Path`, `Status`, `Compliance`),
   `sdk.BaselineDevicePolicyComplianceV1Model` (`Status`, `ErrorCode`) and
@@ -52,6 +75,8 @@ module (the 26.2.0 internal baseline against this release).
 
 ### Changed
 
+- Every request now carries `User-Agent: uem-sdk-go/<version>` instead of Go's default
+  `Go-http-client/1.1`, including the OAuth2 token request.
 - **The module path is now `github.com/euc-oss/terraform-sdk-uem/v26`** (it ends in `/v26`), and releases are tagged
   `v26.<minor>.<patch>[-beta.N]`, starting with `v26.2.0-beta.1`. Go requires the
   major-version suffix from v2 on, and the major version is the UEM major version

@@ -173,11 +173,9 @@ var bareSlugPattern = regexp.MustCompile(`(?i)\b(` +
 // comment in tools/sync/scrub.go for the specific domain list. Deliberately
 // the same prefix set (as/cn/ds) and digit-count range as tenantHostRegex, not a
 // fuzzy shape, for the same false-positive-avoidance reason as the
-// bead-slug lists above. "as8006" is the one owner-allowed exception (see
-// isAllowedBareTenantLabel): it's this codebase's own standard shared test
-// host, cited constantly and safely throughout shipped tests/docs -- every
-// OTHER label matching this shape names a real or real-shaped tenant and
-// must not appear.
+// bead-slug lists above. There is no exception: the shared test tenant's
+// label is replaced by the sync's scrub rule, and every label matching this
+// shape names a real or real-shaped tenant and must not appear.
 var bareTenantLabelPattern = regexp.MustCompile(`(?i)\b(as|cn|ds)[0-9]{3,5}\b`)
 
 // forbiddenInternalDomainHashes ships ONLY sha256 hex digests of internal
@@ -267,11 +265,179 @@ func findForbiddenHostSuffixHits(line string) []string {
 	return findForbiddenHostSuffixHitsUsing(line, forbiddenInternalDomainHashes)
 }
 
-// isAllowedBareTenantLabel reports whether a bareTenantLabelPattern match is
-// the one owner-allowed exception, "as8006" (case-insensitive) -- every
-// other match is a violation.
-func isAllowedBareTenantLabel(match string) bool {
-	return strings.EqualFold(match, "as8006")
+// shippedForbiddenTokens are identifiers of the shared test tenant that the
+// sync scrubs and that must not reappear anywhere in an assembled package:
+// the tenant's instance label (any case) and its org-group id, each as a
+// whole word. Built from fragments so this file does not hold them.
+var shippedForbiddenTokens = []struct {
+	what   string
+	re     *regexp.Regexp // file contents: whole word
+	pathRe *regexp.Regexp // file and directory names and paths: the token between non-alphanumerics (or digits), so "x_<token>.json" counts
+}{
+	{
+		"test tenant label",
+		regexp.MustCompile(`(?i)\b` + joinWordFragments("as", "8006") + `\b`),
+		regexp.MustCompile(`(?i)(^|[^A-Za-z0-9])` + joinWordFragments("as", "8006") + `($|[^A-Za-z0-9])`),
+	},
+	{
+		"test org-group id",
+		regexp.MustCompile(`\b` + joinWordFragments("13888", "3") + `\b`),
+		regexp.MustCompile(`(^|[^0-9])` + joinWordFragments("13888", "3") + `($|[^0-9])`),
+	},
+}
+
+// shippedForbiddenTokenProblems walks every regular text file under root
+// (any extension: source, fixtures, docs, config) and reports each line
+// holding a shippedForbiddenTokens match. It also checks the name and path
+// of every file and directory (binary files included), because the sync's
+// scrub rewrites contents only. The .git directory is skipped, and the
+// contents of binary files (a NUL byte in the first 8 KiB) are not read.
+func shippedForbiddenTokenProblems(root string) []string {
+	var problems []string
+	_ = filepath.Walk(root, func(path string, info os.FileInfo, walkErr error) error {
+		if walkErr != nil {
+			return nil //nolint:nilerr // best-effort walk: entries the walker cannot stat are skipped, not failed
+		}
+		if info.IsDir() && info.Name() == ".git" {
+			return filepath.SkipDir
+		}
+		if rel, relErr := filepath.Rel(root, path); relErr == nil && rel != "." {
+			for _, tok := range shippedForbiddenTokens {
+				if tok.pathRe.MatchString(filepath.ToSlash(rel)) {
+					problems = append(problems, fmt.Sprintf("%s: %s found in a shipped file or directory name", filepath.ToSlash(rel), tok.what))
+				}
+			}
+		}
+		if info.IsDir() {
+			return nil
+		}
+		data, err := os.ReadFile(path)
+		if err != nil {
+			return nil //nolint:nilerr // best-effort scan: an unreadable file is skipped, not failed
+		}
+		head := data
+		if len(head) > 8192 {
+			head = head[:8192]
+		}
+		if strings.IndexByte(string(head), 0) >= 0 {
+			return nil
+		}
+		rel, relErr := filepath.Rel(root, path)
+		if relErr != nil {
+			rel = path
+		}
+		for i, line := range strings.Split(string(data), "\n") {
+			for _, tok := range shippedForbiddenTokens {
+				if tok.re.MatchString(line) {
+					problems = append(problems, fmt.Sprintf("%s:%d: %s found in shipped file", rel, i+1, tok.what))
+				}
+			}
+		}
+		return nil
+	})
+	sort.Strings(problems)
+	return problems
+}
+
+// TestShippedFilesHaveNoTestTenantLabelOrOrgGroupID: the scrub rules replace
+// the shared test tenant's label and org-group id; nothing in an assembled
+// package may carry either again.
+func TestShippedFilesHaveNoTestTenantLabelOrOrgGroupID(t *testing.T) {
+	goDir, pyDir := assembledPackageDirs(t)
+
+	var problems []string
+	for _, dir := range []string{goDir, pyDir} {
+		if dir != "" {
+			problems = append(problems, shippedForbiddenTokenProblems(dir)...)
+		}
+	}
+	if len(problems) > 0 {
+		t.Fatalf("%d shipped file line(s) carry the test tenant label or org-group id:\n%s", len(problems), joinLines(problems))
+	}
+}
+
+// TestShippedFilesHaveNoTestTenantLabelOrOrgGroupID_PlantedControls plants
+// each token in a file of several kinds and expects a hit, and plants
+// longer, unrelated tokens and the scrub placeholders and expects none. The
+// planted tokens are assembled at runtime.
+func TestShippedFilesHaveNoTestTenantLabelOrOrgGroupID_PlantedControls(t *testing.T) {
+	label := joinWordFragments("as", "8006")
+	orgID := joinWordFragments("13888", "3")
+	for _, c := range []struct {
+		name, file, content string
+		want                bool
+	}{
+		{"label in json", "f.json", `{"source_tenant": "` + label + `"}`, true},
+		{"label upper case in markdown", "README.md", "run against " + strings.ToUpper(label) + " first\n", true},
+		{"label in yaml", "c.yaml", "tenant: " + label + "\n", true},
+		{"org id in go", "x_test.go", "RootLocationGroupID: " + orgID + ",\n", true},
+		{"org id in prose", "d.md", "org group " + orgID + " (shared)\n", true},
+		{"org id in a text file without extension", "NOTES", "id=" + orgID + "\n", true},
+		{"placeholder label", "p.json", `{"source_tenant": "lab-tenant"}`, false},
+		{"placeholder id", "p.go", "RootLocationGroupID: 123456,\n", false},
+		{"longer label", "l.json", `{"x": "` + label + `1"}`, false},
+		{"id inside a longer number", "n.json", `{"x": ` + orgID + `0}`, false},
+		{"unrelated six digit number", "u.json", `{"x": 138884}`, false},
+	} {
+		t.Run(c.name, func(t *testing.T) {
+			dir := t.TempDir()
+			if err := os.WriteFile(filepath.Join(dir, c.file), []byte(c.content), 0o644); err != nil {
+				t.Fatal(err)
+			}
+			got := shippedForbiddenTokenProblems(dir)
+			if (len(got) > 0) != c.want {
+				t.Fatalf("problems = %v, want a hit: %v", got, c.want)
+			}
+		})
+	}
+	for _, c := range []struct {
+		name, rel string
+		want      bool
+		emptyDir  bool // create rel as an empty directory instead of a file
+	}{
+		{"label in a file name", "testdata/get_" + label + ".json", true, false},
+		{"upper-case label in a file name", "tests/" + strings.ToUpper(label) + "_case.json", true, false},
+		{"org id in a file name", "testdata/profile_" + orgID + ".json", true, false},
+		{"org id glued to letters in a file name", "testdata/profile" + orgID + ".json", true, false},
+		{"label in a directory name", label + "/f.json", true, false},
+		{"org id in a directory name", "docs/" + orgID + "/f.md", true, false},
+		{"label in an empty directory name", "testdata/" + label, true, true},
+		{"org id in an empty directory name", "testdata/" + orgID, true, true},
+		{"placeholder in a file name", "testdata/get_lab-tenant.json", false, false},
+		{"id inside a longer number in a file name", "testdata/get_" + orgID + "0.json", false, false},
+		{"unrelated six digit number in a file name", "testdata/get_138884.json", false, false},
+		{"longer label in a file name", "testdata/get_" + label + "1.json", false, false},
+	} {
+		t.Run(c.name, func(t *testing.T) {
+			dir := t.TempDir()
+			full := filepath.Join(dir, filepath.FromSlash(c.rel))
+			if c.emptyDir {
+				if err := os.MkdirAll(full, 0o755); err != nil {
+					t.Fatal(err)
+				}
+			} else {
+				if err := os.MkdirAll(filepath.Dir(full), 0o755); err != nil {
+					t.Fatal(err)
+				}
+				if err := os.WriteFile(full, []byte("{}\n"), 0o644); err != nil {
+					t.Fatal(err)
+				}
+			}
+			got := shippedForbiddenTokenProblems(dir)
+			if (len(got) > 0) != c.want {
+				t.Fatalf("problems = %v, want a hit: %v", got, c.want)
+			}
+		})
+	}
+	t.Run("binary file skipped", func(t *testing.T) {
+		dir := t.TempDir()
+		if err := os.WriteFile(filepath.Join(dir, "b.bin"), append([]byte{0, 1, 2}, []byte(label)...), 0o644); err != nil {
+			t.Fatal(err)
+		}
+		if got := shippedForbiddenTokenProblems(dir); len(got) != 0 {
+			t.Fatalf("binary file reported: %v", got)
+		}
+	})
 }
 
 // isPlaceholderExampleDomainTenantLabel reports whether the text immediately
@@ -366,8 +532,7 @@ func shippedLocalPathAndNarrativeProblems(root string, exts []string) []string {
 				}
 			}
 			for _, loc := range bareTenantLabelPattern.FindAllStringIndex(line, -1) {
-				m := line[loc[0]:loc[1]]
-				if isAllowedBareTenantLabel(m) || isPlaceholderExampleDomainTenantLabel(line[loc[1]:]) {
+				if isPlaceholderExampleDomainTenantLabel(line[loc[1]:]) {
 					continue
 				}
 				problems = append(problems, fmt.Sprintf("%s:%d: non-allowed tenant label found in shipped source: %q", rel, i+1, strings.TrimSpace(line)))
@@ -581,10 +746,10 @@ func TestShippedFilesNoLocalPathsOrSessionNarrative_PlantedControls(t *testing.T
 		writeAndCheck(t, "planted_tenantlabel_test.go", content, ".go", true)
 	})
 
-	t.Run("allowed_tenant_label_passes", func(t *testing.T) {
+	t.Run("shared_test_tenant_label_fires", func(t *testing.T) {
 		label := "as" + "8006"
 		content := "package tests\n\n// host " + label + " is the standard shared test tenant\n"
-		writeAndCheck(t, "planted_tenantlabel_allowed_test.go", content, ".go", false)
+		writeAndCheck(t, "planted_tenantlabel_shared_test.go", content, ".go", true)
 	})
 
 	t.Run("placeholder_example_domain_tenant_label_passes", func(t *testing.T) {

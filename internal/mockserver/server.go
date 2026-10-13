@@ -1,6 +1,7 @@
 package mockserver
 
 import (
+	"crypto/rand"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -9,6 +10,24 @@ import (
 	"strconv"
 	"strings"
 )
+
+// correlationIDHeader is the header UEM sets on every response.
+const correlationIDHeader = "X-Correlation-ID"
+
+// correlationIDFor returns the id the server answers with: the request's value
+// if it is a valid GUID (8-4-4-4-12 hexadecimal), otherwise a generated GUID.
+func correlationIDFor(r *http.Request) string {
+	if id := r.Header.Get(correlationIDHeader); guidPattern.MatchString(id) {
+		return id
+	}
+	var b [16]byte
+	_, _ = rand.Read(b[:])
+	b[6] = (b[6] & 0x0f) | 0x40
+	b[8] = (b[8] & 0x3f) | 0x80
+	return fmt.Sprintf("%x-%x-%x-%x-%x", b[0:4], b[4:6], b[6:8], b[8:10], b[10:])
+}
+
+var guidPattern = regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$`)
 
 // MockServer is an HTTP server that returns mock responses based on configuration files.
 type MockServer struct {
@@ -32,6 +51,11 @@ func NewMockServer(responses []*MockResponse) *MockServer {
 
 // handleRequest processes incoming HTTP requests and returns mock responses.
 func (ms *MockServer) handleRequest(w http.ResponseWriter, r *http.Request) {
+	// Like UEM, answer every request with an X-Correlation-ID: the request's own
+	// value when it is a valid GUID, a fresh one otherwise. A fixture's response
+	// headers, applied below, may still override it.
+	w.Header().Set(correlationIDHeader, correlationIDFor(r))
+
 	// Check for stateful operations first
 	if ms.handleStatefulRequest(w, r) {
 		return

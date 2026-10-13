@@ -237,6 +237,14 @@ if err != nil {
 log.Printf("found %d profiles", len(profiles))
 ```
 
+Every error a call returns carries the call's `X-Correlation-ID`, the handle that support
+and the server logs use for the request: `apiErr.CorrelationID` on an `*wsone.APIError`, a
+`*wsone.CorrelatedError` around everything else (timeouts, connection and TLS failures, a
+failed token request), and `wsone.CorrelationID(err)` to extract it. The SDK sends one ID
+per call and keeps it across retries. (An error a helper builds itself, where there is no call or
+the call succeeded, is a plain error; see [docs/error-handling.md](docs/error-handling.md).) Every request also carries `User-Agent: uem-sdk-go/<version>`, and
+`Config.UserAgent` adds your application's token in front of it.
+
 See [docs/error-handling.md](docs/error-handling.md) for full details.
 
 ## Documentation
