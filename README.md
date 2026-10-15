@@ -102,8 +102,10 @@ The SDK supports two authentication providers:
 - **OAuth2 (recommended)** — works for both cloud and on-premises deployments. Cloud deployments use a separate auth host (`https://na.uemauth.workspaceone.com/connect/token`); on-prem deployments typically use the deployment host (`https://<host>/oauth/token`). The SDK auto-detects when given a base URL alone, but you can pass an explicit `TokenURL` for fully-qualified setups.
 - **Basic auth** — username + password. Available for legacy deployments where OAuth2 is not configured.
 
-The tenant code (`aw-tenant-code` header) is always wired through `wsone.Config.TenantCode`,
-not through the auth constructor. This applies to both OAuth2 and Basic auth.
+The tenant code (`aw-tenant-code` header) is set through `wsone.Config.TenantCode`,
+not through the auth constructor. Basic auth requires it; `NewClient` returns
+`TenantCode is required for basic authentication` without it. OAuth2 does not
+need it: when `TenantCode` is empty, the header is not sent.
 
 **OAuth2:**
 
@@ -118,9 +120,8 @@ if err != nil {
 }
 
 client, err := wsone.NewClient(wsone.Config{
-    BaseURL:    apiURL,
-    Auth:       auth,
-    TenantCode: tenantCode, // ← tenant code goes here for both auth methods
+    BaseURL: apiURL,
+    Auth:    auth,
 })
 if err != nil {
     return err

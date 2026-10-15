@@ -43,7 +43,10 @@ type Config struct {
 	// InstanceURL is the base URL of the Workspace ONE instance (e.g., "https://your-instance.awmdm.com")
 	InstanceURL string
 
-	// TenantCode is the aw-tenant-code header value (REQUIRED on all requests)
+	// TenantCode is the aw-tenant-code header value (the tenant REST API key).
+	// It is required with basic authentication and optional with OAuth2. When it
+	// is empty the aw-tenant-code header is not sent at all; UEM rejects an empty
+	// header with a 400.
 	TenantCode string
 
 	// Auth is a pre-built authentication provider. When set, AuthMethod and the
@@ -396,7 +399,9 @@ func (c *Client) addHeaders(req *http.Request, acceptHeader, contentType, correl
 	// Add headers from caller-supplied parameters
 	req.Header.Set("Accept", acceptHeader)
 	req.Header.Set("Content-Type", contentType)
-	req.Header.Set("aw-tenant-code", c.config.TenantCode) // CRITICAL: Required on ALL requests
+	if c.config.TenantCode != "" {
+		req.Header.Set("aw-tenant-code", c.config.TenantCode)
+	}
 	req.Header.Set(userAgentHeader, c.userAgent)
 	if correlationID != "" {
 		req.Header.Set(CorrelationIDHeader, correlationID)
@@ -458,13 +463,15 @@ func validateConfig(config *Config) error {
 		return fmt.Errorf("InstanceURL is required")
 	}
 
-	if config.TenantCode == "" {
-		return fmt.Errorf("TenantCode is required")
-	}
-
 	// When an external AuthProvider is supplied the per-method credential fields
-	// are not required — skip credential validation entirely.
+	// are not required — skip credential validation entirely. Basic
+	// authentication still needs the tenant code. NewClient treats every
+	// injected provider other than *OAuth2Auth as basic, so only *OAuth2Auth
+	// is exempt here too.
 	if config.Auth != nil {
+		if _, isOAuth2 := config.Auth.(*OAuth2Auth); !isOAuth2 && config.TenantCode == "" {
+			return fmt.Errorf("TenantCode is required for basic authentication")
+		}
 		return nil
 	}
 
@@ -486,6 +493,9 @@ func validateConfig(config *Config) error {
 	}
 
 	if config.AuthMethod == "basic" {
+		if config.TenantCode == "" {
+			return fmt.Errorf("TenantCode is required for basic authentication")
+		}
 		if config.Username == "" {
 			return fmt.Errorf("username is required for Basic authentication")
 		}

@@ -53,12 +53,22 @@ func TestNewClient(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name: "missing tenant code",
+			name: "OAuth2 without tenant code is valid",
 			config: &Config{
 				InstanceURL:  "https://test.awmdm.com",
 				AuthMethod:   "oauth2",
 				ClientID:     "test-client",
 				ClientSecret: "test-secret",
+			},
+			wantErr: false,
+		},
+		{
+			name: "basic auth without tenant code",
+			config: &Config{
+				InstanceURL: "https://test.awmdm.com",
+				AuthMethod:  "basic",
+				Username:    "test-user",
+				Password:    "test-pass",
 			},
 			wantErr: true,
 		},

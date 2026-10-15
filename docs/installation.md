@@ -114,7 +114,6 @@ them from environment variables in your application:
 ```bash
 # Workspace ONE Cloud (OAuth2)
 export WSONE_API_URL="https://your-instance.workspaceone.com"
-export WSONE_TENANT_CODE="your-tenant-code"
 export WSONE_CLIENT_ID="your-client-id"
 export WSONE_CLIENT_SECRET="your-client-secret"
 export WSONE_TOKEN_URL="https://na.uemauth.workspaceone.com/connect/token"
@@ -145,9 +144,8 @@ if err != nil {
 }
 
 client, err := wsone.NewClient(wsone.Config{
-    BaseURL:    os.Getenv("WSONE_API_URL"),
-    TenantCode: os.Getenv("WSONE_TENANT_CODE"),
-    Auth:       auth,
+    BaseURL: os.Getenv("WSONE_API_URL"),
+    Auth:    auth,
 })
 if err != nil {
     log.Fatal(err)

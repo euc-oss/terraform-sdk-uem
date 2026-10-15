@@ -50,14 +50,17 @@ if err != nil {
 }
 
 c, err := wsone.NewClient(wsone.Config{
-    BaseURL:    "https://your-instance.awmdm.com",
-    TenantCode: "your-tenant-code",
-    Auth:       auth,
+    BaseURL: "https://your-instance.awmdm.com",
+    Auth:    auth,
 })
 if err != nil {
     panic(err)
 }
 ```
+
+OAuth2 does not need a tenant code. If `TenantCode` is set it is still sent as
+the `aw-tenant-code` header; when it is empty, the header is omitted. Basic
+authentication requires it.
 
 ### Token Endpoint URLs
 
@@ -104,7 +107,6 @@ WSONE_PASSWORD=admin-password
 
 ```bash
 WSONE_BASE_URL=https://your-instance.awmdm.com
-WSONE_TENANT_CODE=your-tenant-code
 WSONE_CLIENT_ID=your-client-id
 WSONE_CLIENT_SECRET=your-client-secret
 WSONE_TOKEN_URL=https://na.uemauth.workspaceone.com/connect/token
@@ -135,9 +137,8 @@ if err != nil {
 }
 
 c, err := wsone.NewClient(wsone.Config{
-    BaseURL:    os.Getenv("WSONE_BASE_URL"),
-    TenantCode: os.Getenv("WSONE_TENANT_CODE"),
-    Auth:       auth,
+    BaseURL: os.Getenv("WSONE_BASE_URL"),
+    Auth:    auth,
 })
 if err != nil {
     log.Fatal(err)

@@ -7,7 +7,7 @@
 // Required environment variables:
 //
 //	WSONE_API_URL       Base URL of the Workspace ONE UEM API
-//	WSONE_TENANT_CODE   UEM tenant code
+//	WSONE_TENANT_CODE   (optional) UEM tenant code; OAuth2 does not need it
 //	WSONE_CLIENT_ID     OAuth2 client ID
 //	WSONE_CLIENT_SECRET OAuth2 client secret
 //	WSONE_TOKEN_URL     OAuth2 token endpoint URL
@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	for _, k := range []string{"WSONE_API_URL", "WSONE_TENANT_CODE", "WSONE_CLIENT_ID", "WSONE_CLIENT_SECRET", "WSONE_TOKEN_URL"} {
+	for _, k := range []string{"WSONE_API_URL", "WSONE_CLIENT_ID", "WSONE_CLIENT_SECRET", "WSONE_TOKEN_URL"} {
 		if os.Getenv(k) == "" {
 			log.Fatalf("missing required env var %s", k)
 		}
