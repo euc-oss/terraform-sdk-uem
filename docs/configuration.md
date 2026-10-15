@@ -27,10 +27,10 @@ if err != nil {
 | Field        | Type                | Description                                          |
 | ------------ | ------------------- | ---------------------------------------------------- |
 | `BaseURL`    | `string`            | Base URL of the Workspace ONE UEM instance           |
-| `TenantCode` | `string`            | Value sent as the `aw-tenant-code` header on every request |
 | `Auth`       | `wsone.AuthProvider`| Authentication provider (OAuth2 or Basic)            |
+| `TenantCode` | `string`            | Sent as the `aw-tenant-code` header; required for basic auth only |
 
-`NewClient` returns an error if any required field is empty.
+`NewClient` returns an error if a required field is empty.
 
 ### BaseURL
 
@@ -43,8 +43,9 @@ BaseURL: "https://your-instance.awmdm.com"
 ### TenantCode
 
 The tenant code (sometimes called API key) is sent as the `aw-tenant-code`
-header on every request. It is required by the Workspace ONE API on all
-endpoints. Omitting it produces a 401 from the server.
+header when it is set. Basic authentication requires it: `NewClient` returns
+`TenantCode is required for basic authentication` when it is empty. OAuth2
+does not need it; leave it empty and the header is not sent.
 
 ### Auth
 

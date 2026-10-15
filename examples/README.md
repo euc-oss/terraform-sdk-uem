@@ -9,7 +9,7 @@ configuration from environment variables — no hardcoded credentials.
 | Variable                | Description                                                | Used by                                               |
 | ----------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
 | `WSONE_API_URL`         | Base URL of the Workspace ONE UEM API                      | all examples                                          |
-| `WSONE_TENANT_CODE`     | UEM tenant code (`aw-tenant-code` header value)            | all examples                                          |
+| `WSONE_TENANT_CODE`     | UEM tenant code (`aw-tenant-code` header value)            | auth-basic (optional for OAuth2 examples)             |
 | `WSONE_CLIENT_ID`       | OAuth2 client ID                                           | OAuth2 examples                                       |
 | `WSONE_CLIENT_SECRET`   | OAuth2 client secret                                       | OAuth2 examples                                       |
 | `WSONE_TOKEN_URL`       | OAuth2 token endpoint URL                                  | OAuth2 examples (cloud uses `na.uemauth.workspaceone.com/connect/token`) |
@@ -34,7 +34,6 @@ configuration from environment variables — no hardcoded credentials.
 ```bash
 cd quickstart
 export WSONE_API_URL=...
-export WSONE_TENANT_CODE=...
 export WSONE_CLIENT_ID=...
 export WSONE_CLIENT_SECRET=...
 export WSONE_TOKEN_URL=...

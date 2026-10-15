@@ -40,7 +40,9 @@ type Config struct {
 	// NewOAuth2Auth or sdk.NewBasicAuth.
 	Auth AuthProvider
 
-	// TenantCode is the aw-tenant-code header value required on all requests.
+	// TenantCode is the aw-tenant-code header value (the tenant REST API key).
+	// Required with basic authentication; optional with OAuth2, where the header
+	// is omitted when TenantCode is empty.
 	TenantCode string
 
 	// HTTPClient is an optional custom *http.Client to use as the inner

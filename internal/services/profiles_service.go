@@ -354,7 +354,7 @@ func (s *ProfileService) Update(ctx context.Context, id int, profile interface{}
 		}
 		entry, ok = s.lookupEntry(id)
 		if !ok {
-			return fmt.Errorf("profiles %d not found in registry", id)
+			return &client.NotFoundError{Resource: "profiles", ID: fmt.Sprintf("%d", id)}
 		}
 	}
 

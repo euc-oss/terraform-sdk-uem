@@ -15,7 +15,6 @@ go get github.com/euc-oss/terraform-sdk-uem/v26
 
 ```bash
 export WSONE_API_URL="https://your-instance.workspaceone.com"
-export WSONE_TENANT_CODE="your-tenant-code"
 export WSONE_CLIENT_ID="your-client-id"
 export WSONE_CLIENT_SECRET="your-client-secret"
 export WSONE_TOKEN_URL="https://na.uemauth.workspaceone.com/connect/token"
@@ -55,12 +54,11 @@ func main() {
         log.Fatalf("auth: %v", err)
     }
 
-    // TenantCode is the aw-tenant-code header required on every request.
-    // It lives on wsone.Config, not on the auth provider.
+    // OAuth2 needs no tenant code. Basic auth does: set it as
+    // wsone.Config.TenantCode (the aw-tenant-code header).
     client, err := wsone.NewClient(wsone.Config{
-        BaseURL:    os.Getenv("WSONE_API_URL"),
-        TenantCode: os.Getenv("WSONE_TENANT_CODE"),
-        Auth:       auth,
+        BaseURL: os.Getenv("WSONE_API_URL"),
+        Auth:    auth,
     })
     if err != nil {
         log.Fatalf("client: %v", err)

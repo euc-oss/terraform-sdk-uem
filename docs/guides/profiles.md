@@ -28,9 +28,8 @@ func main() {
     }
 
     client, err := wsone.NewClient(wsone.Config{
-        BaseURL:    os.Getenv("WSONE_API_URL"),
-        TenantCode: os.Getenv("WSONE_TENANT_CODE"),
-        Auth:       auth,
+        BaseURL: os.Getenv("WSONE_API_URL"),
+        Auth:    auth,
     })
     if err != nil {
         log.Fatalf("client: %v", err)
